@@ -44,6 +44,14 @@ export const NOTIFICATION_TYPES = [
   "weekly_digest",
 ] as const
 
+/** One-tap prompts for the ShelfAI chat widget (shown when the thread is empty). */
+export const CHAT_STARTER_PROMPTS = [
+  "Sci-fi I can crush in one weekend — go.",
+  "Cozy mystery, zero gore, maximum vibes.",
+  "Something like Dune but half the page count.",
+  "Book club pick that starts a fight (the fun kind).",
+] as const
+
 export const UI = {
   containerMaxWidthPx: 1280,
   sectionPaddingY: {
@@ -52,8 +60,8 @@ export const UI = {
     mobile: 48,
   },
   chat: {
-    desktopWidthPx: 380,
-    heightPx: 520,
+    desktopWidthPx: 400,
+    heightPx: 540,
     guestNudgeAfterMessages: 3,
   },
 } as const

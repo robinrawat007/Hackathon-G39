@@ -9,8 +9,8 @@ import { BookCard } from "@/components/books/book-card"
 import { cn } from "@/lib/utils"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 
-/** One card column: 220px track + gap-4 */
-const CARD_STEP_PX = 236
+/** Fallback step if layout measure fails (≈ card + gap-4). */
+const CARD_STEP_FALLBACK = 280
 const AUTO_ADVANCE_MS = 5200
 
 const list = {
@@ -35,47 +35,47 @@ function stepScrollPx(track: HTMLDivElement) {
     const gap = Number.parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "16") || 16
     return Math.round(firstItem.getBoundingClientRect().width + gap)
   }
-  return CARD_STEP_PX
+  return CARD_STEP_FALLBACK
 }
+
+const itemClass =
+  "h-full min-h-0 shrink-0 snap-start " +
+  "w-[min(280px,calc(100vw-5rem))] " +
+  "sm:w-[calc((100%-1rem)/2)] " +
+  "lg:w-[calc((100%-3rem)/4)]"
 
 export function BookCarousel({ books, title }: { books: Book[]; title: string }) {
   const ref = React.useRef<HTMLDivElement | null>(null)
   const reduced = usePrefersReducedMotion()
   const titleId = React.useId()
 
-  const scrollBy = React.useCallback(
-    (dx: number) => {
+  const scrollBy = React.useCallback((dx: number) => {
+    const el = ref.current
+    if (!el) return
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    el.scrollBy({ left: dx, behavior: prefersReduced ? "auto" : "smooth" })
+  }, [])
+
+  const onKeyDown = React.useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const behavior = prefersReduced ? "auto" : "smooth"
+    const step = ref.current ? stepScrollPx(ref.current) : CARD_STEP_FALLBACK
+
+    if (e.key === "ArrowLeft") {
+      e.preventDefault()
+      ref.current?.scrollBy({ left: -step, behavior })
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault()
+      ref.current?.scrollBy({ left: step, behavior })
+    } else if (e.key === "Home") {
+      e.preventDefault()
+      ref.current?.scrollTo({ left: 0, behavior })
+    } else if (e.key === "End") {
+      e.preventDefault()
       const el = ref.current
-      if (!el) return
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      el.scrollBy({ left: dx, behavior: prefersReduced ? "auto" : "smooth" })
-    },
-    []
-  )
-
-  const onKeyDown = React.useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      const behavior = prefersReduced ? "auto" : "smooth"
-      const step = ref.current ? stepScrollPx(ref.current) : CARD_STEP_PX
-
-      if (e.key === "ArrowLeft") {
-        e.preventDefault()
-        ref.current?.scrollBy({ left: -step, behavior })
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault()
-        ref.current?.scrollBy({ left: step, behavior })
-      } else if (e.key === "Home") {
-        e.preventDefault()
-        ref.current?.scrollTo({ left: 0, behavior })
-      } else if (e.key === "End") {
-        e.preventDefault()
-        const el = ref.current
-        if (el) el.scrollTo({ left: el.scrollWidth, behavior })
-      }
-    },
-    []
-  )
+      if (el) el.scrollTo({ left: el.scrollWidth, behavior })
+    }
+  }, [])
 
   React.useEffect(() => {
     if (books.length === 0 || reduced) return
@@ -122,83 +122,77 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <div className="container">
-        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 id={titleId} className="font-heading text-h2 text-heading">
-              {title}
-            </h2>
-            <p className="mt-2 max-w-lg text-sm text-text-muted">Swipe or use arrows — the row glides smoothly to the next set.</p>
-          </div>
-        </div>
+      <div className="container mb-8">
+        <h2 id={titleId} className="font-heading text-h2 text-heading">
+          {title}
+        </h2>
+        <p className="mt-2 max-w-lg text-sm text-text-muted">
+          Covers, gradients, and CTAs tuned for the rail — four across on large screens, swipe or arrows anywhere.
+        </p>
+      </div>
 
-        <div
-          className="mt-8 flex items-center gap-2 md:gap-4"
-          role="presentation"
+      <div className="mx-auto flex w-full max-w-[1440px] items-stretch gap-2 px-4 sm:gap-3 md:px-6 lg:gap-4 lg:px-10">
+        <button
+          type="button"
+          aria-label={`Previous books in ${title}`}
+          aria-controls={`${titleId}-track`}
+          className={cn(arrowBtnClass, "self-center")}
+          onClick={() => {
+            const el = ref.current
+            const step = el ? stepScrollPx(el) : CARD_STEP_FALLBACK
+            scrollBy(-step)
+          }}
         >
-          <button
-            type="button"
-            aria-label={`Previous books in ${title}`}
-            aria-controls={`${titleId}-track`}
-            className={arrowBtnClass}
-            onClick={() => {
-              const el = ref.current
-              const step = el ? stepScrollPx(el) : CARD_STEP_PX
-              scrollBy(-step)
-            }}
-          >
-            <ChevronLeft className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
-          </button>
+          <ChevronLeft className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
+        </button>
 
-          <motion.div
-            id={`${titleId}-track`}
-            ref={ref}
-            tabIndex={0}
-            role="region"
-            aria-roledescription="carousel"
-            aria-labelledby={titleId}
-            onKeyDown={onKeyDown}
-            className={cn(
-              "flex min-h-0 min-w-0 flex-1 snap-x snap-proximity gap-4 overflow-x-auto overflow-y-visible pb-2 outline-none [-webkit-overflow-scrolling:touch] scroll-smooth",
-              "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-            )}
-            variants={reduced ? undefined : list}
-            initial={reduced ? false : "hidden"}
-            whileInView={reduced ? undefined : "show"}
-            viewport={{ once: true, margin: "-40px" }}
-          >
-            {books.map((b) =>
-              reduced ? (
-                <div key={b.id} data-carousel-item className="w-[220px] shrink-0 snap-start">
-                  <BookCard book={b} variant="featured" />
+        <motion.div
+          id={`${titleId}-track`}
+          ref={ref}
+          tabIndex={0}
+          role="region"
+          aria-roledescription="carousel"
+          aria-labelledby={titleId}
+          onKeyDown={onKeyDown}
+          className={cn(
+            "flex min-h-0 min-w-0 flex-1 gap-4 overflow-x-auto overflow-y-visible pb-2 outline-none [-webkit-overflow-scrolling:touch] scroll-smooth snap-x snap-proximity",
+            "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          )}
+          variants={reduced ? undefined : list}
+          initial={reduced ? false : "hidden"}
+          whileInView={reduced ? undefined : "show"}
+          viewport={{ once: true, margin: "-40px" }}
+        >
+          {books.map((b) =>
+            reduced ? (
+              <div key={b.id} data-carousel-item className={cn(itemClass, "flex w-full min-w-0")}>
+                <div className="w-full min-w-0">
+                  <BookCard book={b} variant="carousel" />
                 </div>
-              ) : (
-                <motion.div
-                  key={b.id}
-                  data-carousel-item
-                  variants={item}
-                  className="w-[220px] shrink-0 snap-start"
-                >
-                  <BookCard book={b} variant="featured" />
-                </motion.div>
-              )
-            )}
-          </motion.div>
+              </div>
+            ) : (
+              <motion.div key={b.id} data-carousel-item variants={item} className={cn(itemClass, "flex w-full min-w-0")}>
+                <div className="w-full min-w-0">
+                  <BookCard book={b} variant="carousel" />
+                </div>
+              </motion.div>
+            )
+          )}
+        </motion.div>
 
-          <button
-            type="button"
-            aria-label={`Next books in ${title}`}
-            aria-controls={`${titleId}-track`}
-            className={arrowBtnClass}
-            onClick={() => {
-              const el = ref.current
-              const step = el ? stepScrollPx(el) : CARD_STEP_PX
-              scrollBy(step)
-            }}
-          >
-            <ChevronRight className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label={`Next books in ${title}`}
+          aria-controls={`${titleId}-track`}
+          className={cn(arrowBtnClass, "self-center")}
+          onClick={() => {
+            const el = ref.current
+            const step = el ? stepScrollPx(el) : CARD_STEP_FALLBACK
+            scrollBy(step)
+          }}
+        >
+          <ChevronRight className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
+        </button>
       </div>
     </motion.section>
   )

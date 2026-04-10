@@ -21,7 +21,7 @@ export type ShelfStatus = "want_to_read" | "reading" | "read"
 
 export interface BookCardProps {
   book: Book
-  variant: "default" | "compact" | "featured" | "shelf"
+  variant: "default" | "compact" | "featured" | "shelf" | "carousel"
   onAddToShelf?: (bookId: string, status: ShelfStatus) => void
   showProgress?: boolean
   userRating?: number

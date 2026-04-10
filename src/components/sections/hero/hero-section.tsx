@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
+import { HeroNeonBackdrop } from "@/components/sections/hero/hero-neon-backdrop"
 import { HeroParticles } from "@/components/sections/hero/hero-particles"
 import { BookStack3D } from "@/components/sections/hero/book-stack-3d"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
@@ -17,14 +18,19 @@ function requestOpenChat() {
   }
 }
 
+const HERO_CAPSULES = [
+  "Live catalog sync",
+  "AI that gets your taste",
+  "Readers who get it",
+] as const
+
 export function HeroSection() {
   const reduced = usePrefersReducedMotion()
 
   return (
     <section className="relative min-h-[calc(100vh-64px)] pt-28 md:pt-32">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,179,237,0.12),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(159,122,234,0.10),transparent_55%)]" />
+        <HeroNeonBackdrop />
         <HeroParticles />
       </div>
 
@@ -47,8 +53,8 @@ export function HeroSection() {
               transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 }}
               className="mt-4 max-w-2xl text-body text-text-muted"
             >
-              ShelfAI combines a powerful RAG-based chatbot, personalised AI picks, and a passionate reader community —
-              all in one place.
+              Your next obsession is one smart conversation away — AI-powered picks, a killer community, and shelves that
+              actually get finished.
             </motion.p>
 
             <motion.div
@@ -72,21 +78,45 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            <motion.div
-              className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-muted"
-              initial={reduced ? false : { opacity: 0 }}
-              whileInView={reduced ? undefined : { opacity: 1 }}
+            <motion.ul
+              className="mt-8 flex list-none flex-wrap items-center gap-2.5 p-0 sm:gap-3"
+              initial={reduced ? false : { opacity: 0, y: 10 }}
+              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.5 }}
+              transition={{ delay: 0.18, duration: 0.45 }}
+              aria-label="Product highlights"
             >
-              <span className="rounded-full border border-border/60 bg-surface/50 px-3 py-1 text-xs text-text-muted backdrop-blur-sm">
-                1,142+ books indexed
-              </span>
-              <span aria-hidden>·</span>
-              <span>RAG-matched picks</span>
-              <span aria-hidden>·</span>
-              <span>Growing reader community</span>
-            </motion.div>
+              {HERO_CAPSULES.map((label, i) => (
+                <motion.li
+                  key={label}
+                  initial={reduced ? false : { opacity: 0, y: 8 }}
+                  whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.22 + i * 0.07, duration: 0.4, ease: "easeOut" }}
+                >
+                  <motion.span
+                    className="group relative isolate inline-flex cursor-default select-none rounded-full p-[1px] shadow-[0_0_18px_rgba(99,179,237,0.1)] transition-shadow duration-300 group-hover:shadow-[0_0_32px_rgba(99,179,237,0.28)]"
+                    whileHover={reduced ? undefined : { y: -3, scale: 1.03 }}
+                    whileTap={reduced ? undefined : { scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 420, damping: 24 }}
+                  >
+                    <span
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/65 via-accent/50 to-cyan-400/40 opacity-75 transition-opacity duration-300 group-hover:opacity-100"
+                      aria-hidden
+                    />
+                    <span
+                      className="relative block rounded-full border border-white/[0.14] bg-[rgba(6,10,20,0.82)] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slate-200 backdrop-blur-md transition-colors duration-300 group-hover:border-primary/40 group-hover:text-heading sm:px-4 sm:py-2 sm:text-[13px]"
+                      style={{
+                        boxShadow:
+                          "inset 0 1px 0 rgba(255,255,255,0.11), inset 0 -1px 0 rgba(0,0,0,0.4), 0 0 0 1px rgba(99,179,237,0.1)",
+                      }}
+                    >
+                      {label}
+                    </span>
+                  </motion.span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
 
           <div className="md:col-span-2">

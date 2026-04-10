@@ -10,13 +10,13 @@ import { useShelfStore } from "@/lib/stores/shelf-store"
 
 function Empty({ title, subtitle }: { title: string; subtitle: string }) {
   return (
-    <div className="rounded-md border border-border bg-surface p-10 text-center shadow-card">
+    <div className="rounded-2xl border border-border/80 bg-surface/60 p-10 text-center shadow-card backdrop-blur-sm">
       <div className="font-heading text-h3 text-heading">{title}</div>
       <div className="mt-2 text-sm text-text-muted">{subtitle}</div>
       <div className="mt-6">
         <Link href="/browse">
           <Button variant="secondary" size="md">
-            Browse books
+            Hunt books →
           </Button>
         </Link>
       </div>
@@ -44,20 +44,29 @@ export function ShelfClient() {
 
   return (
     <div className="container pb-16">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-heading text-h1 text-heading">Your shelf</h1>
-          <div className="mt-2 max-w-2xl text-sm text-text-muted">
-            Organize titles into Want to Read, Reading, and Read. Your picks are stored in this browser for now; sign in to
-            sync with your account when it&apos;s connected.
+      <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 p-8 shadow-card md:p-10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-50"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(99,179,237,0.2), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(159,122,234,0.15), transparent)",
+          }}
+          aria-hidden
+        />
+        <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h1 className="font-heading text-h1 text-gradient-hero">Your shelf, your rules</h1>
+            <p className="mt-2 max-w-2xl text-sm text-text-muted">
+              Stack Want · Reading · Done. Local for now — sign in when sync drops and this shelf travels with you.
+            </p>
           </div>
+          <Button variant="ghost" size="sm" type="button" onClick={() => reset()} className="shrink-0 self-start md:self-end">
+            Clear shelf
+          </Button>
         </div>
-        <Button variant="ghost" size="sm" type="button" onClick={() => reset()}>
-          Clear local shelf
-        </Button>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-10">
         <Tabs defaultValue="want">
           <TabsList>
             <TabsTrigger value="want">Want to Read ({want.length})</TabsTrigger>
@@ -69,19 +78,20 @@ export function ShelfClient() {
             {want.length === 0 ? (
               <Empty
                 title="Nothing here yet"
-                subtitle="Add books from Browse or a book page — quick-add buttons appear on every card."
+                subtitle="Hit Browse or any book page — the + shelf button is always one tap away."
               />
             ) : (
-              <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:items-stretch">
                 {want.map(([id, entry]) => (
-                  <BookCard
-                    key={id}
-                    book={entry.book}
-                    variant="default"
-                    onAddToShelf={(bookId, status) => {
-                      if (bookId === id) updateBookStatus(id, status)
-                    }}
-                  />
+                  <div key={id} className="flex h-full min-h-0">
+                    <BookCard
+                      book={entry.book}
+                      variant="default"
+                      onAddToShelf={(bookId, status) => {
+                        if (bookId === id) updateBookStatus(id, status)
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
             )}
@@ -89,18 +99,19 @@ export function ShelfClient() {
 
           <TabsContent value="reading">
             {reading.length === 0 ? (
-              <Empty title="No current reads" subtitle="Move a title from Want to Read or add one as Currently Reading." />
+              <Empty title="No current reads" subtitle="Promote something from Want or add a fresh ‘reading now’ pick." />
             ) : (
-              <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:items-stretch">
                 {reading.map(([id, entry]) => (
-                  <BookCard
-                    key={id}
-                    book={entry.book}
-                    variant="default"
-                    onAddToShelf={(bookId, status) => {
-                      if (bookId === id) updateBookStatus(id, status)
-                    }}
-                  />
+                  <div key={id} className="flex h-full min-h-0">
+                    <BookCard
+                      book={entry.book}
+                      variant="default"
+                      onAddToShelf={(bookId, status) => {
+                        if (bookId === id) updateBookStatus(id, status)
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
             )}
@@ -110,19 +121,20 @@ export function ShelfClient() {
             {read.length === 0 ? (
               <Empty
                 title="No finished books yet"
-                subtitle="Mark books as Read to build history for analytics and smarter picks."
+                subtitle="Mark titles Done to fuel smarter AI picks and your year-end flex."
               />
             ) : (
-              <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:items-stretch">
                 {read.map(([id, entry]) => (
-                  <BookCard
-                    key={id}
-                    book={entry.book}
-                    variant="default"
-                    onAddToShelf={(bookId, status) => {
-                      if (bookId === id) updateBookStatus(id, status)
-                    }}
-                  />
+                  <div key={id} className="flex h-full min-h-0">
+                    <BookCard
+                      book={entry.book}
+                      variant="default"
+                      onAddToShelf={(bookId, status) => {
+                        if (bookId === id) updateBookStatus(id, status)
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
             )}

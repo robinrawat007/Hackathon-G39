@@ -26,7 +26,7 @@ export function BookGrid({ books, isLoading }: { books: Book[]; isLoading: boole
 
   if (isLoading) {
     return (
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 md:items-stretch">
         {Array.from({ length: 12 }).map((_, i) => (
           <BookCard
             key={i}
@@ -55,18 +55,18 @@ export function BookGrid({ books, isLoading }: { books: Book[]; isLoading: boole
   if (books.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-border/80 bg-surface/40 px-6 py-12 text-center backdrop-blur-sm">
-        <p className="text-sm text-text-muted">
-          No titles match the current filters. Loosen filters or browse the full catalog.
-        </p>
+        <p className="text-sm text-text-muted">Nothing in this lane — widen filters or reset and run it back.</p>
       </div>
     )
   }
 
   if (reduced) {
     return (
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 md:items-stretch">
         {books.map((b) => (
-          <BookCard key={b.id} book={b} variant="default" />
+          <div key={b.id} className="flex h-full min-h-0">
+            <BookCard book={b} variant="default" />
+          </div>
         ))}
       </div>
     )
@@ -74,13 +74,13 @@ export function BookGrid({ books, isLoading }: { books: Book[]; isLoading: boole
 
   return (
     <motion.div
-      className="grid gap-4 sm:grid-cols-2 md:grid-cols-3"
+      className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 md:items-stretch"
       variants={list}
       initial="hidden"
       animate="show"
     >
       {books.map((b) => (
-        <motion.div key={b.id} variants={item}>
+        <motion.div key={b.id} variants={item} className="flex h-full min-h-0">
           <BookCard book={b} variant="default" />
         </motion.div>
       ))}

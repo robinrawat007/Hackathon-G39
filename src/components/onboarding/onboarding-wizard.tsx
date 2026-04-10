@@ -111,13 +111,22 @@ export function OnboardingWizard() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="rounded-md border border-border bg-surface p-8 shadow-card">
-        <div className="flex items-center justify-between gap-4">
+      <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-bg-secondary/90 via-surface/80 to-accent/5 p-8 shadow-card backdrop-blur-md md:p-10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(99,179,237,0.15), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(159,122,234,0.12), transparent)",
+          }}
+          aria-hidden
+        />
+        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="text-sm text-text-muted">{step}/3</div>
-            <h1 className="font-heading text-h2 text-heading">Taste Profile</h1>
+            <div className="text-sm font-medium text-primary">Step {step} of 3</div>
+            <h1 className="font-heading text-h2 text-gradient-hero">Train your taste</h1>
+            <p className="mt-1 max-w-xl text-sm text-text-muted">So AI picks feel personal — not generic bestseller bingo.</p>
           </div>
-          <div className="h-2 w-40 overflow-hidden rounded-full bg-bg-secondary">
+          <div className="h-2 w-full max-w-[200px] overflow-hidden rounded-full bg-bg-secondary sm:w-40">
             <motion.div
               className="h-full rounded-full bg-gradient-to-r from-primary to-accent shadow-[0_0_12px_rgba(99,179,237,0.45)]"
               initial={false}
@@ -137,8 +146,8 @@ export function OnboardingWizard() {
               transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 280, damping: 30 }}
               className="mt-8"
             >
-              <div className="font-heading text-h3 text-heading">Rate What You Know</div>
-              <div className="mt-2 text-sm text-text-muted">Tap a rating for each book. You can change these later.</div>
+              <div className="font-heading text-h3 text-heading">What you’ve actually read</div>
+              <div className="mt-2 text-sm text-text-muted">Honest taps only — we use this to calibrate the AI. Change anytime.</div>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {POPULAR_BOOKS.map((b) => {
@@ -155,10 +164,10 @@ export function OnboardingWizard() {
                             key={o.key}
                             type="button"
                             onClick={() => setBookRating(b.id, o.key)}
-                            className={`rounded-md border px-3 py-2 text-sm transition-all duration-200 ${
+                            className={`rounded-lg border px-3 py-2 text-sm transition-all duration-200 ${
                               current === o.key
                                 ? "border-primary bg-primary text-heading shadow-[0_0_12px_rgba(99,179,237,0.25)]"
-                                : "border-border bg-surface text-text hover:border-primary/40"
+                                : "border-border/80 bg-surface text-text hover:border-primary/40"
                             }`}
                           >
                             {o.label}
@@ -181,8 +190,8 @@ export function OnboardingWizard() {
               transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 280, damping: 30 }}
               className="mt-8"
             >
-              <div className="font-heading text-h3 text-heading">Pick Your Moods</div>
-              <div className="mt-2 text-sm text-text-muted">Choose at least 2 moods.</div>
+              <div className="font-heading text-h3 text-heading">Your usual vibes</div>
+              <div className="mt-2 text-sm text-text-muted">Pick at least two — we’ll match energy, not just genre labels.</div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {MOODS.map((m) => {
@@ -192,8 +201,10 @@ export function OnboardingWizard() {
                       key={m.slug}
                       type="button"
                       onClick={() => toggleMood(m.slug)}
-                      className={`rounded-md border px-4 py-4 text-left ${
-                        active ? "border-primary bg-primary text-heading" : "border-border bg-bg-secondary text-text"
+                      className={`rounded-xl border px-4 py-4 text-left transition-shadow ${
+                        active
+                          ? "border-primary bg-primary text-heading shadow-[0_0_20px_rgba(99,179,237,0.2)]"
+                          : "border-border/80 bg-bg-secondary/80 text-text hover:border-primary/30"
                       }`}
                     >
                       <div className="text-lg" aria-hidden="true">
@@ -216,8 +227,8 @@ export function OnboardingWizard() {
               transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 280, damping: 30 }}
               className="mt-8"
             >
-              <div className="font-heading text-h3 text-heading">Set Your Goals</div>
-              <div className="mt-2 text-sm text-text-muted">Tell ShelfAI what you want more of this year.</div>
+              <div className="font-heading text-h3 text-heading">2026 energy</div>
+              <div className="mt-2 text-sm text-text-muted">What do you want more of? We’ll nudge picks that way.</div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {GOALS.map((g) => {
@@ -227,8 +238,10 @@ export function OnboardingWizard() {
                       key={g.slug}
                       type="button"
                       onClick={() => toggleGoal(g.slug)}
-                      className={`rounded-md border px-4 py-4 text-left ${
-                        active ? "border-primary bg-primary text-heading" : "border-border bg-bg-secondary text-text"
+                      className={`rounded-xl border px-4 py-4 text-left transition-shadow ${
+                        active
+                          ? "border-primary bg-primary text-heading shadow-[0_0_20px_rgba(99,179,237,0.2)]"
+                          : "border-border/80 bg-bg-secondary/80 text-text hover:border-primary/30"
                       }`}
                     >
                       <div className="text-sm font-medium">{g.label}</div>

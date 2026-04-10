@@ -32,7 +32,7 @@ function compactBook(b: Book): BookContextEntry {
 
 /**
  * Uses the user's message as a Google Books search query (same API as Browse).
- * The LLM reasons over these real rows — no pgvector / RAG required.
+ * The model reasons over these live catalog rows (AI-assisted search context).
  */
 export async function fetchBooksContextForChat(userMessage: string, limit = 8): Promise<BookContextEntry[]> {
   const q = userMessage.replace(/\s+/g, " ").trim().slice(0, 420)

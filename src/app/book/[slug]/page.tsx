@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 
 import { Navbar } from "@/components/layout/navbar"
@@ -14,8 +13,8 @@ import { WhyYoullLoveIt } from "@/components/books/why-youll-love-it"
 import { WriteReview } from "@/components/books/write-review"
 import { JsonLd } from "@/components/seo/json-ld"
 import { searchGoogleBooks, getBookBySlug } from "@/lib/google-books"
-import { BOOK_COVER_BLUR_DATA_URL } from "@/lib/image-placeholders"
-import { bookCoverNeedsUnoptimized } from "@/lib/book-cover-image"
+import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
+import { BookDetailCover } from "@/components/books/book-detail-cover"
 import { absoluteUrl } from "@/lib/site"
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -37,14 +36,21 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       title: ogTitle,
       description,
       images: book.coverUrl
-        ? [{ url: book.coverUrl, width: 600, height: 900, alt: `${book.title} cover` }]
+        ? [
+            {
+              url: upgradeGoogleBooksCoverUrl(book.coverUrl, "detail"),
+              width: 600,
+              height: 900,
+              alt: `${book.title} cover`,
+            },
+          ]
         : undefined,
     },
     twitter: {
       card: book.coverUrl ? "summary_large_image" : "summary",
       title: ogTitle,
       description,
-      images: book.coverUrl ? [book.coverUrl] : undefined,
+      images: book.coverUrl ? [upgradeGoogleBooksCoverUrl(book.coverUrl, "detail")] : undefined,
     },
   }
 }
@@ -99,7 +105,7 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
     author: { "@type": "Person", name: book.author },
     url: pageUrl,
     description: book.description?.replace(/\s+/g, " ").trim().slice(0, 5000) ?? undefined,
-    image: book.coverUrl ?? undefined,
+    image: book.coverUrl ? upgradeGoogleBooksCoverUrl(book.coverUrl, "detail") : undefined,
     isbn: book.isbn ?? undefined,
     datePublished: book.publishedYear ? `${book.publishedYear}` : undefined,
     numberOfPages: book.pageCount ?? undefined,
@@ -122,19 +128,9 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
           {/* Left */}
           <div>
             <div className="grid gap-6 md:grid-cols-[220px_1fr]">
-              <div className="relative aspect-[2/3] w-full max-w-[260px] overflow-hidden rounded-md border border-border shadow-glow">
+              <div className="relative aspect-[2/3] w-full max-w-[280px] overflow-hidden rounded-md border border-border shadow-glow">
                 {book.coverUrl ? (
-                  <Image
-                    src={book.coverUrl}
-                    alt={`${book.title} by ${book.author} book cover`}
-                    fill
-                    sizes="260px"
-                    className="object-cover"
-                    priority
-                    placeholder="blur"
-                    blurDataURL={BOOK_COVER_BLUR_DATA_URL}
-                    unoptimized={bookCoverNeedsUnoptimized(book.coverUrl)}
-                  />
+                  <BookDetailCover src={book.coverUrl} title={book.title} author={book.author} />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-bg-secondary text-text-muted">
                     <span className="font-mono text-sm">No cover</span>

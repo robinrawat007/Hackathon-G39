@@ -8,8 +8,8 @@ import { requireUser } from "@/lib/auth/require-user"
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Your personalized reading dashboard.",
+  title: "Your next-read HQ",
+  description: "AI-curated picks, shortcuts, and the pulse of your reading life.",
 }
 
 export default async function DashboardPage() {

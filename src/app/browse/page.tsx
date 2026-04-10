@@ -6,8 +6,8 @@ import { Footer } from "@/components/layout/footer"
 import { BrowseClient } from "@/components/browse/browse-client"
 
 export const metadata: Metadata = {
-  title: "Browse books by genre, mood & era",
-  description: "Browse books with filters for genre, mood, era, rating, and page count.",
+  title: "Browse — hunt by vibe, genre & era",
+  description: "Filter the catalog like a pro: mood, genre, era, ratings, length — AI-ready picks start here.",
 }
 
 export default function BrowsePage() {

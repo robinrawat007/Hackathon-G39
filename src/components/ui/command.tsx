@@ -80,7 +80,7 @@ function CommandInput({
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-11 w-full bg-transparent py-3 text-sm text-text placeholder:text-text-subtle outline-none transition-shadow duration-200 focus-visible:shadow-[0_0_0_3px_var(--color-primary-glow)] disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-11 w-full bg-transparent py-3 text-sm text-text placeholder:text-input-placeholder outline-none transition-shadow duration-200 focus-visible:shadow-[0_0_0_3px_var(--color-primary-glow)] disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         onFocus={(e) => {

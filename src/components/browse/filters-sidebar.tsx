@@ -43,9 +43,9 @@ export function FiltersSidebar() {
   }
 
   return (
-    <aside className="glass-card sticky top-24 rounded-lg p-4">
+    <aside className="glass-card sticky top-24 rounded-2xl border border-border/60 p-5 shadow-card backdrop-blur-md">
       <div className="flex items-center justify-between">
-        <div className="font-heading text-h3 text-heading">Filters</div>
+        <div className="font-heading text-h3 text-heading">Dial it in</div>
         <Button variant="ghost" size="sm" onClick={() => filters.clearAll()}>
           Clear
         </Button>

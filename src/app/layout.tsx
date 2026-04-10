@@ -31,13 +31,16 @@ const siteUrl = getSiteUrl()
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
   },
   title: {
     default: `${SITE_NAME} — AI book recommendations tailored to you`,
     template: `%s | ${SITE_NAME}`,
   },
-  description: "Your shelf. Your taste. Your AI.",
+  description: "AI-powered book discovery, shelves that slap, and readers who get it.",
   applicationName: SITE_NAME,
   openGraph: {
     type: "website",
@@ -45,12 +48,12 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: SITE_NAME,
     title: `${SITE_NAME} — AI book recommendations tailored to you`,
-    description: "Your shelf. Your taste. Your AI.",
+    description: "AI-powered book discovery, shelves that slap, and readers who get it.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — AI book recommendations tailored to you`,
-    description: "Your shelf. Your taste. Your AI.",
+    description: "AI-powered book discovery, shelves that slap, and readers who get it.",
   },
   robots: { index: true, follow: true },
 }

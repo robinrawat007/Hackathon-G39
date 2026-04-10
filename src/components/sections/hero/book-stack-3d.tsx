@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { BOOK_COVER_BLUR_DATA_URL } from "@/lib/image-placeholders"
 import { bookCoverNeedsUnoptimized } from "@/lib/book-cover-image"
+import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
 
 const COVERS = [
   {
@@ -71,10 +72,10 @@ export function BookStack3D() {
             >
               <div className="relative aspect-[2/3] overflow-hidden rounded-md border border-border shadow-hover">
                 <Image
-                  src={b.cover}
+                  src={upgradeGoogleBooksCoverUrl(b.cover, "list")}
                   alt={`${b.title} by ${b.author} book cover`}
                   fill
-                  sizes="190px"
+                  sizes="(max-width: 768px) 42vw, 190px"
                   className="object-cover"
                   placeholder="blur"
                   blurDataURL={BOOK_COVER_BLUR_DATA_URL}

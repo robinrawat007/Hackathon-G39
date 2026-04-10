@@ -9,20 +9,20 @@ const STEPS = [
   {
     icon: BookOpen,
     step: "Step 1",
-    title: "Chat with ShelfAI",
-    desc: "Ask our AI anything: “I want something like Dune but shorter.”",
+    title: "Spill the tea to ShelfAI",
+    desc: "Drop a vibe, a comp title, or a “I only have Saturday” — it speaks fluent bookworm.",
   },
   {
     icon: Sparkles,
     step: "Step 2",
-    title: "Get RAG-Matched Picks",
-    desc: "Our AI retrieves relevant books using vector search, then reasons over them.",
+    title: "Get AI-matched picks",
+    desc: "Real catalog data meets your taste — no fake titles, no generic mush.",
   },
   {
     icon: LibraryBig,
     step: "Step 3",
-    title: "Build Your Shelf",
-    desc: "Save, track, rate, and share books with readers like you.",
+    title: "Own your shelf",
+    desc: "Stack it, rate it, flex it. Your reading life, organized like you mean it.",
   },
 ] as const
 
@@ -40,7 +40,7 @@ export function HowItWorksSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-heading text-h2 text-heading"
         >
-          Smart Recommendations in 3 Steps
+          Three moves. Better reads.
         </motion.h2>
         <motion.p
           initial={reduced ? false : { opacity: 0, y: 12 }}
@@ -49,7 +49,7 @@ export function HowItWorksSection() {
           transition={{ duration: 0.45, delay: 0.05 }}
           className="mt-3 max-w-2xl text-sm text-text-muted"
         >
-          From a single chat to a shelf you actually finish — three quick beats.
+          Fast, sharp, zero homework — just the path from “what now?” to “that’s the one.”
         </motion.p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-3">

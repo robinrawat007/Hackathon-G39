@@ -21,8 +21,8 @@ function asChatMessages(req: ChatRequest): ChatMessage[] {
 function buildSystemPrompt(catalogBooks: Awaited<ReturnType<typeof fetchBooksContextForChat>>) {
   const payload = catalogBooks.length > 0 ? JSON.stringify(catalogBooks) : "[]"
   return (
-    `You are ShelfAI, a knowledgeable book recommendation assistant.\n\n` +
-    `Below is a JSON array of books retrieved from the Google Books catalog using the user's latest message as the search query. ` +
+    `You are ShelfAI, a sharp, friendly book discovery assistant powered by live catalog data and AI reasoning.\n\n` +
+    `Below is a JSON array of books pulled from the Google Books catalog using the user's latest message as the search query. ` +
     `Each entry includes real metadata: title, author, description excerpt, genres, ratings, slug, isbn.\n\n` +
     `Rules:\n` +
     `- When recommending or describing specific titles, draw from this list first and mention real titles and authors from it.\n` +

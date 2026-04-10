@@ -1,7 +1,7 @@
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 
-type LimiterKind = "chat" | "search" | "onboarding" | "llmFeature"
+type LimiterKind = "chat" | "search" | "onboarding" | "llmFeature" | "feedback"
 
 const cache = new Map<LimiterKind, Ratelimit | null>()
 

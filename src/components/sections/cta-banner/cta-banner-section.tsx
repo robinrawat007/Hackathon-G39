@@ -29,9 +29,9 @@ export function CTABannerSection() {
           />
           <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>
-              <div className="font-heading text-h2 text-heading drop-shadow-sm">Ready to meet your next favourite book?</div>
+              <div className="font-heading text-h2 text-heading drop-shadow-sm">Lock in your next obsession</div>
               <div className="mt-2 max-w-xl text-sm text-text-muted">
-                Create a free account to save recommendations, track your shelves, and join the community.
+                Free account: saved picks, shelves that sync, and a crew who reads like you do.
               </div>
             </div>
             <motion.div whileHover={reduced ? undefined : { scale: 1.04 }} whileTap={reduced ? undefined : { scale: 0.98 }}>
@@ -41,7 +41,7 @@ export function CTABannerSection() {
                   size="lg"
                   className="border-primary/60 bg-bg-secondary/90 text-heading shadow-card backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-surface hover:shadow-primary-glow"
                 >
-                  Create Free Account →
+                  Claim my shelf →
                 </Button>
               </Link>
             </motion.div>

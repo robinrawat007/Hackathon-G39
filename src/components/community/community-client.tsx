@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -17,7 +16,6 @@ const FEED = [
     rating: 5,
     body: "I wanted thoughtful sci‑fi with big ethical questions and a calm, elegant voice. ShelfAI recommended this and it genuinely changed how I think about “utopia” stories.",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 10).toISOString(),
-    likesCount: 14,
   },
   {
     id: "p2",
@@ -29,7 +27,6 @@ const FEED = [
     rating: 4,
     body: "Asked for something cozy and funny but still clever. The banter is fantastic and the mystery actually holds together.",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 30).toISOString(),
-    likesCount: 29,
   },
 ] as const
 
@@ -45,72 +42,96 @@ const TRENDING_LISTS = [
 ] as const
 
 export function CommunityClient() {
-  const [liked, setLiked] = React.useState<Record<string, boolean>>({})
-
   return (
     <div>
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-heading text-h1 text-heading">Community</h1>
-          <p className="mt-2 max-w-2xl text-sm text-text-muted">
-            Discover reviews, lists, and highlights from readers. The feed below is curated sample content so the layout
-            stays useful before live data is connected.
-          </p>
-        </div>
-        <div className="text-sm">
-          <Link href="/community/lists" className="text-primary hover:text-primary-hover">
+      <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/12 via-bg-secondary/50 to-accent/10 p-6 shadow-card md:p-10">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-55"
+          style={{
+            background:
+              "radial-gradient(ellipse 75% 55% at 10% 0%, rgba(99,179,237,0.22), transparent 50%), radial-gradient(ellipse 65% 45% at 95% 100%, rgba(159,122,234,0.16), transparent 50%)",
+          }}
+          aria-hidden
+        />
+        <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <h1 className="font-heading text-h1 text-gradient-hero">The reading room</h1>
+            <p className="mt-2 text-sm text-text-muted md:text-base">
+              Hot takes, curated lists, people who finish what they start. Sample feed for now — layout stays legit while
+              live social pipes land.
+            </p>
+          </div>
+          <Link
+            href="/community/lists"
+            className="inline-flex shrink-0 items-center justify-center rounded-xl border border-primary/40 bg-bg-secondary/80 px-4 py-2.5 text-sm font-medium text-heading shadow-card backdrop-blur-sm transition-colors hover:border-primary hover:bg-surface"
+          >
             Browse lists →
           </Link>
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_300px]">
         <div>
           <Tabs defaultValue="all">
-            <TabsList>
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="following">Following</TabsTrigger>
-              <TabsTrigger value="lists">Lists</TabsTrigger>
-              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+            <TabsList className="w-full flex-wrap justify-start gap-1 bg-transparent p-0">
+              <TabsTrigger
+                value="all"
+                className="rounded-lg border border-transparent data-[state=active]:border-primary/40 data-[state=active]:bg-primary/15 data-[state=active]:shadow-[0_0_20px_rgba(99,179,237,0.12)]"
+              >
+                All
+              </TabsTrigger>
+              <TabsTrigger
+                value="following"
+                className="rounded-lg border border-transparent data-[state=active]:border-primary/40 data-[state=active]:bg-primary/15"
+              >
+                Following
+              </TabsTrigger>
+              <TabsTrigger
+                value="lists"
+                className="rounded-lg border border-transparent data-[state=active]:border-primary/40 data-[state=active]:bg-primary/15"
+              >
+                Lists
+              </TabsTrigger>
+              <TabsTrigger
+                value="reviews"
+                className="rounded-lg border border-transparent data-[state=active]:border-primary/40 data-[state=active]:bg-primary/15"
+              >
+                Reviews
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="all">
-              <div className="mt-4 space-y-4">
+              <div className="mt-6 space-y-4">
                 {FEED.map((r) => (
-                  <ReviewCard
-                    key={r.id}
-                    review={r}
-                    onLike={(reviewId) => setLiked((prev) => ({ ...prev, [reviewId]: !prev[reviewId] }))}
-                    isLiked={!!liked[r.id]}
-                  />
+                  <ReviewCard key={r.id} review={r} />
                 ))}
               </div>
             </TabsContent>
 
             <TabsContent value="following">
-              <div className="mt-4 rounded-md border border-border bg-surface p-6 shadow-card">
+              <div className="mt-6 rounded-2xl border border-border/80 bg-surface/50 p-6 shadow-card backdrop-blur-sm">
                 <p className="text-sm text-text-muted">
-                  Follow readers to tailor this tab. Until then, browse the <span className="text-heading">All</span> tab
-                  for featured posts.
+                  Follow readers you vibe with — this tab becomes your personal hype reel. Until then, the{" "}
+                  <span className="font-medium text-heading">All</span> tab has the goods.
                 </p>
                 <div className="mt-4">
-                  <Link href="/browse">
-                    <span className="text-sm font-medium text-primary hover:text-primary-hover">Find people via books →</span>
+                  <Link href="/browse" className="text-sm font-medium text-primary hover:text-primary-hover">
+                    Find your people via books →
                   </Link>
                 </div>
               </div>
             </TabsContent>
 
             <TabsContent value="lists">
-              <div className="mt-4 space-y-3 rounded-md border border-border bg-surface p-6 shadow-card">
-                <p className="text-sm text-text-muted">Starter lists you can open today:</p>
-                <ul className="space-y-2 text-sm">
+              <div className="mt-6 space-y-3 rounded-2xl border border-border/80 bg-surface/50 p-6 shadow-card backdrop-blur-sm">
+                <p className="text-sm font-medium text-heading">Starter lists — open and run</p>
+                <ul className="space-y-3 text-sm">
                   {TRENDING_LISTS.map((l) => (
-                    <li key={l.href}>
-                      <Link href={l.href} className="text-heading underline-offset-4 hover:underline">
+                    <li key={l.href} className="flex flex-col gap-0.5 border-b border-border/40 pb-3 last:border-0 last:pb-0">
+                      <Link href={l.href} className="font-medium text-heading underline-offset-4 hover:underline">
                         {l.title}
                       </Link>
-                      <span className="text-text-muted"> · {l.count}</span>
+                      <span className="text-xs text-text-muted">{l.count}</span>
                     </li>
                   ))}
                 </ul>
@@ -118,29 +139,24 @@ export function CommunityClient() {
             </TabsContent>
 
             <TabsContent value="reviews">
-              <div className="mt-4 space-y-4">
+              <div className="mt-6 space-y-4">
                 {FEED.map((r) => (
-                  <ReviewCard
-                    key={`${r.id}-rev`}
-                    review={r}
-                    onLike={(reviewId) => setLiked((prev) => ({ ...prev, [reviewId]: !prev[reviewId] }))}
-                    isLiked={!!liked[r.id]}
-                  />
+                  <ReviewCard key={`${r.id}-rev`} review={r} />
                 ))}
               </div>
             </TabsContent>
           </Tabs>
         </div>
 
-        <aside className="space-y-4">
-          <div className="rounded-md border border-border bg-surface p-6 shadow-card">
-            <div className="font-heading text-h3 text-heading">Top readers (sample)</div>
-            <p className="mt-2 text-xs text-text-muted">Illustrative ranking; real leaderboards ship with profiles.</p>
+        <aside className="space-y-6">
+          <div className="rounded-2xl border border-border/80 bg-surface/50 p-6 shadow-card backdrop-blur-sm">
+            <div className="font-heading text-h3 text-heading">Top readers</div>
+            <p className="mt-1 text-xs text-text-muted">Sample leaderboard — real ranks ship with profiles.</p>
             <ul className="mt-4 space-y-3 text-sm">
               {TOP_READERS.map((r, i) => (
                 <li key={r.handle} className="flex items-center justify-between gap-2">
-                  <span className="text-text-muted">{i + 1}.</span>
-                  <Link href={`/profile/${r.handle}`} className="min-w-0 flex-1 truncate text-heading hover:underline">
+                  <span className="w-5 text-text-muted">{i + 1}</span>
+                  <Link href={`/profile/${r.handle}`} className="min-w-0 flex-1 truncate font-medium text-heading hover:underline">
                     {r.name}
                   </Link>
                   <span className="shrink-0 text-xs text-text-muted">{r.books} books</span>
@@ -148,12 +164,12 @@ export function CommunityClient() {
               ))}
             </ul>
           </div>
-          <div className="rounded-md border border-border bg-surface p-6 shadow-card">
-            <div className="font-heading text-h3 text-heading">Trending lists</div>
+          <div className="rounded-2xl border border-border/80 bg-surface/50 p-6 shadow-card backdrop-blur-sm">
+            <div className="font-heading text-h3 text-heading">Lists on fire</div>
             <ul className="mt-4 space-y-3 text-sm">
               {TRENDING_LISTS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-heading hover:underline">
+                  <Link href={l.href} className="font-medium text-heading hover:underline">
                     {l.title}
                   </Link>
                   <div className="text-xs text-text-muted">{l.count}</div>

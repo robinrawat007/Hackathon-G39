@@ -1,4 +1,14 @@
 import type { Book } from "@/types/book"
+import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
+
+type GoogleImageLinks = {
+  extraLarge?: string
+  large?: string
+  medium?: string
+  small?: string
+  thumbnail?: string
+  smallThumbnail?: string
+}
 
 type GoogleBooksVolume = {
   id: string
@@ -10,7 +20,7 @@ type GoogleBooksVolume = {
     pageCount?: number
     industryIdentifiers?: { type: string; identifier: string }[]
     categories?: string[]
-    imageLinks?: { thumbnail?: string; smallThumbnail?: string }
+    imageLinks?: GoogleImageLinks
     averageRating?: number
     ratingsCount?: number
     language?: string
@@ -34,10 +44,27 @@ function extractIsbn(ids?: { type: string; identifier: string }[]) {
   return isbn13 ?? isbn10 ?? ""
 }
 
+function pickBestCoverLink(links: GoogleImageLinks | undefined): string {
+  if (!links) return ""
+  const order: (keyof GoogleImageLinks)[] = [
+    "extraLarge",
+    "large",
+    "medium",
+    "thumbnail",
+    "small",
+    "smallThumbnail",
+  ]
+  for (const key of order) {
+    const u = links[key]
+    if (typeof u === "string" && u.trim()) return u.trim().replace(/^http:\/\//i, "https://")
+  }
+  return ""
+}
+
 function coverUrlFromVolume(v: GoogleBooksVolume) {
-  const thumb = v.volumeInfo?.imageLinks?.thumbnail ?? v.volumeInfo?.imageLinks?.smallThumbnail
-  if (!thumb) return ""
-  return thumb.replace("http://", "https://")
+  const raw = pickBestCoverLink(v.volumeInfo?.imageLinks)
+  if (!raw) return ""
+  return upgradeGoogleBooksCoverUrl(raw, "list")
 }
 
 export function mapGoogleVolumeToBook(v: GoogleBooksVolume): Book | null {

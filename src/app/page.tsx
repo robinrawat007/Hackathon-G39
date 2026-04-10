@@ -11,6 +11,7 @@ import {
   FeaturedBooksSection,
 } from "@/components/sections/featured-books/featured-books-server"
 import { CommunityProofSection } from "@/components/sections/community-proof/community-proof-section"
+import { FeedbackSection } from "@/components/sections/feedback/feedback-section"
 import { CTABannerSection } from "@/components/sections/cta-banner/cta-banner-section"
 import { SITE_NAME, getSiteUrl } from "@/lib/site"
 
@@ -51,6 +52,7 @@ export default function Home() {
           <FeaturedBooksSection />
         </Suspense>
         <CommunityProofSection />
+        <FeedbackSection />
         <CTABannerSection />
       </main>
       <Footer />

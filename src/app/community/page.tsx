@@ -5,8 +5,8 @@ import { Footer } from "@/components/layout/footer"
 import { CommunityClient } from "@/components/community/community-client"
 
 export const metadata: Metadata = {
-  title: "Community",
-  description: "Reviews, lists, and discussions from readers.",
+  title: "Community — reviews, lists, heat",
+  description: "See what readers are finishing, steal their lists, and flex your own stack.",
 }
 
 export default function CommunityPage() {
