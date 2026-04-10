@@ -12,6 +12,18 @@ export const MOODS = [
   { slug: "emotional", label: "Emotional Gut-Punch", emoji: "💔", gradient: "from-rose-500 to-pink-700" },
 ] as const
 
+/** Mood slugs → Google Books–friendly query phrases (raw slugs match almost nothing). */
+export const MOOD_SEARCH_TERMS: Record<(typeof MOODS)[number]["slug"], string> = {
+  "dark-eerie": "dark gothic horror atmospheric",
+  romantic: "romantic love story",
+  "mind-bending": "psychological twist surreal",
+  "epic-adventure": "epic adventure quest",
+  "light-funny": "humor comedy witty funny",
+  "career-inspiring": "business career leadership success",
+  "fantasy-worlds": "fantasy magic adventure",
+  emotional: "emotional literary drama",
+}
+
 export const GENRES = [
   "Literary Fiction",
   "Sci-Fi",

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: "Filter the catalog like a pro: mood, genre, era, ratings, length — AI-ready picks start here.",
 }
 
+/** Search + filters are client-driven; avoid static shell quirks with live store + React Query. */
+export const dynamic = "force-dynamic"
+
 export default function BrowsePage() {
   return (
     <div className="flex min-h-full min-w-0 flex-col bg-transparent text-text">

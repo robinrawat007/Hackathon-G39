@@ -100,6 +100,10 @@ export async function searchGoogleBooks(params: {
   maxResults: number
   /** Google Books API offset (0-based). */
   startIndex?: number
+  /** BCP 47 code (e.g. en) — matches Books API `langRestrict`. */
+  langRestrict?: string
+  /** Server-side ordering; `newest` only affects results Google returns. */
+  orderBy?: "relevance" | "newest"
 }): Promise<Book[]> {
   const key = process.env.GOOGLE_BOOKS_API_KEY
   const url = new URL("https://www.googleapis.com/books/v1/volumes")
@@ -108,6 +112,8 @@ export async function searchGoogleBooks(params: {
   url.searchParams.set("maxResults", String(max))
   url.searchParams.set("startIndex", String(Math.max(0, params.startIndex ?? 0)))
   url.searchParams.set("printType", "books")
+  if (params.langRestrict?.trim()) url.searchParams.set("langRestrict", params.langRestrict.trim())
+  if (params.orderBy === "newest") url.searchParams.set("orderBy", "newest")
   if (key) url.searchParams.set("key", key)
 
   try {

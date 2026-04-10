@@ -33,13 +33,15 @@ export function FiltersSidebar() {
   const filters = useFiltersStore()
 
   const toggleGenre = (g: string) => {
-    const next = filters.genres.includes(g) ? filters.genres.filter((x) => x !== g) : [...filters.genres, g]
-    filters.setPartial({ genres: next })
+    const { genres, setPartial } = useFiltersStore.getState()
+    const next = genres.includes(g) ? genres.filter((x) => x !== g) : [...genres, g]
+    setPartial({ genres: next })
   }
 
   const toggleMood = (slug: string) => {
-    const next = filters.moods.includes(slug) ? filters.moods.filter((x) => x !== slug) : [...filters.moods, slug]
-    filters.setPartial({ moods: next })
+    const { moods, setPartial } = useFiltersStore.getState()
+    const next = moods.includes(slug) ? moods.filter((x) => x !== slug) : [...moods, slug]
+    setPartial({ moods: next })
   }
 
   return (

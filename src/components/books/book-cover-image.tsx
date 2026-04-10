@@ -87,7 +87,7 @@ export function BookCoverImage({
           placeholder="blur"
           blurDataURL={BOOK_COVER_BLUR_DATA_URL}
           unoptimized={unoptimized}
-          onLoadingComplete={() => setLoaded(true)}
+          onLoad={() => setLoaded(true)}
           onError={onError}
         />
       </>
@@ -111,7 +111,7 @@ export function BookCoverImage({
         placeholder="blur"
         blurDataURL={BOOK_COVER_BLUR_DATA_URL}
         unoptimized={unoptimized}
-        onLoadingComplete={() => setLoaded(true)}
+        onLoad={() => setLoaded(true)}
         onError={onError}
       />
     </span>

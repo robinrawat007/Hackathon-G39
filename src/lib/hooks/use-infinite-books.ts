@@ -51,7 +51,7 @@ export function useInfiniteBooks(filters: {
         page: Number(pageParam),
         limit: 12,
       })
-      const res = await fetch(url)
+      const res = await fetch(url, { cache: "no-store" })
       if (!res.ok) {
         if (res.status === 429) throw new Error("Too many searches. Please wait a moment and try again.")
         throw new Error("Failed to fetch books")
