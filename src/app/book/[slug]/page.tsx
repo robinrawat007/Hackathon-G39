@@ -57,9 +57,9 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
 function DetailsRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b border-border py-3">
-      <div className="text-sm text-text-muted">{label}</div>
-      <div className="text-sm text-text text-right">{value}</div>
+    <div className="flex flex-col gap-1 border-b border-border py-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+      <div className="shrink-0 text-sm text-text-muted">{label}</div>
+      <div className="min-w-0 break-words text-sm text-text sm:text-right">{value}</div>
     </div>
   )
 }
@@ -70,10 +70,10 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
 
   if (!book) {
     return (
-      <div className="min-h-full bg-bg text-text">
+      <div className="flex min-h-full min-w-0 flex-col bg-transparent text-text">
         <Navbar />
-        <main id="main" className="container flex-1 pt-24 pb-16">
-          <div className="rounded-md border border-border bg-surface p-8">
+        <main id="main" className="container min-w-0 flex-1 pt-20 pb-12 sm:pt-24 sm:pb-16">
+          <div className="rounded-md border border-border bg-surface p-6 sm:p-8">
             <div className="font-heading text-h2 text-heading">Book not found</div>
             <div className="mt-2 text-sm text-text-muted">
               We couldn’t find that title. Try browsing or searching again.
@@ -120,26 +120,26 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
   }
 
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="flex min-h-full min-w-0 flex-col bg-transparent text-text">
       <JsonLd data={jsonLd} id="book-jsonld" />
       <Navbar />
-      <main id="main" className="container flex-1 pt-24 pb-16">
-        <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
+      <main id="main" className="container min-w-0 flex-1 pt-20 pb-12 sm:pt-24 sm:pb-16">
+        <div className="grid min-w-0 gap-8 lg:grid-cols-[1fr_minmax(0,360px)]">
           {/* Left */}
-          <div>
-            <div className="grid gap-6 md:grid-cols-[220px_1fr]">
-              <div className="relative aspect-[2/3] w-full max-w-[280px] overflow-hidden rounded-md border border-border shadow-glow">
+          <div className="min-w-0">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-[minmax(0,200px)_1fr] md:grid-cols-[220px_1fr]">
+              <div className="relative mx-auto aspect-[2/3] w-full max-w-[240px] overflow-hidden rounded-md border border-border shadow-glow sm:mx-0 sm:max-w-[280px]">
                 {book.coverUrl ? (
                   <BookDetailCover src={book.coverUrl} title={book.title} author={book.author} />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-bg-secondary text-text-muted">
+                  <div className="flex h-full w-full items-center justify-center bg-transparent-secondary text-text-muted">
                     <span className="font-mono text-sm">No cover</span>
                   </div>
                 )}
               </div>
 
-              <div>
-                <h1 className="font-heading text-h1 text-heading">{book.title}</h1>
+              <div className="min-w-0 text-center sm:text-left">
+                <h1 className="text-balance font-heading text-h1 text-heading">{book.title}</h1>
                 <div className="mt-2 text-sm text-text-muted">{book.author}</div>
                 <div className="mt-2 text-sm text-text-muted">{book.publishedYear ? `Published ${book.publishedYear}` : ""}</div>
 
@@ -229,7 +229,7 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
           </div>
 
           {/* Right */}
-          <aside className="space-y-4">
+          <aside className="min-w-0 space-y-4">
             <div className="rounded-md border border-border bg-surface p-6 shadow-card">
               <div className="font-heading text-h3 text-heading">Why readers like you loved this</div>
               <WhyYoullLoveIt book={book} />

@@ -16,7 +16,7 @@ export default async function ShelfPage() {
   await requireUser()
 
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="flex-1 pt-24">
         <ShelfClient />

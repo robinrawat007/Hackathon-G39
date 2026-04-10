@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function OnboardingPage() {
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="container flex-1 pt-24 pb-16">
         <OnboardingWizard />

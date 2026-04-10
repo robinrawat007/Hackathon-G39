@@ -40,7 +40,7 @@ function stepScrollPx(track: HTMLDivElement) {
 
 const itemClass =
   "h-full min-h-0 shrink-0 snap-start " +
-  "w-[min(280px,calc(100vw-5rem))] " +
+  "w-[min(280px,calc(100vw-7.5rem))] " +
   "sm:w-[calc((100%-1rem)/2)] " +
   "lg:w-[calc((100%-3rem)/4)]"
 
@@ -107,7 +107,7 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
   }
 
   const arrowBtnClass = cn(
-    "flex h-11 w-11 shrink-0 items-center justify-center rounded-full md:h-12 md:w-12",
+    "flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-11 sm:w-11 md:h-12 md:w-12",
     "border-2 border-primary/60 bg-bg-secondary text-heading shadow-card",
     "transition-all duration-200 hover:border-primary hover:bg-surface-hover hover:text-primary hover:shadow-primary-glow",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
@@ -131,7 +131,7 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
         </p>
       </div>
 
-      <div className="mx-auto flex w-full max-w-[1440px] items-stretch gap-2 px-4 sm:gap-3 md:px-6 lg:gap-4 lg:px-10">
+      <div className="mx-auto flex w-full min-w-0 max-w-[1440px] items-stretch gap-2 px-4 sm:gap-2 sm:px-5 md:gap-3 md:px-6 lg:gap-4 lg:px-10">
         <button
           type="button"
           aria-label={`Previous books in ${title}`}

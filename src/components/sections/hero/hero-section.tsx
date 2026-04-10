@@ -6,7 +6,6 @@ import { motion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import { HeroNeonBackdrop } from "@/components/sections/hero/hero-neon-backdrop"
-import { HeroParticles } from "@/components/sections/hero/hero-particles"
 import { BookStack3D } from "@/components/sections/hero/book-stack-3d"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 
@@ -28,21 +27,20 @@ export function HeroSection() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section className="relative min-h-[calc(100vh-64px)] pt-28 md:pt-32">
+    <section className="relative min-h-[calc(100dvh-4rem)] pt-24 sm:pt-28 md:min-h-[calc(100vh-64px)] md:pt-32">
       <div className="absolute inset-0 -z-10">
         <HeroNeonBackdrop />
-        <HeroParticles />
       </div>
 
-      <div className="container">
-        <div className="grid items-center gap-10 md:grid-cols-5">
-          <div className="md:col-span-3">
+      <div className="container min-w-0">
+        <div className="grid items-center gap-8 md:grid-cols-5 md:gap-10">
+          <div className="min-w-0 md:col-span-3">
             <motion.h1
               initial={reduced ? false : { opacity: 0, y: 40 }}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="font-heading text-display text-gradient-hero tracking-tight"
+              className="text-balance font-heading text-display text-gradient-hero tracking-tight"
             >
               Your AI Knows What to Read Next
             </motion.h1>
@@ -58,21 +56,35 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              className="mt-6 flex flex-col gap-3 sm:flex-row"
+              className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:flex-wrap"
               initial={reduced ? false : { opacity: 0, y: 16 }}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
             >
-              <motion.div whileHover={reduced ? undefined : { scale: 1.02 }} whileTap={reduced ? undefined : { scale: 0.98 }}>
-                <Link href="/onboarding">
-                  <Button variant="primary" size="lg" className="shadow-glow transition-shadow duration-300 hover:shadow-hover">
+              <motion.div
+                className="w-full sm:w-auto sm:min-w-0 sm:flex-1"
+                whileHover={reduced ? undefined : { scale: 1.02 }}
+                whileTap={reduced ? undefined : { scale: 0.98 }}
+              >
+                <Link href="/onboarding" className="block w-full sm:inline-block sm:w-auto">
+                  <Button variant="primary" size="lg" fullWidth className="sm:w-auto sm:min-w-[12rem] shadow-glow transition-shadow duration-300 hover:shadow-hover">
                     Find My Next Book →
                   </Button>
                 </Link>
               </motion.div>
-              <motion.div whileHover={reduced ? undefined : { scale: 1.02 }} whileTap={reduced ? undefined : { scale: 0.98 }}>
-                <Button variant="secondary" size="lg" onClick={requestOpenChat} className="border-primary/30 hover:border-primary/60 hover:shadow-primary-glow">
+              <motion.div
+                className="w-full sm:w-auto sm:min-w-0 sm:flex-1"
+                whileHover={reduced ? undefined : { scale: 1.02 }}
+                whileTap={reduced ? undefined : { scale: 0.98 }}
+              >
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  fullWidth
+                  className="sm:w-auto sm:min-w-[12rem] border-primary/30 hover:border-primary/60 hover:shadow-primary-glow"
+                  onClick={requestOpenChat}
+                >
                   Ask ShelfAI →
                 </Button>
               </motion.div>
@@ -119,7 +131,7 @@ export function HeroSection() {
             </motion.ul>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="min-w-0 md:col-span-2">
             <BookStack3D />
           </div>
         </div>

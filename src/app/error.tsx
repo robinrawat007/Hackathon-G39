@@ -20,7 +20,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="container flex flex-1 flex-col items-center justify-center py-28 text-center">
         <h1 className="font-heading text-h1 text-heading">Something went wrong</h1>

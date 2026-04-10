@@ -61,7 +61,7 @@ export function DashboardClient() {
   }, [])
 
   return (
-    <div className="container pb-16">
+    <div className="container min-w-0 pb-12 sm:pb-16">
       <div className="relative mb-10 overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-bg-secondary/40 to-accent/10 p-6 shadow-card md:p-8">
         <div
           className="pointer-events-none absolute inset-0 opacity-50"
@@ -98,7 +98,7 @@ export function DashboardClient() {
             <p className="mt-2 text-sm text-text-muted">
               Stack your shelf or snag picks above — this rail becomes your instant replay.
             </p>
-            <div className="mt-6 flex justify-center gap-3">
+            <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <Link href="/browse">
                 <Button variant="secondary" size="sm">
                   Hunt books

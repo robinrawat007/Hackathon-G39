@@ -3,27 +3,14 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
+import { BookCoverImage } from "@/components/books/book-cover-image"
 import { Button } from "@/components/ui/button"
 import { MOODS, GOALS } from "@/lib/constants"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
+import { ONBOARDING_POPULAR_BOOKS } from "@/lib/onboarding-popular-books"
 import { onboardingSchema, type OnboardingInput } from "@/lib/validations/onboarding.schema"
 
 type Step = 1 | 2 | 3
-
-const POPULAR_BOOKS = [
-  { id: "dune", title: "Dune" },
-  { id: "the-hobbit", title: "The Hobbit" },
-  { id: "gone-girl", title: "Gone Girl" },
-  { id: "pride-prejudice", title: "Pride and Prejudice" },
-  { id: "the-alchemist", title: "The Alchemist" },
-  { id: "atomic-habits", title: "Atomic Habits" },
-  { id: "the-book-thief", title: "The Book Thief" },
-  { id: "sapiens", title: "Sapiens" },
-  { id: "the-martian", title: "The Martian" },
-  { id: "the-night-circus", title: "The Night Circus" },
-  { id: "educated", title: "Educated" },
-  { id: "the-road", title: "The Road" },
-] as const
 
 const RATER_OPTIONS = [
   { key: "love", label: "Love it" },
@@ -37,7 +24,7 @@ export function OnboardingWizard() {
   const [step, setStep] = React.useState<Step>(1)
 
   const [ratedBooks, setRatedBooks] = React.useState<Array<{ bookId: string; rating: "love" | "liked" | "meh" | "unread" }>>(
-    POPULAR_BOOKS.map((b) => ({ bookId: b.id, rating: "unread" }))
+    ONBOARDING_POPULAR_BOOKS.map((b) => ({ bookId: b.id, rating: "unread" }))
   )
   const [moods, setMoods] = React.useState<string[]>([])
   const [goals, setGoals] = React.useState<string[]>([])
@@ -110,7 +97,7 @@ export function OnboardingWizard() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-5xl">
       <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-bg-secondary/90 via-surface/80 to-accent/5 p-8 shadow-card backdrop-blur-md md:p-10">
         <div
           className="pointer-events-none absolute inset-0 opacity-40"
@@ -149,25 +136,40 @@ export function OnboardingWizard() {
               <div className="font-heading text-h3 text-heading">What you’ve actually read</div>
               <div className="mt-2 text-sm text-text-muted">Honest taps only — we use this to calibrate the AI. Change anytime.</div>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {POPULAR_BOOKS.map((b) => {
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {ONBOARDING_POPULAR_BOOKS.map((b) => {
                   const current = ratedBooks.find((r) => r.bookId === b.id)?.rating ?? "unread"
                   return (
                     <motion.div
                       key={b.id}
-                      className="rounded-xl border border-border/80 bg-bg-secondary/90 p-4 shadow-card transition-shadow duration-300 hover:border-primary/30 hover:shadow-hover"
+                      className="rounded-xl border border-border/80 bg-gradient-to-b from-bg-secondary/95 to-surface/85 p-3 shadow-card transition-shadow duration-300 hover:border-primary/35 hover:shadow-hover sm:p-4"
                     >
-                      <div className="text-sm font-medium text-heading">{b.title}</div>
+                      <div className="flex gap-3">
+                        <div className="relative h-[7.25rem] w-[4.75rem] shrink-0 overflow-hidden rounded-lg border border-border/60 bg-bg shadow-inner sm:h-[8.5rem] sm:w-[5.35rem]">
+                          <BookCoverImage
+                            src={b.coverUrl}
+                            alt=""
+                            fill
+                            sizes="(max-width:640px) 76px, 86px"
+                            tier="list"
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1 pt-0.5">
+                          <div className="text-sm font-semibold leading-snug text-heading line-clamp-2">{b.title}</div>
+                          <div className="mt-1 text-xs text-text-muted line-clamp-2">{b.author}</div>
+                        </div>
+                      </div>
                       <div className="mt-3 grid grid-cols-2 gap-2">
                         {RATER_OPTIONS.map((o) => (
                           <button
                             key={o.key}
                             type="button"
                             onClick={() => setBookRating(b.id, o.key)}
-                            className={`rounded-lg border px-3 py-2 text-sm transition-all duration-200 ${
+                            className={`rounded-lg border px-2 py-2 text-xs transition-all duration-200 sm:px-3 sm:text-sm ${
                               current === o.key
-                                ? "border-primary bg-primary text-heading shadow-[0_0_12px_rgba(99,179,237,0.25)]"
-                                : "border-border/80 bg-surface text-text hover:border-primary/40"
+                                ? "border-primary bg-primary text-heading shadow-[0_0_14px_rgba(99,179,237,0.35)]"
+                                : "border-border/80 bg-surface/90 text-text hover:border-primary/40"
                             }`}
                           >
                             {o.label}

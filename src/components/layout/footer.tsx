@@ -35,7 +35,7 @@ export function Footer() {
               </p>
             </div>
 
-            <div className="grid flex-1 grid-cols-2 gap-10 sm:grid-cols-3 lg:max-w-2xl lg:justify-items-end">
+            <div className="grid flex-1 grid-cols-1 gap-8 min-[420px]:grid-cols-2 sm:grid-cols-3 sm:gap-10 lg:max-w-2xl lg:justify-items-end">
               <div className={linkCol}>
                 <div className={linkHeading}>Explore</div>
                 <Link className={linkClass} href="/browse">

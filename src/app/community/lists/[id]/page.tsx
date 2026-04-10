@@ -48,7 +48,7 @@ export default async function ListDetailPage(props: { params: Promise<{ id: stri
   }
 
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="container flex-1 pt-24 pb-16">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">

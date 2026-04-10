@@ -73,7 +73,7 @@ export function CommunityClient() {
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_300px]">
         <div>
           <Tabs defaultValue="all">
-            <TabsList className="w-full flex-wrap justify-start gap-1 bg-transparent p-0">
+            <TabsList className="h-auto min-h-0 w-full flex-wrap justify-start gap-1 bg-transparent p-0 py-1">
               <TabsTrigger
                 value="all"
                 className="rounded-lg border border-transparent data-[state=active]:border-primary/40 data-[state=active]:bg-primary/15 data-[state=active]:shadow-[0_0_20px_rgba(99,179,237,0.12)]"

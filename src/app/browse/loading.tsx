@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export default function BrowseLoading() {
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="flex-1 pt-20">
         <div className="container py-10 md:py-12">

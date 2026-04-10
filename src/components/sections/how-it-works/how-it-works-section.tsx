@@ -32,7 +32,7 @@ export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="relative py-16 md:py-24">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" aria-hidden />
-      <div className="container">
+      <div className="container min-w-0">
         <motion.h2
           initial={reduced ? false : { opacity: 0, y: 32 }}
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}

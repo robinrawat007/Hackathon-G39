@@ -35,7 +35,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
   const profileUrl = absoluteUrl(`/profile/${encodeURIComponent(handle)}`)
 
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <JsonLd
         id="profile-jsonld"
         data={{
@@ -66,15 +66,15 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <div className="rounded-md border border-border bg-bg-secondary p-6">
+            <div className="rounded-md border border-border bg-transparent-secondary p-6">
               <div className="text-sm text-text-muted">Books read (sample)</div>
               <div className="mt-2 font-heading text-h2 text-heading">42</div>
             </div>
-            <div className="rounded-md border border-border bg-bg-secondary p-6">
+            <div className="rounded-md border border-border bg-transparent-secondary p-6">
               <div className="text-sm text-text-muted">Avg rating given</div>
               <div className="mt-2 font-heading text-h2 text-heading">4.2</div>
             </div>
-            <div className="rounded-md border border-border bg-bg-secondary p-6">
+            <div className="rounded-md border border-border bg-transparent-secondary p-6">
               <div className="text-sm text-text-muted">Followers (sample)</div>
               <div className="mt-2 font-heading text-h2 text-heading">128</div>
             </div>

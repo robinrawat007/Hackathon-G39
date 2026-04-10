@@ -16,9 +16,9 @@ export default async function DashboardPage() {
   await requireUser()
 
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="flex min-h-full min-w-0 flex-col bg-transparent text-text">
       <Navbar />
-      <main id="main" className="flex-1 pt-24">
+      <main id="main" className="min-w-0 flex-1 pt-20 sm:pt-24">
         <DashboardClient />
       </main>
       <Footer />

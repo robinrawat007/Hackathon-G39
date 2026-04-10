@@ -6,9 +6,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export default function BookDetailLoading() {
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
-      <main id="main" className="container flex-1 pt-24 pb-16">
+      <main id="main" className="container min-w-0 flex-1 pt-20 pb-12 sm:pt-24 sm:pb-16">
         <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
           <div>
             <div className="grid gap-6 md:grid-cols-[220px_1fr]">

@@ -13,6 +13,8 @@ import { CHAT_STARTER_PROMPTS, UI } from "@/lib/constants"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { cn } from "@/lib/utils"
 
+const STARTER_ICONS = ["✨", "🔥", "🌙", "🎭", "🚀"]
+
 export function ChatWidget() {
   const reduced = usePrefersReducedMotion()
   const panelId = React.useId()
@@ -33,7 +35,7 @@ export function ChatWidget() {
   }, [])
 
   React.useEffect(() => {
-    listRef.current?.scrollTo({ top: listRef.current.scrollHeight })
+    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" })
   }, [messages.length, isStreaming])
 
   React.useEffect(() => {
@@ -59,7 +61,8 @@ export function ChatWidget() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-[60]">
+      {/* FAB */}
+      <div className="fixed z-[60] bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6">
         <motion.button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -76,120 +79,222 @@ export function ChatWidget() {
           transition={
             reduced || open
               ? {}
-              : {
-                  y: { repeat: Infinity, duration: 2.4, ease: "easeInOut" },
-                }
+              : { y: { repeat: Infinity, duration: 2.4, ease: "easeInOut" } }
           }
         >
-          <BookOpen className="relative z-10 h-7 w-7 drop-shadow-md" aria-hidden="true" />
+          <AnimatePresence mode="wait" initial={false}>
+            {open ? (
+              <motion.span
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="relative z-10"
+              >
+                <X className="h-6 w-6 drop-shadow-md" aria-hidden />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="open"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="relative z-10"
+              >
+                <BookOpen className="h-7 w-7 drop-shadow-md" aria-hidden />
+              </motion.span>
+            )}
+          </AnimatePresence>
           <span
             className="pointer-events-none absolute inset-0 rounded-full opacity-60 blur-md"
             style={{
-              background: "radial-gradient(circle, rgba(99,179,237,0.9) 0%, rgba(159,122,234,0.4) 50%, transparent 70%)",
+              background:
+                "radial-gradient(circle, rgba(99,179,237,0.9) 0%, rgba(159,122,234,0.4) 50%, transparent 70%)",
             }}
             aria-hidden
           />
-          <span className="pointer-events-none absolute -top-11 right-0 hidden whitespace-nowrap rounded-full border border-primary/30 bg-bg-secondary/95 px-3 py-1.5 text-xs font-medium text-heading shadow-card backdrop-blur-md group-hover:block">
-            Ask the book brain →
-          </span>
+          {!open && (
+            <span className="pointer-events-none absolute -top-11 right-0 hidden whitespace-nowrap rounded-full border border-primary/30 bg-bg-secondary/95 px-3 py-1.5 text-xs font-medium text-heading shadow-card backdrop-blur-md group-hover:block">
+              Ask the book brain →
+            </span>
+          )}
         </motion.button>
       </div>
 
+      {/* Chat Panel */}
       <AnimatePresence>
         {open ? (
           <motion.aside
             id={panelId}
-            initial={reduced ? false : { opacity: 0, y: 20, scale: 0.96 }}
+            initial={reduced ? false : { opacity: 0, y: 24, scale: 0.95 }}
             animate={reduced ? undefined : { opacity: 1, y: 0, scale: 1 }}
-            exit={reduced ? undefined : { opacity: 0, y: 16, scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 320, damping: 28 }}
-            className="fixed bottom-28 right-6 z-[60] flex max-h-[min(640px,calc(100vh-7rem))] w-[min(100vw-1.5rem,400px)] flex-col overflow-hidden rounded-2xl border border-primary/30 bg-[rgba(6,10,20,0.92)] shadow-[0_0_48px_rgba(99,179,237,0.18),0_24px_56px_rgba(0,0,0,0.55)] backdrop-blur-2xl md:bottom-32"
-            style={{ height: UI.chat.heightPx }}
+            exit={reduced ? undefined : { opacity: 0, y: 18, scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 340, damping: 30 }}
+            className="fixed z-[60] flex w-[min(100vw-1rem,420px)] max-w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-2xl border border-primary/25 bg-[rgba(5,8,18,0.94)] shadow-[0_0_60px_rgba(99,179,237,0.15),0_0_120px_rgba(159,122,234,0.08),0_32px_64px_rgba(0,0,0,0.65)] backdrop-blur-2xl bottom-[max(5.5rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))] right-[max(0.5rem,env(safe-area-inset-right,0px))] max-h-[min(560px,calc(100dvh-6rem))] h-[min(560px,calc(100dvh-6rem))] sm:right-6 sm:max-h-[min(620px,calc(100dvh-7rem))] sm:h-[min(580px,calc(100dvh-7rem))] md:bottom-[max(8rem,calc(7rem+env(safe-area-inset-bottom,0px)))]"
             role="dialog"
             aria-modal="true"
             aria-label="ShelfAI chat"
           >
-            <div className="relative overflow-hidden border-b border-primary/15 px-4 py-3.5">
+            {/* Ambient top glow inside panel */}
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-32 opacity-50"
+              style={{
+                background:
+                  "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,179,237,0.18) 0%, transparent 70%)",
+              }}
+              aria-hidden
+            />
+            {/* Subtle grid overlay */}
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.04]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(99,179,237,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,1) 1px, transparent 1px)",
+                backgroundSize: "32px 32px",
+                maskImage:
+                  "radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 80%)",
+              }}
+              aria-hidden
+            />
+
+            {/* Header */}
+            <div className="relative z-10 overflow-hidden border-b border-primary/15 px-4 py-3.5">
               <div
-                className="pointer-events-none absolute inset-0 opacity-100"
+                className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(125deg, rgba(99,179,237,0.22) 0%, transparent 42%), linear-gradient(300deg, rgba(159,122,234,0.16) 0%, transparent 48%)",
+                    "linear-gradient(125deg, rgba(99,179,237,0.18) 0%, transparent 45%), linear-gradient(300deg, rgba(159,122,234,0.12) 0%, transparent 50%)",
                 }}
                 aria-hidden
               />
               <div className="relative flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/25 to-accent/15 text-primary shadow-[0_0_24px_rgba(99,179,237,0.25),inset_0_1px_0_rgba(255,255,255,0.12)]">
+                  <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-primary/35 bg-gradient-to-br from-primary/25 to-accent/15 text-primary shadow-[0_0_24px_rgba(99,179,237,0.3),inset_0_1px_0_rgba(255,255,255,0.12)]">
                     <Sparkles className="h-5 w-5" aria-hidden />
+                    {/* Pulse ring */}
+                    <span
+                      className="absolute inset-0 rounded-2xl border border-primary/25"
+                      style={{ animation: reduced ? "none" : "chat-fab-glow-pulse 2.8s ease-in-out infinite" }}
+                      aria-hidden
+                    />
                   </span>
                   <div className="min-w-0">
-                    <div className="font-heading text-base font-semibold tracking-tight text-heading">ShelfAI</div>
-                    <p className="text-xs leading-snug text-text-muted">Live catalog + AI · your hype librarian</p>
+                    <div className="flex items-center gap-2">
+                      <div className="font-heading text-base font-semibold tracking-tight text-heading">ShelfAI</div>
+                      <span className="flex items-center gap-1 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400">
+                        <span
+                          className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+                          style={{ animation: reduced ? "none" : "chat-fab-glow-pulse 1.8s ease-in-out infinite" }}
+                          aria-hidden
+                        />
+                        online
+                      </span>
+                    </div>
+                    <p className="text-xs leading-snug text-text-muted">Live catalog · AI librarian</p>
                   </div>
                 </div>
                 <button
                   type="button"
                   aria-label="Close chat"
                   onClick={() => setOpen(false)}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-text-muted transition-colors hover:border-primary/35 hover:bg-primary/10 hover:text-heading"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-text-muted transition-all hover:border-primary/35 hover:bg-primary/10 hover:text-heading hover:shadow-[0_0_12px_rgba(99,179,237,0.15)]"
                 >
                   <X className="h-4 w-4" aria-hidden />
                 </button>
               </div>
             </div>
 
+            {/* Message list */}
             <div
               ref={listRef}
-              className="flex flex-1 flex-col gap-3 overflow-y-auto bg-gradient-to-b from-transparent via-bg/[0.35] to-transparent px-4 py-4"
+              className="relative z-10 flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4"
             >
               {showStarters ? (
-                <div className="space-y-3 rounded-2xl border border-primary/15 bg-gradient-to-b from-primary/[0.07] via-transparent to-accent/[0.04] p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90">Quick asks</p>
-                  <p className="text-sm font-medium text-heading">Pick a vibe — or type your own.</p>
-                  <div className="flex flex-col gap-2">
-                    {CHAT_STARTER_PROMPTS.map((q) => (
-                      <button
-                        key={q}
-                        type="button"
-                        disabled={isStreaming}
-                        onClick={() => onStarter(q)}
-                        className="group relative overflow-hidden rounded-xl border border-white/[0.08] bg-input-bg/80 px-3 py-2.5 text-left text-sm leading-snug text-text shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-all hover:border-primary/40 hover:bg-[rgba(8,14,28,0.95)] hover:text-heading hover:shadow-[0_0_20px_rgba(99,179,237,0.12)] disabled:opacity-50"
-                      >
-                        <span
-                          className="absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-primary to-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                          aria-hidden
-                        />
-                        <span className="relative block pl-2">{q}</span>
-                      </button>
-                    ))}
+                <motion.div
+                  initial={reduced ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08 }}
+                  className="space-y-3"
+                >
+                  {/* Welcome card */}
+                  <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/[0.08] via-transparent to-accent/[0.05] p-4">
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.06]"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(rgba(99,179,237,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,1) 1px, transparent 1px)",
+                        backgroundSize: "24px 24px",
+                      }}
+                      aria-hidden
+                    />
+                    <div className="relative">
+                      <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80">
+                        Quick asks
+                      </p>
+                      <p className="mb-3 text-sm font-medium text-heading">
+                        Pick a vibe — or type your own.
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        {CHAT_STARTER_PROMPTS.map((q, i) => (
+                          <button
+                            key={q}
+                            type="button"
+                            disabled={isStreaming}
+                            onClick={() => onStarter(q)}
+                            className="group relative overflow-hidden rounded-xl border border-white/[0.07] bg-[rgba(6,10,22,0.6)] px-3 py-2.5 text-left text-sm leading-snug text-text transition-all hover:border-primary/35 hover:bg-[rgba(8,14,28,0.92)] hover:text-heading hover:shadow-[0_0_18px_rgba(99,179,237,0.1)] disabled:opacity-50"
+                          >
+                            <span
+                              className="absolute left-0 top-0 h-full w-[2px] rounded-r bg-gradient-to-b from-primary to-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                              aria-hidden
+                            />
+                            <span className="relative flex items-center gap-2.5 pl-1">
+                              <span className="text-base leading-none">{STARTER_ICONS[i % STARTER_ICONS.length]}</span>
+                              <span>{q}</span>
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+
+                </motion.div>
               ) : null}
 
               {visibleMessages.map((m, idx) => (
-                <ChatBubble key={`${m.timestamp}-${idx}`} role={m.role} content={m.content} />
+                <motion.div
+                  key={`${m.timestamp}-${idx}`}
+                  initial={reduced ? false : { opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChatBubble role={m.role} content={m.content} />
+                </motion.div>
               ))}
               {isStreaming ? <TypingIndicator /> : null}
               {error ? (
-                <div className="rounded-xl border border-error/30 bg-error/10 px-3 py-2 text-xs text-error">That didn’t land — {error}</div>
+                <div className="rounded-xl border border-error/30 bg-error/10 px-3 py-2 text-xs text-error">
+                  That didn't land — {error}
+                </div>
               ) : null}
               {guestMessageCount >= UI.chat.guestNudgeAfterMessages ? (
-                <div className="rounded-xl border border-primary/25 bg-primary/5 px-3 py-2.5 text-xs text-text-muted">
+                <div className="rounded-xl border border-primary/20 bg-gradient-to-r from-primary/[0.07] to-accent/[0.05] px-3 py-2.5 text-xs text-text-muted">
                   <span className="font-medium text-heading">Level up:</span> create an account and your next obsession stays on your shelf.
                 </div>
               ) : null}
             </div>
 
-            <div className="border-t border-primary/15 bg-gradient-to-t from-bg via-[rgba(6,10,20,0.97)] to-bg-secondary/90 p-4 backdrop-blur-md">
-              <div className="group/composer rounded-2xl p-[1px] shadow-[0_0_28px_rgba(99,179,237,0.12)] transition-shadow duration-200 [background:linear-gradient(135deg,rgba(99,179,237,0.45),rgba(99,179,237,0.12),rgba(159,122,234,0.35))] focus-within:shadow-[0_0_36px_rgba(99,179,237,0.22)]">
-                <div className="flex items-end gap-2 rounded-2xl bg-bg/95 p-2 backdrop-blur-sm">
+            {/* Composer */}
+            <div className="relative z-10 border-t border-primary/15 bg-gradient-to-t from-[rgba(5,8,18,0.98)] via-[rgba(5,8,18,0.94)] to-transparent px-3 py-3 backdrop-blur-md sm:px-3.5">
+              <div className="group/composer rounded-xl p-[1px] shadow-[0_0_28px_rgba(99,179,237,0.1)] transition-shadow duration-300 [background:linear-gradient(135deg,rgba(99,179,237,0.5),rgba(99,179,237,0.1),rgba(159,122,234,0.4))] focus-within:shadow-[0_0_40px_rgba(99,179,237,0.2)] sm:rounded-2xl">
+                <div className="flex flex-col gap-1.5 rounded-xl bg-[rgba(6,10,22,0.96)] p-1.5 sm:flex-row sm:items-end sm:gap-2 sm:rounded-2xl sm:p-2">
                   <Textarea
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
-                    placeholder="Mood, last 5-star, or “something like…” — go."
+                    placeholder={'Mood, last 5-star, or \u201csomething like\u2026\u201d \u2014 go.'}
                     rows={2}
-                    className="min-h-[4.25rem] flex-1 resize-none border-0 bg-transparent py-2.5 shadow-none focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none"
+                    className="min-h-[2.625rem] w-full flex-1 resize-none border-0 bg-transparent py-2 text-sm leading-snug text-heading shadow-none placeholder:text-text-muted/60 focus-visible:shadow-none focus-visible:ring-0 focus-visible:outline-none sm:min-h-[3rem] sm:py-2"
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && !e.shiftKey) {
                         e.preventDefault()
@@ -200,7 +305,7 @@ export function ChatWidget() {
                   <Button
                     variant="primary"
                     size="md"
-                    className="mb-0.5 h-11 w-11 shrink-0 rounded-xl p-0 shadow-[0_0_20px_rgba(99,179,237,0.35)]"
+                    className="h-10 w-full shrink-0 rounded-lg shadow-[0_0_20px_rgba(99,179,237,0.3)] transition-shadow hover:shadow-[0_0_32px_rgba(99,179,237,0.5)] sm:mb-px sm:h-10 sm:w-10 sm:min-w-[2.5rem] sm:rounded-xl sm:p-0"
                     loading={isStreaming}
                     onClick={() => void onSubmit()}
                     aria-label="Send message"
@@ -208,8 +313,9 @@ export function ChatWidget() {
                   />
                 </div>
               </div>
-              <p className="mt-2.5 text-center text-[11px] text-input-placeholder">
-                <span className="text-text-muted">Enter</span> to send · <span className="text-text-muted">Shift+Enter</span> new line
+              <p className="mt-1.5 text-center text-[10px] leading-tight text-input-placeholder sm:text-[11px]">
+                <span className="text-text-muted">Enter</span> to send ·{" "}
+                <span className="text-text-muted">Shift+Enter</span> new line
               </p>
             </div>
           </motion.aside>

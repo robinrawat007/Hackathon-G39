@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function SignupPage() {
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="container flex-1 pt-24 pb-16">
         <div className="mx-auto max-w-md rounded-md border border-border bg-surface p-8 shadow-card">

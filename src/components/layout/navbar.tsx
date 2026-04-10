@@ -91,8 +91,9 @@ export function Navbar() {
                   </Button>
                 </Link>
                 <Link href="/onboarding">
-                  <Button variant="primary" size="sm">
-                    Find My Next Book →
+                  <Button variant="primary" size="sm" className="max-sm:px-2.5 max-sm:text-xs">
+                    <span className="sm:hidden">Next book →</span>
+                    <span className="hidden sm:inline">Find My Next Book →</span>
                   </Button>
                 </Link>
               </>
@@ -107,7 +108,7 @@ export function Navbar() {
                   Menu
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full max-w-none border-border bg-bg-secondary/95 backdrop-blur-xl">
+              <SheetContent side="right" className="w-full max-w-[min(100vw,380px)] border-border bg-bg-secondary/95 backdrop-blur-xl sm:max-w-sm">
                 <div className="flex flex-col gap-4">
                   <div className="font-heading text-h3 font-semibold text-gradient-hero">ShelfAI</div>
                   <div className="flex flex-col gap-2">
@@ -143,7 +144,7 @@ export function Navbar() {
                         </Link>
                         <Link href="/onboarding">
                           <Button variant="primary" size="md" fullWidth>
-                            Find My Next Book →
+                            Next book →
                           </Button>
                         </Link>
                       </>

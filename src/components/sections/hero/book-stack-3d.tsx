@@ -47,10 +47,10 @@ export function BookStack3D() {
   const rotate = useTransform(scrollYProgress, [0, 1], [reduced ? 0 : -6, reduced ? 0 : 6])
 
   return (
-    <div ref={ref} className="relative h-[420px] w-full">
+    <div ref={ref} className="relative mx-auto h-[min(360px,50dvh)] w-full max-w-md sm:h-[400px] md:h-[420px]">
       <motion.div
         style={{ transformStyle: "preserve-3d", rotateY: rotate }}
-        className="absolute inset-0 mx-auto max-w-sm"
+        className="absolute inset-0 mx-auto max-w-[min(100%,20rem)]"
       >
         {COVERS.map((b, idx) => {
           const z = (COVERS.length - idx) * 16
@@ -60,7 +60,7 @@ export function BookStack3D() {
           return (
             <motion.div
               key={b.title}
-              className={cn("absolute left-1/2 top-10 w-[190px] -translate-x-1/2")}
+              className={cn("absolute left-1/2 top-6 w-[min(170px,42vw)] -translate-x-1/2 sm:top-10 sm:w-[190px]")}
               style={{
                 transform: `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rot}deg)`,
               }}
@@ -84,4 +84,3 @@ export function BookStack3D() {
     </div>
   )
 }
-

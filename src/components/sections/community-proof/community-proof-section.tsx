@@ -54,9 +54,11 @@ export function CommunityProofSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-heading text-h2 text-heading"
         >
-          Readers who actually finished the rec
+          Finished the book. Meant every word.
         </motion.h2>
-        <p className="mt-2 max-w-xl text-sm text-text-muted">Real reactions — no fake five-stars, no filler blurbs.</p>
+        <p className="mt-2 max-w-xl text-sm text-text-muted">
+          Short, honest takes from people who read the pick end to end — not five-star spam or filler blurbs.
+        </p>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3 md:items-stretch">
           {REVIEWS.map((r, idx) => (

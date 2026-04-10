@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 import { Providers } from "@/app/providers"
 import { ChatWidget } from "@/components/chat/chat-widget"
 import { PageEnter } from "@/components/layout/page-enter"
+import { SiteStarfield } from "@/components/layout/site-starfield"
 import { SITE_NAME, getMetadataBaseUrl, getSiteUrl } from "@/lib/site"
 
 import "./globals.css"
@@ -59,6 +60,9 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#080b14" }],
 }
 
@@ -75,17 +79,23 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         <div className="app-backdrop" aria-hidden />
-        <div className="app-shell flex min-h-full flex-col">
+        <div className="app-shell flex min-h-full min-w-0 flex-col">
+          {/* Above backdrop gradients, below UI — visible through translucent scrim */}
+          <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
+            <SiteStarfield />
+          </div>
           <a
             href="#main"
             className="fixed left-4 top-4 z-[100] -translate-y-[140%] rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-heading shadow-card outline-none backdrop-blur-md transition-transform duration-200 focus:translate-y-0"
           >
             Skip to content
           </a>
-          <Providers>
-            <PageEnter>{children}</PageEnter>
-            <ChatWidget />
-          </Providers>
+          <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)]">
+            <Providers>
+              <PageEnter>{children}</PageEnter>
+              <ChatWidget />
+            </Providers>
+          </div>
         </div>
       </body>
     </html>

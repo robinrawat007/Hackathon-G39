@@ -10,6 +10,10 @@ import {
   FeaturedBooksFallback,
   FeaturedBooksSection,
 } from "@/components/sections/featured-books/featured-books-server"
+import {
+  HomeExtraCoversFallback,
+  HomeExtraCoversSection,
+} from "@/components/sections/home/home-extra-covers"
 import { CommunityProofSection } from "@/components/sections/community-proof/community-proof-section"
 import { FeedbackSection } from "@/components/sections/feedback/feedback-section"
 import { CTABannerSection } from "@/components/sections/cta-banner/cta-banner-section"
@@ -42,14 +46,17 @@ export default function Home() {
           ],
         }}
       />
-      <div className="min-h-full bg-bg text-text">
+      <div className="flex min-h-full min-w-0 flex-col bg-transparent text-text">
       <Navbar />
-      <main id="main" className="flex-1">
+      <main id="main" className="min-w-0 flex-1">
         <HeroSection />
         <HowItWorksSection />
         <MoodStripSection />
         <Suspense fallback={<FeaturedBooksFallback />}>
           <FeaturedBooksSection />
+        </Suspense>
+        <Suspense fallback={<HomeExtraCoversFallback />}>
+          <HomeExtraCoversSection />
         </Suspense>
         <CommunityProofSection />
         <FeedbackSection />

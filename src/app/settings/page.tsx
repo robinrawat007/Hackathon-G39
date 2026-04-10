@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function SettingsPage() {
   await requireUser()
   return (
-    <div className="min-h-full bg-bg text-text">
+    <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="container flex-1 pt-24 pb-16">
         <SettingsClient />

@@ -101,7 +101,7 @@ export function BookCard({ book, variant, onAddToShelf, isLoading }: BookCardPro
         <Link href={`/book/${book.slug}`} className="relative z-[1] flex flex-1 flex-col p-4 pt-5">
           <div className="relative [perspective:900px]">
             <motion.div
-              className="book-cover-frame relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.55)] ring-1 ring-white/10"
+              className="book-cover-frame relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg shadow-[0_16px_40px_rgba(0,0,0,0.55)] ring-1 ring-white/10"
               style={{ transformStyle: "preserve-3d" }}
               whileHover={reduced ? undefined : { scale: 1.03, rotateY: 5 }}
               transition={{ type: "spring", stiffness: 320, damping: 24 }}
