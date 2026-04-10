@@ -1,0 +1,91 @@
+"use client"
+
+import Image from "next/image"
+import * as React from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+
+import { cn } from "@/lib/utils"
+import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
+import { BOOK_COVER_BLUR_DATA_URL } from "@/lib/image-placeholders"
+import { bookCoverNeedsUnoptimized } from "@/lib/book-cover-image"
+
+const COVERS = [
+  {
+    title: "The Three-Body Problem",
+    author: "Cixin Liu",
+    cover:
+      "https://books.google.com/books/content?id=1w8YDAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  },
+  {
+    title: "Pachinko",
+    author: "Min Jin Lee",
+    cover:
+      "https://books.google.com/books/content?id=ZngzDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  },
+  {
+    title: "Educated",
+    author: "Tara Westover",
+    cover:
+      "https://books.google.com/books/content?id=JX0vDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  },
+  {
+    title: "The Name of the Wind",
+    author: "Patrick Rothfuss",
+    cover:
+      "https://books.google.com/books/content?id=IboQfTg1VnMC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  },
+  {
+    title: "And Then There Were None",
+    author: "Agatha Christie",
+    cover:
+      "https://books.google.com/books/content?id=GmWbAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  },
+] as const
+
+export function BookStack3D() {
+  const reduced = usePrefersReducedMotion()
+  const ref = React.useRef<HTMLDivElement | null>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
+  const rotate = useTransform(scrollYProgress, [0, 1], [reduced ? 0 : -6, reduced ? 0 : 6])
+
+  return (
+    <div ref={ref} className="relative h-[420px] w-full">
+      <motion.div
+        style={{ transformStyle: "preserve-3d", rotateY: rotate }}
+        className="absolute inset-0 mx-auto max-w-sm"
+      >
+        {COVERS.map((b, idx) => {
+          const z = (COVERS.length - idx) * 16
+          const y = idx * 18
+          const x = idx * 10
+          const rot = reduced ? 0 : (idx % 2 === 0 ? -6 : 6)
+          return (
+            <motion.div
+              key={b.title}
+              className={cn("absolute left-1/2 top-10 w-[190px] -translate-x-1/2")}
+              style={{
+                transform: `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rot}deg)`,
+              }}
+              animate={reduced ? undefined : { y: [0, -8, 0] }}
+              transition={reduced ? undefined : { duration: 3.2, repeat: Infinity, delay: idx * 0.18, ease: "easeInOut" }}
+            >
+              <div className="relative aspect-[2/3] overflow-hidden rounded-md border border-border shadow-hover">
+                <Image
+                  src={b.cover}
+                  alt={`${b.title} by ${b.author} book cover`}
+                  fill
+                  sizes="190px"
+                  className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={BOOK_COVER_BLUR_DATA_URL}
+                  unoptimized={bookCoverNeedsUnoptimized(b.cover)}
+                />
+              </div>
+            </motion.div>
+          )
+        })}
+      </motion.div>
+    </div>
+  )
+}
+

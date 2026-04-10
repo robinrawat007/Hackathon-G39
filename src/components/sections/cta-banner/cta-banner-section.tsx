@@ -1,0 +1,54 @@
+"use client"
+
+import Link from "next/link"
+import { motion } from "framer-motion"
+
+import { Button } from "@/components/ui/button"
+import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
+
+export function CTABannerSection() {
+  const reduced = usePrefersReducedMotion()
+
+  return (
+    <section className="py-16 md:py-24">
+      <div className="container">
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 40 }}
+          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="shelfai-cta-shimmer relative overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/25 via-accent/20 to-primary/20 p-10 shadow-glow backdrop-blur-md md:p-12"
+        >
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 60% at 20% 0%, rgba(99,179,237,0.35), transparent 55%), radial-gradient(ellipse 70% 50% at 90% 100%, rgba(159,122,234,0.3), transparent 50%)",
+            }}
+            aria-hidden
+          />
+          <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+            <div>
+              <div className="font-heading text-h2 text-heading drop-shadow-sm">Ready to meet your next favourite book?</div>
+              <div className="mt-2 max-w-xl text-sm text-text-muted">
+                Create a free account to save recommendations, track your shelves, and join the community.
+              </div>
+            </div>
+            <motion.div whileHover={reduced ? undefined : { scale: 1.04 }} whileTap={reduced ? undefined : { scale: 0.98 }}>
+              <Link href="/auth/signup">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="border-primary/60 bg-bg-secondary/90 text-heading shadow-card backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-surface hover:shadow-primary-glow"
+                >
+                  Create Free Account →
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
