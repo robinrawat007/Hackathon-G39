@@ -1,14 +1,11 @@
 "use client"
 
-import Image from "next/image"
 import * as React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
+import { BookCoverImage } from "@/components/books/book-cover-image"
 import { cn } from "@/lib/utils"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
-import { BOOK_COVER_BLUR_DATA_URL } from "@/lib/image-placeholders"
-import { bookCoverNeedsUnoptimized } from "@/lib/book-cover-image"
-import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
 
 const COVERS = [
   {
@@ -71,15 +68,13 @@ export function BookStack3D() {
               transition={reduced ? undefined : { duration: 3.2, repeat: Infinity, delay: idx * 0.18, ease: "easeInOut" }}
             >
               <div className="relative aspect-[2/3] overflow-hidden rounded-md border border-border shadow-hover">
-                <Image
-                  src={upgradeGoogleBooksCoverUrl(b.cover, "list")}
+                <BookCoverImage
+                  src={b.cover}
                   alt={`${b.title} by ${b.author} book cover`}
                   fill
                   sizes="(max-width: 768px) 42vw, 190px"
+                  tier="list"
                   className="object-cover"
-                  placeholder="blur"
-                  blurDataURL={BOOK_COVER_BLUR_DATA_URL}
-                  unoptimized={bookCoverNeedsUnoptimized(b.cover)}
                 />
               </div>
             </motion.div>

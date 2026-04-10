@@ -21,8 +21,7 @@ type BookCoverImageProps = {
 }
 
 /**
- * Book cover with upgraded Google thumbnail URL, load pulse, and fade-in.
- * When using `fill`, the parent must be `position: relative` with defined size.
+ * Book cover: gentle Google zoom bump, load pulse, fade-in, and fallback to raw URL if upgraded link fails.
  */
 export function BookCoverImage({
   src,
@@ -35,11 +34,20 @@ export function BookCoverImage({
   height,
   priority,
 }: BookCoverImageProps) {
-  const [loaded, setLoaded] = React.useState(false)
-  const optimizedSrc = React.useMemo(() => upgradeGoogleBooksCoverUrl(src, tier), [src, tier])
-  const unoptimized = bookCoverNeedsUnoptimized(optimizedSrc)
+  const raw = React.useMemo(() => src.trim().replace(/^http:\/\//i, "https://"), [src])
+  const upgraded = React.useMemo(() => upgradeGoogleBooksCoverUrl(raw, tier), [raw, tier])
 
-  if (!optimizedSrc) return null
+  const [activeSrc, setActiveSrc] = React.useState(upgraded)
+  const [loaded, setLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    setActiveSrc(upgradeGoogleBooksCoverUrl(raw, tier))
+    setLoaded(false)
+  }, [raw, tier])
+
+  const unoptimized = bookCoverNeedsUnoptimized(activeSrc)
+
+  if (!raw) return null
 
   const loader = (
     <span
@@ -55,12 +63,22 @@ export function BookCoverImage({
     fill && "z-[2] object-cover"
   )
 
+  const onError = () => {
+    if (activeSrc !== raw) {
+      setActiveSrc(raw)
+      setLoaded(false)
+    } else {
+      setLoaded(true)
+    }
+  }
+
   if (fill) {
     return (
       <>
         {!loaded ? loader : null}
         <Image
-          src={optimizedSrc}
+          key={activeSrc}
+          src={activeSrc}
           alt={alt}
           fill
           sizes={sizes}
@@ -70,6 +88,7 @@ export function BookCoverImage({
           blurDataURL={BOOK_COVER_BLUR_DATA_URL}
           unoptimized={unoptimized}
           onLoadingComplete={() => setLoaded(true)}
+          onError={onError}
         />
       </>
     )
@@ -81,7 +100,8 @@ export function BookCoverImage({
     <span className="relative inline-block" style={{ width, height }}>
       {!loaded ? loader : null}
       <Image
-        src={optimizedSrc}
+        key={activeSrc}
+        src={activeSrc}
         alt={alt}
         width={width}
         height={height}
@@ -92,6 +112,7 @@ export function BookCoverImage({
         blurDataURL={BOOK_COVER_BLUR_DATA_URL}
         unoptimized={unoptimized}
         onLoadingComplete={() => setLoaded(true)}
+        onError={onError}
       />
     </span>
   )

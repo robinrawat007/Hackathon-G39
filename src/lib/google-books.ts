@@ -1,5 +1,4 @@
 import type { Book } from "@/types/book"
-import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
 
 type GoogleImageLinks = {
   extraLarge?: string
@@ -62,9 +61,8 @@ function pickBestCoverLink(links: GoogleImageLinks | undefined): string {
 }
 
 function coverUrlFromVolume(v: GoogleBooksVolume) {
-  const raw = pickBestCoverLink(v.volumeInfo?.imageLinks)
-  if (!raw) return ""
-  return upgradeGoogleBooksCoverUrl(raw, "list")
+  // Store API URL as-is; UI upgrades conservatively + falls back on error (see BookCoverImage).
+  return pickBestCoverLink(v.volumeInfo?.imageLinks)
 }
 
 export function mapGoogleVolumeToBook(v: GoogleBooksVolume): Book | null {
