@@ -307,7 +307,7 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of es) {
 
 const fr = [
   ["L'Étranger", "Albert Camus", "9782070360024", 1942, 194, 4.2, 410000, "Meursault sous le soleil d'Algérie. classique français existentialiste."],
-  ["Les Misérables (vol. 1)", "Victor Hugo", "9782253096339", 1862, 520, 4.4, 120000, "Jean Valjean et la justice en France. classique français épique."],
+  ["Les Misérables (vol. 1)", "Victor Hugo", "9782011552419", 1862, 95, 4.4, 120000, "Jean Valjean et la justice en France. classique français épique."],
   ["Madame Bovary", "Gustave Flaubert", "9782070413119", 1856, 513, 4.0, 280000, "Une femme étouffée par la province. roman réaliste français classique."],
   ["Le Petit Prince", "Antoine de Saint-Exupéry", "9782070612756", 1943, 96, 4.8, 610000, "Un aviateur rencontre un prince. conte philosophique français."],
   ["Chanson douce", "Leïla Slimani", "9782070196678", 2016, 160, 4.0, 95000, "Une nanny et une famille parisienne. thriller psychologique contemporain français."],
@@ -318,8 +318,8 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of fr) {
 
 const de = [
   ["Der Vorleser", "Bernhard Schlink", "9783257060652", 1995, 206, 4.0, 210000, "Eine Affäre und NS-Vergangenheit. deutscher Literaturklassiker Zeitgeschichte."],
-  ["Die unendliche Geschichte", "Michael Ende", "9783522176504", 1979, 428, 4.6, 380000, "Ein Junge rettet Phantásien. Fantasy-Klassiker deutsch Kinderbuch."],
-  ["Im Westen nichts Neues", "Erich Maria Remarque", "9780449911368", 1929, 296, 4.3, 290000, "Soldaten im Ersten Weltkrieg. deutscher Kriegsroman modern."],
+  ["Die unendliche Geschichte", "Michael Ende", "9783522176842", 1979, 480, 4.6, 380000, "Ein Junge rettet Phantásien. Fantasy-Klassiker deutsch Kinderbuch."],
+  ["Im Westen nichts Neues", "Erich Maria Remarque", "9783462046328", 1929, 296, 4.3, 290000, "Soldaten im Ersten Weltkrieg. deutscher Kriegsroman modern."],
   ["Der Schwarm", "Frank Schätzing", "9783462032970", 2004, 908, 4.1, 170000, "Meereswesen bedrohen die Menschheit. deutscher Science-Fiction Thriller."],
   ["Tschick", "Wolfgang Herrndorf", "9783871347108", 2010, 260, 4.2, 95000, "Zwei Jungen fahren durch Deutschland. deutscher Jugendroman Roadtrip humor."],
 ]
