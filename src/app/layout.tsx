@@ -38,10 +38,6 @@ const siteUrl = getSiteUrl()
 
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/favicon.svg",
-  },
   title: {
     default: `${SITE_NAME} — AI book recommendations tailored to you`,
     template: `%s | ${SITE_NAME}`,
