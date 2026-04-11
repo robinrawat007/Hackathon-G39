@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import dynamic from "next/dynamic"
 import {
   MutationCache,
   QueryCache,
@@ -9,7 +10,11 @@ import {
 } from "@tanstack/react-query"
 
 import { SectionErrorBoundary } from "@/components/error-boundary/section-error-boundary"
-import { ShelfSync } from "@/components/shelf/shelf-sync"
+
+const ShelfSync = dynamic(
+  () => import("@/components/shelf/shelf-sync").then((m) => ({ default: m.ShelfSync })),
+  { ssr: false }
+)
 
 const STALE_TIME_BOOKS_MS = 5 * 60 * 1000
 

@@ -11,19 +11,27 @@ import "./globals.css"
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
   weight: ["400", "500", "600"],
+  adjustFontFallback: true,
 })
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  display: "swap",
+  weight: ["600", "700"],
+  adjustFontFallback: true,
 })
 
+/** Mono is secondary — defer download so Inter + headings win the network. */
 const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
+  display: "swap",
+  preload: false,
+  adjustFontFallback: true,
 })
 
 const siteUrl = getSiteUrl()

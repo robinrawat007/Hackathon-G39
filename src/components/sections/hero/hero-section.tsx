@@ -35,29 +35,17 @@ export function HeroSection() {
       <div className="container min-w-0">
         <div className="grid items-center gap-8 md:grid-cols-5 md:gap-10">
           <div className="min-w-0 md:col-span-3">
-            <motion.h1
-              initial={reduced ? false : { opacity: 0, y: 40 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="text-balance font-heading text-display text-gradient-hero tracking-tight"
-            >
+            <h1 className="text-balance font-heading text-display text-gradient-hero tracking-tight">
               Your AI Knows What to Read Next
-            </motion.h1>
-            <motion.p
-              initial={reduced ? false : { opacity: 0, y: 24 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 }}
-              className="mt-4 max-w-2xl text-body text-text-muted"
-            >
+            </h1>
+            <p className="mt-4 max-w-2xl text-body text-text-muted">
               Your next read is one conversation away — recommendations from a real catalog, shelves you control, and
               readers who share your taste.
-            </motion.p>
+            </p>
 
             <motion.div
               className="mt-6 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:flex-wrap"
-              initial={reduced ? false : { opacity: 0, y: 16 }}
+              initial={false}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
@@ -77,7 +65,7 @@ export function HeroSection() {
 
             <motion.ul
               className="mt-8 flex list-none flex-wrap items-center gap-2.5 p-0 sm:gap-3"
-              initial={reduced ? false : { opacity: 0, y: 10 }}
+              initial={false}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.18, duration: 0.45 }}
@@ -86,7 +74,7 @@ export function HeroSection() {
               {HERO_CAPSULES.map((label, i) => (
                 <motion.li
                   key={label}
-                  initial={reduced ? false : { opacity: 0, y: 8 }}
+                  initial={false}
                   whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.22 + i * 0.07, duration: 0.4, ease: "easeOut" }}

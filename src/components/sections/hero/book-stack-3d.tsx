@@ -62,6 +62,7 @@ export function BookStack3D() {
                   sizes="(max-width: 768px) 42vw, 190px"
                   tier="list"
                   className="object-cover"
+                  priority={idx === 2}
                 />
               </div>
             </div>

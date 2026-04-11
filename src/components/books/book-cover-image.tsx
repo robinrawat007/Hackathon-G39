@@ -70,10 +70,10 @@ export function BookCoverImage({
     />
   )
 
+  /** Priority hero images: skip fade-in so LCP can paint as soon as the image decodes. */
   const imageClass = cn(
     className,
-    "transition-opacity duration-300 ease-out",
-    loaded ? "opacity-100" : "opacity-0",
+    priority ? "opacity-100" : cn("transition-opacity duration-300 ease-out", loaded ? "opacity-100" : "opacity-0"),
     fill && "z-[2] object-cover"
   )
 
@@ -115,7 +115,7 @@ export function BookCoverImage({
     if (failed && fallbackBlock) return fallbackBlock
     return (
       <>
-        {!loaded && !failed ? loader : null}
+        {!loaded && !failed && !priority ? loader : null}
         <Image
           key={activeSrc}
           src={activeSrc}

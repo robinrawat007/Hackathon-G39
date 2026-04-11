@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 
-import { fetchJson } from "@/lib/api/client-fetch"
+import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { createBrowserSupabaseClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -33,12 +33,20 @@ export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redire
     setLoading(true)
     setError(null)
     try {
-      await fetchJson<{ ok: boolean }>("/api/auth/static-login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify({ email, password }),
-      })
+      try {
+        await fetchJson<{ ok: boolean }>("/api/auth/static-login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify({ email, password }),
+        })
+      } catch (e) {
+        const staticNotConfigured =
+          e instanceof ApiRequestError &&
+          e.status === 503 &&
+          e.message.includes("Static sign-in is not configured")
+        if (!staticNotConfigured) throw e
+      }
 
       // Sign in browser-side so @supabase/ssr writes the session into cookies
       // (not localStorage). The server's requireUser() reads those cookies.
