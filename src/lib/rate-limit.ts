@@ -46,7 +46,20 @@ export async function rateLimitResponse(
   const limiter = getLimiter(kind, limits.max, limits.window)
   if (!limiter) return null
   const key = getClientKey(request)
-  const { success, limit, reset, remaining } = await limiter.limit(key)
+  let success: boolean
+  let limit: number
+  let reset: number
+  let remaining: number
+  try {
+    const result = await limiter.limit(key)
+    success = result.success
+    limit = result.limit
+    reset = result.reset
+    remaining = result.remaining
+  } catch {
+    // Invalid Redis URL/token or network failure — do not block the request
+    return null
+  }
   if (success) return null
   return new Response(
     JSON.stringify({

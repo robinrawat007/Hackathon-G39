@@ -33,14 +33,15 @@ export function BookStack3D() {
           const x = idx * 10
           const rot = reduced ? 0 : (idx % 2 === 0 ? -6 : 6)
           return (
-            <motion.div
+            <div
               key={b.title}
-              className={cn("absolute left-1/2 top-6 w-[min(170px,42vw)] -translate-x-1/2 sm:top-10 sm:w-[190px]")}
+              className={cn(
+                "absolute left-1/2 top-6 w-[min(170px,42vw)] -translate-x-1/2 sm:top-10 sm:w-[190px]",
+                !reduced && "hero-stack-cover-glow"
+              )}
               style={{
                 transform: `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rot}deg)`,
               }}
-              animate={reduced ? undefined : { y: [0, -8, 0] }}
-              transition={reduced ? undefined : { duration: 3.2, repeat: Infinity, delay: idx * 0.18, ease: "easeInOut" }}
             >
               <div className="relative aspect-[2/3] overflow-hidden rounded-md border border-border shadow-hover">
                 <BookCoverImage
@@ -52,7 +53,7 @@ export function BookStack3D() {
                   className="object-cover"
                 />
               </div>
-            </motion.div>
+            </div>
           )
         })}
       </motion.div>

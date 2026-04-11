@@ -1,11 +1,13 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { BookCoverImage } from "@/components/books/book-cover-image"
 import { Button } from "@/components/ui/button"
 import { MOODS, GOALS } from "@/lib/constants"
+import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { ONBOARDING_POPULAR_BOOKS } from "@/lib/onboarding-popular-books"
 import { onboardingSchema, type OnboardingInput } from "@/lib/validations/onboarding.schema"
@@ -20,6 +22,8 @@ const RATER_OPTIONS = [
 ] as const
 
 export function OnboardingWizard() {
+  const router = useRouter()
+  const { user, isLoading: authLoading } = useAuthUser()
   const reduced = usePrefersReducedMotion()
   const [step, setStep] = React.useState<Step>(1)
 
@@ -31,6 +35,13 @@ export function OnboardingWizard() {
   const [readingGoal, setReadingGoal] = React.useState<number>(12)
   const [error, setError] = React.useState<string | null>(null)
   const [saving, setSaving] = React.useState(false)
+
+  React.useEffect(() => {
+    if (authLoading) return
+    if (!user) {
+      router.replace("/auth/login?next=/onboarding")
+    }
+  }, [authLoading, user, router])
 
   const progress = step / 3
 
@@ -85,15 +96,48 @@ export function OnboardingWizard() {
       const res = await fetch("/api/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
         body: JSON.stringify(parsed.data),
       })
-      if (!res.ok) throw new Error("Failed to save onboarding")
+      const raw = await res.text()
+      let body: { error?: string; issues?: { message?: string }[] } = {}
+      try {
+        body = raw ? (JSON.parse(raw) as typeof body) : {}
+      } catch {
+        throw new Error(
+          raw.trim().startsWith("<")
+            ? `Server error (${res.status}). Check the terminal / deployment logs.`
+            : `Request failed (${res.status}): ${raw.slice(0, 280)}`
+        )
+      }
+      if (!res.ok) {
+        const firstIssue = body.issues?.[0]?.message
+        const msg =
+          body.error ??
+          firstIssue ??
+          (res.status === 401
+            ? "You need to be signed in. Try signing in again."
+            : res.status === 503
+              ? "Server misconfiguration: add SUPABASE_SERVICE_ROLE_KEY to your environment and redeploy."
+              : `Could not save (${res.status}).`)
+        throw new Error(msg)
+      }
       window.location.href = "/dashboard"
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to save onboarding")
     } finally {
       setSaving(false)
     }
+  }
+
+  if (authLoading || !user) {
+    return (
+      <div className="mx-auto max-w-5xl">
+        <div className="rounded-2xl border border-border/80 bg-surface/50 p-10 text-center shadow-card">
+          <p className="text-sm text-text-muted">{authLoading ? "Loading…" : "Redirecting to sign in…"}</p>
+        </div>
+      </div>
+    )
   }
 
   return (

@@ -5,10 +5,15 @@ import Link from "next/link"
 
 import { StaticSignInForm } from "@/components/auth/static-sign-in-form"
 
-export function LoginForm() {
+type LoginFormProps = {
+  /** Post-login path from `?next=` (only same-origin paths are allowed). */
+  redirectTo?: string | null
+}
+
+export function LoginForm({ redirectTo }: LoginFormProps) {
   return (
     <div className="mt-6 space-y-4">
-      <StaticSignInForm redirectToDashboard />
+      <StaticSignInForm redirectToDashboard redirectTo={redirectTo ?? undefined} />
 
       <div className="text-sm text-text-muted">
         New here?{" "}

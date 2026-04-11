@@ -13,7 +13,7 @@ import { CHAT_STARTER_PROMPTS, UI } from "@/lib/constants"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { cn } from "@/lib/utils"
 
-const STARTER_ICONS = ["✨", "🔥", "🌙", "🎭", "🚀"]
+const STARTER_ICONS = ["⚡", "🕯️", "🪐", "💬"]
 
 export function ChatWidget() {
   const reduced = usePrefersReducedMotion()
@@ -63,7 +63,7 @@ export function ChatWidget() {
     <>
       {/* FAB */}
       <div className="fixed z-[60] bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6">
-        <motion.button
+        <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           className={cn(
@@ -75,38 +75,14 @@ export function ChatWidget() {
           aria-label={open ? "Close ShelfAI chat" : "Open ShelfAI chat"}
           aria-expanded={open}
           aria-controls={panelId}
-          animate={reduced || open ? {} : { y: [0, -10, 0] }}
-          transition={
-            reduced || open
-              ? {}
-              : { y: { repeat: Infinity, duration: 2.4, ease: "easeInOut" } }
-          }
         >
-          <AnimatePresence mode="wait" initial={false}>
+          <span className="relative z-10" key={open ? "close" : "open"}>
             {open ? (
-              <motion.span
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="relative z-10"
-              >
-                <X className="h-6 w-6 drop-shadow-sm" aria-hidden />
-              </motion.span>
+              <X className="h-6 w-6 drop-shadow-sm" aria-hidden />
             ) : (
-              <motion.span
-                key="open"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="relative z-10"
-              >
-                <BookOpen className="h-7 w-7 drop-shadow-sm" aria-hidden />
-              </motion.span>
+              <BookOpen className="h-7 w-7 drop-shadow-sm" aria-hidden />
             )}
-          </AnimatePresence>
+          </span>
           <span
             className="pointer-events-none absolute inset-0 rounded-full opacity-50 blur-md"
             style={{
@@ -120,7 +96,7 @@ export function ChatWidget() {
               Ask the book brain →
             </span>
           )}
-        </motion.button>
+        </button>
       </div>
 
       {/* Chat Panel */}
@@ -154,8 +130,7 @@ export function ChatWidget() {
                   <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-primary/35 bg-gradient-to-br from-primary/20 to-accent/15 text-primary shadow-[0_0_18px_rgba(139,90,43,0.2)]">
                     <Sparkles className="h-5 w-5" aria-hidden />
                     <span
-                      className="absolute inset-0 rounded-2xl border border-primary/20"
-                      style={{ animation: reduced ? "none" : "chat-fab-glow-pulse 2.8s ease-in-out infinite" }}
+                      className="pointer-events-none absolute inset-0 rounded-2xl border border-primary/25 shadow-[0_0_22px_rgba(139,90,43,0.12)]"
                       aria-hidden
                     />
                   </span>
@@ -163,11 +138,7 @@ export function ChatWidget() {
                     <div className="flex items-center gap-2">
                       <div className="font-heading text-base font-semibold tracking-tight text-heading">ShelfAI</div>
                       <span className="flex items-center gap-1 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600">
-                        <span
-                          className="h-1.5 w-1.5 rounded-full bg-emerald-500"
-                          style={{ animation: reduced ? "none" : "chat-fab-glow-pulse 1.8s ease-in-out infinite" }}
-                          aria-hidden
-                        />
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" aria-hidden />
                         online
                       </span>
                     </div>

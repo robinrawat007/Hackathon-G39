@@ -12,10 +12,16 @@ type Props = {
   onSuccess?: () => void
   /** When false, stay on the current page after sign-in (navbar popup). Default: go to dashboard. */
   redirectToDashboard?: boolean
+  /** Safe in-app path after sign-in (e.g. `/onboarding`). Overrides `redirectToDashboard` when set. */
+  redirectTo?: string | null
   className?: string
 }
 
-export function StaticSignInForm({ onSuccess, redirectToDashboard = true, className }: Props) {
+function isSafeRedirectPath(path: string): boolean {
+  return path.startsWith("/") && !path.startsWith("//") && !path.includes("\\")
+}
+
+export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redirectTo, className }: Props) {
   const router = useRouter()
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
@@ -48,6 +54,10 @@ export function StaticSignInForm({ onSuccess, redirectToDashboard = true, classN
       }
 
       onSuccess?.()
+      if (redirectTo && isSafeRedirectPath(redirectTo)) {
+        window.location.href = redirectTo
+        return
+      }
       if (redirectToDashboard) {
         window.location.href = "/dashboard"
       } else {
