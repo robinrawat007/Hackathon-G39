@@ -124,6 +124,7 @@ export function BookCoverImage({
           sizes={sizes}
           className={imageClass}
           priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           placeholder="blur"
           blurDataURL={BOOK_COVER_BLUR_DATA_URL}
           unoptimized={unoptimized}
@@ -156,6 +157,7 @@ export function BookCoverImage({
         sizes={sizes}
         className={cn(imageClass, "relative z-[2] h-full w-full object-cover")}
         priority={priority}
+        fetchPriority={priority ? "high" : undefined}
         placeholder="blur"
         blurDataURL={BOOK_COVER_BLUR_DATA_URL}
         unoptimized={unoptimized}

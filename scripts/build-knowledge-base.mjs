@@ -172,7 +172,7 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of hor) {
 const thr = [
   ["The Girl with the Dragon Tattoo", "Stieg Larsson", "9780307454546", 2005, 465, 4.1, 610000, "Journalist and hacker expose a Swedish dynasty. contemporary Nordic thriller."],
   ["The Bourne Identity", "Robert Ludlum", "9780553593549", 1980, 523, 4.0, 180000, "An amnesiac discovers lethal skills. cold war era thriller spy."],
-  ["I Am Watching You", "Teresa Driscoll", "9781542045680", 2017, 316, 4.0, 95000, "A train witness fears she could have stopped a crime. contemporary psychological thriller."],
+  ["I Am Watching You", "Teresa Driscoll", "9781542046596", 2017, 316, 4.0, 95000, "A train witness fears she could have stopped a crime. contemporary psychological thriller."],
   ["The Silent Patient", "Alex Michaelides", "9781250301697", 2019, 336, 4.2, 670000, "A therapist pursues a painter who stopped speaking. modern thriller twisty."],
   ["The Hunt for Red October", "Tom Clancy", "9780425240335", 1984, 387, 4.1, 120000, "Submarine defections and Cold War stakes. military techno-thriller classic."],
 ]

@@ -7,8 +7,9 @@ import { BookCoverImage } from "@/components/books/book-cover-image"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { cn } from "@/lib/utils"
 
+/** `-M` covers keep the hero stack lighter than `-L` (smaller bytes → better LCP); catalog/detail pages still use `-L` in the KB. */
 const HERO_STACK_COVERS = [
-  { title: "The Goldfinch", author: "Donna Tartt", cover: "https://covers.openlibrary.org/b/isbn/9780316055437-L.jpg" },
+  { title: "The Goldfinch", author: "Donna Tartt", cover: "https://covers.openlibrary.org/b/isbn/9780316055437-M.jpg" },
   { title: "A Little Life", author: "Hanya Yanagihara", cover: "https://covers.openlibrary.org/b/isbn/9780385539258-M.jpg" },
   { title: "Normal People", author: "Sally Rooney", cover: "https://covers.openlibrary.org/b/isbn/9781984822178-M.jpg" },
   { title: "The Overstory", author: "Richard Powers", cover: "https://covers.openlibrary.org/b/isbn/9780393356687-M.jpg" },

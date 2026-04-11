@@ -78,6 +78,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable} h-full antialiased`}
     >
+      <head>
+        {/* Warm connection for hero / grid covers (Open Library) — improves LCP when the largest paint is a cover */}
+        <link rel="preconnect" href="https://covers.openlibrary.org" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://covers.openlibrary.org" />
+      </head>
       <body className="min-h-full">
         <div className="app-backdrop" aria-hidden />
         <div className="app-shell flex min-h-full min-w-0 flex-col">
