@@ -194,8 +194,8 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of cl) {
 
 // --- Era coverage: ensure 5 per era keyword (some overlap with classics) ---
 const eraPre = [
-  ["Walden", "Henry David Thoreau", "9780486450959", 1854, 216, 3.9, 95000, "Life beside a pond in simple independence. classic American transcendental essay nature."],
-  ["Les Misérables", "Victor Hugo", "9780451525260", 1862, 1488, 4.4, 410000, "Ex-convict redemption in revolutionary Paris. classic French epic novel."],
+  ["Walden", "Henry David Thoreau", "9781095033852", 1854, 175, 3.9, 95000, "Life beside a pond in simple independence. classic American transcendental essay nature."],
+  ["Les Misérables", "Victor Hugo", "9780451525260", 1862, 1463, 4.4, 410000, "Ex-convict redemption in revolutionary Paris. classic French epic novel."],
   ["Anna Karenina", "Leo Tolstoy", "9780143035008", 1877, 964, 4.2, 280000, "Passion and society in imperial Russia. classic literary tragedy."],
   ["The Picture of Dorian Gray", "Oscar Wilde", "9780141439570", 1890, 254, 4.0, 520000, "Youth preserved while a portrait ages. classic decadent gothic novel."],
   ["The Strange Case of Dr Jekyll and Mr Hyde", "R.L. Stevenson", "9780486266886", 1886, 96, 3.9, 310000, "Dual nature in Victorian London. classic horror novella."],
@@ -298,7 +298,7 @@ const es = [
   ["Cien años de soledad", "Gabriel García Márquez", "9780060883287", 1967, 417, 4.5, 510000, "La saga de Macondo en realismo mágico. novela clásica latinoamericana en español."],
   ["El amor en los tiempos del cólera", "Gabriel García Márquez", "9780307389732", 1985, 348, 4.3, 220000, "Un amor que espera medio siglo. romance literario en español contemporáneo."],
   ["La sombra del viento", "Carlos Ruiz Zafón", "9780143124934", 2001, 487, 4.4, 290000, "Un misterio de libros en la Barcelona de posguerra. thriller gótico en español."],
-  ["Como agua para chocolate", "Laura Esquivel", "9780385420179", 1989, 256, 4.0, 180000, "Recetas y pasión en la Revolución mexicana. novela romántica mágica en español."],
+  ["Como agua para chocolate", "Laura Esquivel", "9789586392860", 1989, 256, 4.0, 180000, "Recetas y pasión en la Revolución mexicana. novela romántica mágica en español."],
   ["Pedro Páramo", "Juan Rulfo", "9780802133908", 1955, 124, 4.2, 95000, "Un hijo busca a su padre en un pueblo fantasmal. clásico mexicano modernista en español."],
 ]
 for (const [title, author, isbn, year, pages, rating, rc, desc] of es) {
@@ -308,7 +308,7 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of es) {
 const fr = [
   ["L'Étranger", "Albert Camus", "9782070360024", 1942, 194, 4.2, 410000, "Meursault sous le soleil d'Algérie. classique français existentialiste."],
   ["Les Misérables (vol. 1)", "Victor Hugo", "9782253096339", 1862, 520, 4.4, 120000, "Jean Valjean et la justice en France. classique français épique."],
-  ["Madame Bovary", "Gustave Flaubert", "9782070360879", 1856, 384, 4.0, 280000, "Une femme étouffée par la province. roman réaliste français classique."],
+  ["Madame Bovary", "Gustave Flaubert", "9782070413119", 1856, 513, 4.0, 280000, "Une femme étouffée par la province. roman réaliste français classique."],
   ["Le Petit Prince", "Antoine de Saint-Exupéry", "9782070612756", 1943, 96, 4.8, 610000, "Un aviateur rencontre un prince. conte philosophique français."],
   ["Chanson douce", "Leïla Slimani", "9782070196678", 2016, 160, 4.0, 95000, "Une nanny et une famille parisienne. thriller psychologique contemporain français."],
 ]
@@ -317,7 +317,7 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of fr) {
 }
 
 const de = [
-  ["Der Vorleser", "Bernhard Schlink", "9780375726972", 1995, 224, 4.0, 210000, "Eine Affäre und NS-Vergangenheit. deutscher Literaturklassiker Zeitgeschichte."],
+  ["Der Vorleser", "Bernhard Schlink", "9783257060652", 1995, 206, 4.0, 210000, "Eine Affäre und NS-Vergangenheit. deutscher Literaturklassiker Zeitgeschichte."],
   ["Die unendliche Geschichte", "Michael Ende", "9783522176504", 1979, 428, 4.6, 380000, "Ein Junge rettet Phantásien. Fantasy-Klassiker deutsch Kinderbuch."],
   ["Im Westen nichts Neues", "Erich Maria Remarque", "9780449911368", 1929, 296, 4.3, 290000, "Soldaten im Ersten Weltkrieg. deutscher Kriegsroman modern."],
   ["Der Schwarm", "Frank Schätzing", "9783462032970", 2004, 908, 4.1, 170000, "Meereswesen bedrohen die Menschheit. deutscher Science-Fiction Thriller."],
@@ -328,11 +328,11 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of de) {
 }
 
 const hi = [
-  ["गोदान", "Munshi Premchand", "9788170283456", 1936, 376, 4.3, 45000, "किसानों का संघर्ष और नैतिकता। हिंदी साहित्य क्लासिक उपन्यास।"],
-  ["मधुशाला", "Harivansh Rai Bachchan", "9788170281230", 1935, 136, 4.5, 28000, "शराबखाने की रूपक कविता। हिंदी काव्य क्लासिक।"],
-  ["राग दरबारी", "Shrilal Shukla", "9788126716456", 1968, 232, 4.2, 19000, "गाँव की राजनीति और विडंबना। हिंदी आधुनिक उपन्यास व्यंग्य।"],
+  ["गोदान", "Munshi Premchand", "9788176501668", 1936, 376, 4.3, 45000, "किसानों का संघर्ष और नैतिकता। हिंदी साहित्य क्लासिक उपन्यास।"],
+  ["मधुशाला", "Harivansh Rai Bachchan", "9780140120097", 1935, 152, 4.5, 28000, "शराबखाने की रूपक कविता। हिंदी काव्य क्लासिक।"],
+  ["राग दरबारी", "Shrilal Shukla", "9780140116625", 1968, 360, 4.2, 19000, "गाँव की राजनीति और विडंबना। हिंदी आधुनिक उपन्यास व्यंग्य।"],
   ["गुनाहों का देवता", "Dharamvir Bharati", "9788126722120", 1949, 200, 4.1, 12000, "प्रेम और नैतिक द्वंद्व। हिंदी उपन्यास क्लासिक।"],
-  ["कितने पाकिस्तान", "Kamleshwar", "9788126728907", 2000, 248, 4.0, 8000, "विभाजन की स्मृति और राजनीति। हिंदी समकालीन उपन्यास।"],
+  ["कितने पाकिस्तान", "Kamleshwar", "9788170284765", 2000, 364, 4.0, 8000, "विभाजन की स्मृति और राजनीति। हिंदी समकालीन उपन्यास।"],
 ]
 for (const [title, author, isbn, year, pages, rating, rc, desc] of hi) {
   books.push(book({ title, author, isbn, publishedYear: year, pageCount: pages, averageRating: rating, ratingsCount: rc, description: desc, genres: ["Literary Fiction", "History"], language: "hi" }))
