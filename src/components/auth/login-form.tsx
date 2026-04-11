@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 
-import { useAuthDialogOptional } from "@/components/auth/auth-dialog-context"
 import { StaticSignInForm } from "@/components/auth/static-sign-in-form"
 
 type LoginFormProps = {
@@ -16,7 +16,7 @@ type LoginFormProps = {
 }
 
 export function LoginForm({ redirectTo, stayOnPage, onSuccess, onSwitchToSignup }: LoginFormProps) {
-  const authDialog = useAuthDialogOptional()
+  const router = useRouter()
   const signupControl =
     onSwitchToSignup != null ? (
       <button
@@ -30,7 +30,7 @@ export function LoginForm({ redirectTo, stayOnPage, onSuccess, onSwitchToSignup 
       <button
         type="button"
         className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
-        onClick={() => authDialog?.openSignUp()}
+        onClick={() => router.push("/?auth=signup")}
       >
         Create an account
       </button>

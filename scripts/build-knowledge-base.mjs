@@ -161,7 +161,7 @@ const hor = [
   ["Dracula", "Bram Stoker", "9780486411095", 1897, 418, 4.0, 890000, "The count sails to England for new prey. classic gothic horror vampire."],
   ["The Shining", "Stephen King", "9780307743657", 1977, 688, 4.3, 520000, "A winter caretaker unravels in an isolated hotel. modern horror psychological."],
   ["Rebecca", "Daphne du Maurier", "9780380730407", 1938, 416, 4.1, 310000, "A new wife lives in the shadow of Rebecca. gothic psychological suspense horror-tinged."],
-  ["Bird Box", "Josh Malerman", "9780062256553", 2014, 272, 4.0, 210000, "Survive unseen creatures that drive people mad. contemporary horror thriller."],
+  ["Bird Box", "Josh Malerman", "9780062259653", 2014, 272, 4.0, 210000, "Survive unseen creatures that drive people mad. contemporary horror thriller."],
   ["The Haunting of Hill House", "Shirley Jackson", "9780143039983", 1959, 208, 3.9, 140000, "Scientists study a mansion's dread. classic haunted house horror."],
 ]
 for (const [title, author, isbn, year, pages, rating, rc, desc] of hor) {
@@ -310,7 +310,7 @@ const fr = [
   ["Les Misérables (vol. 1)", "Victor Hugo", "9782253096339", 1862, 520, 4.4, 120000, "Jean Valjean et la justice en France. classique français épique."],
   ["Madame Bovary", "Gustave Flaubert", "9782070360879", 1856, 384, 4.0, 280000, "Une femme étouffée par la province. roman réaliste français classique."],
   ["Le Petit Prince", "Antoine de Saint-Exupéry", "9782070612756", 1943, 96, 4.8, 610000, "Un aviateur rencontre un prince. conte philosophique français."],
-  ["Chanson douce", "Leïla Slimani", "9782072760889", 2016, 160, 4.0, 95000, "Une nanny et une famille parisienne. thriller psychologique contemporain français."],
+  ["Chanson douce", "Leïla Slimani", "9782070196678", 2016, 160, 4.0, 95000, "Une nanny et une famille parisienne. thriller psychologique contemporain français."],
 ]
 for (const [title, author, isbn, year, pages, rating, rc, desc] of fr) {
   books.push(book({ title, author, isbn, publishedYear: year, pageCount: pages, averageRating: rating, ratingsCount: rc, description: desc, genres: ["Literary Fiction", "Classics"], language: "fr" }))
@@ -321,7 +321,7 @@ const de = [
   ["Die unendliche Geschichte", "Michael Ende", "9783522176504", 1979, 428, 4.6, 380000, "Ein Junge rettet Phantásien. Fantasy-Klassiker deutsch Kinderbuch."],
   ["Im Westen nichts Neues", "Erich Maria Remarque", "9780449911368", 1929, 296, 4.3, 290000, "Soldaten im Ersten Weltkrieg. deutscher Kriegsroman modern."],
   ["Der Schwarm", "Frank Schätzing", "9783462032970", 2004, 908, 4.1, 170000, "Meereswesen bedrohen die Menschheit. deutscher Science-Fiction Thriller."],
-  ["Tschick", "Wolfgang Herrndorf", "9783499253282", 2010, 220, 4.2, 95000, "Zwei Jungen fahren durch Deutschland. deutscher Jugendroman Roadtrip humor."],
+  ["Tschick", "Wolfgang Herrndorf", "9783871347108", 2010, 260, 4.2, 95000, "Zwei Jungen fahren durch Deutschland. deutscher Jugendroman Roadtrip humor."],
 ]
 for (const [title, author, isbn, year, pages, rating, rc, desc] of de) {
   books.push(book({ title, author, isbn, publishedYear: year, pageCount: pages, averageRating: rating, ratingsCount: rc, description: desc, genres: ["Literary Fiction", "Sci-Fi"], language: "de" }))

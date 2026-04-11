@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const isDev = process.env.NODE_ENV === "development"
-
 const nextConfig = {
   poweredByHeader: false,
   experimental: {
@@ -54,7 +52,9 @@ const nextConfig = {
               "https://lh3.googleusercontent.com https://*.gstatic.com " +
               "https://*.supabase.co; " +
               "style-src 'self' 'unsafe-inline'; " +
-              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}; ` +
+              // Some client bundles (e.g. charting libs) use dynamic code generation at runtime; without this,
+              // browsers block those chunks and DevTools reports script-src violations on hashed *.js files.
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
               "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://api.openai.com https://api.groq.com; " +
               "frame-ancestors 'none';",
           },

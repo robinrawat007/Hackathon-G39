@@ -4,11 +4,7 @@ import * as React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { AuthCardShell } from "@/components/auth/auth-card-shell"
-import {
-  AuthDialogContext,
-  useAuthDialog,
-  type AuthDialogContextValue,
-} from "@/components/auth/auth-dialog-context"
+import { AuthDialogContext, type AuthDialogContextValue } from "@/components/auth/auth-dialog-context"
 import { LoginForm } from "@/components/auth/login-form"
 import { SignupForm } from "@/components/auth/signup-form"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
@@ -20,11 +16,14 @@ function isSafeRedirectPath(path: string): boolean {
   return path.startsWith("/") && !path.startsWith("//") && !path.includes("\\")
 }
 
-function AuthSearchParamsSync() {
+/** URL-driven auth modal — uses props so we never read AuthDialogContext under Suspense (avoids rare invalid hook / context races). */
+function AuthSearchParamsSync({
+  openSignIn,
+  openSignUp,
+}: Pick<AuthDialogContextValue, "openSignIn" | "openSignUp">) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const router = useRouter()
-  const { openSignIn, openSignUp } = useAuthDialog()
 
   React.useEffect(() => {
     const auth = searchParams.get("auth")
@@ -95,7 +94,7 @@ export function AuthDialogProvider({ children }: { children: React.ReactNode }) 
   return (
     <AuthDialogContext.Provider value={ctx}>
       <React.Suspense fallback={null}>
-        <AuthSearchParamsSync />
+        <AuthSearchParamsSync openSignIn={openSignIn} openSignUp={openSignUp} />
       </React.Suspense>
 
       <Dialog open={open} onOpenChange={handleOpenChange}>

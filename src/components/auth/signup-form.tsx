@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
+
 import { authFieldInputClassName } from "@/components/auth/auth-card-shell"
-import { useAuthDialogOptional } from "@/components/auth/auth-dialog-context"
 import { createBrowserSupabaseClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -33,7 +34,7 @@ function safeAppPath(path: string | undefined, fallback: string) {
 }
 
 export function SignupForm({ onSwitchToSignIn, onSuccess, redirectAfterSession }: SignupFormProps = {}) {
-  const authDialog = useAuthDialogOptional()
+  const router = useRouter()
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [error, setError] = React.useState<string | null>(null)
@@ -96,7 +97,7 @@ export function SignupForm({ onSwitchToSignIn, onSuccess, redirectAfterSession }
             <button
               type="button"
               className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
-              onClick={() => authDialog?.openSignIn({ redirectTo: "/onboarding" })}
+              onClick={() => router.push("/?auth=signin&next=/onboarding")}
             >
               Sign in
             </button>
@@ -160,7 +161,7 @@ export function SignupForm({ onSwitchToSignIn, onSuccess, redirectAfterSession }
           <button
             type="button"
             className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
-            onClick={() => authDialog?.openSignIn()}
+            onClick={() => router.push("/?auth=signin")}
           >
             Sign in
           </button>
