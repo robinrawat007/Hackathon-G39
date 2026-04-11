@@ -2,10 +2,15 @@ import { NextResponse } from "next/server"
 
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 
-/** GET /api/community/feed — recent public reviews */
+const MAX_LIMIT = 200
+
+/** GET /api/community/feed — recent public reviews (?limit=&offset=) */
 export async function GET(request: Request) {
   const url = new URL(request.url)
-  const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "20", 10) || 20, 50)
+  const limitRaw = parseInt(url.searchParams.get("limit") ?? "50", 10)
+  const limit = Math.min(Number.isFinite(limitRaw) && limitRaw > 0 ? limitRaw : 50, MAX_LIMIT)
+  const offsetRaw = parseInt(url.searchParams.get("offset") ?? "0", 10)
+  const offset = Math.max(0, Number.isFinite(offsetRaw) ? offsetRaw : 0)
 
   const supabase = createServerSupabaseClient()
 
@@ -13,7 +18,7 @@ export async function GET(request: Request) {
     .from("reviews")
     .select("id, rating, body, created_at, user_id, profiles(display_name, username, avatar_url), books(title, slug)")
     .order("created_at", { ascending: false })
-    .limit(limit)
+    .range(offset, offset + limit - 1)
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
@@ -33,5 +38,9 @@ export async function GET(request: Request) {
     }
   })
 
-  return NextResponse.json({ reviews })
+  return NextResponse.json({
+    reviews,
+    nextOffset: offset + reviews.length,
+    hasMore: reviews.length === limit,
+  })
 }

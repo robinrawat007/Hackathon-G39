@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useQuery } from "@tanstack/react-query"
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 
+import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ReviewCard } from "@/components/community/review-card"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
@@ -27,11 +28,21 @@ type ListEntry = {
   count: string
 }
 
-async function fetchFeed(): Promise<ReviewEntry[]> {
-  const res = await fetch("/api/community/feed", { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as { reviews?: ReviewEntry[] }
-  return Array.isArray(json.reviews) ? json.reviews : []
+const FEED_PAGE_SIZE = 50
+
+type FeedPage = { reviews: ReviewEntry[]; nextOffset: number; hasMore: boolean }
+
+async function fetchFeedPage(offset: number): Promise<FeedPage> {
+  const res = await fetch(`/api/community/feed?limit=${FEED_PAGE_SIZE}&offset=${offset}`, {
+    cache: "no-store",
+  })
+  if (!res.ok) return { reviews: [], nextOffset: offset, hasMore: false }
+  const json = (await res.json()) as { reviews?: ReviewEntry[]; nextOffset?: number; hasMore?: boolean }
+  return {
+    reviews: Array.isArray(json.reviews) ? json.reviews : [],
+    nextOffset: typeof json.nextOffset === "number" ? json.nextOffset : offset,
+    hasMore: Boolean(json.hasMore),
+  }
 }
 
 async function fetchLists(): Promise<ListEntry[]> {
@@ -46,13 +57,21 @@ export function CommunityClient() {
   const [mounted, setMounted] = React.useState(false)
   React.useEffect(() => setMounted(true), [])
 
-  const { data: feedData, isPending: feedPending } = useQuery({
+  const {
+    data: feedPages,
+    isPending: feedPending,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery({
     queryKey: ["community-feed"],
-    queryFn: fetchFeed,
+    queryFn: ({ pageParam }) => fetchFeedPage(pageParam as number),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => (lastPage.hasMore ? lastPage.nextOffset : undefined),
     staleTime: 2 * 60 * 1000,
     enabled: mounted,
   })
-  const feed = Array.isArray(feedData) ? feedData : []
+  const feed = feedPages?.pages.flatMap((p) => p.reviews) ?? []
 
   const { data: listsData } = useQuery({
     queryKey: ["community-lists"],
@@ -132,7 +151,24 @@ export function CommunityClient() {
                     <p className="text-sm text-text-muted">No reviews yet — be the first to post one from a book page!</p>
                   </div>
                 ) : (
-                  feed.map((r) => <ReviewCard key={r.id} review={r} />)
+                  <>
+                    {feed.map((r) => (
+                      <ReviewCard key={r.id} review={r} />
+                    ))}
+                    {hasNextPage ? (
+                      <div className="flex justify-center pt-2">
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          size="md"
+                          loading={isFetchingNextPage}
+                          onClick={() => void fetchNextPage()}
+                        >
+                          Load more reviews
+                        </Button>
+                      </div>
+                    ) : null}
+                  </>
                 )}
               </div>
             </TabsContent>
@@ -197,7 +233,24 @@ export function CommunityClient() {
                     <p className="text-sm text-text-muted">No reviews yet.</p>
                   </div>
                 ) : (
-                  feed.map((r) => <ReviewCard key={`${r.id}-rev`} review={r} />)
+                  <>
+                    {feed.map((r) => (
+                      <ReviewCard key={`${r.id}-rev`} review={r} />
+                    ))}
+                    {hasNextPage ? (
+                      <div className="flex justify-center pt-2">
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          size="md"
+                          loading={isFetchingNextPage}
+                          onClick={() => void fetchNextPage()}
+                        >
+                          Load more reviews
+                        </Button>
+                      </div>
+                    ) : null}
+                  </>
                 )}
               </div>
             </TabsContent>

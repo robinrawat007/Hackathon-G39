@@ -21,11 +21,13 @@ type ReviewEntry = {
   createdAt: string
 }
 
+const REVIEWS_PER_PAGE = 3
+
 async function fetchProofReviews(): Promise<ReviewEntry[]> {
-  const res = await fetch("/api/community/feed?limit=3", { cache: "no-store" })
+  const res = await fetch("/api/community/feed?limit=9", { cache: "no-store" })
   if (!res.ok) return []
   const json = (await res.json()) as { reviews?: ReviewEntry[] }
-  return Array.isArray(json.reviews) ? json.reviews.slice(0, 3) : []
+  return Array.isArray(json.reviews) ? json.reviews.slice(0, 9) : []
 }
 
 // Shown only when the DB has no reviews yet
@@ -79,22 +81,31 @@ export function CommunityProofSection() {
   })
 
   const reviews = data && data.length >= 3 ? data : FALLBACK_REVIEWS
-  const n = reviews.length
+
+  const pages = React.useMemo(() => {
+    const chunks: ReviewEntry[][] = []
+    for (let i = 0; i < reviews.length; i += REVIEWS_PER_PAGE) {
+      chunks.push(reviews.slice(i, i + REVIEWS_PER_PAGE))
+    }
+    return chunks.length > 0 ? chunks : [[]]
+  }, [reviews])
+
+  const pageCount = pages.length
 
   const go = React.useCallback(
     (dir: -1 | 1) => {
-      setActive((i) => (i + dir + n) % n)
+      setActive((i) => (i + dir + pageCount) % pageCount)
     },
-    [n]
+    [pageCount]
   )
 
   React.useEffect(() => {
-    if (reduced || n <= 1) return
+    if (reduced || pageCount <= 1) return
     const id = window.setInterval(() => {
-      setActive((i) => (i + 1) % n)
+      setActive((i) => (i + 1) % pageCount)
     }, AUTO_ADVANCE_MS)
     return () => window.clearInterval(id)
-  }, [reduced, n])
+  }, [reduced, pageCount])
 
   const onKeyDown = React.useCallback(
     (e: React.KeyboardEvent) => {
@@ -109,10 +120,10 @@ export function CommunityProofSection() {
         setActive(0)
       } else if (e.key === "End") {
         e.preventDefault()
-        setActive(n - 1)
+        setActive(pageCount - 1)
       }
     },
-    [go, n]
+    [go, pageCount]
   )
 
   const arrowBtnClass = cn(
@@ -149,17 +160,24 @@ export function CommunityProofSection() {
             ))}
           </div>
         ) : (
-          <div className="mt-10 mx-auto flex max-w-4xl min-w-0 items-stretch gap-2 sm:gap-3">
-            <button
-              type="button"
-              aria-label="Previous review"
-              className={cn(arrowBtnClass, "self-center")}
-              onClick={() => go(-1)}
-            >
-              <ChevronLeft className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
-            </button>
+          <div
+            className={cn(
+              "mt-10 mx-auto flex min-w-0 max-w-7xl items-stretch gap-2 sm:gap-3",
+              pageCount <= 1 && "justify-center"
+            )}
+          >
+            {pageCount > 1 ? (
+              <button
+                type="button"
+                aria-label="Previous reviews"
+                className={cn(arrowBtnClass, "self-center")}
+                onClick={() => go(-1)}
+              >
+                <ChevronLeft className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
+              </button>
+            ) : null}
 
-            <div className="min-w-0 flex-1">
+            <div className={cn("min-w-0", pageCount > 1 ? "flex-1" : "w-full")}>
               <div
                 tabIndex={0}
                 role="region"
@@ -171,48 +189,58 @@ export function CommunityProofSection() {
                 <div
                   className="flex transition-transform duration-500 ease-out motion-reduce:transition-none"
                   style={{
-                    transform: `translateX(-${(active * 100) / n}%)`,
-                    width: `${n * 100}%`,
+                    transform: `translateX(-${(active * 100) / pageCount}%)`,
+                    width: `${pageCount * 100}%`,
                   }}
                 >
-                  {reviews.map((r) => (
+                  {pages.map((page, pageIdx) => (
                     <div
-                      key={r.id}
-                      className="box-border min-h-[300px] shrink-0 px-0.5 sm:px-1"
-                      style={{ width: `${100 / n}%` }}
-                      aria-hidden={reviews[active]?.id !== r.id}
+                      key={page.map((p) => p.id).join("-")}
+                      className="box-border shrink-0 px-0.5 sm:px-1"
+                      style={{ width: `${100 / pageCount}%` }}
+                      aria-hidden={active !== pageIdx}
                     >
-                      <ReviewCard review={r} className="h-full w-full" />
+                      <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+                        {page.map((r) => (
+                          <div key={r.id} className="flex min-h-[280px] md:min-h-[300px]">
+                            <ReviewCard review={r} className="h-full w-full" />
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center justify-center gap-2" role="group" aria-label="Review slides">
-                {reviews.map((r, i) => (
-                  <button
-                    key={r.id}
-                    type="button"
-                    aria-label={`Go to review ${i + 1} of ${n}`}
-                    aria-current={i === active ? "true" : undefined}
-                    className={cn(
-                      "h-2 rounded-full transition-all duration-300",
-                      i === active ? "w-8 bg-primary" : "w-2 bg-border hover:bg-primary/40"
-                    )}
-                    onClick={() => setActive(i)}
-                  />
-                ))}
-              </div>
+              {pageCount > 1 ? (
+                <div className="mt-4 flex items-center justify-center gap-2" role="group" aria-label="Review pages">
+                  {pages.map((page, i) => (
+                    <button
+                      key={page[0]?.id ?? `p-${i}`}
+                      type="button"
+                      aria-label={`Go to page ${i + 1} of ${pageCount}`}
+                      aria-current={i === active ? "true" : undefined}
+                      className={cn(
+                        "h-2 rounded-full transition-all duration-300",
+                        i === active ? "w-8 bg-primary" : "w-2 bg-border hover:bg-primary/40"
+                      )}
+                      onClick={() => setActive(i)}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </div>
 
-            <button
-              type="button"
-              aria-label="Next review"
-              className={cn(arrowBtnClass, "self-center")}
-              onClick={() => go(1)}
-            >
-              <ChevronRight className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
-            </button>
+            {pageCount > 1 ? (
+              <button
+                type="button"
+                aria-label="Next reviews"
+                className={cn(arrowBtnClass, "self-center")}
+                onClick={() => go(1)}
+              >
+                <ChevronRight className="h-6 w-6 shrink-0" strokeWidth={2.25} aria-hidden />
+              </button>
+            ) : null}
           </div>
         )}
       </div>
