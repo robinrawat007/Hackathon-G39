@@ -17,6 +17,7 @@ import {
 import { CommunityProofSection } from "@/components/sections/community-proof/community-proof-section"
 import { FeedbackSection } from "@/components/sections/feedback/feedback-section"
 import { CTABannerSection } from "@/components/sections/cta-banner/cta-banner-section"
+import { HERO_LCP_COVER_URL } from "@/lib/hero-book-stack"
 import { SITE_NAME, getSiteUrl } from "@/lib/site"
 
 export default function Home() {
@@ -24,6 +25,8 @@ export default function Home() {
 
   return (
     <>
+      {/* Start the LCP image fetch before the client hero hydrates (Open Library often 302s to archive.org). */}
+      <link rel="preload" as="image" href={HERO_LCP_COVER_URL} crossOrigin="anonymous" />
       <JsonLd
         data={{
           "@context": "https://schema.org",

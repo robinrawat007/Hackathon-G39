@@ -79,8 +79,9 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <head>
-        {/* Warm connection for hero / grid covers (Open Library) — improves LCP when the largest paint is a cover */}
+        {/* Warm connection for hero / grid covers (Open Library → often redirects to archive.org for bytes) */}
         <link rel="preconnect" href="https://covers.openlibrary.org" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://archive.org" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://covers.openlibrary.org" />
       </head>
       <body className="min-h-full">

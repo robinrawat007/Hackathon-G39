@@ -77,6 +77,11 @@ export function BookCoverImage({
     fill && "z-[2] object-cover"
   )
 
+  /** Avoid decoding a blur placeholder before the real cover when `priority` — helps LCP on hero. */
+  const placeholderProps = priority
+    ? { placeholder: "empty" as const }
+    : { placeholder: "blur" as const, blurDataURL: BOOK_COVER_BLUR_DATA_URL }
+
   const onError = () => {
     if (/covers\.openlibrary\.org\/b\/isbn\/[^/]+-M\.jpg/i.test(activeSrc)) {
       setActiveSrc(activeSrc.replace(/-M\.jpg/i, "-L.jpg"))
@@ -158,8 +163,7 @@ export function BookCoverImage({
         className={cn(imageClass, "relative z-[2] h-full w-full object-cover")}
         priority={priority}
         fetchPriority={priority ? "high" : undefined}
-        placeholder="blur"
-        blurDataURL={BOOK_COVER_BLUR_DATA_URL}
+        {...placeholderProps}
         unoptimized={unoptimized}
         onLoad={() => setLoaded(true)}
         onError={onError}
