@@ -8,7 +8,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 
 import { StaticSignInForm } from "@/components/auth/static-sign-in-form"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { NotificationBell } from "@/components/notifications/notification-bell"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
@@ -39,7 +39,6 @@ export function Navbar() {
         <DialogContent className="max-h-[min(92vh,40rem)] overflow-y-auto sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Sign in</DialogTitle>
-            <DialogDescription>Use the credentials configured for this deployment (see environment variables).</DialogDescription>
           </DialogHeader>
           <StaticSignInForm redirectToDashboard={false} onSuccess={() => setSignInOpen(false)} className="mt-2" />
         </DialogContent>
