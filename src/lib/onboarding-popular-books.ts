@@ -1,6 +1,6 @@
 /** Static slice of popular books for the onboarding picker — avoids bundling the full JSON into the client. */
 export const ONBOARDING_POPULAR_BOOKS = [
-  { id: "kb-001", title: "The Goldfinch", author: "Donna Tartt", coverUrl: "https://covers.openlibrary.org/b/isbn/9780316055448-M.jpg" },
+  { id: "kb-001", title: "The Goldfinch", author: "Donna Tartt", coverUrl: "https://covers.openlibrary.org/b/isbn/9780316055437-L.jpg" },
   { id: "kb-002", title: "A Little Life", author: "Hanya Yanagihara", coverUrl: "https://covers.openlibrary.org/b/isbn/9780385539258-M.jpg" },
   { id: "kb-003", title: "Normal People", author: "Sally Rooney", coverUrl: "https://covers.openlibrary.org/b/isbn/9781984822178-M.jpg" },
   { id: "kb-004", title: "The Overstory", author: "Richard Powers", coverUrl: "https://covers.openlibrary.org/b/isbn/9780393356687-M.jpg" },

@@ -169,15 +169,15 @@ add(
   "romantic",
   "Pride and Prejudice",
   "Jane Austen",
-  "9780141439516",
+  "9780141439518",
   1813,
-  432,
+  435,
   4.3,
   2100000,
   "Elizabeth and Darcy spar and soften; a timeless romantic love story with wit.",
   ["Romance", "Classics"]
 )
-add("romantic", "Emma", "Jane Austen", "9780141439585", 1815, 512, 4.2, 980000, "Matchmaking mischief in the English countryside; romantic comedy of manners.", [
+add("romantic", "Emma", "Jane Austen", "9780141199528", 1815, 496, 4.2, 980000, "Matchmaking mischief in the English countryside; romantic comedy of manners.", [
   "Romance",
   "Classics",
 ])
@@ -575,7 +575,7 @@ add(
   "light-funny",
   "The Hitchhiker's Guide to the Galaxy",
   "Douglas Adams",
-  "9780345418025",
+  "9781417642595",
   1979,
   224,
   4.2,

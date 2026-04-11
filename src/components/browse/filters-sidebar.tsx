@@ -59,12 +59,14 @@ export function FiltersSidebar() {
         </div>
 
         <div>
-          <div className="text-sm font-medium text-heading">Era</div>
+          <div id="browse-filter-era-label" className="text-sm font-medium text-heading">
+            Era
+          </div>
           <Select
             value={filters.era}
             onValueChange={(v) => filters.setPartial({ era: v as typeof filters.era })}
           >
-            <SelectTrigger className="mt-2 h-11 w-full">
+            <SelectTrigger className="mt-2 h-11 w-full" aria-labelledby="browse-filter-era-label">
               <SelectValue placeholder="Era" />
             </SelectTrigger>
             <SelectContent>
@@ -79,7 +81,9 @@ export function FiltersSidebar() {
         </div>
 
         <div>
-          <div className="text-sm font-medium text-heading">Rating</div>
+          <div id="browse-filter-rating-label" className="text-sm font-medium text-heading">
+            Rating
+          </div>
           <input
             type="range"
             min={1}
@@ -88,6 +92,11 @@ export function FiltersSidebar() {
             value={filters.minRating}
             onChange={(e) => filters.setPartial({ minRating: Number(e.target.value) })}
             className="mt-2 w-full"
+            aria-labelledby="browse-filter-rating-label"
+            aria-valuemin={1}
+            aria-valuemax={5}
+            aria-valuenow={filters.minRating}
+            aria-valuetext={`Minimum ${filters.minRating} stars`}
           />
           <div className="mt-1 text-sm text-text-muted">★ {filters.minRating} and above</div>
         </div>
@@ -116,9 +125,11 @@ export function FiltersSidebar() {
         </div>
 
         <div>
-          <div className="text-sm font-medium text-heading">Language</div>
+          <div id="browse-filter-language-label" className="text-sm font-medium text-heading">
+            Language
+          </div>
           <Select value={filters.language} onValueChange={(v) => filters.setPartial({ language: v })}>
-            <SelectTrigger className="mt-2 h-11 w-full">
+            <SelectTrigger className="mt-2 h-11 w-full" aria-labelledby="browse-filter-language-label">
               <SelectValue placeholder="Language" />
             </SelectTrigger>
             <SelectContent>

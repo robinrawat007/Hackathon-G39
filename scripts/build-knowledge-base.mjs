@@ -50,7 +50,7 @@ const books = []
 
 // --- Literary Fiction ×5 ---
 const lf = [
-  ["The Goldfinch", "Donna Tartt", "9780316055448", 2013, 771, 3.7, 320000, "A contemporary boy drags a stolen painting through grief and the underworld. contemporary literary portrait of loss."],
+  ["The Goldfinch", "Donna Tartt", "9780316055437", 2013, 771, 3.7, 320000, "A contemporary boy drags a stolen painting through grief and the underworld. contemporary literary portrait of loss."],
   ["A Little Life", "Hanya Yanagihara", "9780385539258", 2015, 720, 4.3, 410000, "Four friends in New York face trauma and devotion. contemporary emotional literary saga."],
   ["Normal People", "Sally Rooney", "9781984822178", 2018, 273, 4.0, 890000, "Irish teenagers weave class and desire into a modern love story. contemporary literary fiction."],
   ["The Overstory", "Richard Powers", "9780393356687", 2018, 502, 4.2, 180000, "Trees and activists intertwine in a sweeping environmental novel. modern literary epic."],

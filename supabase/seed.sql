@@ -40,7 +40,7 @@ ON CONFLICT (id) DO UPDATE
 -- ── 3. Books (KB mirror) ──────────────────────────────────────
 INSERT INTO public.books (id, title, author, slug, cover_url, description, genres, published_year, page_count, isbn, average_rating, ratings_count)
 VALUES
-  ('kb-001','The Goldfinch','Donna Tartt','the-goldfinch-donna-tartt','https://covers.openlibrary.org/b/isbn/9780316055448-M.jpg','A boy drags a stolen painting through grief and the underworld.',ARRAY['Literary Fiction','Fiction'],2013,771,'9780316055448',3.70,320000),
+  ('kb-001','The Goldfinch','Donna Tartt','the-goldfinch-donna-tartt','https://covers.openlibrary.org/b/isbn/9780316055437-L.jpg','A boy drags a stolen painting through grief and the underworld.',ARRAY['Literary Fiction','Fiction'],2013,771,'9780316055437',3.70,320000),
   ('kb-002','A Little Life','Hanya Yanagihara','a-little-life-hanya-yanagihara','https://covers.openlibrary.org/b/isbn/9780385539258-M.jpg','Four friends in New York face trauma and devotion.',ARRAY['Literary Fiction','Fiction'],2015,720,'9780385539258',4.30,410000),
   ('kb-003','Normal People','Sally Rooney','normal-people-sally-rooney','https://covers.openlibrary.org/b/isbn/9781984822178-M.jpg','Irish teenagers weave class and desire into a modern love story.',ARRAY['Literary Fiction','Fiction'],2018,273,'9781984822178',4.00,890000),
   ('kb-004','The Overstory','Richard Powers','the-overstory-richard-powers','https://covers.openlibrary.org/b/isbn/9780393356687-M.jpg','Trees and activists intertwine in a sweeping environmental novel.',ARRAY['Literary Fiction','Fiction'],2018,502,'9780393356687',4.20,180000),

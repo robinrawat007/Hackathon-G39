@@ -10,9 +10,11 @@ export function SortBar() {
   return (
     <div className="flex w-full justify-end">
       <div className="flex w-full max-w-[min(100%,16rem)] items-center gap-2 sm:max-w-[14rem]">
-        <span className="sr-only">Sort results</span>
         <Select value={sort} onValueChange={(v) => setPartial({ sort: v as typeof sort })}>
-          <SelectTrigger className="h-9 flex-1 border-border/70 bg-bg-secondary/90 text-sm shadow-sm">
+          <SelectTrigger
+            className="h-9 flex-1 border-border/70 bg-bg-secondary/90 text-sm shadow-sm"
+            aria-label="Sort search results"
+          >
             <SelectValue placeholder="Sort" />
           </SelectTrigger>
           <SelectContent>

@@ -11,14 +11,16 @@ export function NotificationBell({ userId }: { userId: string }) {
   const { items, unreadCount, markRead } = useNotifications(userId)
 
   const badgeLabel = unreadCount > 9 ? "9+" : String(unreadCount)
+  const triggerLabel =
+    unreadCount > 0 ? `Notifications, ${unreadCount} unread` : "Notifications, no unread items"
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <button
           type="button"
-          className="relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-transparent text-text-muted transition-colors hover:border-border/80 hover:bg-surface/90 hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
-          aria-label="Notifications"
+          className="relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-transparent text-text-muted transition-colors hover:border-border/80 hover:bg-surface/90 hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          aria-label={triggerLabel}
         >
           <Bell className="h-[1.125rem] w-[1.125rem]" aria-hidden />
           {unreadCount > 0 ? (
@@ -28,9 +30,11 @@ export function NotificationBell({ userId }: { userId: string }) {
           ) : null}
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-96 max-w-[calc(100vw-3rem)]">
+      <PopoverContent className="w-96 max-w-[calc(100vw-3rem)]" aria-labelledby="notifications-panel-title">
         <div className="flex items-center justify-between">
-          <div className="font-heading text-h3 text-heading">Notifications</div>
+          <div id="notifications-panel-title" className="font-heading text-h3 text-heading">
+            Notifications
+          </div>
           <Link href="/notifications" className="text-sm text-primary hover:text-primary-hover">
             View all →
           </Link>

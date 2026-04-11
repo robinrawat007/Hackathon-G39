@@ -17,14 +17,14 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-10 w-full min-w-0 items-center justify-between gap-2 rounded-lg border border-border bg-bg-secondary px-3 py-2 text-left text-sm text-text outline-none transition-[box-shadow,border-color] focus-visible:border-primary/50 focus-visible:ring-2 focus-visible:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex h-10 w-full min-w-0 items-center justify-between gap-2 rounded-lg border border-border bg-bg-secondary px-3 py-2 text-left text-sm text-text outline-none transition-[box-shadow,border-color] focus-visible:border-primary/50 focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 shrink-0 opacity-65" />
+      <ChevronDown className="h-4 w-4 shrink-0 opacity-65" aria-hidden focusable={false} />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
@@ -38,19 +38,26 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       position={position}
-      sideOffset={6}
+      sideOffset={8}
+      collisionPadding={12}
       className={cn(
         "select-dropdown-panel relative z-[100] max-h-[min(24rem,var(--radix-select-content-available-height))] min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-xl border border-border/80 bg-bg text-text shadow-[0_12px_40px_rgba(139,90,43,0.12),0_4px_12px_rgba(0,0,0,0.06)]",
         className
       )}
       {...props}
     >
-      <SelectPrimitive.ScrollUpButton className="flex cursor-default items-center justify-center py-1 text-text-muted">
-        <ChevronUp className="h-4 w-4" />
+      <SelectPrimitive.ScrollUpButton
+        className="flex cursor-default items-center justify-center py-1.5 text-text-muted"
+        aria-label="Scroll up for more options"
+      >
+        <ChevronUp className="h-4 w-4" aria-hidden focusable={false} />
       </SelectPrimitive.ScrollUpButton>
       <SelectPrimitive.Viewport className="p-1">{children}</SelectPrimitive.Viewport>
-      <SelectPrimitive.ScrollDownButton className="flex cursor-default items-center justify-center py-1 text-text-muted">
-        <ChevronDown className="h-4 w-4" />
+      <SelectPrimitive.ScrollDownButton
+        className="flex cursor-default items-center justify-center py-1.5 text-text-muted"
+        aria-label="Scroll down for more options"
+      >
+        <ChevronDown className="h-4 w-4" aria-hidden focusable={false} />
       </SelectPrimitive.ScrollDownButton>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
@@ -72,7 +79,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-primary/10 data-[highlighted]:text-heading",
+      "relative flex min-h-[2.75rem] cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-primary/10 data-[highlighted]:text-heading data-[highlighted]:ring-1 data-[highlighted]:ring-inset data-[highlighted]:ring-primary/25",
       className
     )}
     {...props}
