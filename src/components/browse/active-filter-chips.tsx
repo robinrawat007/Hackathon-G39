@@ -1,7 +1,17 @@
 "use client"
 
-import { useFiltersStore } from "@/lib/stores/filters-store"
 import { Button } from "@/components/ui/button"
+import { MOODS } from "@/lib/constants"
+import { useFiltersStore } from "@/lib/stores/filters-store"
+
+function moodSlugToLabel(slug: string): string {
+  const def = MOODS.find((m) => m.slug === slug)
+  if (def) return def.label
+  return slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ")
+}
 
 export function ActiveFilterChips() {
   const filters = useFiltersStore()
@@ -21,7 +31,7 @@ export function ActiveFilterChips() {
   for (const m of filters.moods) {
     chips.push({
       key: `m:${m}`,
-      label: m,
+      label: moodSlugToLabel(m),
       onRemove: () => {
         const { moods, setPartial } = useFiltersStore.getState()
         setPartial({ moods: moods.filter((x) => x !== m) })
