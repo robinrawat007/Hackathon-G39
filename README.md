@@ -1,36 +1,143 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BooksyAI
 
-## Getting Started
+AI-assisted book discovery with a warm, editorial UI: browse a curated catalog, save books to your shelf, get recommendations from onboarding taste data, join the community feed (reviews and follows), and chat with an assistant grounded in your real book catalog.
 
-First, run the development server:
+## Tech stack
+
+| Layer | Choice |
+|--------|--------|
+| Framework | [Next.js 14](https://nextjs.org/) (App Router) |
+| UI | React 18, Tailwind CSS, Radix UI, Framer Motion |
+| Data | [Supabase](https://supabase.com/) (Postgres, Auth, Row Level Security) |
+| Client state | TanStack Query, Zustand (shelf) |
+| AI | OpenAI-compatible APIs (`LLM_*` env) for chat and “why you’ll love it” streams |
+
+## Prerequisites
+
+- **Node.js** 20+ (LTS recommended)
+- **pnpm** (or npm / yarn)
+- A **Supabase** project for auth, database, and (optionally) realtime
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd shelfai
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local` in the project root (see [Environment variables](#environment-variables)). Then:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### Database
 
-To learn more about Next.js, take a look at the following resources:
+Apply SQL migrations to your Supabase project (order matters):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. `supabase/migrations/0001_init.sql` — schema, RLS, extensions  
+2. `supabase/migrations/0002_drop_book_lists.sql` — removes legacy `book_lists` if present  
+3. `supabase/migrations/0003_profiles_and_follow_notifications.sql` — profile bootstrap for new users, follow notifications, optional realtime on `notifications`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You can run these in the Supabase SQL Editor or via the [Supabase CLI](https://supabase.com/docs/guides/cli) (`supabase db push` / linked project).
 
-## Deploy on Vercel
+Optional demo data: `supabase/seed.sql` (edit placeholder user UUIDs before running).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Dev server with Turbopack |
+| `pnpm dev:safe` | Dev server without `--turbo` |
+| `pnpm build` | Production build |
+| `pnpm start` | Run production server |
+| `pnpm lint` | ESLint |
+
+`postbuild` runs `next-sitemap` to regenerate sitemaps.
+
+## Environment variables
+
+Copy this checklist into `.env.local` and fill in values.
+
+### Required for core app (auth + database)
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon (public) key |
+
+### Recommended for server APIs that bypass RLS safely
+
+| Variable | Purpose |
+|----------|---------|
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key — used by some routes (shelf, onboarding, reviews) when needed. **Never expose to the browser.** |
+
+### Site URLs
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical site origin (e.g. `https://your-domain.com`) for metadata and absolute links |
+| `VERCEL_URL` | Set automatically on Vercel; used as fallback for site URL |
+
+### AI (chat & streaming features)
+
+| Variable | Purpose |
+|----------|---------|
+| `LLM_API_KEY` | API key for the configured provider |
+| `LLM_PROVIDER` | e.g. `openai` (default) |
+| `LLM_MODEL` | Chat model (default `gpt-4o`) |
+| `LLM_BASE_URL` | Optional custom API base URL |
+| `LLM_EMBEDDING_MODEL` | Embeddings model name |
+
+### Rate limiting (optional)
+
+| Variable | Purpose |
+|----------|---------|
+| `UPSTASH_REDIS_REST_URL` | Upstash Redis REST URL |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash token |
+
+### Optional integrations
+
+| Variable | Purpose |
+|----------|---------|
+| `STATIC_AUTH_EMAIL` / `STATIC_AUTH_PASSWORD` | Demo static login used by `/api/auth/static-login` (hackathon / staging) |
+| `N8N_FEEDBACK_WORKFLOW_URL` or `N8N_FEEDBACK_WEBHOOK_URL` | Feedback form webhook |
+| `ENCRYPTION_SECRET` | Used where `src/lib/crypto/encrypt.ts` applies |
+
+## Project layout (high level)
+
+```
+src/
+  app/           # App Router: pages, layouts, API routes
+  components/    # UI: layout, books, community, chat, auth, etc.
+  lib/           # Supabase clients, hooks, validations, LLM adapter
+  data/          # Curated book knowledge JSON (catalog / chat context)
+supabase/
+  migrations/    # SQL migrations (run in order)
+  seed.sql       # Optional seed data
+```
+
+## Authentication
+
+Sign-in uses Supabase Auth with session cookies (`@supabase/ssr`). A global auth dialog is wired through the app provider; legacy `/auth/login` and `/auth/signup` paths redirect home with query params that open the same dialog.
+
+Email confirmation and OAuth flows use `/auth/callback`.
+
+## Security notes
+
+- **RLS** is enabled on user data tables; the anon key is safe for the browser only within those policies.
+- **Service role** key must only run on the server. Do not prefix with `NEXT_PUBLIC_`.
+- Review `next.config.mjs` CSP headers when adding new external image domains or API hosts.
+
+## Troubleshooting
+
+- **Build errors referencing missing pages**: delete `.next` and run `pnpm build` again.
+- **Supabase “permission denied”**: confirm RLS policies and that the user has a row in `public.profiles` (migrations include triggers/backfill for follows and notifications).
+- **Chat / AI errors**: verify `LLM_API_KEY` and provider settings; chat route returns a clear error if the key is missing.
+
+## License
+
+Private project unless otherwise noted.

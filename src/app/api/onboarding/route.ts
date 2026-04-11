@@ -3,22 +3,9 @@ import { NextResponse } from "next/server"
 import { withApiErrorHandling } from "@/lib/api/server-response"
 import { requireUserForApi } from "@/lib/auth/require-user"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
-import { createSupabaseAdminClient } from "@/lib/supabase/admin"
 import { rateLimitResponse } from "@/lib/rate-limit"
+import { ensureProfileRow } from "@/lib/profiles/ensure-profile"
 import { onboardingSchema } from "@/lib/validations/onboarding.schema"
-
-async function ensureProfile(userId: string, email: string | undefined) {
-  const admin = createSupabaseAdminClient()
-  const { data: existing } = await admin.from("profiles").select("id").eq("id", userId).maybeSingle()
-  if (existing) return
-  const username = `r_${userId.replace(/-/g, "")}`
-  const { error } = await admin.from("profiles").insert({
-    id: userId,
-    username,
-    display_name: email?.split("@")[0] ?? "Reader",
-  })
-  if (error && !/duplicate|unique/i.test(error.message)) throw new Error(error.message)
-}
 
 export async function POST(request: Request) {
   return withApiErrorHandling("POST /api/onboarding", async () => {
@@ -40,7 +27,8 @@ export async function POST(request: Request) {
     }
 
     try {
-      await ensureProfile(user.id, user.email ?? undefined)
+      const ensured = await ensureProfileRow(user.id, user.email ?? undefined)
+      if (!ensured.ok) throw new Error(ensured.error)
 
       const supabase = createServerSupabaseClient()
 
