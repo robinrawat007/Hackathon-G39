@@ -19,7 +19,7 @@ const DEFAULTS: Omit<FiltersState, "setPartial" | "clearAll"> = {
   moods: [],
   era: "any",
   minRating: 3,
-  pageCountRange: [0, 900],
+  pageCountRange: [0, 9999],
   language: "any",
   sort: "relevance",
 }

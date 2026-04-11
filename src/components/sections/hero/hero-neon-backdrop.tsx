@@ -2,17 +2,14 @@
 
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 
-/**
- * Animated neon-style glows behind the hero (respects reduced motion).
- */
 export function HeroNeonBackdrop() {
   const reduced = usePrefersReducedMotion()
 
   if (reduced) {
     return (
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(99,179,237,0.14),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(159,122,234,0.12),transparent_48%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(196,149,106,0.14),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(139,90,43,0.1),transparent_48%)]" />
       </div>
     )
   }

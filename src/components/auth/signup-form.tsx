@@ -32,34 +32,8 @@ export function SignupForm() {
     }
   }
 
-  const onGoogle = async () => {
-    setLoading(true)
-    setError(null)
-    try {
-      const supabase = createBrowserSupabaseClient()
-      const { error: oauthError } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: { redirectTo: `${window.location.origin}/auth/callback` },
-      })
-      if (oauthError) throw oauthError
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Google sign-in failed")
-      setLoading(false)
-    }
-  }
-
   return (
     <div className="mt-6 space-y-4">
-      <Button variant="secondary" size="md" fullWidth onClick={() => void onGoogle()} disabled={loading}>
-        Continue with Google
-      </Button>
-
-      <div className="flex items-center gap-3">
-        <div className="h-px flex-1 bg-border" />
-        <div className="text-xs text-text-muted">or</div>
-        <div className="h-px flex-1 bg-border" />
-      </div>
-
       <div className="space-y-3">
         <div>
           <label className="text-sm text-text-muted">Email</label>

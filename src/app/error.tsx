@@ -24,7 +24,7 @@ export default function Error({
       <Navbar />
       <main id="main" className="container flex flex-1 flex-col items-center justify-center py-28 text-center">
         <h1 className="font-heading text-h1 text-heading">Something went wrong</h1>
-        <p className="mt-3 max-w-md text-sm text-text-muted">
+        <p className="mt-3 max-w-md text-sm text-text-muted" role="alert">
           An unexpected error occurred while rendering this route. You can retry or head back to a stable page.
         </p>
         {error.digest ? <p className="mt-4 font-mono text-xs text-text-muted">Ref: {error.digest}</p> : null}

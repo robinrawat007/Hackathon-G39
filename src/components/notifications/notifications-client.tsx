@@ -76,7 +76,7 @@ export function NotificationsClient({ userId }: { userId: string }) {
                       {!n.isRead ? <Badge variant="destructive">Unread</Badge> : null}
                     </div>
                     <div className="mt-1 text-sm text-text-muted">{n.body}</div>
-                    <div className="mt-2 text-xs text-text-muted">{new Date(n.createdAt).toLocaleString()}</div>
+                    <div className="mt-2 text-xs text-text-muted">{new Date(n.createdAt).toLocaleString("en-US")}</div>
                   </button>
                 ))}
               </div>

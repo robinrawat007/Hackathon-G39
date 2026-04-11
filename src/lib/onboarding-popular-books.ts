@@ -1,19 +1,15 @@
-/** Google Books volume IDs for onboarding step 1 — covers + titles readers know. */
-function g(id: string) {
-  return `https://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=1&source=gbs_api`
-}
-
+/** Static slice of popular books for the onboarding picker — avoids bundling the full JSON into the client. */
 export const ONBOARDING_POPULAR_BOOKS = [
-  { id: "dune", title: "Dune", author: "Frank Herbert", coverUrl: g("jyF1ZMK2vCQC") },
-  { id: "the-hobbit", title: "The Hobbit", author: "J.R.R. Tolkien", coverUrl: g("OlCHcjX0RT4C") },
-  { id: "gone-girl", title: "Gone Girl", author: "Gillian Flynn", coverUrl: g("cF4bm_mWOx8C") },
-  { id: "pride-prejudice", title: "Pride and Prejudice", author: "Jane Austen", coverUrl: g("gjFZlM6Y73wC") },
-  { id: "the-alchemist", title: "The Alchemist", author: "Paulo Coelho", coverUrl: g("FzjtDj61KdEC") },
-  { id: "atomic-habits", title: "Atomic Habits", author: "James Clear", coverUrl: g("l6_0EAAAQBAJ") },
-  { id: "the-book-thief", title: "The Book Thief", author: "Markus Zusak", coverUrl: g("veJt0Q8gIHQC") },
-  { id: "sapiens", title: "Sapiens", author: "Yuval Noah Harari", coverUrl: g("1E6PAwAAQBAJ") },
-  { id: "the-martian", title: "The Martian", author: "Andy Weir", coverUrl: g("5J8vAgAAQBAJ") },
-  { id: "the-night-circus", title: "The Night Circus", author: "Erin Morgenstern", coverUrl: g("YyEo6jk9YCYC") },
-  { id: "educated", title: "Educated", author: "Tara Westover", coverUrl: g("iUxpDwAAQBAJ") },
-  { id: "the-road", title: "The Road", author: "Cormac McCarthy", coverUrl: g("ZyJzAwAAQBAJ") },
-] as const
+  { id: "kb-001", title: "The Goldfinch", author: "Donna Tartt", coverUrl: "https://covers.openlibrary.org/b/isbn/9780316055448-M.jpg" },
+  { id: "kb-002", title: "A Little Life", author: "Hanya Yanagihara", coverUrl: "https://covers.openlibrary.org/b/isbn/9780385539258-M.jpg" },
+  { id: "kb-003", title: "Normal People", author: "Sally Rooney", coverUrl: "https://covers.openlibrary.org/b/isbn/9781984822178-M.jpg" },
+  { id: "kb-004", title: "The Overstory", author: "Richard Powers", coverUrl: "https://covers.openlibrary.org/b/isbn/9780393356687-M.jpg" },
+  { id: "kb-005", title: "White Teeth", author: "Zadie Smith", coverUrl: "https://covers.openlibrary.org/b/isbn/9780375703867-M.jpg" },
+  { id: "kb-006", title: "Foundation", author: "Isaac Asimov", coverUrl: "https://covers.openlibrary.org/b/isbn/9780553293357-M.jpg" },
+  { id: "kb-007", title: "The Three-Body Problem", author: "Cixin Liu", coverUrl: "https://covers.openlibrary.org/b/isbn/9780765377067-M.jpg" },
+  { id: "kb-008", title: "Ender's Game", author: "Orson Scott Card", coverUrl: "https://covers.openlibrary.org/b/isbn/9780812550702-M.jpg" },
+  { id: "kb-009", title: "The Left Hand of Darkness", author: "Ursula K. Le Guin", coverUrl: "https://covers.openlibrary.org/b/isbn/9780441478125-M.jpg" },
+  { id: "kb-010", title: "Neuromancer", author: "William Gibson", coverUrl: "https://covers.openlibrary.org/b/isbn/9780441569595-M.jpg" },
+  { id: "kb-011", title: "The Way of Kings", author: "Brandon Sanderson", coverUrl: "https://covers.openlibrary.org/b/isbn/9780765326355-M.jpg" },
+  { id: "kb-012", title: "Assassin's Apprentice", author: "Robin Hobb", coverUrl: "https://covers.openlibrary.org/b/isbn/9780553573398-M.jpg" },
+]

@@ -1,6 +1,9 @@
 export const APP_NAME = "ShelfAI" as const
 export const APP_TAGLINE = "Your shelf. Your taste. Your AI." as const
 
+/** Short value line below the tagline in the site footer. */
+export const FOOTER_FEATURE_STRIP = "Tailored picks · Your shelves · Community" as const
+
 export const MOODS = [
   { slug: "dark-eerie", label: "Dark & Eerie", emoji: "🌙", gradient: "from-violet-500 to-purple-700" },
   { slug: "romantic", label: "Romantic", emoji: "❤️", gradient: "from-pink-500 to-rose-600" },
@@ -12,7 +15,7 @@ export const MOODS = [
   { slug: "emotional", label: "Emotional Gut-Punch", emoji: "💔", gradient: "from-rose-500 to-pink-700" },
 ] as const
 
-/** Mood slugs → Google Books–friendly query phrases (raw slugs match almost nothing). */
+/** Mood slugs → keyword phrases for knowledge-base text search (raw slugs match almost nothing). */
 export const MOOD_SEARCH_TERMS: Record<(typeof MOODS)[number]["slug"], string> = {
   "dark-eerie": "dark gothic horror atmospheric",
   romantic: "romantic love story",

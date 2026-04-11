@@ -5,6 +5,9 @@ Disallow: /dashboard
 Disallow: /shelf
 Disallow: /settings
 Disallow: /auth/
+Disallow: /notifications
+Disallow: /analytics
+Disallow: /profile/
 
 # Host
 Host: http://localhost:3000

@@ -16,7 +16,7 @@ const STEPS = [
     icon: Sparkles,
     step: "Step 2",
     title: "Get AI-matched picks",
-    desc: "Real catalog data meets your taste — no fake titles, no generic mush.",
+    desc: "Your knowledge base meets your taste — grounded picks, no invented titles.",
   },
   {
     icon: LibraryBig,
@@ -30,7 +30,7 @@ export function HowItWorksSection() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section id="how-it-works" className="relative py-16 md:py-24">
+    <section id="how-it-works" className="relative pb-16 pt-6 md:pb-24 md:pt-8">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" aria-hidden />
       <div className="container min-w-0">
         <motion.h2

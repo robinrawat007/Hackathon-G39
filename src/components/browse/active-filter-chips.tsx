@@ -12,14 +12,20 @@ export function ActiveFilterChips() {
     chips.push({
       key: `g:${g}`,
       label: g,
-      onRemove: () => filters.setPartial({ genres: filters.genres.filter((x) => x !== g) }),
+      onRemove: () => {
+        const { genres, setPartial } = useFiltersStore.getState()
+        setPartial({ genres: genres.filter((x) => x !== g) })
+      },
     })
   }
   for (const m of filters.moods) {
     chips.push({
       key: `m:${m}`,
       label: m,
-      onRemove: () => filters.setPartial({ moods: filters.moods.filter((x) => x !== m) }),
+      onRemove: () => {
+        const { moods, setPartial } = useFiltersStore.getState()
+        setPartial({ moods: moods.filter((x) => x !== m) })
+      },
     })
   }
   if (filters.era !== "any") {

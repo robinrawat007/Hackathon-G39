@@ -10,10 +10,10 @@ export function TypingIndicator() {
 
   return (
     <div className="flex items-end gap-2">
-      <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/20 to-accent/15 shadow-[0_0_12px_rgba(99,179,237,0.2)]">
+      <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/20 to-accent/15 shadow-[0_0_10px_rgba(139,90,43,0.16)]">
         <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden />
       </span>
-      <div className="flex items-center gap-2 rounded-2xl rounded-bl-sm border border-primary/15 bg-[rgba(6,10,22,0.88)] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm">
+      <div className="flex items-center gap-2 rounded-2xl rounded-bl-sm border border-border bg-bg px-4 py-3 shadow-[0_2px_12px_rgba(139,90,43,0.08)]">
         <span className="text-xs text-text-muted">thinking</span>
         <div className="flex gap-1" aria-hidden="true">
           {[0, 1, 2].map((i) => (

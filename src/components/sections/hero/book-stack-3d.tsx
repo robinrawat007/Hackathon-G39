@@ -5,40 +5,15 @@ import { motion, useScroll, useTransform } from "framer-motion"
 
 import { BookCoverImage } from "@/components/books/book-cover-image"
 import { cn } from "@/lib/utils"
-import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 
-const COVERS = [
-  {
-    title: "The Three-Body Problem",
-    author: "Cixin Liu",
-    cover:
-      "https://books.google.com/books/content?id=1w8YDAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  },
-  {
-    title: "Pachinko",
-    author: "Min Jin Lee",
-    cover:
-      "https://books.google.com/books/content?id=ZngzDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  },
-  {
-    title: "Educated",
-    author: "Tara Westover",
-    cover:
-      "https://books.google.com/books/content?id=JX0vDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  },
-  {
-    title: "The Name of the Wind",
-    author: "Patrick Rothfuss",
-    cover:
-      "https://books.google.com/books/content?id=IboQfTg1VnMC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  },
-  {
-    title: "And Then There Were None",
-    author: "Agatha Christie",
-    cover:
-      "https://books.google.com/books/content?id=GmWbAwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  },
-] as const
+const HERO_STACK_COVERS = [
+  { title: "The Goldfinch", author: "Donna Tartt", cover: "https://covers.openlibrary.org/b/isbn/9780316055448-M.jpg" },
+  { title: "A Little Life", author: "Hanya Yanagihara", cover: "https://covers.openlibrary.org/b/isbn/9780385539258-M.jpg" },
+  { title: "Normal People", author: "Sally Rooney", cover: "https://covers.openlibrary.org/b/isbn/9781984822178-M.jpg" },
+  { title: "The Overstory", author: "Richard Powers", cover: "https://covers.openlibrary.org/b/isbn/9780393356687-M.jpg" },
+  { title: "White Teeth", author: "Zadie Smith", cover: "https://covers.openlibrary.org/b/isbn/9780375703867-M.jpg" },
+]
+import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 
 export function BookStack3D() {
   const reduced = usePrefersReducedMotion()
@@ -52,8 +27,8 @@ export function BookStack3D() {
         style={{ transformStyle: "preserve-3d", rotateY: rotate }}
         className="absolute inset-0 mx-auto max-w-[min(100%,20rem)]"
       >
-        {COVERS.map((b, idx) => {
-          const z = (COVERS.length - idx) * 16
+        {HERO_STACK_COVERS.map((b, idx) => {
+          const z = (HERO_STACK_COVERS.length - idx) * 16
           const y = idx * 18
           const x = idx * 10
           const rot = reduced ? 0 : (idx % 2 === 0 ? -6 : 6)

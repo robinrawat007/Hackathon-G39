@@ -14,7 +14,7 @@ create table if not exists public.profiles (
   created_at timestamptz default now()
 );
 
--- books (cached from Google Books)
+-- books (catalog metadata cache)
 create table if not exists public.books (
   id text primary key,
   title text not null,

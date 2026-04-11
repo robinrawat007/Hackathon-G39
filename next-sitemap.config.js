@@ -6,10 +6,28 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
-        disallow: ["/api/", "/dashboard", "/shelf", "/settings", "/auth/"],
+        disallow: [
+          "/api/",
+          "/dashboard",
+          "/shelf",
+          "/settings",
+          "/auth/",
+          "/notifications",
+          "/analytics",
+          "/profile/",
+        ],
       },
     ],
   },
-  exclude: ["/api/*", "/dashboard", "/shelf", "/settings", "/auth/*"],
+  exclude: [
+    "/api/*",
+    "/dashboard",
+    "/shelf",
+    "/settings",
+    "/auth/*",
+    "/notifications",
+    "/analytics",
+    "/profile/*",
+  ],
 }
 

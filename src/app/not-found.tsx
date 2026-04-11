@@ -9,7 +9,9 @@ export default function NotFound() {
     <div className="min-h-full bg-transparent text-text">
       <Navbar />
       <main id="main" className="container flex flex-1 flex-col items-center justify-center py-28 text-center">
-        <p className="text-sm font-medium text-primary">404</p>
+        <p className="text-sm font-medium text-primary" role="status">
+          404
+        </p>
         <h1 className="mt-3 font-heading text-h1 text-heading">Page not found</h1>
         <p className="mt-3 max-w-md text-sm text-text-muted">
           The page you asked for is missing or the link is out of date. Try home, browse, or your dashboard.

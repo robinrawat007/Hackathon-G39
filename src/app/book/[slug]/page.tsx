@@ -12,14 +12,15 @@ import { BookAddToShelf } from "@/components/books/book-add-to-shelf"
 import { WhyYoullLoveIt } from "@/components/books/why-youll-love-it"
 import { WriteReview } from "@/components/books/write-review"
 import { JsonLd } from "@/components/seo/json-ld"
-import { searchGoogleBooks, getBookBySlug } from "@/lib/google-books"
-import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
+import { normalizeBookCoverUrl } from "@/lib/book-cover-url"
+import { getBookBySlug, getSimilarBooks } from "@/lib/knowledge-books"
+import { BookCoverPlaceholder } from "@/components/books/book-cover-placeholder"
 import { BookDetailCover } from "@/components/books/book-detail-cover"
 import { absoluteUrl } from "@/lib/site"
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await props.params
-  const book = await getBookBySlug(slug)
+  const book = getBookBySlug(slug)
   if (!book) return { title: "Book not found" }
   const description =
     book.description?.replace(/\s+/g, " ").trim().slice(0, 160) ??
@@ -38,7 +39,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       images: book.coverUrl
         ? [
             {
-              url: upgradeGoogleBooksCoverUrl(book.coverUrl, "detail"),
+              url: normalizeBookCoverUrl(book.coverUrl, "detail"),
               width: 600,
               height: 900,
               alt: `${book.title} cover`,
@@ -50,23 +51,23 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       card: book.coverUrl ? "summary_large_image" : "summary",
       title: ogTitle,
       description,
-      images: book.coverUrl ? [upgradeGoogleBooksCoverUrl(book.coverUrl, "detail")] : undefined,
+      images: book.coverUrl ? [normalizeBookCoverUrl(book.coverUrl, "detail")] : undefined,
     },
   }
 }
 
 function DetailsRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-1 border-b border-border py-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-      <div className="shrink-0 text-sm text-text-muted">{label}</div>
-      <div className="min-w-0 break-words text-sm text-text sm:text-right">{value}</div>
+    <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-[minmax(6rem,9rem)_1fr] sm:items-baseline sm:gap-6">
+      <dt className="text-sm text-text-muted">{label}</dt>
+      <dd className="min-w-0 break-words text-sm text-text sm:text-right">{value}</dd>
     </div>
   )
 }
 
 export default async function BookPage(props: { params: Promise<{ slug: string }> }) {
   const { slug } = await props.params
-  const book = await getBookBySlug(slug)
+  const book = getBookBySlug(slug)
 
   if (!book) {
     return (
@@ -92,10 +93,7 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
     )
   }
 
-  const similar = await searchGoogleBooks({
-    q: book.genres[0] ? `subject:${book.genres[0]}` : "subject:fiction",
-    maxResults: 4,
-  })
+  const similar = getSimilarBooks(book, 8)
 
   const pageUrl = absoluteUrl(`/book/${slug}`)
   const jsonLd = {
@@ -105,7 +103,7 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
     author: { "@type": "Person", name: book.author },
     url: pageUrl,
     description: book.description?.replace(/\s+/g, " ").trim().slice(0, 5000) ?? undefined,
-    image: book.coverUrl ? upgradeGoogleBooksCoverUrl(book.coverUrl, "detail") : undefined,
+    image: book.coverUrl ? normalizeBookCoverUrl(book.coverUrl, "detail") : undefined,
     isbn: book.isbn ?? undefined,
     datePublished: book.publishedYear ? `${book.publishedYear}` : undefined,
     numberOfPages: book.pageCount ?? undefined,
@@ -124,24 +122,24 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
       <JsonLd data={jsonLd} id="book-jsonld" />
       <Navbar />
       <main id="main" className="container min-w-0 flex-1 pt-20 pb-12 sm:pt-24 sm:pb-16">
-        <div className="grid min-w-0 gap-8 lg:grid-cols-[1fr_minmax(0,360px)]">
+        <div className="grid min-w-0 items-start gap-6 lg:grid-cols-[1fr_minmax(0,300px)] lg:gap-8 xl:grid-cols-[1fr_minmax(0,360px)]">
           {/* Left */}
-          <div className="min-w-0">
+          <div className="min-w-0 space-y-5">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-[minmax(0,200px)_1fr] md:grid-cols-[220px_1fr]">
-              <div className="relative mx-auto aspect-[2/3] w-full max-w-[240px] overflow-hidden rounded-md border border-border shadow-glow sm:mx-0 sm:max-w-[280px]">
+              <div className="relative mx-auto aspect-[2/3] w-full max-w-[240px] overflow-hidden rounded-xl border border-border shadow-glow sm:mx-0 sm:max-w-[280px]">
                 {book.coverUrl ? (
                   <BookDetailCover src={book.coverUrl} title={book.title} author={book.author} />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-transparent-secondary text-text-muted">
-                    <span className="font-mono text-sm">No cover</span>
-                  </div>
+                  <BookCoverPlaceholder title={book.title} />
                 )}
               </div>
 
               <div className="min-w-0 text-center sm:text-left">
                 <h1 className="text-balance font-heading text-h1 text-heading">{book.title}</h1>
                 <div className="mt-2 text-sm text-text-muted">{book.author}</div>
-                <div className="mt-2 text-sm text-text-muted">{book.publishedYear ? `Published ${book.publishedYear}` : ""}</div>
+                {book.publishedYear ? (
+                  <div className="mt-2 text-sm text-text-muted">Published {book.publishedYear}</div>
+                ) : null}
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {book.genres.map((g) => (
@@ -154,7 +152,8 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
                 <div className="mt-4 flex items-center gap-3">
                   <StarRating value={Math.round(book.averageRating)} interactive={false} size="md" />
                   <div className="text-sm text-text-muted">
-                    {book.averageRating.toFixed(1)} · {book.ratingsCount.toLocaleString()} reviews
+                    {book.averageRating > 0 ? book.averageRating.toFixed(1) : "No rating"} ·{" "}
+                    {book.ratingsCount > 0 ? `${book.ratingsCount.toLocaleString("en-US")} reviews` : "No reviews yet"}
                   </div>
                 </div>
 
@@ -162,48 +161,50 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
               </div>
             </div>
 
-            <div className="mt-8 rounded-md border border-border bg-surface p-6 shadow-card">
-              <div className="font-heading text-h3 text-heading">Description</div>
-              <p className="mt-3 text-sm text-text-muted">{book.description || "No description available for this title yet."}</p>
-            </div>
+            <section className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+              <h2 className="font-heading text-h3 text-heading">Description</h2>
+              <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                {book.description || "No description available for this title yet."}
+              </p>
+            </section>
 
-            <div className="mt-6 rounded-md border border-border bg-surface p-6 shadow-card">
-              <div className="font-heading text-h3 text-heading">Book details</div>
-              <div className="mt-2">
+            <section className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+              <h2 className="font-heading text-h3 text-heading">Book details</h2>
+              <dl className="mt-1 divide-y divide-border">
                 <DetailsRow label="Pages" value={book.pageCount ? String(book.pageCount) : "—"} />
                 <DetailsRow label="ISBN" value={book.isbn || "—"} />
                 <DetailsRow label="Language" value={book.language?.toUpperCase() || "—"} />
-                <DetailsRow label="Publisher" value={book.publisher || "—"} />
-              </div>
-            </div>
+                {book.publisher?.trim() ? <DetailsRow label="Publisher" value={book.publisher.trim()} /> : null}
+              </dl>
+            </section>
 
-            <div className="mt-8">
+            <section className="min-w-0">
               <Tabs defaultValue="reviews">
-                <TabsList>
+                <TabsList className="w-full justify-start sm:w-auto">
                   <TabsTrigger value="reviews">Reviews</TabsTrigger>
                   <TabsTrigger value="lists">Lists containing this book</TabsTrigger>
                   <TabsTrigger value="similar">Similar Books</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="reviews">
-                  <div className="rounded-md border border-border bg-surface p-6 shadow-card">
-                    <div className="font-heading text-h3 text-heading">Write a review</div>
-                    <div className="mt-2 text-sm text-text-muted">
+                <TabsContent value="reviews" className="space-y-4">
+                  <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+                    <h3 className="font-heading text-h3 text-heading">Write a review</h3>
+                    <p className="mt-2 text-sm text-text-muted">
                       Drafts submit to the preview pipeline here; after sign-in, the same form will post to your public profile.
-                    </div>
+                    </p>
                     <WriteReview bookId={book.id} />
                   </div>
 
-                  <div className="mt-4 rounded-md border border-border bg-surface p-6 shadow-card">
-                    <div className="font-heading text-h3 text-heading">Recent reviews</div>
-                    <div className="mt-2 text-sm text-text-muted">No reviews yet for this title.</div>
+                  <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+                    <h3 className="font-heading text-h3 text-heading">Recent reviews</h3>
+                    <p className="mt-2 text-sm text-text-muted">No reviews yet for this title.</p>
                   </div>
                 </TabsContent>
 
                 <TabsContent value="lists">
-                  <div className="rounded-md border border-border bg-surface p-6 shadow-card">
-                    <div className="font-heading text-h3 text-heading">Lists</div>
-                    <p className="mt-2 text-sm text-text-muted">
+                  <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+                    <h3 className="font-heading text-h3 text-heading">Lists</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-text-muted">
                       Lists that include this title will show here once list data is connected. Browse reader lists in the
                       meantime.
                     </p>
@@ -218,29 +219,45 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
                 </TabsContent>
 
                 <TabsContent value="similar">
-                  <div className="grid gap-3 md:grid-cols-2">
-                    {similar.map((b) => (
-                      <BookCardMini key={b.id} book={b} />
-                    ))}
-                  </div>
+                  {similar.length === 0 ? (
+                    <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+                      <p className="text-sm text-text-muted">No similar books found for this title.</p>
+                    </div>
+                  ) : (
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {similar.map((b) => (
+                        <BookCardMini key={b.id} book={b} />
+                      ))}
+                    </div>
+                  )}
                 </TabsContent>
               </Tabs>
-            </div>
+            </section>
           </div>
 
           {/* Right */}
-          <aside className="min-w-0 space-y-4">
-            <div className="rounded-md border border-border bg-surface p-6 shadow-card">
-              <div className="font-heading text-h3 text-heading">Why readers like you loved this</div>
+          <aside className="min-w-0 space-y-5 lg:sticky lg:top-24 lg:self-start">
+            <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+              <h2 className="font-heading text-h3 text-heading">Why readers like you loved this</h2>
               <WhyYoullLoveIt book={book} />
             </div>
 
-            <div className="rounded-md border border-border bg-surface p-6 shadow-card">
-              <div className="font-heading text-h3 text-heading">Readers Also Enjoyed</div>
-              <div className="mt-3 space-y-3">
-                {similar.slice(0, 4).map((b) => (
+            <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
+              <h2 className="font-heading text-h3 text-heading">Readers also enjoyed</h2>
+              <div className="mt-3 space-y-2">
+                {similar.slice(0, 6).map((b) => (
                   <BookCardMini key={b.id} book={b} />
                 ))}
+              </div>
+              {similar.length > 6 ? (
+                <p className="mt-3 text-xs text-text-muted">
+                  +{similar.length - 6} more in <span className="font-medium text-heading">Similar Books</span> above.
+                </p>
+              ) : null}
+              <div className="mt-4 border-t border-border/70 pt-4">
+                <Link href="/browse" className="text-sm font-medium text-primary transition-colors hover:text-primary-hover">
+                  Browse the catalog →
+                </Link>
               </div>
             </div>
           </aside>

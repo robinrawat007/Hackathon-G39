@@ -24,7 +24,10 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
           <div className="min-w-0">
             <div className="truncate text-sm font-medium text-heading">{review.userName}</div>
             <div className="text-xs text-text-muted">
-              {new Date(review.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+              {(() => {
+                const d = new Date(review.createdAt)
+                return isNaN(d.getTime()) ? "—" : d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+              })()}
             </div>
           </div>
         </div>

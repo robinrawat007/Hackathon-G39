@@ -1,12 +1,19 @@
 import { NextResponse } from "next/server"
 
-import { fetchBooksContextForChat } from "@/lib/chat/google-books-context"
+import {
+  buildChatSearchQuery,
+  fetchBooksContextForChat,
+  formatCatalogForPrompt,
+} from "@/lib/chat/books-catalog-context"
+import { formatSiteKnowledgeForPrompt } from "@/lib/chat/site-knowledge"
 import { createLLMAdapter, getProviderFromEnv } from "@/lib/llm/adapter"
 import { rateLimitResponse } from "@/lib/rate-limit"
 import type { ChatMessage } from "@/types/chat"
 
+type RequestMessage = { role: "user" | "assistant"; content: string }
+
 type ChatRequest = {
-  messages: Array<{ role: "user" | "assistant"; content: string }>
+  messages: RequestMessage[]
   sessionKey?: string
 }
 
@@ -14,23 +21,25 @@ function nowIso() {
   return new Date().toISOString()
 }
 
-function asChatMessages(req: ChatRequest): ChatMessage[] {
-  return req.messages.map((m) => ({ role: m.role, content: m.content, timestamp: nowIso() }))
-}
+function buildSystemPrompt(catalog: string): string {
+  const siteKb = formatSiteKnowledgeForPrompt()
+  const catalogBlocks = catalog.split("\n\n").filter(Boolean).length
 
-function buildSystemPrompt(catalogBooks: Awaited<ReturnType<typeof fetchBooksContextForChat>>) {
-  const payload = catalogBooks.length > 0 ? JSON.stringify(catalogBooks) : "[]"
-  return (
-    `You are ShelfAI, a sharp, friendly book discovery assistant powered by live catalog data and AI reasoning.\n\n` +
-    `Below is a JSON array of books pulled from the Google Books catalog using the user's latest message as the search query. ` +
-    `Each entry includes real metadata: title, author, description excerpt, genres, ratings, slug, isbn.\n\n` +
-    `Rules:\n` +
-    `- When recommending or describing specific titles, draw from this list first and mention real titles and authors from it.\n` +
-    `- Do not invent books, ISBNs, or claim something is in the list when it is not.\n` +
-    `- If the list is empty or none fit, say so honestly and offer general reading guidance or suggest the user rephrase (e.g. genre, mood, comp title).\n` +
-    `- You may mention that on ShelfAI readers can open a book page at path /book/{slug} using the slug field when useful.\n\n` +
-    `Catalog results (JSON):\n${payload}`
-  )
+  return `You are ShelfAI — a sharp, warm book discovery assistant for this website, backed by a real local book catalog.
+
+SITE KNOWLEDGE (authoritative for “what is Shelf?”, features, routes, and how things work — not the book list):
+${siteKb}
+
+BOOK CATALOG (${catalogBlocks} matched titles from the ShelfAI books knowledge base for this conversation):
+${catalog}
+
+INSTRUCTIONS:
+- If the user asks about ShelfAI, the app, pages, signing in, shelves, onboarding, community, or the chat widget itself, answer from SITE KNOWLEDGE. Do not invent features, URLs, or policies that are not described there.
+- For book recommendations, rely on BOOK CATALOG. Mention title, author, and why it fits. Link with paths like /book/<slug> using slugs from the catalog block.
+- If the catalog has no good match for a book request, say so honestly and still offer general reading guidance.
+- Do NOT invent books, authors, ISBNs, or ratings that are not in BOOK CATALOG.
+- Keep replies concise and conversational. Use a short list when recommending multiple titles.
+- You may reason about mood, genre, pacing, themes, and reader taste when connecting catalog titles to the user.`
 }
 
 export async function POST(request: Request) {
@@ -52,15 +61,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 })
   }
 
-  const userLast = json.messages.slice().reverse().find((m) => m.role === "user")?.content?.trim()
-  if (!userLast) return NextResponse.json({ error: "Missing user message" }, { status: 400 })
+  const userMessages = json.messages.filter((m) => m.role === "user")
+  if (userMessages.length === 0) {
+    return NextResponse.json({ error: "Missing user message" }, { status: 400 })
+  }
 
-  const catalogBooks = await fetchBooksContextForChat(userLast, 8)
-  const system = buildSystemPrompt(catalogBooks)
+  // Build search query from the full conversation context so follow-up turns
+  // ("give me more", "something darker") still retrieve relevant catalog books.
+  const searchQuery = buildChatSearchQuery(json.messages)
+  const catalogBooks = fetchBooksContextForChat(searchQuery, 12)
+  const catalog = formatCatalogForPrompt(catalogBooks)
+  const system = buildSystemPrompt(catalog)
 
   const messages: ChatMessage[] = [
     { role: "system", content: system, timestamp: nowIso() },
-    ...asChatMessages(json),
+    ...json.messages.map((m) => ({ role: m.role, content: m.content, timestamp: nowIso() })),
   ]
 
   const adapter = createLLMAdapter(getProviderFromEnv())

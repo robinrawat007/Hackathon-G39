@@ -6,7 +6,7 @@ import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 
-import { upgradeGoogleBooksCoverUrl } from "@/lib/book-cover-url"
+import { normalizeBookCoverUrl } from "@/lib/book-cover-url"
 import { bookCoverNeedsUnoptimized } from "@/lib/book-cover-image"
 import { formatBookDisplayName } from "@/lib/format-book-display"
 import { BOOK_COVER_BLUR_DATA_URL } from "@/lib/image-placeholders"
@@ -22,15 +22,14 @@ const AUTO_ADVANCE_MS = 5200
 
 const list = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.06 } },
+  show: { transition: { staggerChildren: 0.035 } },
 }
 
 const item = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.32, ease: "easeOut" },
+    transition: { duration: 0.22, ease: "easeOut" },
   },
 }
 
@@ -143,10 +142,10 @@ export function HomeExtraCoversRail({ books, labelledBy }: { books: HomeExtraCov
         variants={reduced ? undefined : list}
         initial={reduced ? false : "hidden"}
         whileInView={reduced ? undefined : "show"}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {books.map((b) => {
-          const src = b.coverUrl ? upgradeGoogleBooksCoverUrl(b.coverUrl, "list") : ""
+          const src = b.coverUrl ? normalizeBookCoverUrl(b.coverUrl, "list") : ""
           const title = formatBookDisplayName(b.title)
           const inner = (
             <>

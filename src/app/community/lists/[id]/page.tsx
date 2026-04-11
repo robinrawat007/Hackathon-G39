@@ -1,30 +1,31 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { BookCardMini } from "@/components/books/book-card"
-import { searchGoogleBooks } from "@/lib/google-books"
-import type { Book } from "@/types/book"
+import { createServerSupabaseClient } from "@/lib/supabase/server"
+import { getBookById } from "@/lib/knowledge-books"
 import { absoluteUrl } from "@/lib/site"
 
-function listMeta(id: string) {
-  if (id === "2") {
-    return {
-      title: "Cozy mysteries for late nights",
-      description: "Low gore, high charm, clever reveals. Ideal for winding down.",
-    }
-  }
-  return {
-    title: "Short sci‑fi that still hits hard",
-    description: "Tight, idea-dense reads under ~300 pages.",
-  }
+async function fetchList(id: string) {
+  const supabase = createServerSupabaseClient()
+  const { data } = await supabase
+    .from("book_lists")
+    .select("id, title, description, book_ids, is_public, profiles(display_name, username)")
+    .eq("id", id)
+    .maybeSingle()
+  return data
 }
 
 export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await props.params
-  const { title, description } = listMeta(id)
+  const list = await fetchList(id)
+  if (!list || !list.is_public) return { title: "List not found" }
+  const title = list.title as string
+  const description = (list.description as string | null) ?? "A curated book list on ShelfAI."
   const url = absoluteUrl(`/community/lists/${encodeURIComponent(id)}`)
   return {
     title,
@@ -37,15 +38,13 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
 
 export default async function ListDetailPage(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params
-  const { title, description } = listMeta(id)
+  const list = await fetchList(id)
 
-  let previewBooks: Book[] = []
-  try {
-    const q = id === "2" ? "subject:mystery fiction" : "subject:science fiction"
-    previewBooks = await searchGoogleBooks({ q, maxResults: 6 })
-  } catch {
-    previewBooks = []
-  }
+  if (!list || !list.is_public) notFound()
+
+  const profile = list.profiles as { display_name?: string; username?: string } | null
+  const bookIds = Array.isArray(list.book_ids) ? (list.book_ids as string[]) : []
+  const books = bookIds.map((bid) => getBookById(bid)).filter(Boolean)
 
   return (
     <div className="min-h-full bg-transparent text-text">
@@ -53,8 +52,15 @@ export default async function ListDetailPage(props: { params: Promise<{ id: stri
       <main id="main" className="container flex-1 pt-24 pb-16">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="font-heading text-h1 text-heading">{title}</h1>
-            <p className="mt-2 max-w-2xl text-sm text-text-muted">{description}</p>
+            <h1 className="font-heading text-h1 text-heading">{list.title as string}</h1>
+            {list.description ? (
+              <p className="mt-2 max-w-2xl text-sm text-text-muted">{list.description as string}</p>
+            ) : null}
+            {profile ? (
+              <p className="mt-1 text-xs text-text-muted">
+                by {profile.display_name ?? profile.username}
+              </p>
+            ) : null}
           </div>
           <Link href="/community/lists">
             <Button variant="secondary" size="sm">
@@ -63,20 +69,20 @@ export default async function ListDetailPage(props: { params: Promise<{ id: stri
           </Link>
         </div>
 
-        <div className="mt-8 rounded-md border border-border bg-surface p-6 shadow-card">
-          <div className="font-heading text-h3 text-heading">Sample picks</div>
-          <p className="mt-2 text-sm text-text-muted">
-            Titles below are loaded via Google Books for layout preview. Saved lists will use your shelf and community
-            data once accounts are connected.
-          </p>
-          {previewBooks.length > 0 ? (
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {previewBooks.map((b) => (
-                <BookCardMini key={b.id} book={b} />
-              ))}
-            </div>
+        <div className="mt-8 rounded-2xl border border-border/80 bg-surface/60 p-6 shadow-card backdrop-blur-sm">
+          {books.length === 0 ? (
+            <p className="text-sm text-text-muted">This list has no books yet.</p>
           ) : (
-            <div className="mt-4 text-sm text-text-muted">Could not load preview books. Try again later.</div>
+            <>
+              <div className="font-heading text-h3 text-heading">
+                {books.length} book{books.length !== 1 ? "s" : ""}
+              </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {books.map((b) => (
+                  <BookCardMini key={b!.id} book={b!} />
+                ))}
+              </div>
+            </>
           )}
         </div>
       </main>

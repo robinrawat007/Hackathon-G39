@@ -57,7 +57,7 @@ export function SettingsClient() {
           <div>
             <label className="text-sm text-text-muted">Provider</label>
             <select
-              className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 text-sm text-text"
+              className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
               value={llmProvider}
               onChange={(e) => setLlmProvider(e.target.value as (typeof PROVIDERS)[number])}
             >

@@ -10,7 +10,7 @@ export function SortBar() {
     <div className="glass-card flex items-center justify-between gap-3 rounded-lg px-4 py-3">
       <div className="text-sm text-text-muted">Sort</div>
       <select
-        className="h-10 rounded-md border border-border bg-bg-secondary px-3 text-sm text-text"
+        className="h-10 rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
         value={sort}
         onChange={(e) => setPartial({ sort: e.target.value as typeof sort })}
       >

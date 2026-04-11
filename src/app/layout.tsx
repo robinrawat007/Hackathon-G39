@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next"
+import dynamic from "next/dynamic"
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 
 import { Providers } from "@/app/providers"
-import { ChatWidget } from "@/components/chat/chat-widget"
 import { PageEnter } from "@/components/layout/page-enter"
-import { SiteStarfield } from "@/components/layout/site-starfield"
+
+const ChatWidget = dynamic(
+  () => import("@/components/chat/chat-widget").then((m) => ({ default: m.ChatWidget })),
+  { ssr: false, loading: () => null }
+)
 import { SITE_NAME, getMetadataBaseUrl, getSiteUrl } from "@/lib/site"
 
 import "./globals.css"
@@ -32,10 +36,8 @@ const siteUrl = getSiteUrl()
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: "/favicon.svg",
   },
   title: {
     default: `${SITE_NAME} — AI book recommendations tailored to you`,
@@ -63,7 +65,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#080b14" }],
+  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#FEFCF8" }],
 }
 
 export default function RootLayout({
@@ -80,13 +82,9 @@ export default function RootLayout({
       <body className="min-h-full">
         <div className="app-backdrop" aria-hidden />
         <div className="app-shell flex min-h-full min-w-0 flex-col">
-          {/* Above backdrop gradients, below UI — visible through translucent scrim */}
-          <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
-            <SiteStarfield />
-          </div>
           <a
             href="#main"
-            className="fixed left-4 top-4 z-[100] -translate-y-[140%] rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-heading shadow-card outline-none backdrop-blur-md transition-transform duration-200 focus:translate-y-0"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:border focus:border-border focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-heading focus:shadow-card focus:outline-none focus:backdrop-blur-md"
           >
             Skip to content
           </a>

@@ -8,7 +8,7 @@ type Props = {
   author: string
 }
 
-/** Detail page hero cover — higher-res Google Books tier + loader. */
+/** Detail page hero cover — list/detail zoom tiers + loader. */
 export function BookDetailCover({ src, title, author }: Props) {
   return (
     <BookCoverImage

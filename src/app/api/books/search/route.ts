@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 import { MOOD_SEARCH_TERMS } from "@/lib/constants"
-import { searchGoogleBooks } from "@/lib/google-books"
+import { rankKnowledgeBooksForQuery } from "@/lib/knowledge-books"
 import { rateLimitResponse } from "@/lib/rate-limit"
 import type { Book } from "@/types/book"
 
@@ -10,7 +10,7 @@ function moodToQueryPhrase(slug: string) {
   return mapped ?? slug.replace(/-/g, " ")
 }
 
-/** Google Books treats spaces as AND; quote multi-word subjects and group OR clauses. */
+/** Build a free-text query for the local knowledge base (genre/mood chips become keywords). */
 function subjectClause(genre: string) {
   const g = genre.trim()
   if (!g) return ""
@@ -42,7 +42,7 @@ function buildQuery(params: URLSearchParams) {
     }
   }
 
-  // Era is approximate in Google Books; we add light keyword cues.
+  // Era cues as plain keywords for KB text search.
   if (era === "pre-1900") qParts.push("classic")
   if (era === "1900-1970") qParts.push("20th century")
   if (era === "1970-2000") qParts.push("modern")
@@ -60,7 +60,7 @@ function applyClientSideFilters(books: Book[], params: URLSearchParams) {
   const language = params.get("language") ?? "any"
 
   return books.filter((b) => {
-    // Unrated volumes (0) stay visible; only enforce min when Google provided a rating.
+    // Unrated (0) stay visible; only enforce min when a rating exists.
     if (Number.isFinite(minRating) && minRating > 0 && b.averageRating > 0 && b.averageRating < minRating) return false
     if (Number.isFinite(minPages) && b.pageCount < minPages) return false
     if (Number.isFinite(maxPages) && b.pageCount > maxPages) return false
@@ -98,22 +98,20 @@ export async function GET(req: Request) {
 
   const startIndex = page * limit
   const orderBy = sort === "newest" ? ("newest" as const) : ("relevance" as const)
-  const books = await searchGoogleBooks({
+  const ranked = rankKnowledgeBooksForQuery({
     q,
-    maxResults: limit,
-    startIndex,
     langRestrict: language !== "any" ? language : undefined,
     orderBy,
   })
-  const filtered = sortBooks(applyClientSideFilters(books, url.searchParams), sort)
-
-  // Use raw Google page size for pagination — client-side filters can shrink a page without exhausting the catalog.
-  const hasMoreFromApi = books.length === limit
+  const filtered = sortBooks(applyClientSideFilters(ranked, url.searchParams), sort)
+  const items = filtered.slice(startIndex, startIndex + limit)
+  const hasMore = startIndex + limit < filtered.length
 
   return NextResponse.json(
     {
-      items: filtered,
-      nextPage: hasMoreFromApi ? page + 1 : null,
+      items,
+      total: filtered.length,
+      nextPage: hasMore ? page + 1 : null,
     },
     { headers: { "Cache-Control": "private, no-store, max-age=0" } }
   )

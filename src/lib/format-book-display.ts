@@ -1,5 +1,5 @@
 /**
- * Google Books often returns titles/authors in ALL CAPS. Normalize for display
+ * Some catalogs return titles/authors in ALL CAPS. Normalize for display
  * without changing strings that already look intentionally mixed case.
  */
 export function formatBookDisplayName(raw: string): string {

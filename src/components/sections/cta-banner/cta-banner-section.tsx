@@ -23,7 +23,7 @@ export function CTABannerSection() {
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
               background:
-                "radial-gradient(ellipse 80% 60% at 20% 0%, rgba(99,179,237,0.35), transparent 55%), radial-gradient(ellipse 70% 50% at 90% 100%, rgba(159,122,234,0.3), transparent 50%)",
+                "radial-gradient(ellipse 80% 60% at 20% 0%, rgba(196,149,106,0.28), transparent 55%), radial-gradient(ellipse 70% 50% at 90% 100%, rgba(139,90,43,0.2), transparent 50%)",
             }}
             aria-hidden
           />

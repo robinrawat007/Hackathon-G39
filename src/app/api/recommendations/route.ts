@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 import { requireUserForApi } from "@/lib/auth/require-user"
-import { searchGoogleBooks } from "@/lib/google-books"
+import { getRecommendationBooksForUser } from "@/lib/knowledge-books"
 
 type Req = {
   userId?: string
@@ -19,15 +19,7 @@ export async function POST(request: Request) {
   void json.userId
   void json.context
 
-  // Stub (real data, no hardcoded titles): until Supabase taste profile + pgvector cache are wired,
-  // return a stable-but-varied set for the signed-in user.
-  const q = `subject:fiction ${user.id.slice(0, 6)}`
-  let books: Awaited<ReturnType<typeof searchGoogleBooks>> = []
-  try {
-    books = await searchGoogleBooks({ q, maxResults: limit })
-  } catch {
-    books = []
-  }
+  const books = getRecommendationBooksForUser(user.id, limit)
 
   return NextResponse.json({ items: books })
 }

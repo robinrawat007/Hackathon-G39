@@ -68,8 +68,8 @@ export function ChatWidget() {
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "group relative flex h-16 w-16 items-center justify-center rounded-full",
-            !open && !reduced ? "chat-fab-glow-shadow" : "shadow-[0_0_24px_rgba(99,179,237,0.35)]",
-            "bg-gradient-to-br from-primary via-sky-400 to-accent text-heading shadow-lg",
+            !open && !reduced ? "chat-fab-glow-shadow" : "shadow-[0_4px_20px_rgba(139,90,43,0.3)]",
+            "bg-gradient-to-br from-primary to-accent text-white shadow-lg",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           )}
           aria-label={open ? "Close ShelfAI chat" : "Open ShelfAI chat"}
@@ -92,7 +92,7 @@ export function ChatWidget() {
                 transition={{ duration: 0.18 }}
                 className="relative z-10"
               >
-                <X className="h-6 w-6 drop-shadow-md" aria-hidden />
+                <X className="h-6 w-6 drop-shadow-sm" aria-hidden />
               </motion.span>
             ) : (
               <motion.span
@@ -103,20 +103,20 @@ export function ChatWidget() {
                 transition={{ duration: 0.18 }}
                 className="relative z-10"
               >
-                <BookOpen className="h-7 w-7 drop-shadow-md" aria-hidden />
+                <BookOpen className="h-7 w-7 drop-shadow-sm" aria-hidden />
               </motion.span>
             )}
           </AnimatePresence>
           <span
-            className="pointer-events-none absolute inset-0 rounded-full opacity-60 blur-md"
+            className="pointer-events-none absolute inset-0 rounded-full opacity-50 blur-md"
             style={{
               background:
-                "radial-gradient(circle, rgba(99,179,237,0.9) 0%, rgba(159,122,234,0.4) 50%, transparent 70%)",
+                "radial-gradient(circle, rgba(196,149,106,0.8) 0%, rgba(139,90,43,0.3) 50%, transparent 70%)",
             }}
             aria-hidden
           />
           {!open && (
-            <span className="pointer-events-none absolute -top-11 right-0 hidden whitespace-nowrap rounded-full border border-primary/30 bg-bg-secondary/95 px-3 py-1.5 text-xs font-medium text-heading shadow-card backdrop-blur-md group-hover:block">
+            <span className="pointer-events-none absolute -top-11 right-0 hidden whitespace-nowrap rounded-full border border-border bg-bg px-3 py-1.5 text-xs font-medium text-heading shadow-card backdrop-blur-md group-hover:block">
               Ask the book brain →
             </span>
           )}
@@ -132,50 +132,29 @@ export function ChatWidget() {
             animate={reduced ? undefined : { opacity: 1, y: 0, scale: 1 }}
             exit={reduced ? undefined : { opacity: 0, y: 18, scale: 0.97 }}
             transition={{ type: "spring", stiffness: 340, damping: 30 }}
-            className="fixed z-[60] flex w-[min(100vw-1rem,420px)] max-w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-2xl border border-primary/25 bg-[rgba(5,8,18,0.94)] shadow-[0_0_60px_rgba(99,179,237,0.15),0_0_120px_rgba(159,122,234,0.08),0_32px_64px_rgba(0,0,0,0.65)] backdrop-blur-2xl bottom-[max(5.5rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))] right-[max(0.5rem,env(safe-area-inset-right,0px))] max-h-[min(560px,calc(100dvh-6rem))] h-[min(560px,calc(100dvh-6rem))] sm:right-6 sm:max-h-[min(620px,calc(100dvh-7rem))] sm:h-[min(580px,calc(100dvh-7rem))] md:bottom-[max(8rem,calc(7rem+env(safe-area-inset-bottom,0px)))]"
+            className="fixed z-[60] flex w-[min(100vw-1rem,420px)] max-w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-[0_8px_40px_rgba(139,90,43,0.18),0_32px_64px_rgba(0,0,0,0.12)] backdrop-blur-xl bottom-[max(5.5rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))] right-[max(0.5rem,env(safe-area-inset-right,0px))] max-h-[min(560px,calc(100dvh-6rem))] h-[min(560px,calc(100dvh-6rem))] sm:right-6 sm:max-h-[min(620px,calc(100dvh-7rem))] sm:h-[min(580px,calc(100dvh-7rem))] md:bottom-[max(8rem,calc(7rem+env(safe-area-inset-bottom,0px)))]"
             role="dialog"
             aria-modal="true"
             aria-label="ShelfAI chat"
           >
             {/* Ambient top glow inside panel */}
             <div
-              className="pointer-events-none absolute inset-x-0 top-0 h-32 opacity-50"
+              className="pointer-events-none absolute inset-x-0 top-0 h-32 opacity-40"
               style={{
                 background:
-                  "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,179,237,0.18) 0%, transparent 70%)",
-              }}
-              aria-hidden
-            />
-            {/* Subtle grid overlay */}
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.04]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(99,179,237,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,1) 1px, transparent 1px)",
-                backgroundSize: "32px 32px",
-                maskImage:
-                  "radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 80%)",
+                  "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,149,106,0.2) 0%, transparent 70%)",
               }}
               aria-hidden
             />
 
             {/* Header */}
-            <div className="relative z-10 overflow-hidden border-b border-primary/15 px-4 py-3.5">
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(125deg, rgba(99,179,237,0.18) 0%, transparent 45%), linear-gradient(300deg, rgba(159,122,234,0.12) 0%, transparent 50%)",
-                }}
-                aria-hidden
-              />
+            <div className="relative z-10 overflow-hidden border-b border-border px-4 py-3.5 bg-bg-secondary/60">
               <div className="relative flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-primary/35 bg-gradient-to-br from-primary/25 to-accent/15 text-primary shadow-[0_0_24px_rgba(99,179,237,0.3),inset_0_1px_0_rgba(255,255,255,0.12)]">
+                  <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-primary/35 bg-gradient-to-br from-primary/20 to-accent/15 text-primary shadow-[0_0_18px_rgba(139,90,43,0.2)]">
                     <Sparkles className="h-5 w-5" aria-hidden />
-                    {/* Pulse ring */}
                     <span
-                      className="absolute inset-0 rounded-2xl border border-primary/25"
+                      className="absolute inset-0 rounded-2xl border border-primary/20"
                       style={{ animation: reduced ? "none" : "chat-fab-glow-pulse 2.8s ease-in-out infinite" }}
                       aria-hidden
                     />
@@ -183,9 +162,9 @@ export function ChatWidget() {
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <div className="font-heading text-base font-semibold tracking-tight text-heading">ShelfAI</div>
-                      <span className="flex items-center gap-1 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400">
+                      <span className="flex items-center gap-1 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600">
                         <span
-                          className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+                          className="h-1.5 w-1.5 rounded-full bg-emerald-500"
                           style={{ animation: reduced ? "none" : "chat-fab-glow-pulse 1.8s ease-in-out infinite" }}
                           aria-hidden
                         />
@@ -199,7 +178,7 @@ export function ChatWidget() {
                   type="button"
                   aria-label="Close chat"
                   onClick={() => setOpen(false)}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-text-muted transition-all hover:border-primary/35 hover:bg-primary/10 hover:text-heading hover:shadow-[0_0_12px_rgba(99,179,237,0.15)]"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-surface text-text-muted transition-all hover:border-primary/40 hover:bg-primary/10 hover:text-heading"
                 >
                   <X className="h-4 w-4" aria-hidden />
                 </button>
@@ -219,16 +198,7 @@ export function ChatWidget() {
                   className="space-y-3"
                 >
                   {/* Welcome card */}
-                  <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/[0.08] via-transparent to-accent/[0.05] p-4">
-                    <div
-                      className="pointer-events-none absolute inset-0 opacity-[0.06]"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(rgba(99,179,237,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,1) 1px, transparent 1px)",
-                        backgroundSize: "24px 24px",
-                      }}
-                      aria-hidden
-                    />
+                  <div className="relative overflow-hidden rounded-2xl border border-border bg-bg-secondary/60 p-4">
                     <div className="relative">
                       <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80">
                         Quick asks
@@ -243,7 +213,7 @@ export function ChatWidget() {
                             type="button"
                             disabled={isStreaming}
                             onClick={() => onStarter(q)}
-                            className="group relative overflow-hidden rounded-xl border border-white/[0.07] bg-[rgba(6,10,22,0.6)] px-3 py-2.5 text-left text-sm leading-snug text-text transition-all hover:border-primary/35 hover:bg-[rgba(8,14,28,0.92)] hover:text-heading hover:shadow-[0_0_18px_rgba(99,179,237,0.1)] disabled:opacity-50"
+                            className="group relative overflow-hidden rounded-xl border border-border bg-bg px-3 py-2.5 text-left text-sm leading-snug text-text transition-all hover:border-primary/40 hover:bg-primary/5 hover:text-heading disabled:opacity-50"
                           >
                             <span
                               className="absolute left-0 top-0 h-full w-[2px] rounded-r bg-gradient-to-b from-primary to-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
@@ -258,7 +228,6 @@ export function ChatWidget() {
                       </div>
                     </div>
                   </div>
-
                 </motion.div>
               ) : null}
 
@@ -279,16 +248,16 @@ export function ChatWidget() {
                 </div>
               ) : null}
               {guestMessageCount >= UI.chat.guestNudgeAfterMessages ? (
-                <div className="rounded-xl border border-primary/20 bg-gradient-to-r from-primary/[0.07] to-accent/[0.05] px-3 py-2.5 text-xs text-text-muted">
+                <div className="rounded-xl border border-primary/20 bg-primary/5 px-3 py-2.5 text-xs text-text-muted">
                   <span className="font-medium text-heading">Level up:</span> create an account and your next obsession stays on your shelf.
                 </div>
               ) : null}
             </div>
 
             {/* Composer */}
-            <div className="relative z-10 border-t border-primary/15 bg-gradient-to-t from-[rgba(5,8,18,0.98)] via-[rgba(5,8,18,0.94)] to-transparent px-3 py-3 backdrop-blur-md sm:px-3.5">
-              <div className="group/composer rounded-xl p-[1px] shadow-[0_0_28px_rgba(99,179,237,0.1)] transition-shadow duration-300 [background:linear-gradient(135deg,rgba(99,179,237,0.5),rgba(99,179,237,0.1),rgba(159,122,234,0.4))] focus-within:shadow-[0_0_40px_rgba(99,179,237,0.2)] sm:rounded-2xl">
-                <div className="flex flex-col gap-1.5 rounded-xl bg-[rgba(6,10,22,0.96)] p-1.5 sm:flex-row sm:items-end sm:gap-2 sm:rounded-2xl sm:p-2">
+            <div className="relative z-10 border-t border-border bg-bg-secondary/60 px-3 py-3 sm:px-3.5">
+              <div className="group/composer rounded-xl border border-border bg-bg p-[1px] shadow-[0_0_20px_rgba(139,90,43,0.08)] transition-shadow duration-300 focus-within:border-primary/50 focus-within:shadow-[0_0_28px_rgba(139,90,43,0.14)] sm:rounded-2xl">
+                <div className="flex flex-col gap-1.5 rounded-xl bg-bg p-1.5 sm:flex-row sm:items-end sm:gap-2 sm:rounded-2xl sm:p-2">
                   <Textarea
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
@@ -305,7 +274,7 @@ export function ChatWidget() {
                   <Button
                     variant="primary"
                     size="md"
-                    className="h-10 w-full shrink-0 rounded-lg shadow-[0_0_20px_rgba(99,179,237,0.3)] transition-shadow hover:shadow-[0_0_32px_rgba(99,179,237,0.5)] sm:mb-px sm:h-10 sm:w-10 sm:min-w-[2.5rem] sm:rounded-xl sm:p-0"
+                    className="h-10 w-full shrink-0 rounded-lg transition-shadow sm:mb-px sm:h-10 sm:w-10 sm:min-w-[2.5rem] sm:rounded-xl sm:p-0"
                     loading={isStreaming}
                     onClick={() => void onSubmit()}
                     aria-label="Send message"
@@ -313,7 +282,7 @@ export function ChatWidget() {
                   />
                 </div>
               </div>
-              <p className="mt-1.5 text-center text-[10px] leading-tight text-input-placeholder sm:text-[11px]">
+              <p className="mt-1.5 text-center text-[10px] leading-tight text-text-muted sm:text-[11px]">
                 <span className="text-text-muted">Enter</span> to send ·{" "}
                 <span className="text-text-muted">Shift+Enter</span> new line
               </p>

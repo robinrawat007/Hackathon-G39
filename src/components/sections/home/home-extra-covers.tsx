@@ -1,4 +1,4 @@
-import { searchGoogleBooks } from "@/lib/google-books"
+import { searchKnowledgeBooks } from "@/lib/knowledge-books"
 import type { Book } from "@/types/book"
 
 import { HomeExtraCoversRail } from "./home-extra-covers-rail"
@@ -47,10 +47,8 @@ const HEADING_ID = "home-extra-covers-heading"
 
 /** Second catalog slice on the home page — different queries, merged & slider UI like Trending. */
 export async function HomeExtraCoversSection() {
-  const [awardWinners, literary] = await Promise.all([
-    searchGoogleBooks({ q: "award+winning+fiction+novel", maxResults: 20, startIndex: 0 }),
-    searchGoogleBooks({ q: "booker+prize+novel+fiction", maxResults: 20, startIndex: 0 }),
-  ])
+  const awardWinners = searchKnowledgeBooks({ q: "literary fiction historical", maxResults: 20, startIndex: 0 })
+  const literary = searchKnowledgeBooks({ q: "mystery thriller award", maxResults: 20, startIndex: 0 })
 
   const books = dedupeById([...awardWinners, ...literary]).slice(0, 36)
   if (books.length < 4) return null
@@ -63,8 +61,8 @@ export async function HomeExtraCoversSection() {
           More covers worth a click
         </h2>
         <p className="mt-2 max-w-xl text-sm text-text-muted">
-          Two catalog passes merged into one long rail — arrows, keyboard, swipe, and the same gentle auto-advance as
-          Trending.
+          Two passes over your knowledge base merged into one rail — arrows, keyboard, swipe, and the same gentle
+          auto-advance as Trending.
         </p>
       </div>
 

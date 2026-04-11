@@ -47,9 +47,17 @@ export function useChat(): UseChatState {
   const [guestMessageCount, setGuestMessageCount] = React.useState(0)
   const messagesRef = React.useRef<ChatMessage[]>([])
   const streamReceivedTokenRef = React.useRef(false)
+  const abortRef = React.useRef<AbortController | null>(null)
+
   React.useEffect(() => {
     messagesRef.current = messages
   }, [messages])
+
+  React.useEffect(() => {
+    return () => {
+      abortRef.current?.abort()
+    }
+  }, [])
 
   React.useEffect(() => {
     try {
@@ -80,6 +88,10 @@ export function useChat(): UseChatState {
 
     setError(null)
     setIsStreaming(true)
+
+    abortRef.current?.abort()
+    const ac = new AbortController()
+    abortRef.current = ac
 
     const user: ChatMessage = { role: "user", content: safeContent, timestamp: nowIso() }
     const assistant: ChatMessage = { role: "assistant", content: "", timestamp: nowIso() }
@@ -116,6 +128,7 @@ export function useChat(): UseChatState {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: ac.signal,
       })
       if (!res.ok || !res.body) {
         const text = await res.text().catch(() => "")
@@ -165,6 +178,11 @@ export function useChat(): UseChatState {
         }
       }
     } catch (e) {
+      if (e instanceof Error && e.name === "AbortError") {
+        if (!streamReceivedTokenRef.current) rollbackOptimistic()
+        setIsStreaming(false)
+        return
+      }
       rollbackOptimistic()
       setError(e instanceof Error ? e.message : "Unknown error")
     } finally {

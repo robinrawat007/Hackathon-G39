@@ -9,7 +9,7 @@ export function ChatBubble({ role, content }: { role: "user" | "assistant"; cont
   return (
     <div className={cn("flex w-full items-end gap-2", isUser ? "justify-end" : "justify-start")}>
       {!isUser && (
-        <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/20 to-accent/15 shadow-[0_0_12px_rgba(99,179,237,0.2)]">
+        <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/20 to-accent/15 shadow-[0_0_10px_rgba(139,90,43,0.18)]">
           <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden />
         </span>
       )}
@@ -18,8 +18,8 @@ export function ChatBubble({ role, content }: { role: "user" | "assistant"; cont
         className={cn(
           "max-w-[82%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
           isUser
-            ? "rounded-br-sm bg-gradient-to-br from-primary via-sky-400 to-accent/80 text-heading shadow-[0_0_20px_rgba(99,179,237,0.35),0_4px_12px_rgba(0,0,0,0.3)]"
-            : "rounded-bl-sm border border-primary/15 bg-[rgba(6,10,22,0.88)] text-text shadow-[0_0_16px_rgba(99,179,237,0.07),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm"
+            ? "rounded-br-sm bg-gradient-to-br from-primary to-accent/80 text-white shadow-[0_4px_16px_rgba(139,90,43,0.3)]"
+            : "rounded-bl-sm border border-border bg-bg text-text shadow-[0_2px_12px_rgba(139,90,43,0.08)]"
         )}
       >
         {content ? (
@@ -30,7 +30,7 @@ export function ChatBubble({ role, content }: { role: "user" | "assistant"; cont
       </div>
 
       {isUser && (
-        <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08]">
+        <span className="mb-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl border border-border bg-surface">
           <User className="h-3.5 w-3.5 text-text-muted" aria-hidden />
         </span>
       )}

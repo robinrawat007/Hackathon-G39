@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { BookOpen, Sparkles } from "lucide-react"
 
-import { APP_TAGLINE } from "@/lib/constants"
+import { FooterAccountSection } from "@/components/layout/footer-account-section"
+import { APP_NAME, APP_TAGLINE, FOOTER_FEATURE_STRIP } from "@/lib/constants"
 
 const linkCol = "space-y-3"
 const linkHeading = "text-xs font-semibold uppercase tracking-[0.12em] text-primary/90"
@@ -14,7 +15,7 @@ export function Footer() {
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 179, 237, 0.12), transparent 55%), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(159, 122, 234, 0.08), transparent 50%)",
+            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196, 149, 106, 0.12), transparent 55%), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139, 90, 43, 0.07), transparent 50%)",
         }}
         aria-hidden
       />
@@ -23,15 +24,15 @@ export function Footer() {
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-sm space-y-4">
               <div className="flex items-center gap-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary">
                   <BookOpen className="h-4 w-4" aria-hidden />
                 </span>
-                <span className="font-heading text-lg font-semibold text-gradient-hero">ShelfAI</span>
+                <span className="font-heading text-lg font-semibold text-gradient-hero">{APP_NAME}</span>
               </div>
               <p className="text-sm leading-relaxed text-text-muted">{APP_TAGLINE}</p>
-              <p className="flex items-center gap-2 text-xs text-text-muted">
-                <Sparkles className="h-3.5 w-3.5 text-accent" aria-hidden />
-                AI-powered picks · Shelves · Crew
+              <p className="flex items-start gap-2 text-xs leading-snug text-text-muted">
+                <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" aria-hidden />
+                <span>{FOOTER_FEATURE_STRIP}</span>
               </p>
             </div>
 
@@ -53,35 +54,13 @@ export function Footer() {
                 <Link className={linkClass} href="/community">
                   Feed
                 </Link>
-                <Link className={linkClass} href="/#how-it-works">
-                  How it works
-                </Link>
               </div>
-              <div className={linkCol}>
-                <div className={linkHeading}>Account</div>
-                <Link className={linkClass} href="/auth/login">
-                  Sign in
-                </Link>
-                <Link className={linkClass} href="/auth/signup">
-                  Create account
-                </Link>
-                <Link className={linkClass} href="/settings">
-                  Settings
-                </Link>
-              </div>
+              <FooterAccountSection />
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-4 border-t border-border/60 pt-8 text-sm text-text-muted md:flex-row md:items-center md:justify-between">
+          <div className="mt-12 border-t border-border/60 pt-8 text-sm text-text-muted">
             <div>© {new Date().getFullYear()} ShelfAI</div>
-            <nav className="flex flex-wrap gap-x-8 gap-y-2" aria-label="Legal">
-              <Link className="transition-colors hover:text-heading" href="/legal/privacy">
-                Privacy
-              </Link>
-              <Link className="transition-colors hover:text-heading" href="/legal/terms">
-                Terms
-              </Link>
-            </nav>
           </div>
         </div>
       </div>

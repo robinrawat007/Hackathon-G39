@@ -3,6 +3,8 @@
 import * as React from "react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
+import { ShelfSync } from "@/components/shelf/shelf-sync"
+
 const STALE_TIME_BOOKS_MS = 5 * 60 * 1000
 
 function createQueryClient() {
@@ -18,6 +20,11 @@ function createQueryClient() {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [client] = React.useState(createQueryClient)
-  return <QueryClientProvider client={client}>{children}</QueryClientProvider>
+  return (
+    <QueryClientProvider client={client}>
+      <ShelfSync />
+      {children}
+    </QueryClientProvider>
+  )
 }
 

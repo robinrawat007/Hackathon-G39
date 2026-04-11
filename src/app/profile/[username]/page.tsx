@@ -1,12 +1,87 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { JsonLd } from "@/components/seo/json-ld"
 import { absoluteUrl } from "@/lib/site"
+import { createServerSupabaseClient } from "@/lib/supabase/server"
+
+async function fetchProfile(handle: string) {
+  const supabase = createServerSupabaseClient()
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("id, username, display_name, bio, avatar_url, reading_goal, created_at")
+    .eq("username", handle)
+    .maybeSingle()
+
+  if (!profile) return null
+
+  const userId = profile.id as string
+
+  // Stats: books read, avg rating from reviews, follower count
+  const [{ count: booksRead }, { count: followers }, { data: reviews }, { data: lists }, { data: recentShelf }] =
+    await Promise.all([
+      supabase.from("shelf_items").select("*", { count: "exact", head: true }).eq("user_id", userId).eq("status", "read"),
+      supabase.from("follows").select("*", { count: "exact", head: true }).eq("following_id", userId),
+      supabase
+        .from("reviews")
+        .select("rating, body, created_at, books(title, slug)")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false })
+        .limit(3),
+      supabase
+        .from("book_lists")
+        .select("id, title, book_ids")
+        .eq("user_id", userId)
+        .eq("is_public", true)
+        .order("created_at", { ascending: false })
+        .limit(3),
+      supabase
+        .from("shelf_items")
+        .select("status, added_at, books(title, slug)")
+        .eq("user_id", userId)
+        .order("added_at", { ascending: false })
+        .limit(5),
+    ])
+
+  const allRatings = (reviews ?? []).map((r) => r.rating as number).filter(Boolean)
+  const avgRating =
+    allRatings.length > 0
+      ? Math.round((allRatings.reduce((s, r) => s + r, 0) / allRatings.length) * 10) / 10
+      : null
+
+  return {
+    profile,
+    stats: {
+      booksRead: booksRead ?? 0,
+      avgRating,
+      followers: followers ?? 0,
+    },
+    reviews: (reviews ?? []).map((r) => {
+      const book = r.books as { title?: string; slug?: string } | null
+      return { rating: r.rating as number, body: r.body as string, bookTitle: book?.title ?? "", bookSlug: book?.slug ?? "" }
+    }),
+    lists: (lists ?? []).map((l) => ({
+      id: l.id as string,
+      title: l.title as string,
+      bookCount: Array.isArray(l.book_ids) ? l.book_ids.length : 0,
+    })),
+    recentActivity: (recentShelf ?? []).map((item) => {
+      const book = item.books as { title?: string } | null
+      const title = book?.title ?? "a book"
+      const status = item.status as string
+      const label =
+        status === "read" ? `Finished "${title}"` :
+        status === "reading" ? `Started reading "${title}"` :
+        `Added "${title}" to Want to Read`
+      return { label, addedAt: item.added_at as string }
+    }),
+  }
+}
 
 export async function generateMetadata(props: { params: Promise<{ username: string }> }): Promise<Metadata> {
   const { username } = await props.params
@@ -21,17 +96,19 @@ export async function generateMetadata(props: { params: Promise<{ username: stri
       url: absoluteUrl(`/profile/${encodeURIComponent(handle)}`),
       type: "website",
     },
-    twitter: {
-      card: "summary",
-      title: `@${handle} · ShelfAI`,
-    },
+    twitter: { card: "summary", title: `@${handle} · ShelfAI` },
   }
 }
 
 export default async function ProfilePage(props: { params: Promise<{ username: string }> }) {
   const { username } = await props.params
   const handle = username.replace(/^@/, "")
+  const result = await fetchProfile(handle)
 
+  if (!result) notFound()
+
+  const { profile, stats, reviews, lists, recentActivity } = result
+  const displayName = (profile.display_name as string | null) ?? `@${handle}`
   const profileUrl = absoluteUrl(`/profile/${encodeURIComponent(handle)}`)
 
   return (
@@ -42,80 +119,103 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
           "@context": "https://schema.org",
           "@type": "ProfilePage",
           url: profileUrl,
-          name: `@${handle}`,
+          name: displayName,
           description: `Public reader profile for @${handle}.`,
-          mainEntity: {
-            "@type": "Person",
-            name: `@${handle}`,
-            identifier: handle,
-          },
+          mainEntity: { "@type": "Person", name: displayName, identifier: handle },
         }}
       />
       <Navbar />
       <main id="main" className="container flex-1 pt-24 pb-16">
-        <div className="rounded-md border border-border bg-surface p-8 shadow-card">
+        <div className="rounded-2xl border border-border/80 bg-surface/60 p-8 shadow-card backdrop-blur-sm">
+          {/* Header */}
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h1 className="font-heading text-h1 text-heading">@{handle}</h1>
-              <p className="mt-2 max-w-xl text-sm text-text-muted">
-                Public profiles will sync with your ShelfAI account when signed in. Below is sample layout and copy — no
-                live account data yet.
-              </p>
-            </div>
-            <Badge variant="secondary">Public preview</Badge>
-          </div>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <div className="rounded-md border border-border bg-transparent-secondary p-6">
-              <div className="text-sm text-text-muted">Books read (sample)</div>
-              <div className="mt-2 font-heading text-h2 text-heading">42</div>
-            </div>
-            <div className="rounded-md border border-border bg-transparent-secondary p-6">
-              <div className="text-sm text-text-muted">Avg rating given</div>
-              <div className="mt-2 font-heading text-h2 text-heading">4.2</div>
-            </div>
-            <div className="rounded-md border border-border bg-transparent-secondary p-6">
-              <div className="text-sm text-text-muted">Followers (sample)</div>
-              <div className="mt-2 font-heading text-h2 text-heading">128</div>
+              <h1 className="font-heading text-h1 text-heading">{displayName}</h1>
+              <div className="mt-0.5 text-sm text-text-muted">@{handle}</div>
+              {profile.bio ? (
+                <p className="mt-2 max-w-xl text-sm text-text-muted">{profile.bio as string}</p>
+              ) : null}
             </div>
           </div>
 
+          {/* Stats */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-xl border border-border/60 bg-bg-secondary/80 p-5">
+              <div className="text-xs text-text-muted">Books read</div>
+              <div className="mt-1 font-heading text-h2 text-heading tabular-nums">{stats.booksRead}</div>
+            </div>
+            <div className="rounded-xl border border-border/60 bg-bg-secondary/80 p-5">
+              <div className="text-xs text-text-muted">Avg rating given</div>
+              <div className="mt-1 font-heading text-h2 text-heading tabular-nums">
+                {stats.avgRating !== null ? `${stats.avgRating}★` : "—"}
+              </div>
+            </div>
+            <div className="rounded-xl border border-border/60 bg-bg-secondary/80 p-5">
+              <div className="text-xs text-text-muted">Followers</div>
+              <div className="mt-1 font-heading text-h2 text-heading tabular-nums">{stats.followers}</div>
+            </div>
+          </div>
+
+          {/* Lists + Activity */}
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
             <div>
-              <div className="font-heading text-h3 text-heading">Recent lists</div>
-              <ul className="mt-4 space-y-3 text-sm">
-                <li>
-                  <Link href="/community/lists/1" className="text-text-muted hover:text-heading">
-                    Short sci‑fi that still hits hard
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/community/lists/2" className="text-text-muted hover:text-heading">
-                    Cozy mysteries for late nights
-                  </Link>
-                </li>
-              </ul>
+              <div className="font-heading text-h3 text-heading">Public lists</div>
+              {lists.length === 0 ? (
+                <p className="mt-3 text-sm text-text-muted">No public lists yet.</p>
+              ) : (
+                <ul className="mt-4 space-y-3 text-sm">
+                  {lists.map((l) => (
+                    <li key={l.id}>
+                      <Link href={`/community/lists/${l.id}`} className="text-text-muted hover:text-heading underline-offset-2 hover:underline">
+                        {l.title}
+                      </Link>
+                      <span className="ml-2 text-xs text-text-muted">· {l.bookCount} book{l.bookCount !== 1 ? "s" : ""}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
+
             <div>
-              <div className="font-heading text-h3 text-heading">Activity</div>
-              <ul className="mt-4 space-y-3 text-sm text-text-muted">
-                <li>Finished <span className="text-heading">Project Hail Mary</span> · 5★</li>
-                <li>Added <span className="text-heading">Babel</span> to Want to Read</li>
-                <li>Posted a review on <span className="text-heading">Tomorrow, and Tomorrow, and Tomorrow</span></li>
-              </ul>
+              <div className="font-heading text-h3 text-heading">Recent activity</div>
+              {recentActivity.length === 0 ? (
+                <p className="mt-3 text-sm text-text-muted">No activity yet.</p>
+              ) : (
+                <ul className="mt-4 space-y-3 text-sm text-text-muted">
+                  {recentActivity.map((a, i) => (
+                    <li key={i}>{a.label}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
+
+          {/* Recent reviews */}
+          {reviews.length > 0 && (
+            <div className="mt-10">
+              <div className="font-heading text-h3 text-heading">Recent reviews</div>
+              <div className="mt-4 space-y-3">
+                {reviews.map((r, i) => (
+                  <div key={i} className="rounded-xl border border-border/60 bg-bg-secondary/80 p-4">
+                    <div className="flex items-center gap-2">
+                      <Link href={`/book/${r.bookSlug}`} className="text-sm font-medium text-heading hover:underline">
+                        {r.bookTitle}
+                      </Link>
+                      <span className="text-xs text-primary">{r.rating}★</span>
+                    </div>
+                    <p className="mt-1 text-sm text-text-muted line-clamp-2">{r.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link href="/community">
-              <Button variant="secondary" size="sm">
-                Community feed
-              </Button>
+              <Button variant="secondary" size="sm">Community feed</Button>
             </Link>
             <Link href="/browse">
-              <Button variant="ghost" size="sm">
-                Browse books
-              </Button>
+              <Button variant="ghost" size="sm">Browse books</Button>
             </Link>
           </div>
         </div>

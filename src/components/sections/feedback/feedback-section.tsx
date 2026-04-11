@@ -55,15 +55,15 @@ export function FeedbackSection() {
           transition={{ duration: 0.45 }}
           className="rounded-2xl border border-border/70 bg-surface/40 p-8 shadow-card backdrop-blur-md md:p-10"
         >
-          <h2 className="font-heading text-h2 text-heading">Roast us (nicely)</h2>
+          <h2 className="font-heading text-h2 text-heading">Send us feedback</h2>
           <p className="mt-2 text-sm leading-relaxed text-text-muted">
-            Found a rough edge? Got a feature that would make ShelfAI unstoppable? We read every note — the good, the
-            spicy, the “why isn’t this a button yet?”
+            Spotted a bug, a confusing screen, or an idea that would make ShelfAI better? Tell us. We read every message
+            and use it to improve the product.
           </p>
 
           {status === "success" ? (
             <div className="mt-6 rounded-xl border border-success/35 bg-success/10 px-4 py-3 text-sm text-success" role="status">
-              You’re heard. Thanks for making this thing sharper.
+              Thank you — your feedback was sent. We appreciate you taking the time.
             </div>
           ) : (
             <form onSubmit={(e) => void onSubmit(e)} className="mt-8 space-y-5">
@@ -72,7 +72,14 @@ export function FeedbackSection() {
                   <label htmlFor="fb-name" className="text-sm font-medium text-heading">
                     Name <span className="font-normal text-text-muted">(optional)</span>
                   </label>
-                  <Input id="fb-name" className="mt-2" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" />
+                  <Input
+                    id="fb-name"
+                    name="name"
+                    className="mt-2"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    autoComplete="name"
+                  />
                 </div>
                 <div>
                   <label htmlFor="fb-email" className="text-sm font-medium text-heading">
@@ -80,32 +87,43 @@ export function FeedbackSection() {
                   </label>
                   <Input
                     id="fb-email"
+                    name="email"
                     type="email"
                     className="mt-2"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="email"
+                    inputMode="email"
                   />
                 </div>
               </div>
               <div>
                 <label htmlFor="fb-msg" className="text-sm font-medium text-heading">
-                  What’s on your mind?
+                  Your feedback <span className="text-error">*</span>
                 </label>
+                <p id="fb-msg-hint" className="mt-1 text-xs text-text-muted">
+                  A sentence or two is enough. Include steps to reproduce if something broke.
+                </p>
                 <Textarea
                   id="fb-msg"
+                  name="message"
                   required
                   minLength={10}
                   rows={5}
                   className="mt-2"
-                  placeholder="Be specific — we love receipts."
+                  placeholder="Example: On Browse, when I filter by Sci-Fi and change the sort order, the list jumps back to page 1 without warning."
+                  aria-describedby="fb-msg-hint"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
               </div>
-              {errorMsg ? <p className="text-sm text-error">{errorMsg}</p> : null}
+              {errorMsg ? (
+                <p className="text-sm text-error" role="alert">
+                  {errorMsg}
+                </p>
+              ) : null}
               <Button type="submit" variant="primary" size="md" loading={status === "loading"}>
-                Ship it →
+                Submit feedback
               </Button>
             </form>
           )}

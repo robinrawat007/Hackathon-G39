@@ -18,7 +18,7 @@ function requestOpenChat() {
 }
 
 const HERO_CAPSULES = [
-  "Live catalog sync",
+  "Curated knowledge base",
   "AI that gets your taste",
   "Readers who get it",
 ] as const
@@ -27,7 +27,7 @@ export function HeroSection() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section className="relative min-h-[calc(100dvh-4rem)] pt-24 sm:pt-28 md:min-h-[calc(100vh-64px)] md:pt-32">
+    <section className="relative pt-24 pb-10 sm:pt-28 sm:pb-12 md:pt-32 md:pb-14">
       <div className="absolute inset-0 -z-10">
         <HeroNeonBackdrop />
       </div>
@@ -51,8 +51,8 @@ export function HeroSection() {
               transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 }}
               className="mt-4 max-w-2xl text-body text-text-muted"
             >
-              Your next obsession is one smart conversation away — AI-powered picks, a killer community, and shelves that
-              actually get finished.
+              Your next read is one conversation away — recommendations from a real catalog, shelves you control, and
+              readers who share your taste.
             </motion.p>
 
             <motion.div
@@ -73,21 +73,6 @@ export function HeroSection() {
                   </Button>
                 </Link>
               </motion.div>
-              <motion.div
-                className="w-full sm:w-auto sm:min-w-0 sm:flex-1"
-                whileHover={reduced ? undefined : { scale: 1.02 }}
-                whileTap={reduced ? undefined : { scale: 0.98 }}
-              >
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  fullWidth
-                  className="sm:w-auto sm:min-w-[12rem] border-primary/30 hover:border-primary/60 hover:shadow-primary-glow"
-                  onClick={requestOpenChat}
-                >
-                  Ask ShelfAI →
-                </Button>
-              </motion.div>
             </motion.div>
 
             <motion.ul
@@ -107,20 +92,20 @@ export function HeroSection() {
                   transition={{ delay: 0.22 + i * 0.07, duration: 0.4, ease: "easeOut" }}
                 >
                   <motion.span
-                    className="group relative isolate inline-flex cursor-default select-none rounded-full p-[1px] shadow-[0_0_18px_rgba(99,179,237,0.1)] transition-shadow duration-300 group-hover:shadow-[0_0_32px_rgba(99,179,237,0.28)]"
+                    className="group relative isolate inline-flex cursor-default select-none rounded-full p-[1px] shadow-[0_0_18px_rgba(139,90,43,0.1)] transition-shadow duration-300 group-hover:shadow-[0_0_32px_rgba(139,90,43,0.22)]"
                     whileHover={reduced ? undefined : { y: -3, scale: 1.03 }}
                     whileTap={reduced ? undefined : { scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 420, damping: 24 }}
                   >
                     <span
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/65 via-accent/50 to-cyan-400/40 opacity-75 transition-opacity duration-300 group-hover:opacity-100"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/50 via-accent/40 to-accent/30 opacity-75 transition-opacity duration-300 group-hover:opacity-100"
                       aria-hidden
                     />
                     <span
-                      className="relative block rounded-full border border-white/[0.14] bg-[rgba(6,10,20,0.82)] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slate-200 backdrop-blur-md transition-colors duration-300 group-hover:border-primary/40 group-hover:text-heading sm:px-4 sm:py-2 sm:text-[13px]"
+                      className="relative block rounded-full border border-primary/20 bg-bg/90 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-text backdrop-blur-md transition-colors duration-300 group-hover:border-primary/40 group-hover:text-heading sm:px-4 sm:py-2 sm:text-[13px]"
                       style={{
                         boxShadow:
-                          "inset 0 1px 0 rgba(255,255,255,0.11), inset 0 -1px 0 rgba(0,0,0,0.4), 0 0 0 1px rgba(99,179,237,0.1)",
+                          "inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.06), 0 0 0 1px rgba(139,90,43,0.1)",
                       }}
                     >
                       {label}
@@ -137,7 +122,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
+      <div className="pointer-events-none mt-8 flex justify-center md:mt-10">
         <motion.div
           initial={reduced ? false : { opacity: 0, y: 8 }}
           whileInView={reduced ? undefined : { opacity: 0.55, y: 0 }}

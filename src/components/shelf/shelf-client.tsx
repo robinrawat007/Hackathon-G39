@@ -26,7 +26,7 @@ function Empty({ title, subtitle }: { title: string; subtitle: string }) {
 
 export function ShelfClient() {
   const items = useShelfStore((s) => s.items)
-  const reset = useShelfStore((s) => s.reset)
+  const clearAll = useShelfStore((s) => s.clearAll)
   const updateBookStatus = useShelfStore((s) => s.updateBookStatus)
 
   const want = React.useMemo(
@@ -49,7 +49,7 @@ export function ShelfClient() {
           className="pointer-events-none absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(99,179,237,0.2), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(159,122,234,0.15), transparent)",
+              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(196,149,106,0.16), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139,90,43,0.1), transparent)",
           }}
           aria-hidden
         />
@@ -57,10 +57,16 @@ export function ShelfClient() {
           <div>
             <h1 className="font-heading text-h1 text-gradient-hero">Your shelf, your rules</h1>
             <p className="mt-2 max-w-2xl text-sm text-text-muted">
-              Stack Want · Reading · Done. Local for now — sign in when sync drops and this shelf travels with you.
+              Stack Want · Reading · Done. Books come from the catalog; your picks save to your account when you&apos;re signed in.
             </p>
           </div>
-          <Button variant="ghost" size="sm" type="button" onClick={() => reset()} className="shrink-0 self-start md:self-end">
+          <Button
+            variant="ghost"
+            size="sm"
+            type="button"
+            onClick={() => void clearAll()}
+            className="shrink-0 self-start md:self-end"
+          >
             Clear shelf
           </Button>
         </div>

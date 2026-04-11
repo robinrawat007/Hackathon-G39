@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { GENRES, MOODS } from "@/lib/constants"
+import { GENRES } from "@/lib/constants"
 import { useFiltersStore } from "@/lib/stores/filters-store"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -38,12 +38,6 @@ export function FiltersSidebar() {
     setPartial({ genres: next })
   }
 
-  const toggleMood = (slug: string) => {
-    const { moods, setPartial } = useFiltersStore.getState()
-    const next = moods.includes(slug) ? moods.filter((x) => x !== slug) : [...moods, slug]
-    setPartial({ moods: next })
-  }
-
   return (
     <aside className="glass-card sticky top-24 rounded-2xl border border-border/60 p-5 shadow-card backdrop-blur-md">
       <div className="flex items-center justify-between">
@@ -64,29 +58,9 @@ export function FiltersSidebar() {
         </div>
 
         <div>
-          <div className="text-sm font-medium text-heading">Mood</div>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {MOODS.map((m) => (
-              <button
-                key={m.slug}
-                type="button"
-                onClick={() => toggleMood(m.slug)}
-                className={`rounded-full px-3 py-2 text-sm border ${
-                  filters.moods.includes(m.slug)
-                    ? "border-primary bg-primary text-heading"
-                    : "border-border bg-bg-secondary text-text"
-                }`}
-              >
-                <span aria-hidden="true">{m.emoji}</span> {m.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div>
           <div className="text-sm font-medium text-heading">Era</div>
           <select
-            className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 text-sm text-text"
+            className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
             value={filters.era}
             onChange={(e) => filters.setPartial({ era: e.target.value as typeof filters.era })}
           >
@@ -118,28 +92,28 @@ export function FiltersSidebar() {
           <div className="mt-2 grid grid-cols-2 gap-2">
             <input
               type="number"
-              className="h-11 rounded-md border border-border bg-bg-secondary px-3 text-sm text-text"
+              className="h-11 rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
               value={filters.pageCountRange[0]}
               onChange={(e) => filters.setPartial({ pageCountRange: [Number(e.target.value), filters.pageCountRange[1]] })}
               aria-label="Minimum pages"
             />
             <input
               type="number"
-              className="h-11 rounded-md border border-border bg-bg-secondary px-3 text-sm text-text"
+              className="h-11 rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
               value={filters.pageCountRange[1]}
               onChange={(e) => filters.setPartial({ pageCountRange: [filters.pageCountRange[0], Number(e.target.value)] })}
               aria-label="Maximum pages"
             />
           </div>
           <div className="mt-1 text-sm text-text-muted">
-            {filters.pageCountRange[0]}–{filters.pageCountRange[1]} pages
+            {filters.pageCountRange[0]}–{filters.pageCountRange[1] >= 9999 ? "∞" : filters.pageCountRange[1]} pages
           </div>
         </div>
 
         <div>
           <div className="text-sm font-medium text-heading">Language</div>
           <select
-            className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 text-sm text-text"
+            className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
             value={filters.language}
             onChange={(e) => filters.setPartial({ language: e.target.value })}
           >
@@ -153,7 +127,7 @@ export function FiltersSidebar() {
         </div>
 
         <div className="pt-2">
-          <Badge variant="secondary">{filters.genres.length + filters.moods.length} active filters</Badge>
+          <Badge variant="secondary">{filters.genres.length + filters.moods.length} active filter{filters.genres.length + filters.moods.length !== 1 ? "s" : ""}</Badge>
         </div>
       </div>
     </aside>

@@ -103,7 +103,7 @@ export function OnboardingWizard() {
           className="pointer-events-none absolute inset-0 opacity-40"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(99,179,237,0.15), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(159,122,234,0.12), transparent)",
+              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(196,149,106,0.14), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139,90,43,0.1), transparent)",
           }}
           aria-hidden
         />
@@ -115,7 +115,7 @@ export function OnboardingWizard() {
           </div>
           <div className="h-2 w-full max-w-[200px] overflow-hidden rounded-full bg-bg-secondary sm:w-40">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-primary to-accent shadow-[0_0_12px_rgba(99,179,237,0.45)]"
+              className="h-full rounded-full bg-gradient-to-r from-primary to-accent shadow-[0_0_12px_rgba(139,90,43,0.3)]"
               initial={false}
               animate={{ width: `${progress * 100}%` }}
               transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 200, damping: 26 }}
@@ -168,7 +168,7 @@ export function OnboardingWizard() {
                             onClick={() => setBookRating(b.id, o.key)}
                             className={`rounded-lg border px-2 py-2 text-xs transition-all duration-200 sm:px-3 sm:text-sm ${
                               current === o.key
-                                ? "border-primary bg-primary text-heading shadow-[0_0_14px_rgba(99,179,237,0.35)]"
+                                ? "border-primary bg-primary text-white shadow-[0_0_12px_rgba(139,90,43,0.28)]"
                                 : "border-border/80 bg-surface/90 text-text hover:border-primary/40"
                             }`}
                           >
@@ -205,7 +205,7 @@ export function OnboardingWizard() {
                       onClick={() => toggleMood(m.slug)}
                       className={`rounded-xl border px-4 py-4 text-left transition-shadow ${
                         active
-                          ? "border-primary bg-primary text-heading shadow-[0_0_20px_rgba(99,179,237,0.2)]"
+                          ? "border-primary bg-primary text-white shadow-[0_0_14px_rgba(139,90,43,0.22)]"
                           : "border-border/80 bg-bg-secondary/80 text-text hover:border-primary/30"
                       }`}
                     >
@@ -242,7 +242,7 @@ export function OnboardingWizard() {
                       onClick={() => toggleGoal(g.slug)}
                       className={`rounded-xl border px-4 py-4 text-left transition-shadow ${
                         active
-                          ? "border-primary bg-primary text-heading shadow-[0_0_20px_rgba(99,179,237,0.2)]"
+                          ? "border-primary bg-primary text-white shadow-[0_0_14px_rgba(139,90,43,0.22)]"
                           : "border-border/80 bg-bg-secondary/80 text-text hover:border-primary/30"
                       }`}
                     >

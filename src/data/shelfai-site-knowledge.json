@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "product": {
+    "name": "ShelfAI",
+    "tagline": "Your shelf. Your taste. Your AI.",
+    "summary": "ShelfAI is a book discovery web app with a warm, editorial feel. It combines a curated catalog (grounded in a local knowledge base), personalized onboarding, shelves you can organize, community areas to explore lists and conversations, and an AI chat that recommends real titles from the catalog instead of inventing books."
+  },
+  "designAndTone": {
+    "visual": "Light, warm palette (cream, soft browns, gentle gradients), serif-style headings for a literary feel, and subtle motion on key sections.",
+    "voice": "Friendly, concise, and honest about what the product can do. Recommendations explain why a title fits; the assistant does not fake metadata."
+  },
+  "mainUserJourneys": [
+    {
+      "name": "Home",
+      "path": "/",
+      "whatYouSee": "Hero, featured books, mood strips, and calls-to-action toward browsing, onboarding, and signing in."
+    },
+    {
+      "name": "Browse catalog",
+      "path": "/browse",
+      "whatYouSee": "Filter and paginate the curated catalog by genre, mood, language, and more. Every listed book exists in the app’s knowledge base."
+    },
+    {
+      "name": "Book detail",
+      "path": "/book/[slug]",
+      "whatYouSee": "Synopsis, ratings, genres, similar titles, optional reviews UI, and a shelf control to mark Want to read / Reading / Read when signed in."
+    },
+    {
+      "name": "My shelf",
+      "path": "/shelf",
+      "whatYouSee": "Your personal reading list with statuses. When you are signed in, shelf choices can sync to your account so they persist across sessions."
+    },
+    {
+      "name": "Taste profile (onboarding)",
+      "path": "/onboarding",
+      "whatYouSee": "A short wizard to capture reading tastes and goals so recommendations and home content feel more relevant."
+    },
+    {
+      "name": "Dashboard",
+      "path": "/dashboard",
+      "whatYouSee": "A signed-in overview: activity, recommendations, and shortcuts into the rest of the app."
+    },
+    {
+      "name": "Community",
+      "path": "/community",
+      "whatYouSee": "Community feed and social discovery; paths to reader lists and shared reading energy."
+    },
+    {
+      "name": "Community lists",
+      "path": "/community/lists",
+      "whatYouSee": "Browse themed lists; individual lists live at /community/lists/[id]."
+    },
+    {
+      "name": "About ShelfAI",
+      "path": "/about",
+      "whatYouSee": "Mission, values, and how ShelfAI thinks about taste, transparency, and community."
+    },
+    {
+      "name": "Account & settings",
+      "path": "/settings",
+      "whatYouSee": "Profile and preferences for signed-in users."
+    },
+    {
+      "name": "Notifications",
+      "path": "/notifications",
+      "whatYouSee": "In-app notices about recommendations, shelf activity, and community signals (where enabled)."
+    },
+    {
+      "name": "Reading analytics",
+      "path": "/analytics",
+      "whatYouSee": "Charts and stats about reading patterns for signed-in users."
+    },
+    {
+      "name": "Public profiles",
+      "path": "/profile/[username]",
+      "whatYouSee": "A reader-facing profile URL when profiles are available."
+    },
+    {
+      "name": "Legal",
+      "paths": ["/legal/privacy", "/legal/terms"],
+      "whatYouSee": "Privacy policy and terms of use."
+    },
+    {
+      "name": "Auth",
+      "paths": ["/auth/login", "/auth/signup"],
+      "whatYouSee": "Sign-in and account creation flows. The floating chat and shelf saving generally expect a signed-in session for anything that writes to your account."
+    }
+  ],
+  "shelfAiChat": {
+    "whatItIs": "A floating assistant on the site that helps you pick books using the same curated catalog as the rest of ShelfAI.",
+    "howItWorks": "Your recent messages are used to search the knowledge base for matching titles. The assistant should recommend books that appear in the catalog snippet provided to it and can point you to paths like /book/<slug>.",
+    "limitations": "It will not invent books, authors, or ratings. If nothing in the catalog fits, it should say so and still offer general reading guidance.",
+    "starters": "Example prompts are suggested when the chat is empty (e.g. quick mood-based or comp-title asks)."
+  },
+  "accountAndPrivacy": {
+    "signIn": "Signing in unlocks saving shelf status, dashboard, settings, notifications, and other account-backed features.",
+    "catalogIntegrity": "Titles come from ShelfAI’s curated knowledge base; arbitrary user-typed books are not added to the shared catalog from the shelf API.",
+    "dataPhilosophy": "Share only what you are comfortable making part of your reader profile; see /legal/privacy for details."
+  },
+  "valuesFromAbout": [
+    "Recommendations are grounded in a real catalog — traceable picks, not hallucinated bestsellers.",
+    "Taste matters more than raw engagement metrics.",
+    "Community features connect readers with overlapping taste.",
+    "The UI aims to stay focused: minimal clutter, no dark patterns in the product narrative."
+  ]
+}

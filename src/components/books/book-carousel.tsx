@@ -16,16 +16,16 @@ const AUTO_ADVANCE_MS = 5200
 const list = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.08 },
+    transition: { staggerChildren: 0.035 },
   },
 }
 
+/** Opacity-only: vertical motion + scroll whileInView fights the page scroll and feels like shaking. */
 const item = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: "easeOut" },
+    transition: { duration: 0.22, ease: "easeOut" },
   },
 }
 
@@ -117,21 +117,21 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
   return (
     <motion.section
       className="py-16 md:py-24"
-      initial={reduced ? false : { opacity: 0, y: 40 }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      initial={reduced ? false : { opacity: 0 }}
+      whileInView={reduced ? undefined : { opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="container mb-8">
         <h2 id={titleId} className="font-heading text-h2 text-heading">
           {title}
         </h2>
         <p className="mt-2 max-w-lg text-sm text-text-muted">
-          Covers, gradients, and CTAs tuned for the rail — four across on large screens, swipe or arrows anywhere.
+          From your curated catalog — four across on large screens, swipe or keyboard between titles.
         </p>
       </div>
 
-      <div className="mx-auto flex w-full min-w-0 max-w-[1440px] items-stretch gap-2 px-4 sm:gap-2 sm:px-5 md:gap-3 md:px-6 lg:gap-4 lg:px-10">
+      <div className="mx-auto flex w-full min-w-0 max-w-[1440px] items-center gap-2 px-4 sm:gap-2 sm:px-5 md:gap-3 md:px-6 lg:gap-4 lg:px-10">
         <button
           type="button"
           aria-label={`Previous books in ${title}`}
@@ -161,7 +161,7 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
           variants={reduced ? undefined : list}
           initial={reduced ? false : "hidden"}
           whileInView={reduced ? undefined : "show"}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           {books.map((b) =>
             reduced ? (
