@@ -2968,5 +2968,344 @@
     "ratingsCount": 5400,
     "slug": "mood-shelf-emotional-5-booksyai-curated",
     "language": "en"
+  },
+  {
+    "id": "kb-166",
+    "title": "Verity",
+    "author": "Colleen Hoover",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781538715824-M.jpg",
+    "description": "Lowen Ashleigh is hired to finish a book series for injured author Verity Crawford, only to find a bone-chilling manuscript.",
+    "genres": [
+      "Thriller",
+      "Romance",
+      "Fiction"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 336,
+    "isbn": "9781538715824",
+    "averageRating": 4.34,
+    "ratingsCount": 2800000,
+    "slug": "verity-colleen-hoover",
+    "language": "en"
+  },
+  {
+    "id": "kb-167",
+    "title": "A Court of Thorns and Roses",
+    "author": "Sarah J. Maas",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781619630345-M.jpg",
+    "description": "Feyre, a huntress, is taken to the land of the Fae after killing a wolf, only to discover it's far from the nightmare she imagined.",
+    "genres": [
+      "Fantasy",
+      "Romance",
+      "Fiction"
+    ],
+    "publishedYear": 2015,
+    "pageCount": 432,
+    "isbn": "9781619630345",
+    "averageRating": 4.19,
+    "ratingsCount": 2800000,
+    "slug": "a-court-of-thorns-and-roses-sarah-j-maas",
+    "language": "en"
+  },
+  {
+    "id": "kb-168",
+    "title": "Onyx Storm",
+    "author": "Rebecca Yarros",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781649374188-M.jpg",
+    "description": "The third installment in the Empyrean series. Violet Sorrengail must journey beyond the wards to find the truth while a storm is coming.",
+    "genres": [
+      "Fantasy",
+      "Romance",
+      "Fiction"
+    ],
+    "publishedYear": 2025,
+    "pageCount": 528,
+    "isbn": "9781649374188",
+    "averageRating": 4.21,
+    "ratingsCount": 2000000,
+    "slug": "onyx-storm-rebecca-yarros",
+    "language": "en"
+  },
+  {
+    "id": "kb-169",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780735211292-M.jpg",
+    "description": "A proven framework for improving every day by building good habits and breaking bad ones.",
+    "genres": [
+      "Self-Help",
+      "Nonfiction",
+      "Psychology"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 320,
+    "isbn": "9780735211292",
+    "averageRating": 4.38,
+    "ratingsCount": 1800000,
+    "slug": "atomic-habits-james-clear",
+    "language": "en"
+  },
+  {
+    "id": "kb-170",
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780441172719-M.jpg",
+    "description": "Set on the desert planet Arrakis, Paul Atreides becomes caught in a struggle for the control of the most valuable substance in the universe.",
+    "genres": [
+      "Science Fiction",
+      "Epic",
+      "Fiction"
+    ],
+    "publishedYear": 1965,
+    "pageCount": 688,
+    "isbn": "9780441172719",
+    "averageRating": 4.28,
+    "ratingsCount": 1500000,
+    "slug": "dune-frank-herbert",
+    "language": "en"
+  },
+  {
+    "id": "kb-171",
+    "title": "Sunrise on the Reaping",
+    "author": "Suzanne Collins",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781546173048-M.jpg",
+    "description": "A prequel to The Hunger Games, focusing on the 50th Annual Hunger Games and Haymitch Abernathy's survival.",
+    "genres": [
+      "Science Fiction",
+      "Dystopian",
+      "Fiction"
+    ],
+    "publishedYear": 2025,
+    "pageCount": 400,
+    "isbn": "9781546173048",
+    "averageRating": 4.5,
+    "ratingsCount": 1000000,
+    "slug": "sunrise-on-the-reaping-suzanne-collins",
+    "language": "en"
+  },
+  {
+    "id": "kb-172",
+    "title": "The Housemaid",
+    "author": "Freida McFadden",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781803147123-M.jpg",
+    "description": "Millie Calloway gets a job as a housemaid for a wealthy family, but soon discovers the secrets behind their closed doors are deadly.",
+    "genres": [
+      "Thriller",
+      "Mystery",
+      "Fiction"
+    ],
+    "publishedYear": 2022,
+    "pageCount": 336,
+    "isbn": "9781803147123",
+    "averageRating": 4.33,
+    "ratingsCount": 900000,
+    "slug": "the-housemaid-freida-mcfadden",
+    "language": "en"
+  },
+  {
+    "id": "kb-173",
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593135204-M.jpg",
+    "description": "Ryland Grace is the sole survivor on a desperate, last-chance mission to save Earth from a solar disaster.",
+    "genres": [
+      "Science Fiction",
+      "Fiction"
+    ],
+    "publishedYear": 2021,
+    "pageCount": 496,
+    "isbn": "9780593135204",
+    "averageRating": 4.67,
+    "ratingsCount": 850000,
+    "slug": "project-hail-mary-andy-weir",
+    "language": "en"
+  },
+  {
+    "id": "kb-174",
+    "title": "The Women",
+    "author": "Kristin Hannah",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781250178633-M.jpg",
+    "description": "The story of nursing student Frankie McGrath who joins the Army Nurse Corps during the Vietnam War.",
+    "genres": [
+      "Historical Fiction",
+      "Fiction"
+    ],
+    "publishedYear": 2024,
+    "pageCount": 480,
+    "isbn": "9781250178633",
+    "averageRating": 4.65,
+    "ratingsCount": 600000,
+    "slug": "the-women-kristin-hannah",
+    "language": "en"
+  },
+  {
+    "id": "kb-175",
+    "title": "House of Flame and Shadow",
+    "author": "Sarah J. Maas",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781635575628-M.jpg",
+    "description": "The third book in the Crescent City series, where Bryce Quinlan and Hunt Athalar fight to save their world.",
+    "genres": [
+      "Fantasy",
+      "Romance",
+      "Fiction"
+    ],
+    "publishedYear": 2024,
+    "pageCount": 848,
+    "isbn": "9781635575628",
+    "averageRating": 4.1,
+    "ratingsCount": 600000,
+    "slug": "house-of-flame-and-shadow-sarah-j-maas",
+    "language": "en"
+  },
+  {
+    "id": "kb-176",
+    "title": "Funny Story",
+    "author": "Emily Henry",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593441289-M.jpg",
+    "description": "Daphne and Miles become unlikely roommates after their exes leave them for each other, forming a plan that might lead to something more.",
+    "genres": [
+      "Romance",
+      "Contemporary",
+      "Fiction"
+    ],
+    "publishedYear": 2024,
+    "pageCount": 400,
+    "isbn": "9780593441289",
+    "averageRating": 4.38,
+    "ratingsCount": 450000,
+    "slug": "funny-story-emily-henry",
+    "language": "en"
+  },
+  {
+    "id": "kb-177",
+    "title": "Dark Matter",
+    "author": "Blake Crouch",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781101904220-M.jpg",
+    "description": "Jason Dessen is kidnapped into an alternate reality where his life has taken a completely different path.",
+    "genres": [
+      "Science Fiction",
+      "Thriller",
+      "Fiction"
+    ],
+    "publishedYear": 2016,
+    "pageCount": 342,
+    "isbn": "9781101904220",
+    "averageRating": 4.12,
+    "ratingsCount": 450000,
+    "slug": "dark-matter-blake-crouch",
+    "language": "en"
+  },
+  {
+    "id": "kb-178",
+    "title": "None of This is True",
+    "author": "Lisa Jewell",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781982148123-M.jpg",
+    "description": "A podcaster meets a woman who claims to have a story to tell, leading down a dark path of lies and manipulation.",
+    "genres": [
+      "Thriller",
+      "Mystery",
+      "Fiction"
+    ],
+    "publishedYear": 2023,
+    "pageCount": 384,
+    "isbn": "9781982148123",
+    "averageRating": 4.18,
+    "ratingsCount": 300000,
+    "slug": "none-of-this-is-true-lisa-jewell",
+    "language": "en"
+  },
+  {
+    "id": "kb-179",
+    "title": "The Serpent and the Wings of Night",
+    "author": "Carissa Broadbent",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781662508556-M.jpg",
+    "description": "Oraya, a human daughter of a vampire king, enters a deadly tournament to earn her place in a world of monsters.",
+    "genres": [
+      "Fantasy",
+      "Romance",
+      "Fiction"
+    ],
+    "publishedYear": 2022,
+    "pageCount": 448,
+    "isbn": "9781662508556",
+    "averageRating": 4.25,
+    "ratingsCount": 250000,
+    "slug": "the-serpent-and-the-wings-of-night-carissa-broadbent",
+    "language": "en"
+  },
+  {
+    "id": "kb-180",
+    "title": "Caste: The Origins of Our Discontents",
+    "author": "Isabel Wilkerson",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593230564-M.jpg",
+    "description": "An exploration of the unspoken system that has shaped America and shows how our lives today are still defined by a hierarchy of human divisions.",
+    "genres": [
+      "Nonfiction",
+      "Sociology",
+      "History"
+    ],
+    "publishedYear": 2020,
+    "pageCount": 496,
+    "isbn": "9780593230564",
+    "averageRating": 4.49,
+    "ratingsCount": 200000,
+    "slug": "caste-the-origins-of-our-discontents-isabel-wilkerson",
+    "language": "en"
+  },
+  {
+    "id": "kb-181",
+    "title": "Prequel",
+    "author": "Rachel Maddow",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593780167-M.jpg",
+    "description": "An investigation into a forgotten 1940s plot to overthrow the US government and the fight to preserve democracy.",
+    "genres": [
+      "History",
+      "Politics",
+      "Nonfiction"
+    ],
+    "publishedYear": 2023,
+    "pageCount": 256,
+    "isbn": "9780593780167",
+    "averageRating": 4.45,
+    "ratingsCount": 80000,
+    "slug": "prequel-rachel-maddow",
+    "language": "en"
+  },
+  {
+    "id": "kb-182",
+    "title": "The Demon of Unrest",
+    "author": "Erik Larson",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780385348743-M.jpg",
+    "description": "A chronicle of the chaotic period between Abraham Lincoln's election and the start of the Civil War.",
+    "genres": [
+      "History",
+      "Nonfiction"
+    ],
+    "publishedYear": 2024,
+    "pageCount": 464,
+    "isbn": "9780385348743",
+    "averageRating": 4.35,
+    "ratingsCount": 50000,
+    "slug": "the-demon-of-unrest-erik-larson",
+    "language": "en"
+  },
+  {
+    "id": "kb-183",
+    "title": "The Anxious Generation",
+    "author": "Jonathan Haidt",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593655036-M.jpg",
+    "description": "How the 'Great Rewiring of Childhood' caused an epidemic of mental illness among the youth.",
+    "genres": [
+      "Nonfiction",
+      "Psychology",
+      "Sociology"
+    ],
+    "publishedYear": 2024,
+    "pageCount": 384,
+    "isbn": "9780593655036",
+    "averageRating": 4.42,
+    "ratingsCount": 35000,
+    "slug": "the-anxious-generation-jonathan-haidt",
+    "language": "en"
   }
 ]
