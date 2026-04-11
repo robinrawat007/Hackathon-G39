@@ -1,0 +1,1322 @@
+[
+  {
+    "mood": "dark-eerie",
+    "title": "House of Leaves",
+    "author": "Mark Z. Danielewski",
+    "isbn": "9780375703761",
+    "publishedYear": 2000,
+    "pageCount": 709,
+    "averageRating": 4.1,
+    "ratingsCount": 85000,
+    "description": "A labyrinthine haunted-house narrative with footnotes; gothic dread and uncanny architecture.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "isbn": "9780141439846",
+    "publishedYear": 1897,
+    "pageCount": 488,
+    "averageRating": 4,
+    "ratingsCount": 420000,
+    "description": "The classic vampire novel: dark castles, atmospheric horror, and gothic dread.",
+    "genres": [
+      "Horror",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "isbn": "9780141439471",
+    "publishedYear": 1818,
+    "pageCount": 280,
+    "averageRating": 3.9,
+    "ratingsCount": 380000,
+    "description": "Scientific hubris and isolation on the Arctic ice; gothic horror and moral darkness.",
+    "genres": [
+      "Horror",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "We Have Always Lived in the Castle",
+    "author": "Shirley Jackson",
+    "isbn": "9780143131075",
+    "publishedYear": 1962,
+    "pageCount": 146,
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "description": "A reclusive family and a poisoned past; unsettling small-town gothic atmosphere.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Interview with the Vampire",
+    "author": "Anne Rice",
+    "isbn": "9780345419645",
+    "publishedYear": 1976,
+    "pageCount": 342,
+    "averageRating": 4,
+    "ratingsCount": 290000,
+    "description": "Immortal predators reflect on guilt and desire; lush atmospheric horror.",
+    "genres": [
+      "Horror",
+      "Fantasy"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Mexican Gothic",
+    "author": "Silvia Moreno-Garcia",
+    "isbn": "9780525542979",
+    "publishedYear": 2020,
+    "pageCount": 320,
+    "averageRating": 4.1,
+    "ratingsCount": 180000,
+    "description": "A decaying mansion in rural Mexico hides family horrors; eerie and claustrophobic.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "The Woman in Black",
+    "author": "Susan Hill",
+    "isbn": "9780062834190",
+    "publishedYear": 1983,
+    "pageCount": 208,
+    "averageRating": 4,
+    "ratingsCount": 95000,
+    "description": "A solicitor encounters a vengeful ghost on a marsh; classic atmospheric dread.",
+    "genres": [
+      "Horror",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Pet Sematary",
+    "author": "Stephen King",
+    "isbn": "9781982115989",
+    "publishedYear": 1983,
+    "pageCount": 580,
+    "averageRating": 4.2,
+    "ratingsCount": 520000,
+    "description": "Grief and resurrection in small-town Maine; escalating horror and dread.",
+    "genres": [
+      "Horror",
+      "Thriller"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Gone Girl",
+    "author": "Gillian Flynn",
+    "isbn": "9780307588371",
+    "publishedYear": 2012,
+    "pageCount": 432,
+    "averageRating": 4,
+    "ratingsCount": 890000,
+    "description": "Marriage turns sinister; psychological twists and a dark domestic nightmare.",
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "The Only Good Indians",
+    "author": "Stephen Graham Jones",
+    "isbn": "9780525562945",
+    "publishedYear": 2020,
+    "pageCount": 320,
+    "averageRating": 4.1,
+    "ratingsCount": 75000,
+    "description": "A deer hunt returns to haunt friends years later; horror rooted in place and guilt.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "dark-eerie",
+    "title": "Bird Box",
+    "author": "Josh Malerman",
+    "isbn": "9780316432614",
+    "publishedYear": 2014,
+    "pageCount": 272,
+    "averageRating": 4,
+    "ratingsCount": 210000,
+    "description": "Survivors navigate a world where seeing brings madness; tense atmospheric horror.",
+    "genres": [
+      "Horror",
+      "Thriller"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "isbn": "9780141439516",
+    "publishedYear": 1813,
+    "pageCount": 432,
+    "averageRating": 4.3,
+    "ratingsCount": 2100000,
+    "description": "Elizabeth and Darcy spar and soften; a timeless romantic love story with wit.",
+    "genres": [
+      "Romance",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Emma",
+    "author": "Jane Austen",
+    "isbn": "9780141439585",
+    "publishedYear": 1815,
+    "pageCount": 512,
+    "averageRating": 4.2,
+    "ratingsCount": 980000,
+    "description": "Matchmaking mischief in the English countryside; romantic comedy of manners.",
+    "genres": [
+      "Romance",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "The Notebook",
+    "author": "Nicholas Sparks",
+    "isbn": "9780446520802",
+    "publishedYear": 1996,
+    "pageCount": 214,
+    "averageRating": 4.1,
+    "ratingsCount": 620000,
+    "description": "A lifelong romantic love story told through memory and devotion.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "The Kiss Quotient",
+    "author": "Helen Hoang",
+    "isbn": "9780062791394",
+    "publishedYear": 2018,
+    "pageCount": 336,
+    "averageRating": 4.2,
+    "ratingsCount": 310000,
+    "description": "A data-driven woman hires an escort to practice intimacy; tender romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Book Lovers",
+    "author": "Emily Henry",
+    "isbn": "9780593334836",
+    "publishedYear": 2022,
+    "pageCount": 400,
+    "averageRating": 4.2,
+    "ratingsCount": 220000,
+    "description": "Literary agents collide in a small town; sharp banter and romantic love story beats.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Seven Days in June",
+    "author": "Tia Williams",
+    "isbn": "9780062990690",
+    "publishedYear": 2021,
+    "pageCount": 336,
+    "averageRating": 4.3,
+    "ratingsCount": 95000,
+    "description": "Two authors reunite in Brooklyn; second-chance romantic love story with heat.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "The Love Hypothesis",
+    "author": "Ali Hazelwood",
+    "isbn": "9780593336823",
+    "publishedYear": 2021,
+    "pageCount": 400,
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "description": "A fake-dating STEM rom-com; funny, warm romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Part of Your World",
+    "author": "Abby Jimenez",
+    "isbn": "9780063085421",
+    "publishedYear": 2022,
+    "pageCount": 400,
+    "averageRating": 4.2,
+    "ratingsCount": 120000,
+    "description": "Small-town doctor meets big-city executive; heartfelt romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Hooked",
+    "author": "Emily McIntire",
+    "isbn": "9781728275889",
+    "publishedYear": 2021,
+    "pageCount": 400,
+    "averageRating": 4,
+    "ratingsCount": 180000,
+    "description": "A dark romance retelling; obsession and desire drive the romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "The Spanish Love Deception",
+    "author": "Elena Armas",
+    "isbn": "9781668000845",
+    "publishedYear": 2021,
+    "pageCount": 496,
+    "averageRating": 4.2,
+    "ratingsCount": 290000,
+    "description": "Fake dating to a wedding in Spain; slow-burn romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "romantic",
+    "title": "Delilah Green Doesn't Care",
+    "author": "Ashley Herring Blake",
+    "isbn": "9781984804877",
+    "publishedYear": 2022,
+    "pageCount": 400,
+    "averageRating": 4.1,
+    "ratingsCount": 55000,
+    "description": "A photographer returns home and falls for her rival; queer romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Shutter Island",
+    "author": "Dennis Lehane",
+    "isbn": "9780307276741",
+    "publishedYear": 2003,
+    "pageCount": 316,
+    "averageRating": 4.1,
+    "ratingsCount": 410000,
+    "description": "A marshal hunts a patient on an island asylum; psychological twist after twist.",
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Fight Club",
+    "author": "Chuck Palahniuk",
+    "isbn": "9780307454980",
+    "publishedYear": 1996,
+    "pageCount": 218,
+    "averageRating": 4.1,
+    "ratingsCount": 520000,
+    "description": "Underground brawls and split identity; surreal psychological twist on modern life.",
+    "genres": [
+      "Fiction",
+      "Thriller"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Annihilation",
+    "author": "Jeff VanderMeer",
+    "isbn": "9780374104092",
+    "publishedYear": 2014,
+    "pageCount": 208,
+    "averageRating": 4,
+    "ratingsCount": 240000,
+    "description": "A biologist enters Area X; uncanny ecology and psychological twist territory.",
+    "genres": [
+      "Sci-Fi",
+      "Horror"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Never Let Me Go",
+    "author": "Kazuo Ishiguro",
+    "isbn": "9781400078776",
+    "publishedYear": 2005,
+    "pageCount": 304,
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "description": "Boarding-school friends learn the truth slowly; devastating psychological twist.",
+    "genres": [
+      "Literary Fiction",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "The Murder of Roger Ackroyd",
+    "author": "Agatha Christie",
+    "isbn": "9780062073488",
+    "publishedYear": 1926,
+    "pageCount": 288,
+    "averageRating": 4.2,
+    "ratingsCount": 280000,
+    "description": "Poirot faces a famous narrator trick; classic twist that redefined mystery.",
+    "genres": [
+      "Mystery",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Fingersmith",
+    "author": "Sarah Waters",
+    "isbn": "9781573228732",
+    "publishedYear": 2002,
+    "pageCount": 592,
+    "averageRating": 4.2,
+    "ratingsCount": 95000,
+    "description": "Victorian con games and doubled identities; twisty psychological suspense.",
+    "genres": [
+      "Literary Fiction",
+      "Mystery"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Recursion",
+    "author": "Blake Crouch",
+    "isbn": "9781542040839",
+    "publishedYear": 2019,
+    "pageCount": 336,
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "description": "False memories and looping timelines; high-concept psychological twist thriller.",
+    "genres": [
+      "Sci-Fi",
+      "Thriller"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "I'm Thinking of Ending Things",
+    "author": "Iain Reid",
+    "isbn": "9780143131129",
+    "publishedYear": 2016,
+    "pageCount": 224,
+    "averageRating": 3.9,
+    "ratingsCount": 140000,
+    "description": "A road trip unravels into dread; claustrophobic psychological twist.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Motherless Brooklyn",
+    "author": "Jonathan Lethem",
+    "isbn": "9780306906473",
+    "publishedYear": 1999,
+    "pageCount": 448,
+    "averageRating": 4,
+    "ratingsCount": 85000,
+    "description": "A detective with Tourette's probes murder; noir with surreal psychological edges.",
+    "genres": [
+      "Mystery",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "The 7½ Deaths of Evelyn Hardcastle",
+    "author": "Stuart Turton",
+    "isbn": "9781492668097",
+    "publishedYear": 2018,
+    "pageCount": 480,
+    "averageRating": 4.1,
+    "ratingsCount": 120000,
+    "description": "Relive the same day as different guests; a looped psychological twist puzzle.",
+    "genres": [
+      "Mystery",
+      "Fantasy"
+    ]
+  },
+  {
+    "mood": "mind-bending",
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "isbn": "9781635576281",
+    "publishedYear": 2020,
+    "pageCount": 272,
+    "averageRating": 4.3,
+    "ratingsCount": 180000,
+    "description": "Infinite halls and journals; gentle surreal psychological twist on identity.",
+    "genres": [
+      "Fantasy",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "The Fellowship of the Ring",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780547953832",
+    "publishedYear": 1954,
+    "pageCount": 432,
+    "averageRating": 4.4,
+    "ratingsCount": 1200000,
+    "description": "The quest to destroy a ring begins; foundational epic adventure in Middle-earth.",
+    "genres": [
+      "Fantasy",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "isbn": "9780547928227",
+    "publishedYear": 1937,
+    "pageCount": 310,
+    "averageRating": 4.3,
+    "ratingsCount": 980000,
+    "description": "Bilbo joins dwarves to reclaim a mountain; charming epic adventure prelude.",
+    "genres": [
+      "Fantasy",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "The Name of the Wind",
+    "author": "Patrick Rothfuss",
+    "isbn": "9780756404741",
+    "publishedYear": 2007,
+    "pageCount": 722,
+    "averageRating": 4.5,
+    "ratingsCount": 620000,
+    "description": "Kvothe's legend grows across a richly built world; lyrical epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "The Lies of Locke Lamora",
+    "author": "Scott Lynch",
+    "isbn": "9780553804686",
+    "publishedYear": 2006,
+    "pageCount": 512,
+    "averageRating": 4.4,
+    "ratingsCount": 210000,
+    "description": "Thieves in a canal city pull impossible heists; swaggering epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "The Priory of the Orange Tree",
+    "author": "Samantha Shannon",
+    "isbn": "9781635574042",
+    "publishedYear": 2019,
+    "pageCount": 848,
+    "averageRating": 4.3,
+    "ratingsCount": 140000,
+    "description": "Dragons, queendoms, and a world-spanning quest; sweeping epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "Red Rising",
+    "author": "Pierce Brown",
+    "isbn": "9780345539786",
+    "publishedYear": 2014,
+    "pageCount": 400,
+    "averageRating": 4.3,
+    "ratingsCount": 290000,
+    "description": "A miner infiltrates elite gladiator schools on Mars; brutal sci-fi epic adventure.",
+    "genres": [
+      "Sci-Fi",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "Crown of Midnight",
+    "author": "Sarah J. Maas",
+    "isbn": "9781619630367",
+    "publishedYear": 2013,
+    "pageCount": 448,
+    "averageRating": 4.3,
+    "ratingsCount": 310000,
+    "description": "An assassin takes on political contracts; fast-paced romantic epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "Jade City",
+    "author": "Fonda Lee",
+    "isbn": "9780316391248",
+    "publishedYear": 2017,
+    "pageCount": 560,
+    "averageRating": 4.2,
+    "ratingsCount": 85000,
+    "description": "Clan families wield jade magic in a city at war; cinematic epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "The Blade Itself",
+    "author": "Joe Abercrombie",
+    "isbn": "9780316387316",
+    "publishedYear": 2007,
+    "pageCount": 544,
+    "averageRating": 4.2,
+    "ratingsCount": 140000,
+    "description": "Grim mercenaries and politics collide; gritty epic adventure fantasy opener.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "Mistborn: The Final Empire",
+    "author": "Brandon Sanderson",
+    "isbn": "9780760316899",
+    "publishedYear": 2006,
+    "pageCount": 672,
+    "averageRating": 4.5,
+    "ratingsCount": 380000,
+    "description": "A thief crew topples an immortal emperor; inventive magic epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "epic-adventure",
+    "title": "Kings of the Wyld",
+    "author": "Nicholas Eames",
+    "isbn": "9780316374841",
+    "publishedYear": 2017,
+    "pageCount": 560,
+    "averageRating": 4.2,
+    "ratingsCount": 75000,
+    "description": "Retired mercenaries ride again; funny, bloody epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "Good Omens",
+    "author": "Neil Gaiman and Terry Pratchett",
+    "isbn": "9780060853983",
+    "publishedYear": 1990,
+    "pageCount": 432,
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "description": "An angel and demon team up to stop Armageddon; witty humor comedy fantasy.",
+    "genres": [
+      "Fantasy",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "isbn": "9780345418025",
+    "publishedYear": 1979,
+    "pageCount": 224,
+    "averageRating": 4.2,
+    "ratingsCount": 520000,
+    "description": "Earth demolished for a bypass; absurd humor comedy across the galaxy.",
+    "genres": [
+      "Sci-Fi",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "Bridget Jones's Diary",
+    "author": "Helen Fielding",
+    "isbn": "9780330352802",
+    "publishedYear": 1996,
+    "pageCount": 320,
+    "averageRating": 4,
+    "ratingsCount": 380000,
+    "description": "Diary of dating disasters in London; sharp humor comedy romance.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "The Rosie Project",
+    "author": "Graeme Simsion",
+    "isbn": "9781476756890",
+    "publishedYear": 2013,
+    "pageCount": 304,
+    "averageRating": 4.2,
+    "ratingsCount": 290000,
+    "description": "A professor seeks a wife with spreadsheets; sweet humor comedy romance.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "The Weird Sisters",
+    "author": "Eleanor Brown",
+    "isbn": "9780451234947",
+    "publishedYear": 2011,
+    "pageCount": 336,
+    "averageRating": 3.9,
+    "ratingsCount": 95000,
+    "description": "Three sisters return home; warm family humor comedy with Shakespeare quotes.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "Where'd You Go, Bernadette",
+    "author": "Maria Semple",
+    "isbn": "9780316204279",
+    "publishedYear": 2012,
+    "pageCount": 352,
+    "averageRating": 4,
+    "ratingsCount": 210000,
+    "description": "Emails and misadventures in Seattle; breezy humor comedy about a vanished mom.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "Eleanor Oliphant Is Completely Fine",
+    "author": "Gail Honeyman",
+    "isbn": "9780735220683",
+    "publishedYear": 2017,
+    "pageCount": 336,
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "description": "An awkward woman learns friendship; deadpan humor comedy with heart.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "A Man Called Ove",
+    "author": "Fredrik Backman",
+    "isbn": "9781476735014",
+    "publishedYear": 2012,
+    "pageCount": 352,
+    "averageRating": 4.4,
+    "ratingsCount": 520000,
+    "description": "A grumpy widower softens when neighbors intrude; bittersweet humor comedy.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "Less",
+    "author": "Andrew Sean Greer",
+    "isbn": "9780316312532",
+    "publishedYear": 2017,
+    "pageCount": 272,
+    "averageRating": 4,
+    "ratingsCount": 95000,
+    "description": "A novelist flees a wedding on a world tour; witty humor comedy Pulitzer winner.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "The Flatshare",
+    "author": "Beth O'Leary",
+    "isbn": "9781250299484",
+    "publishedYear": 2019,
+    "pageCount": 400,
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "description": "Two strangers share a bed on shifts; charming humor comedy romance.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "light-funny",
+    "title": "Dial A for Aunties",
+    "author": "Jesse Q. Sutanto",
+    "isbn": "9780593336672",
+    "publishedYear": 2021,
+    "pageCount": 320,
+    "averageRating": 4.1,
+    "ratingsCount": 75000,
+    "description": "A wedding, a body, and meddling aunties; madcap humor comedy mystery.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "isbn": "9781455586693",
+    "publishedYear": 2016,
+    "pageCount": 304,
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "description": "Rules for focused success in a distracted world; business career leadership ideas.",
+    "genres": [
+      "Self-Help",
+      "Non-Fiction"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Lean In",
+    "author": "Sheryl Sandberg",
+    "isbn": "9780385347149",
+    "publishedYear": 2013,
+    "pageCount": 240,
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "description": "Women, work, and the will to lead; leadership success and career advice.",
+    "genres": [
+      "Non-Fiction",
+      "Self-Help"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Shoe Dog",
+    "author": "Phil Knight",
+    "isbn": "9781501135910",
+    "publishedYear": 2016,
+    "pageCount": 400,
+    "averageRating": 4.5,
+    "ratingsCount": 520000,
+    "description": "Nike's founder on hustle and risk; memoir of business career leadership.",
+    "genres": [
+      "Biography",
+      "Non-Fiction"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Educated",
+    "author": "Tara Westover",
+    "isbn": "9780399590504",
+    "publishedYear": 2018,
+    "pageCount": 352,
+    "averageRating": 4.5,
+    "ratingsCount": 620000,
+    "description": "From Idaho survivalism to Cambridge; education as escape and career path.",
+    "genres": [
+      "Biography",
+      "Non-Fiction"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Outliers",
+    "author": "Malcolm Gladwell",
+    "isbn": "9780316017930",
+    "publishedYear": 2008,
+    "pageCount": 320,
+    "averageRating": 4.1,
+    "ratingsCount": 410000,
+    "description": "What makes high achievers different; success patterns and leadership insight.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Start With Why",
+    "author": "Simon Sinek",
+    "isbn": "9781592404831",
+    "publishedYear": 2009,
+    "pageCount": 256,
+    "averageRating": 4.1,
+    "ratingsCount": 380000,
+    "description": "How great leaders inspire action; leadership success through purpose.",
+    "genres": [
+      "Non-Fiction",
+      "Business"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "isbn": "9780141033570",
+    "publishedYear": 2011,
+    "pageCount": 512,
+    "averageRating": 4.2,
+    "ratingsCount": 290000,
+    "description": "Biases that shape decisions; psychology for better judgment at work.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Dare to Lead",
+    "author": "Brené Brown",
+    "isbn": "9780399592522",
+    "publishedYear": 2018,
+    "pageCount": 320,
+    "averageRating": 4.3,
+    "ratingsCount": 210000,
+    "description": "Brave work and tough conversations; leadership success with courage.",
+    "genres": [
+      "Non-Fiction",
+      "Self-Help"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Never Split the Difference",
+    "author": "Chris Voss",
+    "isbn": "9780062853194",
+    "publishedYear": 2016,
+    "pageCount": 288,
+    "averageRating": 4.4,
+    "ratingsCount": 240000,
+    "description": "FBI negotiation tactics for business; career leadership communication.",
+    "genres": [
+      "Non-Fiction",
+      "Business"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Range",
+    "author": "David Epstein",
+    "isbn": "9780735214486",
+    "publishedYear": 2019,
+    "pageCount": 352,
+    "averageRating": 4.3,
+    "ratingsCount": 95000,
+    "description": "Why generalists triumph in a specialized world; career success insight.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ]
+  },
+  {
+    "mood": "career-inspiring",
+    "title": "Grit",
+    "author": "Angela Duckworth",
+    "isbn": "9781501111112",
+    "publishedYear": 2016,
+    "pageCount": 352,
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "description": "Passion and perseverance beat talent; leadership success habits.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "A Wizard of Earthsea",
+    "author": "Ursula K. Le Guin",
+    "isbn": "9780547851395",
+    "publishedYear": 1968,
+    "pageCount": 272,
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "description": "A young mage learns names of power on island archipelagos; classic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "The Color of Magic",
+    "author": "Terry Pratchett",
+    "isbn": "9780062237425",
+    "publishedYear": 1983,
+    "pageCount": 288,
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "description": "A tourist on Discworld meets hapless wizards; comic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Humor"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "Six of Crows",
+    "author": "Leigh Bardugo",
+    "isbn": "9781250027315",
+    "publishedYear": 2015,
+    "pageCount": 512,
+    "averageRating": 4.5,
+    "ratingsCount": 380000,
+    "description": "A heist crew in a Dutch-inspired city; gritty YA fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "Neverwhere",
+    "author": "Neil Gaiman",
+    "isbn": "9780060558123",
+    "publishedYear": 1997,
+    "pageCount": 400,
+    "averageRating": 4.1,
+    "ratingsCount": 240000,
+    "description": "London Below hides markets and monsters; urban fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "Stardust",
+    "author": "Neil Gaiman",
+    "isbn": "9780061689246",
+    "publishedYear": 1999,
+    "pageCount": 288,
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "description": "A wall separates village from faerie; a quest for a fallen star, fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "The Poppy War",
+    "author": "R.F. Kuang",
+    "isbn": "9780062662590",
+    "publishedYear": 2018,
+    "pageCount": 544,
+    "averageRating": 4.3,
+    "ratingsCount": 140000,
+    "description": "War school in a fantasy China; brutal military fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "Gideon the Ninth",
+    "author": "Tamsyn Muir",
+    "isbn": "9781250313075",
+    "publishedYear": 2019,
+    "pageCount": 448,
+    "averageRating": 4.2,
+    "ratingsCount": 120000,
+    "description": "Lesbian necromancers in a haunted palace; gothic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "The Bone Shard Daughter",
+    "author": "Andrea Stewart",
+    "isbn": "9780316541425",
+    "publishedYear": 2020,
+    "pageCount": 448,
+    "averageRating": 4.1,
+    "ratingsCount": 65000,
+    "description": "An emperor's heir hunts rebels across islands; inventive fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "The City of Brass",
+    "author": "S.A. Chakraborty",
+    "isbn": "9780062679428",
+    "publishedYear": 2017,
+    "pageCount": 544,
+    "averageRating": 4.2,
+    "ratingsCount": 95000,
+    "description": "Cairo con artist enters djinn politics; lush historical fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "The Ten Thousand Doors of January",
+    "author": "Alix E. Harrow",
+    "isbn": "9780316421998",
+    "publishedYear": 2019,
+    "pageCount": 400,
+    "averageRating": 4.2,
+    "ratingsCount": 85000,
+    "description": "Doors between worlds open to a curious girl; lyrical fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Literary Fiction"
+    ]
+  },
+  {
+    "mood": "fantasy-worlds",
+    "title": "The Night Circus",
+    "author": "Erin Morgenstern",
+    "isbn": "9780385537670",
+    "publishedYear": 2011,
+    "pageCount": 400,
+    "averageRating": 4.2,
+    "ratingsCount": 310000,
+    "description": "Rival magicians in a black-and-white circus; romantic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "A Thousand Splendid Suns",
+    "author": "Khaled Hosseini",
+    "isbn": "9781594483859",
+    "publishedYear": 2007,
+    "pageCount": 384,
+    "averageRating": 4.4,
+    "ratingsCount": 520000,
+    "description": "Two women endure Kabul's wars; devastating emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "Me Before You",
+    "author": "Jojo Moyes",
+    "isbn": "9780143124542",
+    "publishedYear": 2012,
+    "pageCount": 400,
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "description": "A caregiver falls for a quadriplegic man; tearful emotional literary drama.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "The Book Thief",
+    "author": "Markus Zusak",
+    "isbn": "9780375842207",
+    "publishedYear": 2005,
+    "pageCount": 576,
+    "averageRating": 4.4,
+    "ratingsCount": 620000,
+    "description": "Death narrates a girl stealing books in Nazi Germany; emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "Norwegian Wood",
+    "author": "Haruki Murakami",
+    "isbn": "9780375704024",
+    "publishedYear": 1987,
+    "pageCount": 304,
+    "averageRating": 4,
+    "ratingsCount": 240000,
+    "description": "Love and loss in 1960s Tokyo; melancholy emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "Atonement",
+    "author": "Ian McEwan",
+    "isbn": "9780385721790",
+    "publishedYear": 2001,
+    "pageCount": 368,
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "description": "A child's lie alters lives across decades; guilt and emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Classics"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "Small Great Things",
+    "author": "Jodi Picoult",
+    "isbn": "9780345544957",
+    "publishedYear": 2016,
+    "pageCount": 512,
+    "averageRating": 4.3,
+    "ratingsCount": 210000,
+    "description": "A nurse faces a trial about race and birth; courtroom emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "Everything I Never Told You",
+    "author": "Celeste Ng",
+    "isbn": "9781594633666",
+    "publishedYear": 2014,
+    "pageCount": 304,
+    "averageRating": 4.1,
+    "ratingsCount": 290000,
+    "description": "A family fractures after a daughter's death; intimate emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Mystery"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "The Light Between Oceans",
+    "author": "M.L. Stedman",
+    "isbn": "9781451681735",
+    "publishedYear": 2012,
+    "pageCount": 352,
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "description": "A lighthouse couple makes an impossible choice; moral emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "My Sister's Keeper",
+    "author": "Jodi Picoult",
+    "isbn": "9780743454537",
+    "publishedYear": 2004,
+    "pageCount": 432,
+    "averageRating": 4.1,
+    "ratingsCount": 380000,
+    "description": "A sister sues for medical emancipation; family ethical emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "Tell the Wolves I'm Home",
+    "author": "Carol Rifka Brunt",
+    "isbn": "9780143123874",
+    "publishedYear": 2012,
+    "pageCount": 368,
+    "averageRating": 4.2,
+    "ratingsCount": 95000,
+    "description": "A girl grieves her uncle in the AIDS era; tender emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ]
+  },
+  {
+    "mood": "emotional",
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "isbn": "9781594481773",
+    "publishedYear": 2003,
+    "pageCount": 384,
+    "averageRating": 4.3,
+    "ratingsCount": 890000,
+    "description": "Friendship and betrayal in Afghanistan; sweeping emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ]
+  }
+]

@@ -2250,726 +2250,6 @@
     "language": "hi"
   },
   {
-    "id": "kb-126",
-    "title": "Mood Shelf: dark eerie 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910125-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase dark gothic horror atmospheric so mood search always surfaces at least five titles. Light plot, strong vibe match for dark-eerie.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910125",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-dark-eerie-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-127",
-    "title": "Mood Shelf: dark eerie 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910126-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase dark gothic horror atmospheric so mood search always surfaces at least five titles. Light plot, strong vibe match for dark-eerie.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910126",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-dark-eerie-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-128",
-    "title": "Mood Shelf: dark eerie 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910127-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase dark gothic horror atmospheric so mood search always surfaces at least five titles. Light plot, strong vibe match for dark-eerie.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910127",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-dark-eerie-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-129",
-    "title": "Mood Shelf: dark eerie 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910128-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase dark gothic horror atmospheric so mood search always surfaces at least five titles. Light plot, strong vibe match for dark-eerie.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910128",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-dark-eerie-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-130",
-    "title": "Mood Shelf: dark eerie 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910129-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase dark gothic horror atmospheric so mood search always surfaces at least five titles. Light plot, strong vibe match for dark-eerie.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910129",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-dark-eerie-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-131",
-    "title": "Mood Shelf: romantic 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910130-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase romantic love story so mood search always surfaces at least five titles. Light plot, strong vibe match for romantic.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910130",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-romantic-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-132",
-    "title": "Mood Shelf: romantic 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910131-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase romantic love story so mood search always surfaces at least five titles. Light plot, strong vibe match for romantic.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910131",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-romantic-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-133",
-    "title": "Mood Shelf: romantic 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910132-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase romantic love story so mood search always surfaces at least five titles. Light plot, strong vibe match for romantic.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910132",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-romantic-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-134",
-    "title": "Mood Shelf: romantic 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910133-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase romantic love story so mood search always surfaces at least five titles. Light plot, strong vibe match for romantic.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910133",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-romantic-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-135",
-    "title": "Mood Shelf: romantic 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910134-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase romantic love story so mood search always surfaces at least five titles. Light plot, strong vibe match for romantic.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910134",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-romantic-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-136",
-    "title": "Mood Shelf: mind bending 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910135-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase psychological twist surreal so mood search always surfaces at least five titles. Light plot, strong vibe match for mind-bending.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910135",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-mind-bending-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-137",
-    "title": "Mood Shelf: mind bending 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910136-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase psychological twist surreal so mood search always surfaces at least five titles. Light plot, strong vibe match for mind-bending.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910136",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-mind-bending-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-138",
-    "title": "Mood Shelf: mind bending 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910137-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase psychological twist surreal so mood search always surfaces at least five titles. Light plot, strong vibe match for mind-bending.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910137",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-mind-bending-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-139",
-    "title": "Mood Shelf: mind bending 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910138-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase psychological twist surreal so mood search always surfaces at least five titles. Light plot, strong vibe match for mind-bending.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910138",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-mind-bending-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-140",
-    "title": "Mood Shelf: mind bending 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910139-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase psychological twist surreal so mood search always surfaces at least five titles. Light plot, strong vibe match for mind-bending.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910139",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-mind-bending-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-141",
-    "title": "Mood Shelf: epic adventure 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910140-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase epic adventure quest so mood search always surfaces at least five titles. Light plot, strong vibe match for epic-adventure.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910140",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-epic-adventure-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-142",
-    "title": "Mood Shelf: epic adventure 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910141-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase epic adventure quest so mood search always surfaces at least five titles. Light plot, strong vibe match for epic-adventure.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910141",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-epic-adventure-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-143",
-    "title": "Mood Shelf: epic adventure 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910142-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase epic adventure quest so mood search always surfaces at least five titles. Light plot, strong vibe match for epic-adventure.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910142",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-epic-adventure-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-144",
-    "title": "Mood Shelf: epic adventure 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910143-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase epic adventure quest so mood search always surfaces at least five titles. Light plot, strong vibe match for epic-adventure.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910143",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-epic-adventure-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-145",
-    "title": "Mood Shelf: epic adventure 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910144-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase epic adventure quest so mood search always surfaces at least five titles. Light plot, strong vibe match for epic-adventure.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910144",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-epic-adventure-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-146",
-    "title": "Mood Shelf: light funny 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910145-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase humor comedy witty funny so mood search always surfaces at least five titles. Light plot, strong vibe match for light-funny.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910145",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-light-funny-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-147",
-    "title": "Mood Shelf: light funny 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910146-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase humor comedy witty funny so mood search always surfaces at least five titles. Light plot, strong vibe match for light-funny.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910146",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-light-funny-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-148",
-    "title": "Mood Shelf: light funny 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910147-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase humor comedy witty funny so mood search always surfaces at least five titles. Light plot, strong vibe match for light-funny.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910147",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-light-funny-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-149",
-    "title": "Mood Shelf: light funny 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910148-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase humor comedy witty funny so mood search always surfaces at least five titles. Light plot, strong vibe match for light-funny.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910148",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-light-funny-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-150",
-    "title": "Mood Shelf: light funny 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910149-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase humor comedy witty funny so mood search always surfaces at least five titles. Light plot, strong vibe match for light-funny.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910149",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-light-funny-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-151",
-    "title": "Mood Shelf: career inspiring 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910150-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase business career leadership success so mood search always surfaces at least five titles. Light plot, strong vibe match for career-inspiring.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910150",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-career-inspiring-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-152",
-    "title": "Mood Shelf: career inspiring 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910151-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase business career leadership success so mood search always surfaces at least five titles. Light plot, strong vibe match for career-inspiring.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910151",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-career-inspiring-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-153",
-    "title": "Mood Shelf: career inspiring 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910152-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase business career leadership success so mood search always surfaces at least five titles. Light plot, strong vibe match for career-inspiring.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910152",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-career-inspiring-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-154",
-    "title": "Mood Shelf: career inspiring 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910153-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase business career leadership success so mood search always surfaces at least five titles. Light plot, strong vibe match for career-inspiring.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910153",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-career-inspiring-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-155",
-    "title": "Mood Shelf: career inspiring 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910154-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase business career leadership success so mood search always surfaces at least five titles. Light plot, strong vibe match for career-inspiring.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910154",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-career-inspiring-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-156",
-    "title": "Mood Shelf: fantasy worlds 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910155-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase fantasy magic adventure so mood search always surfaces at least five titles. Light plot, strong vibe match for fantasy-worlds.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910155",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-fantasy-worlds-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-157",
-    "title": "Mood Shelf: fantasy worlds 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910156-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase fantasy magic adventure so mood search always surfaces at least five titles. Light plot, strong vibe match for fantasy-worlds.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910156",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-fantasy-worlds-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-158",
-    "title": "Mood Shelf: fantasy worlds 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910157-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase fantasy magic adventure so mood search always surfaces at least five titles. Light plot, strong vibe match for fantasy-worlds.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910157",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-fantasy-worlds-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-159",
-    "title": "Mood Shelf: fantasy worlds 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910158-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase fantasy magic adventure so mood search always surfaces at least five titles. Light plot, strong vibe match for fantasy-worlds.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910158",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-fantasy-worlds-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-160",
-    "title": "Mood Shelf: fantasy worlds 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910159-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase fantasy magic adventure so mood search always surfaces at least five titles. Light plot, strong vibe match for fantasy-worlds.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910159",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-fantasy-worlds-5-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-161",
-    "title": "Mood Shelf: emotional 1",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910160-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase emotional literary drama so mood search always surfaces at least five titles. Light plot, strong vibe match for emotional.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2016,
-    "pageCount": 280,
-    "isbn": "978199910160",
-    "averageRating": 3.8,
-    "ratingsCount": 5000,
-    "slug": "mood-shelf-emotional-1-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-162",
-    "title": "Mood Shelf: emotional 2",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910161-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase emotional literary drama so mood search always surfaces at least five titles. Light plot, strong vibe match for emotional.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2017,
-    "pageCount": 292,
-    "isbn": "978199910161",
-    "averageRating": 3.8499999999999996,
-    "ratingsCount": 5100,
-    "slug": "mood-shelf-emotional-2-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-163",
-    "title": "Mood Shelf: emotional 3",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910162-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase emotional literary drama so mood search always surfaces at least five titles. Light plot, strong vibe match for emotional.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2018,
-    "pageCount": 304,
-    "isbn": "978199910162",
-    "averageRating": 3.9,
-    "ratingsCount": 5200,
-    "slug": "mood-shelf-emotional-3-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-164",
-    "title": "Mood Shelf: emotional 4",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910163-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase emotional literary drama so mood search always surfaces at least five titles. Light plot, strong vibe match for emotional.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2019,
-    "pageCount": 316,
-    "isbn": "978199910163",
-    "averageRating": 3.9499999999999997,
-    "ratingsCount": 5300,
-    "slug": "mood-shelf-emotional-4-booksyai-curated",
-    "language": "en"
-  },
-  {
-    "id": "kb-165",
-    "title": "Mood Shelf: emotional 5",
-    "author": "BooksyAI Curated",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/978199910164-M.jpg",
-    "description": "A curated pick for browse filters: this synopsis repeats the phrase emotional literary drama so mood search always surfaces at least five titles. Light plot, strong vibe match for emotional.",
-    "genres": [
-      "Literary Fiction",
-      "Fiction"
-    ],
-    "publishedYear": 2020,
-    "pageCount": 328,
-    "isbn": "978199910164",
-    "averageRating": 4,
-    "ratingsCount": 5400,
-    "slug": "mood-shelf-emotional-5-booksyai-curated",
-    "language": "en"
-  },
-  {
     "id": "kb-166",
     "title": "Verity",
     "author": "Colleen Hoover",
@@ -3306,6 +2586,1686 @@
     "averageRating": 4.42,
     "ratingsCount": 35000,
     "slug": "the-anxious-generation-jonathan-haidt",
+    "language": "en"
+  },
+  {
+    "id": "kb-184",
+    "title": "House of Leaves",
+    "author": "Mark Z. Danielewski",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780375703761-M.jpg",
+    "description": "A labyrinthine haunted-house narrative with footnotes; gothic dread and uncanny architecture.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 2000,
+    "pageCount": 709,
+    "isbn": "9780375703761",
+    "averageRating": 4.1,
+    "ratingsCount": 85000,
+    "slug": "house-of-leaves-mark-z-danielewski",
+    "language": "en"
+  },
+  {
+    "id": "kb-185",
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439846-M.jpg",
+    "description": "The classic vampire novel: dark castles, atmospheric horror, and gothic dread.",
+    "genres": [
+      "Horror",
+      "Classics"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 1897,
+    "pageCount": 488,
+    "isbn": "9780141439846",
+    "averageRating": 4,
+    "ratingsCount": 420000,
+    "slug": "dracula-bram-stoker",
+    "language": "en"
+  },
+  {
+    "id": "kb-186",
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439471-M.jpg",
+    "description": "Scientific hubris and isolation on the Arctic ice; gothic horror and moral darkness.",
+    "genres": [
+      "Horror",
+      "Classics"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 1818,
+    "pageCount": 280,
+    "isbn": "9780141439471",
+    "averageRating": 3.9,
+    "ratingsCount": 380000,
+    "slug": "frankenstein-mary-shelley",
+    "language": "en"
+  },
+  {
+    "id": "kb-187",
+    "title": "We Have Always Lived in the Castle",
+    "author": "Shirley Jackson",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780143131075-M.jpg",
+    "description": "A reclusive family and a poisoned past; unsettling small-town gothic atmosphere.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 1962,
+    "pageCount": 146,
+    "isbn": "9780143131075",
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "slug": "we-have-always-lived-in-the-castle-shirley-jackson",
+    "language": "en"
+  },
+  {
+    "id": "kb-188",
+    "title": "Interview with the Vampire",
+    "author": "Anne Rice",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780345419645-M.jpg",
+    "description": "Immortal predators reflect on guilt and desire; lush atmospheric horror.",
+    "genres": [
+      "Horror",
+      "Fantasy"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 1976,
+    "pageCount": 342,
+    "isbn": "9780345419645",
+    "averageRating": 4,
+    "ratingsCount": 290000,
+    "slug": "interview-with-the-vampire-anne-rice",
+    "language": "en"
+  },
+  {
+    "id": "kb-189",
+    "title": "Mexican Gothic",
+    "author": "Silvia Moreno-Garcia",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780525542979-M.jpg",
+    "description": "A decaying mansion in rural Mexico hides family horrors; eerie and claustrophobic.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 2020,
+    "pageCount": 320,
+    "isbn": "9780525542979",
+    "averageRating": 4.1,
+    "ratingsCount": 180000,
+    "slug": "mexican-gothic-silvia-moreno-garcia",
+    "language": "en"
+  },
+  {
+    "id": "kb-190",
+    "title": "The Woman in Black",
+    "author": "Susan Hill",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062834190-M.jpg",
+    "description": "A solicitor encounters a vengeful ghost on a marsh; classic atmospheric dread.",
+    "genres": [
+      "Horror",
+      "Classics"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 1983,
+    "pageCount": 208,
+    "isbn": "9780062834190",
+    "averageRating": 4,
+    "ratingsCount": 95000,
+    "slug": "the-woman-in-black-susan-hill",
+    "language": "en"
+  },
+  {
+    "id": "kb-191",
+    "title": "Pet Sematary",
+    "author": "Stephen King",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781982115989-M.jpg",
+    "description": "Grief and resurrection in small-town Maine; escalating horror and dread.",
+    "genres": [
+      "Horror",
+      "Thriller"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 1983,
+    "pageCount": 580,
+    "isbn": "9781982115989",
+    "averageRating": 4.2,
+    "ratingsCount": 520000,
+    "slug": "pet-sematary-stephen-king",
+    "language": "en"
+  },
+  {
+    "id": "kb-192",
+    "title": "Gone Girl",
+    "author": "Gillian Flynn",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780307588371-M.jpg",
+    "description": "Marriage turns sinister; psychological twists and a dark domestic nightmare.",
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 2012,
+    "pageCount": 432,
+    "isbn": "9780307588371",
+    "averageRating": 4,
+    "ratingsCount": 890000,
+    "slug": "gone-girl-gillian-flynn",
+    "language": "en"
+  },
+  {
+    "id": "kb-193",
+    "title": "The Only Good Indians",
+    "author": "Stephen Graham Jones",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780525562945-M.jpg",
+    "description": "A deer hunt returns to haunt friends years later; horror rooted in place and guilt.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "dark-eerie"
+    ],
+    "publishedYear": 2020,
+    "pageCount": 320,
+    "isbn": "9780525562945",
+    "averageRating": 4.1,
+    "ratingsCount": 75000,
+    "slug": "the-only-good-indians-stephen-graham-jones",
+    "language": "en"
+  },
+  {
+    "id": "kb-194",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439516-M.jpg",
+    "description": "Elizabeth and Darcy spar and soften; a timeless romantic love story with wit.",
+    "genres": [
+      "Romance",
+      "Classics"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 1813,
+    "pageCount": 432,
+    "isbn": "9780141439516",
+    "averageRating": 4.3,
+    "ratingsCount": 2100000,
+    "slug": "pride-and-prejudice-jane-austen",
+    "language": "en"
+  },
+  {
+    "id": "kb-195",
+    "title": "Emma",
+    "author": "Jane Austen",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439585-M.jpg",
+    "description": "Matchmaking mischief in the English countryside; romantic comedy of manners.",
+    "genres": [
+      "Romance",
+      "Classics"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 1815,
+    "pageCount": 512,
+    "isbn": "9780141439585",
+    "averageRating": 4.2,
+    "ratingsCount": 980000,
+    "slug": "emma-jane-austen",
+    "language": "en"
+  },
+  {
+    "id": "kb-196",
+    "title": "The Notebook",
+    "author": "Nicholas Sparks",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780446520802-M.jpg",
+    "description": "A lifelong romantic love story told through memory and devotion.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 1996,
+    "pageCount": 214,
+    "isbn": "9780446520802",
+    "averageRating": 4.1,
+    "ratingsCount": 620000,
+    "slug": "the-notebook-nicholas-sparks",
+    "language": "en"
+  },
+  {
+    "id": "kb-197",
+    "title": "The Kiss Quotient",
+    "author": "Helen Hoang",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062791394-M.jpg",
+    "description": "A data-driven woman hires an escort to practice intimacy; tender romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 336,
+    "isbn": "9780062791394",
+    "averageRating": 4.2,
+    "ratingsCount": 310000,
+    "slug": "the-kiss-quotient-helen-hoang",
+    "language": "en"
+  },
+  {
+    "id": "kb-198",
+    "title": "Book Lovers",
+    "author": "Emily Henry",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593334836-M.jpg",
+    "description": "Literary agents collide in a small town; sharp banter and romantic love story beats.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2022,
+    "pageCount": 400,
+    "isbn": "9780593334836",
+    "averageRating": 4.2,
+    "ratingsCount": 220000,
+    "slug": "book-lovers-emily-henry",
+    "language": "en"
+  },
+  {
+    "id": "kb-199",
+    "title": "Seven Days in June",
+    "author": "Tia Williams",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062990690-M.jpg",
+    "description": "Two authors reunite in Brooklyn; second-chance romantic love story with heat.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2021,
+    "pageCount": 336,
+    "isbn": "9780062990690",
+    "averageRating": 4.3,
+    "ratingsCount": 95000,
+    "slug": "seven-days-in-june-tia-williams",
+    "language": "en"
+  },
+  {
+    "id": "kb-200",
+    "title": "The Love Hypothesis",
+    "author": "Ali Hazelwood",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593336823-M.jpg",
+    "description": "A fake-dating STEM rom-com; funny, warm romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2021,
+    "pageCount": 400,
+    "isbn": "9780593336823",
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "slug": "the-love-hypothesis-ali-hazelwood",
+    "language": "en"
+  },
+  {
+    "id": "kb-201",
+    "title": "Part of Your World",
+    "author": "Abby Jimenez",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780063085421-M.jpg",
+    "description": "Small-town doctor meets big-city executive; heartfelt romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2022,
+    "pageCount": 400,
+    "isbn": "9780063085421",
+    "averageRating": 4.2,
+    "ratingsCount": 120000,
+    "slug": "part-of-your-world-abby-jimenez",
+    "language": "en"
+  },
+  {
+    "id": "kb-202",
+    "title": "Hooked",
+    "author": "Emily McIntire",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781728275889-M.jpg",
+    "description": "A dark romance retelling; obsession and desire drive the romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2021,
+    "pageCount": 400,
+    "isbn": "9781728275889",
+    "averageRating": 4,
+    "ratingsCount": 180000,
+    "slug": "hooked-emily-mcintire",
+    "language": "en"
+  },
+  {
+    "id": "kb-203",
+    "title": "The Spanish Love Deception",
+    "author": "Elena Armas",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781668000845-M.jpg",
+    "description": "Fake dating to a wedding in Spain; slow-burn romantic love story.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "romantic"
+    ],
+    "publishedYear": 2021,
+    "pageCount": 496,
+    "isbn": "9781668000845",
+    "averageRating": 4.2,
+    "ratingsCount": 290000,
+    "slug": "the-spanish-love-deception-elena-armas",
+    "language": "en"
+  },
+  {
+    "id": "kb-204",
+    "title": "Shutter Island",
+    "author": "Dennis Lehane",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780307276741-M.jpg",
+    "description": "A marshal hunts a patient on an island asylum; psychological twist after twist.",
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2003,
+    "pageCount": 316,
+    "isbn": "9780307276741",
+    "averageRating": 4.1,
+    "ratingsCount": 410000,
+    "slug": "shutter-island-dennis-lehane",
+    "language": "en"
+  },
+  {
+    "id": "kb-205",
+    "title": "Fight Club",
+    "author": "Chuck Palahniuk",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780307454980-M.jpg",
+    "description": "Underground brawls and split identity; surreal psychological twist on modern life.",
+    "genres": [
+      "Fiction",
+      "Thriller"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 1996,
+    "pageCount": 218,
+    "isbn": "9780307454980",
+    "averageRating": 4.1,
+    "ratingsCount": 520000,
+    "slug": "fight-club-chuck-palahniuk",
+    "language": "en"
+  },
+  {
+    "id": "kb-206",
+    "title": "Annihilation",
+    "author": "Jeff VanderMeer",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780374104092-M.jpg",
+    "description": "A biologist enters Area X; uncanny ecology and psychological twist territory.",
+    "genres": [
+      "Sci-Fi",
+      "Horror"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2014,
+    "pageCount": 208,
+    "isbn": "9780374104092",
+    "averageRating": 4,
+    "ratingsCount": 240000,
+    "slug": "annihilation-jeff-vandermeer",
+    "language": "en"
+  },
+  {
+    "id": "kb-207",
+    "title": "Never Let Me Go",
+    "author": "Kazuo Ishiguro",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781400078776-M.jpg",
+    "description": "Boarding-school friends learn the truth slowly; devastating psychological twist.",
+    "genres": [
+      "Literary Fiction",
+      "Sci-Fi"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2005,
+    "pageCount": 304,
+    "isbn": "9781400078776",
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "slug": "never-let-me-go-kazuo-ishiguro",
+    "language": "en"
+  },
+  {
+    "id": "kb-208",
+    "title": "The Murder of Roger Ackroyd",
+    "author": "Agatha Christie",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062073488-M.jpg",
+    "description": "Poirot faces a famous narrator trick; classic twist that redefined mystery.",
+    "genres": [
+      "Mystery",
+      "Classics"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 1926,
+    "pageCount": 288,
+    "isbn": "9780062073488",
+    "averageRating": 4.2,
+    "ratingsCount": 280000,
+    "slug": "the-murder-of-roger-ackroyd-agatha-christie",
+    "language": "en"
+  },
+  {
+    "id": "kb-209",
+    "title": "Fingersmith",
+    "author": "Sarah Waters",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781573228732-M.jpg",
+    "description": "Victorian con games and doubled identities; twisty psychological suspense.",
+    "genres": [
+      "Literary Fiction",
+      "Mystery"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2002,
+    "pageCount": 592,
+    "isbn": "9781573228732",
+    "averageRating": 4.2,
+    "ratingsCount": 95000,
+    "slug": "fingersmith-sarah-waters",
+    "language": "en"
+  },
+  {
+    "id": "kb-210",
+    "title": "Recursion",
+    "author": "Blake Crouch",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781542040839-M.jpg",
+    "description": "False memories and looping timelines; high-concept psychological twist thriller.",
+    "genres": [
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2019,
+    "pageCount": 336,
+    "isbn": "9781542040839",
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "slug": "recursion-blake-crouch",
+    "language": "en"
+  },
+  {
+    "id": "kb-211",
+    "title": "I'm Thinking of Ending Things",
+    "author": "Iain Reid",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780143131129-M.jpg",
+    "description": "A road trip unravels into dread; claustrophobic psychological twist.",
+    "genres": [
+      "Horror",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2016,
+    "pageCount": 224,
+    "isbn": "9780143131129",
+    "averageRating": 3.9,
+    "ratingsCount": 140000,
+    "slug": "im-thinking-of-ending-things-iain-reid",
+    "language": "en"
+  },
+  {
+    "id": "kb-212",
+    "title": "Motherless Brooklyn",
+    "author": "Jonathan Lethem",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780306906473-M.jpg",
+    "description": "A detective with Tourette's probes murder; noir with surreal psychological edges.",
+    "genres": [
+      "Mystery",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 1999,
+    "pageCount": 448,
+    "isbn": "9780306906473",
+    "averageRating": 4,
+    "ratingsCount": 85000,
+    "slug": "motherless-brooklyn-jonathan-lethem",
+    "language": "en"
+  },
+  {
+    "id": "kb-213",
+    "title": "The 7½ Deaths of Evelyn Hardcastle",
+    "author": "Stuart Turton",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781492668097-M.jpg",
+    "description": "Relive the same day as different guests; a looped psychological twist puzzle.",
+    "genres": [
+      "Mystery",
+      "Fantasy"
+    ],
+    "mood": [
+      "mind-bending"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 480,
+    "isbn": "9781492668097",
+    "averageRating": 4.1,
+    "ratingsCount": 120000,
+    "slug": "the-71-2-deaths-of-evelyn-hardcastle-stuart-turton",
+    "language": "en"
+  },
+  {
+    "id": "kb-214",
+    "title": "The Fellowship of the Ring",
+    "author": "J.R.R. Tolkien",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780547953832-M.jpg",
+    "description": "The quest to destroy a ring begins; foundational epic adventure in Middle-earth.",
+    "genres": [
+      "Fantasy",
+      "Classics"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 1954,
+    "pageCount": 432,
+    "isbn": "9780547953832",
+    "averageRating": 4.4,
+    "ratingsCount": 1200000,
+    "slug": "the-fellowship-of-the-ring-j-r-r-tolkien",
+    "language": "en"
+  },
+  {
+    "id": "kb-215",
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780547928227-M.jpg",
+    "description": "Bilbo joins dwarves to reclaim a mountain; charming epic adventure prelude.",
+    "genres": [
+      "Fantasy",
+      "Classics"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 1937,
+    "pageCount": 310,
+    "isbn": "9780547928227",
+    "averageRating": 4.3,
+    "ratingsCount": 980000,
+    "slug": "the-hobbit-j-r-r-tolkien",
+    "language": "en"
+  },
+  {
+    "id": "kb-216",
+    "title": "The Name of the Wind",
+    "author": "Patrick Rothfuss",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780756404741-M.jpg",
+    "description": "Kvothe's legend grows across a richly built world; lyrical epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2007,
+    "pageCount": 722,
+    "isbn": "9780756404741",
+    "averageRating": 4.5,
+    "ratingsCount": 620000,
+    "slug": "the-name-of-the-wind-patrick-rothfuss",
+    "language": "en"
+  },
+  {
+    "id": "kb-217",
+    "title": "The Lies of Locke Lamora",
+    "author": "Scott Lynch",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780553804686-M.jpg",
+    "description": "Thieves in a canal city pull impossible heists; swaggering epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2006,
+    "pageCount": 512,
+    "isbn": "9780553804686",
+    "averageRating": 4.4,
+    "ratingsCount": 210000,
+    "slug": "the-lies-of-locke-lamora-scott-lynch",
+    "language": "en"
+  },
+  {
+    "id": "kb-218",
+    "title": "The Priory of the Orange Tree",
+    "author": "Samantha Shannon",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781635574042-M.jpg",
+    "description": "Dragons, queendoms, and a world-spanning quest; sweeping epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2019,
+    "pageCount": 848,
+    "isbn": "9781635574042",
+    "averageRating": 4.3,
+    "ratingsCount": 140000,
+    "slug": "the-priory-of-the-orange-tree-samantha-shannon",
+    "language": "en"
+  },
+  {
+    "id": "kb-219",
+    "title": "Red Rising",
+    "author": "Pierce Brown",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780345539786-M.jpg",
+    "description": "A miner infiltrates elite gladiator schools on Mars; brutal sci-fi epic adventure.",
+    "genres": [
+      "Sci-Fi",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2014,
+    "pageCount": 400,
+    "isbn": "9780345539786",
+    "averageRating": 4.3,
+    "ratingsCount": 290000,
+    "slug": "red-rising-pierce-brown",
+    "language": "en"
+  },
+  {
+    "id": "kb-220",
+    "title": "Crown of Midnight",
+    "author": "Sarah J. Maas",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781619630367-M.jpg",
+    "description": "An assassin takes on political contracts; fast-paced romantic epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2013,
+    "pageCount": 448,
+    "isbn": "9781619630367",
+    "averageRating": 4.3,
+    "ratingsCount": 310000,
+    "slug": "crown-of-midnight-sarah-j-maas",
+    "language": "en"
+  },
+  {
+    "id": "kb-221",
+    "title": "Jade City",
+    "author": "Fonda Lee",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316391248-M.jpg",
+    "description": "Clan families wield jade magic in a city at war; cinematic epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2017,
+    "pageCount": 560,
+    "isbn": "9780316391248",
+    "averageRating": 4.2,
+    "ratingsCount": 85000,
+    "slug": "jade-city-fonda-lee",
+    "language": "en"
+  },
+  {
+    "id": "kb-222",
+    "title": "The Blade Itself",
+    "author": "Joe Abercrombie",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316387316-M.jpg",
+    "description": "Grim mercenaries and politics collide; gritty epic adventure fantasy opener.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2007,
+    "pageCount": 544,
+    "isbn": "9780316387316",
+    "averageRating": 4.2,
+    "ratingsCount": 140000,
+    "slug": "the-blade-itself-joe-abercrombie",
+    "language": "en"
+  },
+  {
+    "id": "kb-223",
+    "title": "Mistborn: The Final Empire",
+    "author": "Brandon Sanderson",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780760316899-M.jpg",
+    "description": "A thief crew topples an immortal emperor; inventive magic epic adventure fantasy.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "epic-adventure"
+    ],
+    "publishedYear": 2006,
+    "pageCount": 672,
+    "isbn": "9780760316899",
+    "averageRating": 4.5,
+    "ratingsCount": 380000,
+    "slug": "mistborn-the-final-empire-brandon-sanderson",
+    "language": "en"
+  },
+  {
+    "id": "kb-224",
+    "title": "Good Omens",
+    "author": "Neil Gaiman and Terry Pratchett",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780060853983-M.jpg",
+    "description": "An angel and demon team up to stop Armageddon; witty humor comedy fantasy.",
+    "genres": [
+      "Fantasy",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 1990,
+    "pageCount": 432,
+    "isbn": "9780060853983",
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "slug": "good-omens-neil-gaiman-and-terry-pratchett",
+    "language": "en"
+  },
+  {
+    "id": "kb-225",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780345418025-M.jpg",
+    "description": "Earth demolished for a bypass; absurd humor comedy across the galaxy.",
+    "genres": [
+      "Sci-Fi",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 1979,
+    "pageCount": 224,
+    "isbn": "9780345418025",
+    "averageRating": 4.2,
+    "ratingsCount": 520000,
+    "slug": "the-hitchhikers-guide-to-the-galaxy-douglas-adams",
+    "language": "en"
+  },
+  {
+    "id": "kb-226",
+    "title": "Bridget Jones's Diary",
+    "author": "Helen Fielding",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780330352802-M.jpg",
+    "description": "Diary of dating disasters in London; sharp humor comedy romance.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 1996,
+    "pageCount": 320,
+    "isbn": "9780330352802",
+    "averageRating": 4,
+    "ratingsCount": 380000,
+    "slug": "bridget-joness-diary-helen-fielding",
+    "language": "en"
+  },
+  {
+    "id": "kb-227",
+    "title": "The Rosie Project",
+    "author": "Graeme Simsion",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781476756890-M.jpg",
+    "description": "A professor seeks a wife with spreadsheets; sweet humor comedy romance.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2013,
+    "pageCount": 304,
+    "isbn": "9781476756890",
+    "averageRating": 4.2,
+    "ratingsCount": 290000,
+    "slug": "the-rosie-project-graeme-simsion",
+    "language": "en"
+  },
+  {
+    "id": "kb-228",
+    "title": "The Weird Sisters",
+    "author": "Eleanor Brown",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780451234947-M.jpg",
+    "description": "Three sisters return home; warm family humor comedy with Shakespeare quotes.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2011,
+    "pageCount": 336,
+    "isbn": "9780451234947",
+    "averageRating": 3.9,
+    "ratingsCount": 95000,
+    "slug": "the-weird-sisters-eleanor-brown",
+    "language": "en"
+  },
+  {
+    "id": "kb-229",
+    "title": "Where'd You Go, Bernadette",
+    "author": "Maria Semple",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316204279-M.jpg",
+    "description": "Emails and misadventures in Seattle; breezy humor comedy about a vanished mom.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2012,
+    "pageCount": 352,
+    "isbn": "9780316204279",
+    "averageRating": 4,
+    "ratingsCount": 210000,
+    "slug": "whered-you-go-bernadette-maria-semple",
+    "language": "en"
+  },
+  {
+    "id": "kb-230",
+    "title": "Eleanor Oliphant Is Completely Fine",
+    "author": "Gail Honeyman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780735220683-M.jpg",
+    "description": "An awkward woman learns friendship; deadpan humor comedy with heart.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2017,
+    "pageCount": 336,
+    "isbn": "9780735220683",
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "slug": "eleanor-oliphant-is-completely-fine-gail-honeyman",
+    "language": "en"
+  },
+  {
+    "id": "kb-231",
+    "title": "A Man Called Ove",
+    "author": "Fredrik Backman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781476735014-M.jpg",
+    "description": "A grumpy widower softens when neighbors intrude; bittersweet humor comedy.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2012,
+    "pageCount": 352,
+    "isbn": "9781476735014",
+    "averageRating": 4.4,
+    "ratingsCount": 520000,
+    "slug": "a-man-called-ove-fredrik-backman",
+    "language": "en"
+  },
+  {
+    "id": "kb-232",
+    "title": "Less",
+    "author": "Andrew Sean Greer",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316312532-M.jpg",
+    "description": "A novelist flees a wedding on a world tour; witty humor comedy Pulitzer winner.",
+    "genres": [
+      "Literary Fiction",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2017,
+    "pageCount": 272,
+    "isbn": "9780316312532",
+    "averageRating": 4,
+    "ratingsCount": 95000,
+    "slug": "less-andrew-sean-greer",
+    "language": "en"
+  },
+  {
+    "id": "kb-233",
+    "title": "The Flatshare",
+    "author": "Beth O'Leary",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781250299484-M.jpg",
+    "description": "Two strangers share a bed on shifts; charming humor comedy romance.",
+    "genres": [
+      "Romance",
+      "Humor"
+    ],
+    "mood": [
+      "light-funny"
+    ],
+    "publishedYear": 2019,
+    "pageCount": 400,
+    "isbn": "9781250299484",
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "slug": "the-flatshare-beth-oleary",
+    "language": "en"
+  },
+  {
+    "id": "kb-234",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781455586693-M.jpg",
+    "description": "Rules for focused success in a distracted world; business career leadership ideas.",
+    "genres": [
+      "Self-Help",
+      "Non-Fiction"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2016,
+    "pageCount": 304,
+    "isbn": "9781455586693",
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "slug": "deep-work-cal-newport",
+    "language": "en"
+  },
+  {
+    "id": "kb-235",
+    "title": "Lean In",
+    "author": "Sheryl Sandberg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780385347149-M.jpg",
+    "description": "Women, work, and the will to lead; leadership success and career advice.",
+    "genres": [
+      "Non-Fiction",
+      "Self-Help"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2013,
+    "pageCount": 240,
+    "isbn": "9780385347149",
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "slug": "lean-in-sheryl-sandberg",
+    "language": "en"
+  },
+  {
+    "id": "kb-236",
+    "title": "Shoe Dog",
+    "author": "Phil Knight",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781501135910-M.jpg",
+    "description": "Nike's founder on hustle and risk; memoir of business career leadership.",
+    "genres": [
+      "Biography",
+      "Non-Fiction"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2016,
+    "pageCount": 400,
+    "isbn": "9781501135910",
+    "averageRating": 4.5,
+    "ratingsCount": 520000,
+    "slug": "shoe-dog-phil-knight",
+    "language": "en"
+  },
+  {
+    "id": "kb-237",
+    "title": "Educated",
+    "author": "Tara Westover",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780399590504-M.jpg",
+    "description": "From Idaho survivalism to Cambridge; education as escape and career path.",
+    "genres": [
+      "Biography",
+      "Non-Fiction"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 352,
+    "isbn": "9780399590504",
+    "averageRating": 4.5,
+    "ratingsCount": 620000,
+    "slug": "educated-tara-westover",
+    "language": "en"
+  },
+  {
+    "id": "kb-238",
+    "title": "Outliers",
+    "author": "Malcolm Gladwell",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316017930-M.jpg",
+    "description": "What makes high achievers different; success patterns and leadership insight.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2008,
+    "pageCount": 320,
+    "isbn": "9780316017930",
+    "averageRating": 4.1,
+    "ratingsCount": 410000,
+    "slug": "outliers-malcolm-gladwell",
+    "language": "en"
+  },
+  {
+    "id": "kb-239",
+    "title": "Start With Why",
+    "author": "Simon Sinek",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781592404831-M.jpg",
+    "description": "How great leaders inspire action; leadership success through purpose.",
+    "genres": [
+      "Non-Fiction",
+      "Business"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2009,
+    "pageCount": 256,
+    "isbn": "9781592404831",
+    "averageRating": 4.1,
+    "ratingsCount": 380000,
+    "slug": "start-with-why-simon-sinek",
+    "language": "en"
+  },
+  {
+    "id": "kb-240",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141033570-M.jpg",
+    "description": "Biases that shape decisions; psychology for better judgment at work.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2011,
+    "pageCount": 512,
+    "isbn": "9780141033570",
+    "averageRating": 4.2,
+    "ratingsCount": 290000,
+    "slug": "thinking-fast-and-slow-daniel-kahneman",
+    "language": "en"
+  },
+  {
+    "id": "kb-241",
+    "title": "Dare to Lead",
+    "author": "Brené Brown",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780399592522-M.jpg",
+    "description": "Brave work and tough conversations; leadership success with courage.",
+    "genres": [
+      "Non-Fiction",
+      "Self-Help"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 320,
+    "isbn": "9780399592522",
+    "averageRating": 4.3,
+    "ratingsCount": 210000,
+    "slug": "dare-to-lead-brene-brown",
+    "language": "en"
+  },
+  {
+    "id": "kb-242",
+    "title": "Never Split the Difference",
+    "author": "Chris Voss",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062853194-M.jpg",
+    "description": "FBI negotiation tactics for business; career leadership communication.",
+    "genres": [
+      "Non-Fiction",
+      "Business"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2016,
+    "pageCount": 288,
+    "isbn": "9780062853194",
+    "averageRating": 4.4,
+    "ratingsCount": 240000,
+    "slug": "never-split-the-difference-chris-voss",
+    "language": "en"
+  },
+  {
+    "id": "kb-243",
+    "title": "Range",
+    "author": "David Epstein",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780735214486-M.jpg",
+    "description": "Why generalists triumph in a specialized world; career success insight.",
+    "genres": [
+      "Non-Fiction",
+      "Psychology"
+    ],
+    "mood": [
+      "career-inspiring"
+    ],
+    "publishedYear": 2019,
+    "pageCount": 352,
+    "isbn": "9780735214486",
+    "averageRating": 4.3,
+    "ratingsCount": 95000,
+    "slug": "range-david-epstein",
+    "language": "en"
+  },
+  {
+    "id": "kb-244",
+    "title": "A Wizard of Earthsea",
+    "author": "Ursula K. Le Guin",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780547851395-M.jpg",
+    "description": "A young mage learns names of power on island archipelagos; classic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Classics"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 1968,
+    "pageCount": 272,
+    "isbn": "9780547851395",
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "slug": "a-wizard-of-earthsea-ursula-k-le-guin",
+    "language": "en"
+  },
+  {
+    "id": "kb-245",
+    "title": "The Color of Magic",
+    "author": "Terry Pratchett",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062237425-M.jpg",
+    "description": "A tourist on Discworld meets hapless wizards; comic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Humor"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 1983,
+    "pageCount": 288,
+    "isbn": "9780062237425",
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "slug": "the-color-of-magic-terry-pratchett",
+    "language": "en"
+  },
+  {
+    "id": "kb-246",
+    "title": "Six of Crows",
+    "author": "Leigh Bardugo",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781250027315-M.jpg",
+    "description": "A heist crew in a Dutch-inspired city; gritty YA fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 2015,
+    "pageCount": 512,
+    "isbn": "9781250027315",
+    "averageRating": 4.5,
+    "ratingsCount": 380000,
+    "slug": "six-of-crows-leigh-bardugo",
+    "language": "en"
+  },
+  {
+    "id": "kb-247",
+    "title": "Neverwhere",
+    "author": "Neil Gaiman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780060558123-M.jpg",
+    "description": "London Below hides markets and monsters; urban fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 1997,
+    "pageCount": 400,
+    "isbn": "9780060558123",
+    "averageRating": 4.1,
+    "ratingsCount": 240000,
+    "slug": "neverwhere-neil-gaiman",
+    "language": "en"
+  },
+  {
+    "id": "kb-248",
+    "title": "Stardust",
+    "author": "Neil Gaiman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780061689246-M.jpg",
+    "description": "A wall separates village from faerie; a quest for a fallen star, fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 1999,
+    "pageCount": 288,
+    "isbn": "9780061689246",
+    "averageRating": 4.2,
+    "ratingsCount": 210000,
+    "slug": "stardust-neil-gaiman",
+    "language": "en"
+  },
+  {
+    "id": "kb-249",
+    "title": "The Poppy War",
+    "author": "R.F. Kuang",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062662590-M.jpg",
+    "description": "War school in a fantasy China; brutal military fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 2018,
+    "pageCount": 544,
+    "isbn": "9780062662590",
+    "averageRating": 4.3,
+    "ratingsCount": 140000,
+    "slug": "the-poppy-war-r-f-kuang",
+    "language": "en"
+  },
+  {
+    "id": "kb-250",
+    "title": "Gideon the Ninth",
+    "author": "Tamsyn Muir",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781250313075-M.jpg",
+    "description": "Lesbian necromancers in a haunted palace; gothic fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Sci-Fi"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 2019,
+    "pageCount": 448,
+    "isbn": "9781250313075",
+    "averageRating": 4.2,
+    "ratingsCount": 120000,
+    "slug": "gideon-the-ninth-tamsyn-muir",
+    "language": "en"
+  },
+  {
+    "id": "kb-251",
+    "title": "The Bone Shard Daughter",
+    "author": "Andrea Stewart",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316541425-M.jpg",
+    "description": "An emperor's heir hunts rebels across islands; inventive fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 2020,
+    "pageCount": 448,
+    "isbn": "9780316541425",
+    "averageRating": 4.1,
+    "ratingsCount": 65000,
+    "slug": "the-bone-shard-daughter-andrea-stewart",
+    "language": "en"
+  },
+  {
+    "id": "kb-252",
+    "title": "The City of Brass",
+    "author": "S.A. Chakraborty",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062679428-M.jpg",
+    "description": "Cairo con artist enters djinn politics; lush historical fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Fiction"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 2017,
+    "pageCount": 544,
+    "isbn": "9780062679428",
+    "averageRating": 4.2,
+    "ratingsCount": 95000,
+    "slug": "the-city-of-brass-s-a-chakraborty",
+    "language": "en"
+  },
+  {
+    "id": "kb-253",
+    "title": "The Ten Thousand Doors of January",
+    "author": "Alix E. Harrow",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316421998-M.jpg",
+    "description": "Doors between worlds open to a curious girl; lyrical fantasy magic adventure.",
+    "genres": [
+      "Fantasy",
+      "Literary Fiction"
+    ],
+    "mood": [
+      "fantasy-worlds"
+    ],
+    "publishedYear": 2019,
+    "pageCount": 400,
+    "isbn": "9780316421998",
+    "averageRating": 4.2,
+    "ratingsCount": 85000,
+    "slug": "the-ten-thousand-doors-of-january-alix-e-harrow",
+    "language": "en"
+  },
+  {
+    "id": "kb-254",
+    "title": "A Thousand Splendid Suns",
+    "author": "Khaled Hosseini",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781594483859-M.jpg",
+    "description": "Two women endure Kabul's wars; devastating emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2007,
+    "pageCount": 384,
+    "isbn": "9781594483859",
+    "averageRating": 4.4,
+    "ratingsCount": 520000,
+    "slug": "a-thousand-splendid-suns-khaled-hosseini",
+    "language": "en"
+  },
+  {
+    "id": "kb-255",
+    "title": "Me Before You",
+    "author": "Jojo Moyes",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780143124542-M.jpg",
+    "description": "A caregiver falls for a quadriplegic man; tearful emotional literary drama.",
+    "genres": [
+      "Romance",
+      "Fiction"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2012,
+    "pageCount": 400,
+    "isbn": "9780143124542",
+    "averageRating": 4.3,
+    "ratingsCount": 410000,
+    "slug": "me-before-you-jojo-moyes",
+    "language": "en"
+  },
+  {
+    "id": "kb-256",
+    "title": "The Book Thief",
+    "author": "Markus Zusak",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780375842207-M.jpg",
+    "description": "Death narrates a girl stealing books in Nazi Germany; emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Classics"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2005,
+    "pageCount": 576,
+    "isbn": "9780375842207",
+    "averageRating": 4.4,
+    "ratingsCount": 620000,
+    "slug": "the-book-thief-markus-zusak",
+    "language": "en"
+  },
+  {
+    "id": "kb-257",
+    "title": "Norwegian Wood",
+    "author": "Haruki Murakami",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780375704024-M.jpg",
+    "description": "Love and loss in 1960s Tokyo; melancholy emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Classics"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 1987,
+    "pageCount": 304,
+    "isbn": "9780375704024",
+    "averageRating": 4,
+    "ratingsCount": 240000,
+    "slug": "norwegian-wood-haruki-murakami",
+    "language": "en"
+  },
+  {
+    "id": "kb-258",
+    "title": "Atonement",
+    "author": "Ian McEwan",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780385721790-M.jpg",
+    "description": "A child's lie alters lives across decades; guilt and emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Classics"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2001,
+    "pageCount": 368,
+    "isbn": "9780385721790",
+    "averageRating": 4,
+    "ratingsCount": 310000,
+    "slug": "atonement-ian-mcewan",
+    "language": "en"
+  },
+  {
+    "id": "kb-259",
+    "title": "Small Great Things",
+    "author": "Jodi Picoult",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780345544957-M.jpg",
+    "description": "A nurse faces a trial about race and birth; courtroom emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2016,
+    "pageCount": 512,
+    "isbn": "9780345544957",
+    "averageRating": 4.3,
+    "ratingsCount": 210000,
+    "slug": "small-great-things-jodi-picoult",
+    "language": "en"
+  },
+  {
+    "id": "kb-260",
+    "title": "Everything I Never Told You",
+    "author": "Celeste Ng",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781594633666-M.jpg",
+    "description": "A family fractures after a daughter's death; intimate emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Mystery"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2014,
+    "pageCount": 304,
+    "isbn": "9781594633666",
+    "averageRating": 4.1,
+    "ratingsCount": 290000,
+    "slug": "everything-i-never-told-you-celeste-ng",
+    "language": "en"
+  },
+  {
+    "id": "kb-261",
+    "title": "The Light Between Oceans",
+    "author": "M.L. Stedman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781451681735-M.jpg",
+    "description": "A lighthouse couple makes an impossible choice; moral emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2012,
+    "pageCount": 352,
+    "isbn": "9781451681735",
+    "averageRating": 4.2,
+    "ratingsCount": 180000,
+    "slug": "the-light-between-oceans-m-l-stedman",
+    "language": "en"
+  },
+  {
+    "id": "kb-262",
+    "title": "My Sister's Keeper",
+    "author": "Jodi Picoult",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780743454537-M.jpg",
+    "description": "A sister sues for medical emancipation; family ethical emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2004,
+    "pageCount": 432,
+    "isbn": "9780743454537",
+    "averageRating": 4.1,
+    "ratingsCount": 380000,
+    "slug": "my-sisters-keeper-jodi-picoult",
+    "language": "en"
+  },
+  {
+    "id": "kb-263",
+    "title": "Tell the Wolves I'm Home",
+    "author": "Carol Rifka Brunt",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780143123874-M.jpg",
+    "description": "A girl grieves her uncle in the AIDS era; tender emotional literary drama.",
+    "genres": [
+      "Literary Fiction",
+      "Fiction"
+    ],
+    "mood": [
+      "emotional"
+    ],
+    "publishedYear": 2012,
+    "pageCount": 368,
+    "isbn": "9780143123874",
+    "averageRating": 4.2,
+    "ratingsCount": 95000,
+    "slug": "tell-the-wolves-im-home-carol-rifka-brunt",
     "language": "en"
   }
 ]

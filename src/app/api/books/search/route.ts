@@ -94,6 +94,8 @@ export async function GET(req: Request) {
     const { q } = buildQuery(url.searchParams)
     const language = url.searchParams.get("language") ?? "any"
     const sort = url.searchParams.get("sort") ?? "relevance"
+    const genreFilters = url.searchParams.getAll("genre").map((g) => g.trim()).filter(Boolean)
+    const moodFilters = url.searchParams.getAll("mood").map((m) => m.trim()).filter(Boolean)
 
     const page = Math.max(0, Number(url.searchParams.get("page") ?? "0"))
     const limit = Math.min(20, Math.max(1, Number(url.searchParams.get("limit") ?? "12")))
@@ -104,6 +106,8 @@ export async function GET(req: Request) {
       q,
       langRestrict: language !== "any" ? language : undefined,
       orderBy,
+      genres: genreFilters.length > 0 ? genreFilters : undefined,
+      moods: moodFilters.length > 0 ? moodFilters : undefined,
     })
     const filtered = sortBooks(applyClientSideFilters(ranked, url.searchParams), sort)
     const items = filtered.slice(startIndex, startIndex + limit)

@@ -1,7 +1,41 @@
 import booksJson from "@/data/books-knowledge-base.json"
+import { MOOD_SEARCH_TERMS } from "@/lib/constants"
 import type { Book } from "@/types/book"
 
 const BOOKS = booksJson as Book[]
+
+/** Genre chip: match structured `genres` first, then title/description text. */
+function bookMatchesGenreFilter(book: Book, genreLabel: string): boolean {
+  const gl = genreLabel.trim().toLowerCase()
+  if (!gl) return true
+  const genreLc = book.genres.map((g) => g.toLowerCase())
+  if (genreLc.includes(gl)) return true
+  const blob = `${book.title} ${book.description ?? ""} ${book.genres.join(" ")}`.toLowerCase()
+  if (blob.includes(gl)) return true
+  const parts = gl.split(/\s+/).filter((p) => p.length > 0)
+  if (parts.length <= 1) return false
+  return parts.every((p) => (p.length <= 2 ? true : blob.includes(p)))
+}
+
+/** Mood chip: explicit `book.mood` slugs from the KB, else keyword match on synopsis (legacy rows). */
+function bookMatchesMoodFilter(book: Book, moodSlug: string): boolean {
+  const slug = moodSlug.trim()
+  if (!slug) return true
+  if (book.mood?.includes(slug)) return true
+  const phrase =
+    slug in MOOD_SEARCH_TERMS
+      ? MOOD_SEARCH_TERMS[slug as keyof typeof MOOD_SEARCH_TERMS]
+      : slug.replace(/-/g, " ")
+  const blob = `${book.title} ${book.description ?? ""} ${book.genres.join(" ")}`.toLowerCase()
+  const words = phrase.toLowerCase().split(/\s+/).filter((w) => w.length > 1)
+  if (words.length === 0) return blob.includes(phrase.toLowerCase())
+  const need = Math.max(1, Math.ceil(words.length * 0.51))
+  let hit = 0
+  for (const w of words) {
+    if (blob.includes(w)) hit++
+  }
+  return hit >= need
+}
 
 function popularityScore(b: Book): number {
   return b.averageRating * Math.log(1 + Math.max(0, b.ratingsCount))
@@ -44,8 +78,23 @@ export function rankKnowledgeBooksForQuery(params: {
   q: string
   langRestrict?: string
   orderBy?: "relevance" | "newest"
+  /** When set, only books whose KB genres (or copy) match at least one selected genre. */
+  genres?: string[]
+  /** When set, only books whose synopsis/title/genres reflect the mood keywords (see MOOD_SEARCH_TERMS). */
+  moods?: string[]
 }): Book[] {
-  const pool = filterByLanguage([...BOOKS], params.langRestrict)
+  let pool = filterByLanguage([...BOOKS], params.langRestrict)
+
+  const genres = params.genres?.map((g) => g.trim()).filter((g) => g.length > 0) ?? []
+  const moods = params.moods?.map((m) => m.trim()).filter((m) => m.length > 0) ?? []
+
+  if (genres.length > 0) {
+    pool = pool.filter((b) => genres.some((g) => bookMatchesGenreFilter(b, g)))
+  }
+  if (moods.length > 0) {
+    pool = pool.filter((b) => moods.some((m) => bookMatchesMoodFilter(b, m)))
+  }
+
   const tokens = tokenizeQuery(params.q.trim())
   let ranked: Book[]
 

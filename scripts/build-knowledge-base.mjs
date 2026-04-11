@@ -1,7 +1,7 @@
 /**
  * Generates src/data/books-knowledge-base.json with coverage:
  * - Each GENRES entry: ≥5 books with that exact genre label
- * - Each MOOD search phrase: ≥5 books mentioning it in description
+ * - Mood slugs: curated via scripts/mood-append.json (see apply-mood-catalog.mjs), not generated here
  * - Each era keyword (via published year + description): ≥5 books
  * - minRating 1–5: ≥5 books surviving each threshold
  * - Each language (en, es, fr, de, hi): ≥5 books
@@ -14,17 +14,6 @@ import { dirname, join } from "node:path"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const out = join(__dirname, "..", "src", "data", "books-knowledge-base.json")
-
-const MOOD_PHRASES = {
-  "dark-eerie": "dark gothic horror atmospheric",
-  romantic: "romantic love story",
-  "mind-bending": "psychological twist surreal",
-  "epic-adventure": "epic adventure quest",
-  "light-funny": "humor comedy witty funny",
-  "career-inspiring": "business career leadership success",
-  "fantasy-worlds": "fantasy magic adventure",
-  emotional: "emotional literary drama",
-}
 
 function slugify(title, author) {
   return `${title} ${author}`
@@ -55,12 +44,6 @@ function book(b) {
     slug: slugify(b.title, b.author),
     language: b.language ?? "en",
   }
-}
-
-/** Append mood phrase into description (for browse mood filter). */
-function withMood(desc, moodKey) {
-  const phrase = MOOD_PHRASES[moodKey]
-  return `${desc} Readers seeking a ${phrase} will find this title a strong match.`
 }
 
 const books = []
@@ -355,26 +338,7 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of hi) {
   books.push(book({ title, author, isbn, publishedYear: year, pageCount: pages, averageRating: rating, ratingsCount: rc, description: desc, genres: ["Literary Fiction", "History"], language: "hi" }))
 }
 
-// --- Mood-tagged batches: 5 books each with full mood phrase in description ---
-const moodKeys = Object.keys(MOOD_PHRASES)
-for (const moodKey of moodKeys) {
-  const phrase = MOOD_PHRASES[moodKey]
-  for (let i = 0; i < 5; i++) {
-    books.push(
-      book({
-        title: `Mood Shelf: ${moodKey.replace(/-/g, " ")} ${i + 1}`,
-        author: "BooksyAI Curated",
-        isbn: `9781999${String(10000 + books.length).padStart(5, "0")}`,
-        publishedYear: 2016 + i,
-        pageCount: 280 + i * 12,
-        averageRating: 3.8 + i * 0.05,
-        ratingsCount: 5000 + i * 100,
-        description: `A curated pick for browse filters: this synopsis repeats the phrase ${phrase} so mood search always surfaces at least five titles. Light plot, strong vibe match for ${moodKey}.`,
-        genres: ["Literary Fiction", "Fiction"],
-      })
-    )
-  }
-}
+// Mood-tagged real titles: maintain via `node scripts/apply-mood-catalog.mjs` (see scripts/mood-append.json + generate-mood-seed.mjs).
 
 // Dedupe by ISBN
 const seen = new Set()
