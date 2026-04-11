@@ -1,11 +1,12 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-
+import { authFieldInputClassName } from "@/components/auth/auth-card-shell"
+import { useAuthDialogOptional } from "@/components/auth/auth-dialog-context"
 import { createBrowserSupabaseClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 
 /** Supabase returns raw messages like "email rate limit exceeded" — make them actionable. */
 function formatSignupError(err: unknown): string {
@@ -16,7 +17,23 @@ function formatSignupError(err: unknown): string {
   return msg
 }
 
-export function SignupForm() {
+type SignupFormProps = {
+  /** Auth popup: switch to sign-in in the same dialog. */
+  onSwitchToSignIn?: () => void
+  /** Called when sign-up yields a session (e.g. close auth dialog). */
+  onSuccess?: () => void
+  /** After immediate session, navigate here (default `/onboarding`). */
+  redirectAfterSession?: string
+}
+
+function safeAppPath(path: string | undefined, fallback: string) {
+  if (!path) return fallback
+  if (path.startsWith("/") && !path.startsWith("//") && !path.includes("\\")) return path
+  return fallback
+}
+
+export function SignupForm({ onSwitchToSignIn, onSuccess, redirectAfterSession }: SignupFormProps = {}) {
+  const authDialog = useAuthDialogOptional()
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [error, setError] = React.useState<string | null>(null)
@@ -46,7 +63,8 @@ export function SignupForm() {
         setAwaitingEmailConfirm(true)
         return
       }
-      window.location.href = "/onboarding"
+      onSuccess?.()
+      window.location.href = safeAppPath(redirectAfterSession, "/onboarding")
     } catch (e) {
       setError(formatSignupError(e))
     } finally {
@@ -56,46 +74,97 @@ export function SignupForm() {
 
   if (awaitingEmailConfirm) {
     return (
-      <div className="mt-6 space-y-4">
-        <div className="rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm text-text">
+      <div className="space-y-4">
+        <div className="rounded-2xl border border-primary/25 bg-primary/[0.06] p-4 text-sm text-text">
           <p className="font-medium text-heading">Check your email</p>
           <p className="mt-2 text-text-muted">
             We sent a confirmation link to <span className="text-heading">{email}</span>. Open it to activate your account,
             then you can finish onboarding.
           </p>
         </div>
-        <p className="text-sm text-text-muted">
+        <p className="text-center text-sm text-text-muted">
           Already confirmed?{" "}
-          <Link href="/auth/login?next=/onboarding" className="text-primary hover:text-primary-hover">
-            Sign in
-          </Link>
+          {onSwitchToSignIn != null ? (
+            <button
+              type="button"
+              className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
+              onClick={onSwitchToSignIn}
+            >
+              Sign in
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
+              onClick={() => authDialog?.openSignIn({ redirectTo: "/onboarding" })}
+            >
+              Sign in
+            </button>
+          )}
         </p>
       </div>
     )
   }
 
   return (
-    <div className="mt-6 space-y-4">
-      <div className="space-y-3">
+    <div className="space-y-4">
+      <div className="flex flex-col gap-5">
         <div>
-          <label className="text-sm text-text-muted">Email</label>
-          <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
+          <label className="mb-1.5 block text-sm font-medium text-text-muted" htmlFor="signup-email">
+            Email
+          </label>
+          <Input
+            id="signup-email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            className={cn(authFieldInputClassName)}
+          />
         </div>
         <div>
-          <label className="text-sm text-text-muted">Password</label>
-          <Input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+          <label className="mb-1.5 block text-sm font-medium text-text-muted" htmlFor="signup-password">
+            Password
+          </label>
+          <Input
+            id="signup-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className={cn(authFieldInputClassName)}
+          />
         </div>
-        {error ? <div className="text-sm text-error">{error}</div> : null}
-        <Button variant="primary" size="md" fullWidth loading={loading} onClick={() => void onEmailSignup()}>
+        {error ? <div className="text-center text-sm text-error">{error}</div> : null}
+        <Button
+          variant="primary"
+          size="md"
+          fullWidth
+          className="h-12 rounded-full font-semibold shadow-card"
+          loading={loading}
+          onClick={() => void onEmailSignup()}
+        >
           Create account
         </Button>
       </div>
 
-      <div className="text-sm text-text-muted">
+      <div className="text-center text-sm text-text-muted">
         Already have an account?{" "}
-        <Link href="/auth/login" className="text-primary hover:text-primary-hover">
-          Sign in
-        </Link>
+        {onSwitchToSignIn != null ? (
+          <button
+            type="button"
+            className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
+            onClick={onSwitchToSignIn}
+          >
+            Sign in
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="font-medium text-primary underline-offset-2 hover:text-primary-hover hover:underline"
+            onClick={() => authDialog?.openSignIn()}
+          >
+            Sign in
+          </button>
+        )}
       </div>
     </div>
   )

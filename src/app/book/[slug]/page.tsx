@@ -182,29 +182,11 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
               <Tabs defaultValue="reviews">
                 <TabsList className="no-scrollbar w-full max-w-full justify-start overflow-x-auto sm:w-auto">
                   <TabsTrigger value="reviews">Reviews</TabsTrigger>
-                  <TabsTrigger value="lists">Lists containing this book</TabsTrigger>
                   <TabsTrigger value="similar">Similar Books</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="reviews" className="mt-4 min-w-0 space-y-4">
                   <BookReviewsSection bookId={book.id} bookTitle={book.title} />
-                </TabsContent>
-
-                <TabsContent value="lists">
-                  <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
-                    <h3 className="font-heading text-h3 text-heading">Lists</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                      Lists that include this title will show here once list data is connected. Browse reader lists in the
-                      meantime.
-                    </p>
-                    <div className="mt-4">
-                      <Link href="/community/lists">
-                        <Button variant="secondary" size="sm">
-                          Browse community lists
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
                 </TabsContent>
 
                 <TabsContent value="similar">

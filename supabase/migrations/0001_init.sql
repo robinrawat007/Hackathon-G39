@@ -70,18 +70,6 @@ create table if not exists public.taste_profiles (
   last_updated timestamptz default now()
 );
 
--- lists
-create table if not exists public.book_lists (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references public.profiles(id) on delete cascade,
-  title text not null,
-  description text,
-  book_ids text[] default '{}',
-  is_public boolean default true,
-  likes_count int default 0,
-  created_at timestamptz default now()
-);
-
 -- follows
 create table if not exists public.follows (
   follower_id uuid not null references public.profiles(id) on delete cascade,
@@ -173,7 +161,6 @@ alter table public.books enable row level security;
 alter table public.shelf_items enable row level security;
 alter table public.reviews enable row level security;
 alter table public.taste_profiles enable row level security;
-alter table public.book_lists enable row level security;
 alter table public.follows enable row level security;
 alter table public.notifications enable row level security;
 alter table public.chat_sessions enable row level security;
@@ -238,19 +225,6 @@ for insert with check (auth.uid() = user_id);
 
 drop policy if exists "taste_update_own" on public.taste_profiles;
 create policy "taste_update_own" on public.taste_profiles
-for update using (auth.uid() = user_id);
-
--- lists
-drop policy if exists "lists_select_public" on public.book_lists;
-create policy "lists_select_public" on public.book_lists
-for select using (is_public = true or auth.uid() = user_id);
-
-drop policy if exists "lists_write_own" on public.book_lists;
-create policy "lists_write_own" on public.book_lists
-for insert with check (auth.uid() = user_id);
-
-drop policy if exists "lists_update_own" on public.book_lists;
-create policy "lists_update_own" on public.book_lists
 for update using (auth.uid() = user_id);
 
 -- follows

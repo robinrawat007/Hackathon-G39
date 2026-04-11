@@ -102,15 +102,7 @@ ON CONFLICT (user_id) DO UPDATE
       goals        = EXCLUDED.goals,
       last_updated = EXCLUDED.last_updated;
 
--- ── 7. Book Lists ─────────────────────────────────────────────
-INSERT INTO public.book_lists (id, user_id, title, description, book_ids, is_public, created_at)
-VALUES
-  ('b1000000-0000-0000-0000-000000000001', maya_id,   'Character-driven stories with messy friendships', 'Books where the relationships are the plot. No clean arcs, no easy resolutions.', ARRAY['kb-083','kb-002','kb-003','kb-004'], true, now() - interval '3 days'),
-  ('b1000000-0000-0000-0000-000000000002', jordan_id, 'Hard sci-fi that earns its ideas',                'No hand-waving. The science matters and so does the human cost.',                    ARRAY['kb-007','kb-009','kb-006','kb-008','kb-010'], true, now() - interval '8 days'),
-  ('b1000000-0000-0000-0000-000000000003', priya_id,  'Cozy reads that are actually smart',              'Comfort reads that don''t talk down to you. Clever mysteries and warm worlds.',      ARRAY['kb-094','kb-091','kb-003'], true, now() - interval '5 days')
-ON CONFLICT (id) DO NOTHING;
-
--- ── 8. Follows ────────────────────────────────────────────────
+-- ── 7. Follows ────────────────────────────────────────────────
 INSERT INTO public.follows (follower_id, following_id)
 VALUES
   (maya_id,   jordan_id),

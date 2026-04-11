@@ -49,9 +49,6 @@ export function Footer() {
                 <Link className={linkClass} href="/onboarding">
                   Taste profile
                 </Link>
-                <Link className={linkClass} href="/community/lists">
-                  Lists
-                </Link>
               </div>
               <div className={linkCol}>
                 <div className={linkHeading}>Community</div>

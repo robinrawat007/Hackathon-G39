@@ -1,14 +1,15 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 import { BookMarked, BookOpen, Check, CheckCircle2, ChevronDown } from "lucide-react"
 
 import type { Book, ShelfStatus } from "@/types/book"
 import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { useShelfStore } from "@/lib/stores/shelf-store"
+import { useAuthDialog } from "@/components/auth/auth-dialog-context"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 
 const LABELS: Record<ShelfStatus, string> = {
@@ -26,6 +27,8 @@ const STATUS_META: Record<ShelfStatus, { hint: string; icon: typeof BookMarked }
 }
 
 export function BookAddToShelf({ book }: { book: Book }) {
+  const pathname = usePathname()
+  const { openSignIn } = useAuthDialog()
   const { user, isLoading } = useAuthUser()
   const entry = useShelfStore((s) => s.items[book.id])
   const setBookOnShelf = useShelfStore((s) => s.setBookOnShelf)
@@ -68,11 +71,17 @@ export function BookAddToShelf({ book }: { book: Book }) {
         <p className="text-sm leading-relaxed text-text-muted">
           Sign in to save this title to your shelf and sync across devices.
         </p>
-        <Link href="/auth/login" className="mt-3 inline-block">
-          <Button variant="secondary" size="sm" className="shadow-card">
+        <div className="mt-3">
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            className="shadow-card"
+            onClick={() => openSignIn({ redirectTo: pathname || undefined })}
+          >
             Sign in
           </Button>
-        </Link>
+        </div>
       </div>
     )
   }

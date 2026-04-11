@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation"
 
 import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { createBrowserSupabaseClient } from "@/lib/supabase/client"
+import { authFieldInputClassName } from "@/components/auth/auth-card-shell"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 
 type Props = {
   /** Called after session cookies are applied (e.g. close a dialog). */
@@ -16,13 +18,21 @@ type Props = {
   /** Safe in-app path after sign-in (e.g. `/onboarding`). Overrides `redirectToDashboard` when set. */
   redirectTo?: string | null
   className?: string
+  /** Extra classes on inputs (default: shared auth pill fields). */
+  inputClassName?: string
 }
 
 function isSafeRedirectPath(path: string): boolean {
   return path.startsWith("/") && !path.startsWith("//") && !path.includes("\\")
 }
 
-export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redirectTo, className }: Props) {
+export function StaticSignInForm({
+  onSuccess,
+  redirectToDashboard = true,
+  redirectTo,
+  className,
+  inputClassName,
+}: Props) {
   const router = useRouter()
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
@@ -79,7 +89,7 @@ export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redire
     <div className={className}>
       <div className="flex flex-col gap-5">
         <div>
-          <label className="mb-1.5 block text-sm text-text-muted" htmlFor="static-signin-email">
+          <label className="mb-1.5 block text-sm font-medium text-text-muted" htmlFor="static-signin-email">
             Email
           </label>
           <Input
@@ -88,10 +98,11 @@ export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redire
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             autoComplete="email"
+            className={cn(authFieldInputClassName, inputClassName)}
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm text-text-muted" htmlFor="static-signin-password">
+          <label className="mb-1.5 block text-sm font-medium text-text-muted" htmlFor="static-signin-password">
             Password
           </label>
           <Input
@@ -100,13 +111,21 @@ export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redire
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             autoComplete="current-password"
+            className={cn(authFieldInputClassName, inputClassName)}
             onKeyDown={(e) => {
               if (e.key === "Enter") void submit()
             }}
           />
         </div>
-        {error ? <div className="text-sm text-error">{error}</div> : null}
-        <Button variant="primary" size="md" fullWidth loading={loading} onClick={() => void submit()}>
+        {error ? <div className="text-center text-sm text-error">{error}</div> : null}
+        <Button
+          variant="primary"
+          size="md"
+          fullWidth
+          className="h-12 rounded-full font-semibold shadow-card"
+          loading={loading}
+          onClick={() => void submit()}
+        >
           Sign In
         </Button>
       </div>

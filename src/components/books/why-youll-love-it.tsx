@@ -1,13 +1,15 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-
 import { getApiErrorMessage } from "@/lib/api/client-fetch"
 import type { Book } from "@/types/book"
+import { useAuthDialog } from "@/components/auth/auth-dialog-context"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
+import { usePathname } from "next/navigation"
 
 export function WhyYoullLoveIt({ book }: { book: Book }) {
+  const pathname = usePathname()
+  const { openSignIn } = useAuthDialog()
   const { user, isLoading: authLoading } = useAuthUser()
   const [text, setText] = React.useState("")
   const [error, setError] = React.useState<string | null>(null)
@@ -92,9 +94,13 @@ export function WhyYoullLoveIt({ book }: { book: Book }) {
   if (!user) {
     return (
       <div className="mt-2 text-sm text-text-muted">
-        <Link href="/auth/login" className="text-primary hover:text-primary-hover underline underline-offset-2">
+        <button
+          type="button"
+          className="text-primary underline underline-offset-2 hover:text-primary-hover"
+          onClick={() => openSignIn({ redirectTo: pathname || undefined })}
+        >
           Sign in
-        </Link>{" "}
+        </button>{" "}
         to see why you'll love this book.
       </div>
     )

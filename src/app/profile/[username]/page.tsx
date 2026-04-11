@@ -23,30 +23,22 @@ async function fetchProfile(handle: string) {
   const userId = profile.id as string
 
   // Stats: books read, avg rating from reviews, follower count
-  const [{ count: booksRead }, { count: followers }, { data: reviews }, { data: lists }, { data: recentShelf }] =
-    await Promise.all([
-      supabase.from("shelf_items").select("*", { count: "exact", head: true }).eq("user_id", userId).eq("status", "read"),
-      supabase.from("follows").select("*", { count: "exact", head: true }).eq("following_id", userId),
-      supabase
-        .from("reviews")
-        .select("rating, body, created_at, books(title, slug)")
-        .eq("user_id", userId)
-        .order("created_at", { ascending: false })
-        .limit(3),
-      supabase
-        .from("book_lists")
-        .select("id, title, book_ids")
-        .eq("user_id", userId)
-        .eq("is_public", true)
-        .order("created_at", { ascending: false })
-        .limit(3),
-      supabase
-        .from("shelf_items")
-        .select("status, added_at, books(title, slug)")
-        .eq("user_id", userId)
-        .order("added_at", { ascending: false })
-        .limit(5),
-    ])
+  const [{ count: booksRead }, { count: followers }, { data: reviews }, { data: recentShelf }] = await Promise.all([
+    supabase.from("shelf_items").select("*", { count: "exact", head: true }).eq("user_id", userId).eq("status", "read"),
+    supabase.from("follows").select("*", { count: "exact", head: true }).eq("following_id", userId),
+    supabase
+      .from("reviews")
+      .select("rating, body, created_at, books(title, slug)")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(3),
+    supabase
+      .from("shelf_items")
+      .select("status, added_at, books(title, slug)")
+      .eq("user_id", userId)
+      .order("added_at", { ascending: false })
+      .limit(5),
+  ])
 
   const allRatings = (reviews ?? []).map((r) => r.rating as number).filter(Boolean)
   const avgRating =
@@ -65,11 +57,6 @@ async function fetchProfile(handle: string) {
       const book = r.books as { title?: string; slug?: string } | null
       return { rating: r.rating as number, body: r.body as string, bookTitle: book?.title ?? "", bookSlug: book?.slug ?? "" }
     }),
-    lists: (lists ?? []).map((l) => ({
-      id: l.id as string,
-      title: l.title as string,
-      bookCount: Array.isArray(l.book_ids) ? l.book_ids.length : 0,
-    })),
     recentActivity: (recentShelf ?? []).map((item) => {
       const book = item.books as { title?: string } | null
       const title = book?.title ?? "a book"
@@ -88,7 +75,7 @@ export async function generateMetadata(props: { params: Promise<{ username: stri
   const handle = username.replace(/^@/, "")
   return {
     title: `@${handle}`,
-    description: `Reader profile for @${handle} on ${SITE_NAME} — shelves, lists, and community activity.`,
+    description: `Reader profile for @${handle} on ${SITE_NAME} — shelves and community activity.`,
     alternates: { canonical: absoluteUrl(`/profile/${encodeURIComponent(handle)}`) },
     openGraph: {
       title: `@${handle} · ${SITE_NAME}`,
@@ -107,7 +94,7 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
 
   if (!result) notFound()
 
-  const { profile, stats, reviews, lists, recentActivity } = result
+  const { profile, stats, reviews, recentActivity } = result
   const displayName = (profile.display_name as string | null) ?? `@${handle}`
   const profileUrl = absoluteUrl(`/profile/${encodeURIComponent(handle)}`)
 
@@ -156,38 +143,18 @@ export default async function ProfilePage(props: { params: Promise<{ username: s
             </div>
           </div>
 
-          {/* Lists + Activity */}
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div>
-              <div className="font-heading text-h3 text-heading">Public lists</div>
-              {lists.length === 0 ? (
-                <p className="mt-3 text-sm text-text-muted">No public lists yet.</p>
-              ) : (
-                <ul className="mt-4 space-y-3 text-sm">
-                  {lists.map((l) => (
-                    <li key={l.id}>
-                      <Link href={`/community/lists/${l.id}`} className="text-text-muted hover:text-heading underline-offset-2 hover:underline">
-                        {l.title}
-                      </Link>
-                      <span className="ml-2 text-xs text-text-muted">· {l.bookCount} book{l.bookCount !== 1 ? "s" : ""}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            <div>
-              <div className="font-heading text-h3 text-heading">Recent activity</div>
-              {recentActivity.length === 0 ? (
-                <p className="mt-3 text-sm text-text-muted">No activity yet.</p>
-              ) : (
-                <ul className="mt-4 space-y-3 text-sm text-text-muted">
-                  {recentActivity.map((a, i) => (
-                    <li key={i}>{a.label}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
+          {/* Recent activity */}
+          <div className="mt-10">
+            <div className="font-heading text-h3 text-heading">Recent activity</div>
+            {recentActivity.length === 0 ? (
+              <p className="mt-3 text-sm text-text-muted">No activity yet.</p>
+            ) : (
+              <ul className="mt-4 space-y-3 text-sm text-text-muted">
+                {recentActivity.map((a, i) => (
+                  <li key={i}>{a.label}</li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Recent reviews */}

@@ -3,7 +3,7 @@
   "product": {
     "name": "BooksyAI",
     "tagline": "Your shelf. Your taste. Your AI.",
-    "summary": "BooksyAI is a book discovery web app with a warm, editorial feel. It combines a curated catalog (grounded in a local knowledge base), personalized onboarding, shelves you can organize, community areas to explore lists and conversations, and an AI chat that recommends real titles from the catalog instead of inventing books."
+    "summary": "BooksyAI is a book discovery web app with a warm, editorial feel. It combines a curated catalog (grounded in a local knowledge base), personalized onboarding, shelves you can organize, a community feed for reviews and follows, and an AI chat that recommends real titles from the catalog instead of inventing books."
   },
   "designAndTone": {
     "visual": "Light, warm palette (cream, soft browns, gentle gradients), serif-style headings for a literary feel, and subtle motion on key sections.",
@@ -38,12 +38,7 @@
     {
       "name": "Community",
       "path": "/community",
-      "whatYouSee": "Community feed and social discovery; paths to reader lists and shared reading energy."
-    },
-    {
-      "name": "Community lists",
-      "path": "/community/lists",
-      "whatYouSee": "Browse themed lists; individual lists live at /community/lists/[id]."
+      "whatYouSee": "Community feed of reviews, follow readers, and shared reading activity."
     },
     {
       "name": "About BooksyAI",
@@ -72,8 +67,8 @@
     },
     {
       "name": "Auth",
-      "paths": ["/auth/login", "/auth/signup"],
-      "whatYouSee": "Sign-in and account creation flows. The floating chat and shelf saving generally expect a signed-in session for anything that writes to your account."
+      "paths": ["/?auth=signin", "/?auth=signup"],
+      "whatYouSee": "Sign-in and account creation use the global dialog (also opened via legacy /auth/login and /auth/signup, which redirect home with query params). The floating chat and shelf saving generally expect a signed-in session for anything that writes to your account."
     }
   ],
   "booksyAiChat": {

@@ -9,6 +9,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query"
 
+import { AuthDialogProvider } from "@/components/auth/auth-dialog-provider"
 import { SectionErrorBoundary } from "@/components/error-boundary/section-error-boundary"
 
 const ShelfSync = dynamic(
@@ -50,10 +51,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [client] = React.useState(createQueryClient)
   return (
     <QueryClientProvider client={client}>
-      <ShelfSync />
-      <SectionErrorBoundary title="This page had a problem" description="Try again or use the navigation to continue.">
-        {children}
-      </SectionErrorBoundary>
+      <AuthDialogProvider>
+        <ShelfSync />
+        <SectionErrorBoundary title="This page had a problem" description="Try again or use the navigation to continue.">
+          {children}
+        </SectionErrorBoundary>
+      </AuthDialogProvider>
     </QueryClientProvider>
   )
 }

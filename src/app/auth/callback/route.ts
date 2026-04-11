@@ -10,18 +10,18 @@ export async function GET(request: Request) {
 
   if (error) {
     return NextResponse.redirect(
-      new URL(`/auth/login?error=${encodeURIComponent(errorDescription ?? error)}`, url.origin)
+      new URL(`/?auth=signin&auth_error=${encodeURIComponent(errorDescription ?? error)}`, url.origin)
     )
   }
 
   if (!code) {
-    return NextResponse.redirect(new URL("/auth/login?error=Missing%20code", url.origin))
+    return NextResponse.redirect(new URL("/?auth=signin&auth_error=Missing%20code", url.origin))
   }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   if (!supabaseUrl || !supabaseAnonKey) {
-    return NextResponse.redirect(new URL("/auth/login?error=Missing%20Supabase%20env", url.origin))
+    return NextResponse.redirect(new URL("/?auth=signin&auth_error=Missing%20Supabase%20env", url.origin))
   }
 
   const cookieStore = cookies()
@@ -38,7 +38,9 @@ export async function GET(request: Request) {
 
   const { data: sessionData, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
   if (exchangeError) {
-    return NextResponse.redirect(new URL(`/auth/login?error=${encodeURIComponent(exchangeError.message)}`, url.origin))
+    return NextResponse.redirect(
+      new URL(`/?auth=signin&auth_error=${encodeURIComponent(exchangeError.message)}`, url.origin)
+    )
   }
 
   // Redirect new users to onboarding; returning users to dashboard.

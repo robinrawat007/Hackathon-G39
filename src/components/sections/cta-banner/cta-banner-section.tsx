@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 
+import { useAuthDialog } from "@/components/auth/auth-dialog-context"
 import { Button } from "@/components/ui/button"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
@@ -12,6 +13,7 @@ const ctaButtonClass =
 
 export function CTABannerSection() {
   const reduced = usePrefersReducedMotion()
+  const { openSignUp } = useAuthDialog()
   const { user, isLoading } = useAuthUser()
 
   return (
@@ -51,11 +53,15 @@ export function CTABannerSection() {
                   </Button>
                 </Link>
               ) : (
-                <Link href="/auth/signup">
-                  <Button variant="secondary" size="lg" className={ctaButtonClass}>
-                    Claim my shelf →
-                  </Button>
-                </Link>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="lg"
+                  className={ctaButtonClass}
+                  onClick={() => openSignUp()}
+                >
+                  Claim my shelf →
+                </Button>
               )}
             </motion.div>
           </div>

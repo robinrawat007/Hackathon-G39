@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { MoodChipToggle, moodChipsGridClass } from "@/components/mood/mood-chips"
@@ -9,6 +8,7 @@ import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { BookCoverImage } from "@/components/books/book-cover-image"
 import { Button } from "@/components/ui/button"
 import { MOODS, GOALS } from "@/lib/constants"
+import { useAuthDialog } from "@/components/auth/auth-dialog-context"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { ONBOARDING_POPULAR_BOOKS } from "@/lib/onboarding-popular-books"
@@ -25,8 +25,9 @@ const RATER_OPTIONS = [
 ] as const
 
 export function OnboardingWizard() {
-  const router = useRouter()
+  const { openSignIn } = useAuthDialog()
   const { user, isLoading: authLoading } = useAuthUser()
+  const authPromptedRef = React.useRef(false)
   const reduced = usePrefersReducedMotion()
   const [step, setStep] = React.useState<Step>(1)
 
@@ -42,9 +43,14 @@ export function OnboardingWizard() {
   React.useEffect(() => {
     if (authLoading) return
     if (!user) {
-      router.replace("/auth/login?next=/onboarding")
+      if (!authPromptedRef.current) {
+        authPromptedRef.current = true
+        openSignIn({ redirectTo: "/onboarding" })
+      }
+    } else {
+      authPromptedRef.current = false
     }
-  }, [authLoading, user, router])
+  }, [authLoading, user, openSignIn])
 
   const progress = step / 3
 

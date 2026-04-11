@@ -6,9 +6,8 @@ import * as React from "react"
 import { Menu } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
-import { StaticSignInForm } from "@/components/auth/static-sign-in-form"
+import { useAuthDialog } from "@/components/auth/auth-dialog-context"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { BrandLogo } from "@/components/brand/brand-logo"
 import { NavbarUserMenu } from "@/components/layout/navbar-user-menu"
@@ -17,14 +16,20 @@ import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/browse", label: "Browse" },
   { href: "/community", label: "Community" },
   { href: "/about", label: "About Us" },
 ] as const
 
+function navLinkIsActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/"
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export function Navbar() {
   const pathname = usePathname()
-  const [signInOpen, setSignInOpen] = React.useState(false)
+  const { openSignIn } = useAuthDialog()
   const { scrollY } = useScroll()
   const scrim = useTransform(scrollY, [0, 72], [0, 1])
   const backgroundColor = useTransform(scrim, (t) => {
@@ -35,18 +40,6 @@ export function Navbar() {
 
   return (
     <>
-      <Dialog open={signInOpen} onOpenChange={setSignInOpen}>
-        <DialogContent className="max-h-[min(92vh,40rem)] overflow-y-auto sm:max-w-md">
-          <DialogHeader className="sm:text-center">
-            <div className="mb-3 flex justify-center">
-              <BrandLogo href={null} variant="header" className="justify-center" />
-            </div>
-            <DialogTitle>Sign in</DialogTitle>
-          </DialogHeader>
-          <StaticSignInForm redirectToDashboard={false} onSuccess={() => setSignInOpen(false)} className="mt-2" />
-        </DialogContent>
-      </Dialog>
-
       <motion.header
         className="fixed inset-x-0 top-0 z-50 border-b border-border backdrop-blur-xl"
         style={{ backgroundColor }}
@@ -57,7 +50,7 @@ export function Navbar() {
 
           <nav className="hidden items-center gap-6 md:flex">
             {NAV_LINKS.map((l) => {
-              const isActive = l.href === pathname || pathname.startsWith(l.href)
+              const isActive = navLinkIsActive(pathname, l.href)
               return (
                 <Link
                   key={l.href}
@@ -89,7 +82,7 @@ export function Navbar() {
             ) : user ? (
               <NavbarUserMenu user={user} />
             ) : (
-              <Button variant="primary" size="md" className="min-h-10 px-4 font-semibold shadow-card" onClick={() => setSignInOpen(true)}>
+              <Button variant="primary" size="md" className="min-h-10 px-4 font-semibold shadow-card" onClick={() => openSignIn()}>
                 Sign In
               </Button>
             )}
@@ -124,7 +117,7 @@ export function Navbar() {
                   </div>
                   {!isLoading && !user ? (
                     <div className="mt-4">
-                      <Button variant="primary" size="md" fullWidth onClick={() => setSignInOpen(true)}>
+                      <Button variant="primary" size="md" fullWidth onClick={() => openSignIn()}>
                         Sign In
                       </Button>
                     </div>

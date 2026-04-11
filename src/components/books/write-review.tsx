@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useQueryClient } from "@tanstack/react-query"
@@ -11,9 +10,13 @@ import { reviewSchema, type ReviewInput } from "@/lib/validations/review.schema"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { StarRating } from "@/components/ui/star-rating"
+import { useAuthDialog } from "@/components/auth/auth-dialog-context"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
+import { usePathname } from "next/navigation"
 
 export function WriteReview({ bookId, onPosted }: { bookId: string; onPosted?: () => void }) {
+  const pathname = usePathname()
+  const { openSignIn } = useAuthDialog()
   const { user, isLoading } = useAuthUser()
   const queryClient = useQueryClient()
   const [serverError, setServerError] = React.useState<string | null>(null)
@@ -63,9 +66,13 @@ export function WriteReview({ bookId, onPosted }: { bookId: string; onPosted?: (
   if (!user) {
     return (
       <div className="mt-4 rounded-md border border-border/60 bg-bg-secondary/60 px-4 py-5 text-sm text-text-muted">
-        <Link href="/auth/login" className="text-primary hover:text-primary-hover underline underline-offset-2">
+        <button
+          type="button"
+          className="text-primary underline underline-offset-2 hover:text-primary-hover"
+          onClick={() => openSignIn({ redirectTo: pathname || undefined })}
+        >
           Sign in
-        </Link>{" "}
+        </button>{" "}
         to write a review.
       </div>
     )
