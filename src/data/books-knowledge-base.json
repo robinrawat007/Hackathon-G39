@@ -867,7 +867,7 @@
     "id": "kb-049",
     "title": "Bird Box",
     "author": "Josh Malerman",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062256553-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780062256553-L.jpg",
     "description": "Survive unseen creatures that drive people mad. contemporary horror thriller.",
     "genres": [
       "Horror",
@@ -1947,7 +1947,7 @@
     "id": "kb-109",
     "title": "Como agua para chocolate",
     "author": "Laura Esquivel",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780385420179-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780385420179-L.jpg",
     "description": "Recetas y pasión en la Revolución mexicana. novela romántica mágica en español.",
     "genres": [
       "Literary Fiction",
@@ -1983,15 +1983,15 @@
     "id": "kb-111",
     "title": "L'Étranger",
     "author": "Albert Camus",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9782070360022-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9782070360024-L.jpg",
     "description": "Meursault sous le soleil d'Algérie. classique français existentialiste.",
     "genres": [
       "Literary Fiction",
       "Classics"
     ],
     "publishedYear": 1942,
-    "pageCount": 185,
-    "isbn": "9782070360022",
+    "pageCount": 194,
+    "isbn": "9782070360024",
     "averageRating": 4.2,
     "ratingsCount": 410000,
     "slug": "letranger-albert-camus",
@@ -2019,7 +2019,7 @@
     "id": "kb-113",
     "title": "Madame Bovary",
     "author": "Gustave Flaubert",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9782070360879-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9782070360879-L.jpg",
     "description": "Une femme étouffée par la province. roman réaliste français classique.",
     "genres": [
       "Literary Fiction",
@@ -2073,7 +2073,7 @@
     "id": "kb-116",
     "title": "Der Vorleser",
     "author": "Bernhard Schlink",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780375726972-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780375726972-L.jpg",
     "description": "Eine Affäre und NS-Vergangenheit. deutscher Literaturklassiker Zeitgeschichte.",
     "genres": [
       "Literary Fiction",
@@ -2091,7 +2091,7 @@
     "id": "kb-117",
     "title": "Die unendliche Geschichte",
     "author": "Michael Ende",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9783522176504-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9783522176504-L.jpg",
     "description": "Ein Junge rettet Phantásien. Fantasy-Klassiker deutsch Kinderbuch.",
     "genres": [
       "Literary Fiction",
@@ -2109,7 +2109,7 @@
     "id": "kb-118",
     "title": "Im Westen nichts Neues",
     "author": "Erich Maria Remarque",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780449911368-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780449911368-L.jpg",
     "description": "Soldaten im Ersten Weltkrieg. deutscher Kriegsroman modern.",
     "genres": [
       "Literary Fiction",
@@ -2498,7 +2498,7 @@
     "id": "kb-179",
     "title": "The Serpent and the Wings of Night",
     "author": "Carissa Broadbent",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781662508556-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781957779003-L.jpg",
     "description": "Oraya, a human daughter of a vampire king, enters a deadly tournament to earn her place in a world of monsters.",
     "genres": [
       "Fantasy",
@@ -2506,8 +2506,8 @@
       "Fiction"
     ],
     "publishedYear": 2022,
-    "pageCount": 448,
-    "isbn": "9781662508556",
+    "pageCount": 502,
+    "isbn": "9781957779003",
     "averageRating": 4.25,
     "ratingsCount": 250000,
     "slug": "the-serpent-and-the-wings-of-night-carissa-broadbent",
@@ -2536,7 +2536,7 @@
     "id": "kb-181",
     "title": "Prequel",
     "author": "Rachel Maddow",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593780167-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593780167-L.jpg",
     "description": "An investigation into a forgotten 1940s plot to overthrow the US government and the fight to preserve democracy.",
     "genres": [
       "History",
@@ -3747,7 +3747,7 @@
     "id": "kb-239",
     "title": "Start With Why",
     "author": "Simon Sinek",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781592404831-M.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781592404831-L.jpg",
     "description": "How great leaders inspire action; leadership success through purpose.",
     "genres": [
       "Non-Fiction",

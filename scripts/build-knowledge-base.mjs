@@ -306,7 +306,7 @@ for (const [title, author, isbn, year, pages, rating, rc, desc] of es) {
 }
 
 const fr = [
-  ["L'Étranger", "Albert Camus", "9782070360022", 1942, 185, 4.2, 410000, "Meursault sous le soleil d'Algérie. classique français existentialiste."],
+  ["L'Étranger", "Albert Camus", "9782070360024", 1942, 194, 4.2, 410000, "Meursault sous le soleil d'Algérie. classique français existentialiste."],
   ["Les Misérables (vol. 1)", "Victor Hugo", "9782253096339", 1862, 520, 4.4, 120000, "Jean Valjean et la justice en France. classique français épique."],
   ["Madame Bovary", "Gustave Flaubert", "9782070360879", 1856, 384, 4.0, 280000, "Une femme étouffée par la province. roman réaliste français classique."],
   ["Le Petit Prince", "Antoine de Saint-Exupéry", "9782070612756", 1943, 96, 4.8, 610000, "Un aviateur rencontre un prince. conte philosophique français."],
