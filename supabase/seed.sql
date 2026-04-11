@@ -1,12 +1,12 @@
 -- =============================================================
--- ShelfAI — Seed Data (corrected)
+-- BooksyAI — Seed Data (corrected)
 -- Run in Supabase SQL Editor (Project → SQL Editor → Run)
 -- =============================================================
 -- BEFORE running:
 --   1. Create 3 users manually via Authentication → Users → Add user:
---        maya@demo.shelfai.app   / ShelfAI2026!
---        jordan@demo.shelfai.app / ShelfAI2026!
---        priya@demo.shelfai.app  / ShelfAI2026!
+--        maya@demo.booksyai.app   / BooksyAI2026!
+--        jordan@demo.booksyai.app / BooksyAI2026!
+--        priya@demo.booksyai.app  / BooksyAI2026!
 --   2. Copy their UUIDs and replace the 3 placeholders below.
 -- =============================================================
 
@@ -80,13 +80,13 @@ ON CONFLICT (user_id, book_id) DO NOTHING;
 -- ── 5. Reviews ────────────────────────────────────────────────
 INSERT INTO public.reviews (user_id, book_id, rating, body, created_at)
 VALUES
-  (maya_id, 'kb-083', 5, 'ShelfAI suggested this after I said I wanted character-driven stories with messy friendships. I finished it in three days and immediately texted my book club. The game mechanics are a metaphor the whole way through and it earns every page.', now() - interval '2 days'),
+  (maya_id, 'kb-083', 5, 'BooksyAI suggested this after I said I wanted character-driven stories with messy friendships. I finished it in three days and immediately texted my book club. The game mechanics are a metaphor the whole way through and it earns every page.', now() - interval '2 days'),
   (maya_id, 'kb-003', 4, 'Deceptively simple prose hiding something very sharp underneath. The class dynamics hit harder than I expected. Rooney makes both characters frustrating and completely sympathetic at once.', now() - interval '10 days'),
   (maya_id, 'kb-002', 5, 'This book broke me in the best possible way. It asks a lot of the reader but gives back even more. The friendship at the center is one of the most fully realised I''ve ever read.', now() - interval '20 days'),
   (jordan_id, 'kb-007', 5, 'I asked for something eerie but grounded in real physics. The Cultural Revolution framing adds weight to what could''ve been pure genre. The science is dense but never cold.', now() - interval '5 days'),
   (jordan_id, 'kb-008', 4, 'Still holds up decades later. The twist reframes everything retroactively in the best way. Required reading if you''re getting into military sci-fi.', now() - interval '15 days'),
   (jordan_id, 'kb-009', 4, 'Le Guin builds a world so quietly you don''t realise how strange it is until you''re fully inside it. The gender exploration is still relevant and never feels like a lecture.', now() - interval '25 days'),
-  (priya_id, 'kb-094', 5, 'I told ShelfAI I wanted cozy but clever and it nailed it. The banter between the four main characters is genuinely funny and the mystery actually holds together. Perfect weekend read.', now() - interval '4 days'),
+  (priya_id, 'kb-094', 5, 'I told BooksyAI I wanted cozy but clever and it nailed it. The banter between the four main characters is genuinely funny and the mystery actually holds together. Perfect weekend read.', now() - interval '4 days'),
   (priya_id, 'kb-004', 4, 'Slow to start but the payoff is enormous. Powers weaves nine storylines with more patience than most novelists manage with one. Environmentalism that doesn''t preach.', now() - interval '14 days')
 ON CONFLICT DO NOTHING;
 

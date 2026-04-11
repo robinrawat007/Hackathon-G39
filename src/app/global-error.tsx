@@ -4,6 +4,8 @@ import * as React from "react"
 
 import "./globals.css"
 
+import { APP_NAME } from "@/lib/constants"
+
 export default function GlobalError({
   error,
   reset,
@@ -21,7 +23,7 @@ export default function GlobalError({
         <main className="flex min-h-full flex-col items-center justify-center px-4 py-20 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Something went wrong</h1>
           <p className="mt-3 max-w-md text-sm text-stone-600">
-            ShelfAI hit an unexpected error. You can try reloading the page.
+            {APP_NAME} hit an unexpected error. You can try reloading the page.
           </p>
           {error.digest ? (
             <p className="mt-4 font-mono text-xs text-stone-500">Ref: {error.digest}</p>

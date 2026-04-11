@@ -52,13 +52,13 @@ export function FeedbackSection() {
         >
           <h2 className="font-heading text-h2 text-heading">Send us feedback</h2>
           <p className="mt-2 text-sm leading-relaxed text-text-muted">
-            Spotted a bug, a confusing screen, or an idea that would make ShelfAI better? Tell us. We read every message
+            Spotted a bug, a confusing screen, or an idea that would make BooksyAI better? Tell us. We read every message
             and use it to improve the product.
           </p>
 
           {status === "success" ? (
             <div className="mt-6 rounded-xl border border-success/35 bg-success/10 px-4 py-3 text-sm text-success" role="status">
-              Thank you — your feedback was sent. We appreciate you taking the time.
+              Message received. Thanks for writing in—your notes help us decide what to fix and what to build next.
             </div>
           ) : (
             <form onSubmit={(e) => void onSubmit(e)} className="mt-8 space-y-5">

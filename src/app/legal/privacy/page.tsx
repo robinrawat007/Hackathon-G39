@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: "How ShelfAI handles information you share with the product.",
+  description: "How BooksyAI handles information you share with the product.",
 }
 
 export default function PrivacyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <section className="space-y-3 text-sm text-text-muted">
           <h2 className="font-heading text-h3 text-heading">Summary</h2>
           <p>
-            ShelfAI is built for readers. This page describes, at a high level, what the app may collect and why. Replace
+            BooksyAI is built for readers. This page describes, at a high level, what the app may collect and why. Replace
             this draft with counsel-reviewed text before launch.
           </p>
         </section>

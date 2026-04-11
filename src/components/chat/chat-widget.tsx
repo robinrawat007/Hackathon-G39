@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { BookOpen, Send, Sparkles, X } from "lucide-react"
+import { BookOpen, Send, X } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
+import { BrandLogo } from "@/components/brand/brand-logo"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { ChatBubble } from "@/components/chat/chat-bubble"
@@ -30,8 +31,8 @@ export function ChatWidget() {
 
   React.useEffect(() => {
     const onOpen = () => setOpen(true)
-    window.addEventListener("shelfai:open-chat", onOpen as EventListener)
-    return () => window.removeEventListener("shelfai:open-chat", onOpen as EventListener)
+    window.addEventListener("booksyai:open-chat", onOpen as EventListener)
+    return () => window.removeEventListener("booksyai:open-chat", onOpen as EventListener)
   }, [])
 
   React.useEffect(() => {
@@ -72,7 +73,7 @@ export function ChatWidget() {
             "bg-gradient-to-br from-primary to-accent text-white shadow-lg",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           )}
-          aria-label={open ? "Close ShelfAI chat" : "Open ShelfAI chat"}
+          aria-label={open ? "Close BooksyAI chat" : "Open BooksyAI chat"}
           aria-expanded={open}
           aria-controls={panelId}
         >
@@ -111,7 +112,7 @@ export function ChatWidget() {
             className="fixed z-[60] flex w-[min(100vw-1rem,420px)] max-w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-[0_8px_40px_rgba(139,90,43,0.18),0_32px_64px_rgba(0,0,0,0.12)] backdrop-blur-xl bottom-[max(5.5rem,calc(4.5rem+env(safe-area-inset-bottom,0px)))] right-[max(0.5rem,env(safe-area-inset-right,0px))] max-h-[min(560px,calc(100dvh-6rem))] h-[min(560px,calc(100dvh-6rem))] sm:right-6 sm:max-h-[min(620px,calc(100dvh-7rem))] sm:h-[min(580px,calc(100dvh-7rem))] md:bottom-[max(8rem,calc(7rem+env(safe-area-inset-bottom,0px)))]"
             role="dialog"
             aria-modal="true"
-            aria-label="ShelfAI chat"
+            aria-label="BooksyAI chat"
           >
             {/* Ambient top glow inside panel */}
             <div
@@ -127,16 +128,9 @@ export function ChatWidget() {
             <div className="relative z-10 overflow-hidden border-b border-border px-4 py-3.5 bg-bg-secondary/60">
               <div className="relative flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-primary/35 bg-gradient-to-br from-primary/20 to-accent/15 text-primary shadow-[0_0_18px_rgba(139,90,43,0.2)]">
-                    <Sparkles className="h-5 w-5" aria-hidden />
-                    <span
-                      className="pointer-events-none absolute inset-0 rounded-2xl border border-primary/25 shadow-[0_0_22px_rgba(139,90,43,0.12)]"
-                      aria-hidden
-                    />
-                  </span>
+                  <BrandLogo variant="chat" href={null} className="shrink-0" />
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <div className="font-heading text-base font-semibold tracking-tight text-heading">ShelfAI</div>
                       <span className="flex items-center gap-1 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" aria-hidden />
                         online

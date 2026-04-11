@@ -25,7 +25,7 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
   const list = await fetchList(id)
   if (!list || !list.is_public) return { title: "List not found" }
   const title = list.title as string
-  const description = (list.description as string | null) ?? "A curated book list on ShelfAI."
+  const description = (list.description as string | null) ?? "A curated book list on BooksyAI."
   const url = absoluteUrl(`/community/lists/${encodeURIComponent(id)}`)
   return {
     title,

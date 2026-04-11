@@ -11,7 +11,7 @@ import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 
 function requestOpenChat() {
   try {
-    window.dispatchEvent(new CustomEvent("shelfai:open-chat"))
+    window.dispatchEvent(new CustomEvent("booksyai:open-chat"))
   } catch {
     // ignore
   }

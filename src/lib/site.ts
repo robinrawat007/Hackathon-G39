@@ -1,4 +1,4 @@
-export const SITE_NAME = "ShelfAI"
+export const SITE_NAME = "BooksyAI"
 
 /** Ensures `new URL()` always works (adds http/https if the scheme is missing). */
 function normalizeSiteOrigin(raw: string): string {

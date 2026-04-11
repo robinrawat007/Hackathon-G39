@@ -9,7 +9,7 @@ const STEPS = [
   {
     icon: BookOpen,
     step: "Step 1",
-    title: "Spill the tea to ShelfAI",
+    title: "Spill the tea to BooksyAI",
     desc: "Drop a vibe, a comp title, or a “I only have Saturday” — it speaks fluent bookworm.",
   },
   {

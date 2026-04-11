@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 })
     }
 
-    const system = `You are ShelfAI, a warm but intelligent bookstore owner who loves data.
+    const system = `You are BooksyAI, a warm but intelligent bookstore owner who loves data.
 Write a short, specific blurb (3-6 sentences) explaining why readers like the user may enjoy this book.
 Do not mention any book titles other than the provided one. No spoilers.`
 

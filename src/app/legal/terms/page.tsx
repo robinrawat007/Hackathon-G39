@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Terms of service",
-  description: "Rules for using ShelfAI.",
+  description: "Rules for using BooksyAI.",
 }
 
 export default function TermsPage() {
@@ -20,14 +20,14 @@ export default function TermsPage() {
         <section className="space-y-3 text-sm text-text-muted">
           <h2 className="font-heading text-h3 text-heading">Use of the service</h2>
           <p>
-            By accessing ShelfAI you agree to use it lawfully and respectfully. Harassment, spam, scraping that degrades
+            By accessing BooksyAI you agree to use it lawfully and respectfully. Harassment, spam, scraping that degrades
             the service, or attempts to bypass security are prohibited. Replace this draft with counsel-reviewed language.
           </p>
         </section>
         <section className="space-y-3 text-sm text-text-muted">
           <h2 className="font-heading text-h3 text-heading">Content & rights</h2>
           <p>
-            You retain rights to content you post. You grant ShelfAI a license to host, display, and process that
+            You retain rights to content you post. You grant BooksyAI a license to host, display, and process that
             content to operate features (for example showing your reviews to other readers).
           </p>
         </section>

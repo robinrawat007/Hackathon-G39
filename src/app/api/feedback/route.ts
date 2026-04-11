@@ -32,10 +32,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "Invalid input" }, { status: 400 })
   }
 
-  const webhook = process.env.N8N_FEEDBACK_WEBHOOK_URL
+  const webhook =
+    process.env.N8N_FEEDBACK_WORKFLOW_URL?.trim() ||
+    process.env.N8N_FEEDBACK_WEBHOOK_URL?.trim()
   const payload = {
     ...parsed.data,
-    source: "shelfai-web",
+    source: "booksyai-web",
     sentAt: new Date().toISOString(),
   }
 

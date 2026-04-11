@@ -263,7 +263,7 @@
   }
 }
 
-@keyframes shelfai-cta-glow {
+@keyframes booksyai-cta-glow {
   0%,
   100% {
     box-shadow:
@@ -277,12 +277,12 @@
   }
 }
 
-.shelfai-cta-shimmer {
-  animation: shelfai-cta-glow 8s ease-in-out infinite;
+.booksyai-cta-shimmer {
+  animation: booksyai-cta-glow 8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .shelfai-cta-shimmer {
+  .booksyai-cta-shimmer {
     animation: none;
   }
 }

@@ -1,4 +1,4 @@
-export const APP_NAME = "ShelfAI" as const
+export const APP_NAME = "BooksyAI" as const
 export const APP_TAGLINE = "Your shelf. Your taste. Your AI." as const
 
 /** Short value line below the tagline in the site footer. */
@@ -59,7 +59,7 @@ export const NOTIFICATION_TYPES = [
   "weekly_digest",
 ] as const
 
-/** One-tap prompts for the ShelfAI chat widget (shown when the thread is empty). */
+/** One-tap prompts for the BooksyAI chat widget (shown when the thread is empty). */
 export const CHAT_STARTER_PROMPTS = [
   "Sci-fi I can crush in one weekend — go.",
   "Cozy mystery, zero gore, maximum vibes.",

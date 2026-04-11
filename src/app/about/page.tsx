@@ -44,7 +44,7 @@ const VALUES = [
 
 const TEAM = [
   {
-    name: "The ShelfAI Team",
+    name: "The BooksyAI Team",
     role: "Design, Product & Community",
     bio: "A small group of avid readers who believe the best technology should feel invisible — and the best books should feel inevitable.",
     initials: "SA",
@@ -88,13 +88,13 @@ export default function AboutPage() {
             >
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                About ShelfAI
+                About BooksyAI
               </div>
               <h1 className="font-heading text-h1 text-heading leading-tight">
                 We built the assistant<br className="hidden sm:block" /> every reader deserved.
               </h1>
               <p className="mt-5 max-w-2xl text-base text-text-muted leading-relaxed">
-                ShelfAI started with a simple frustration: book recommendations everywhere, but none of them quite right.
+                BooksyAI started with a simple frustration: book recommendations everywhere, but none of them quite right.
                 Too generic, too algorithm-driven, too detached from the way real readers actually describe what they want.
                 So we built something different — a reading companion that listens, learns your taste, and tells you what to read next with genuine confidence.
               </p>
@@ -142,7 +142,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   We think the best recommendation engine is one that understands context: your mood, your history, how much
-                  time you have, what you loved, and — just as importantly — what you never want to read again. ShelfAI is
+                  time you have, what you loved, and — just as importantly — what you never want to read again. BooksyAI is
                   built on that premise. Every conversation, every shelf update, every rating sharpens the picture.
                 </p>
                 <p>
@@ -261,7 +261,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="font-heading text-h2 text-heading drop-shadow-sm">Ready to find your next obsession?</div>
                 <p className="mt-2 max-w-lg text-sm text-text-muted">
-                  Tell ShelfAI what you're in the mood for — a vibe, a comp title, a feeling — and get a pick that actually fits.
+                  Tell BooksyAI what you're in the mood for — a vibe, a comp title, a feeling — and get a pick that actually fits.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/browse">

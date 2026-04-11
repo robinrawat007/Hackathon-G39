@@ -43,7 +43,7 @@ const FALLBACK_REVIEWS: ReviewEntry[] = [
     bookTitle: "Tomorrow, and Tomorrow, and Tomorrow",
     bookSlug: "tomorrow-and-tomorrow-and-tomorrow-gabrielle-zevin",
     rating: 5,
-    body: "ShelfAI suggested this after I said I wanted character-driven stories with messy friendships. I finished it in three days and immediately texted my book club.",
+    body: "BooksyAI suggested this after I said I wanted character-driven stories with messy friendships. I finished it in three days and immediately texted my book club.",
     createdAt: "2026-04-08T00:00:00.000Z",
   },
   {
@@ -65,7 +65,7 @@ const FALLBACK_REVIEWS: ReviewEntry[] = [
     bookTitle: "Project Hail Mary",
     bookSlug: "project-hail-mary-andy-weir",
     rating: 5,
-    body: "I told ShelfAI I loved hard sci-fi but wanted more heart. It nailed the balance — big ideas, humor, and a friendship I didn't expect to care about that much.",
+    body: "I told BooksyAI I loved hard sci-fi but wanted more heart. It nailed the balance — big ideas, humor, and a friendship I didn't expect to care about that much.",
     createdAt: "2026-04-03T00:00:00.000Z",
   },
 ]

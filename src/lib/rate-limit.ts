@@ -17,7 +17,7 @@ function getLimiter(kind: LimiterKind, max: number, window: `${number} s` | `${n
   const limiter = new Ratelimit({
     redis,
     limiter: Ratelimit.slidingWindow(max, window),
-    prefix: `shelfai:${kind}`,
+    prefix: `booksyai:${kind}`,
     analytics: false,
   })
   cache.set(kind, limiter)

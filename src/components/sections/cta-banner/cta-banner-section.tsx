@@ -22,7 +22,7 @@ export function CTABannerSection() {
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="shelfai-cta-shimmer relative overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/25 via-accent/20 to-primary/20 p-10 shadow-glow backdrop-blur-md md:p-12"
+          className="booksyai-cta-shimmer relative overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/25 via-accent/20 to-primary/20 p-10 shadow-glow backdrop-blur-md md:p-12"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-40"

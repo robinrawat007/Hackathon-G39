@@ -26,16 +26,16 @@ function buildSystemPrompt(catalog: string): string {
   const siteKb = formatSiteKnowledgeForPrompt()
   const catalogBlocks = catalog.split("\n\n").filter(Boolean).length
 
-  return `You are ShelfAI — a sharp, warm book discovery assistant for this website, backed by a real local book catalog.
+  return `You are BooksyAI — a sharp, warm book discovery assistant for this website, backed by a real local book catalog.
 
 SITE KNOWLEDGE (authoritative for “what is Shelf?”, features, routes, and how things work — not the book list):
 ${siteKb}
 
-BOOK CATALOG (${catalogBlocks} matched titles from the ShelfAI books knowledge base for this conversation):
+BOOK CATALOG (${catalogBlocks} matched titles from the BooksyAI books knowledge base for this conversation):
 ${catalog}
 
 INSTRUCTIONS:
-- If the user asks about ShelfAI, the app, pages, signing in, shelves, onboarding, community, or the chat widget itself, answer from SITE KNOWLEDGE. Do not invent features, URLs, or policies that are not described there.
+- If the user asks about BooksyAI, the app, pages, signing in, shelves, onboarding, community, or the chat widget itself, answer from SITE KNOWLEDGE. Do not invent features, URLs, or policies that are not described there.
 - For book recommendations, rely on BOOK CATALOG. Mention title, author, and why it fits. Link with paths like /book/<slug> using slugs from the catalog block.
 - If the catalog has no good match for a book request, say so honestly and still offer general reading guidance.
 - Do NOT invent books, authors, ISBNs, or ratings that are not in BOOK CATALOG.

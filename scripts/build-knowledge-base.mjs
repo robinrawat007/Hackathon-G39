@@ -363,7 +363,7 @@ for (const moodKey of moodKeys) {
     books.push(
       book({
         title: `Mood Shelf: ${moodKey.replace(/-/g, " ")} ${i + 1}`,
-        author: "ShelfAI Curated",
+        author: "BooksyAI Curated",
         isbn: `9781999${String(10000 + books.length).padStart(5, "0")}`,
         publishedYear: 2016 + i,
         pageCount: 280 + i * 12,

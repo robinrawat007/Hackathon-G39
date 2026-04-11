@@ -15,7 +15,7 @@ type UseChatState = {
   guestMessageCount: number
 }
 
-const GUEST_STORAGE_KEY = "shelfai-guest-chat"
+const GUEST_STORAGE_KEY = "booksyai-guest-chat"
 
 function nowIso() {
   return new Date().toISOString()
@@ -30,7 +30,7 @@ function safeJsonParse<T>(raw: string): T | null {
 }
 
 function getOrCreateSessionKey() {
-  const key = "shelfai-chat-session-key"
+  const key = "booksyai-chat-session-key"
   const existing = sessionStorage.getItem(key)
   if (existing) return existing
   const created = crypto.randomUUID()

@@ -1,6 +1,7 @@
 import Link from "next/link"
-import { BookOpen, Sparkles } from "lucide-react"
+import { Sparkles } from "lucide-react"
 
+import { BrandLogo } from "@/components/brand/brand-logo"
 import { FooterAccountSection } from "@/components/layout/footer-account-section"
 import { APP_NAME, APP_TAGLINE, FOOTER_FEATURE_STRIP } from "@/lib/constants"
 
@@ -31,12 +32,7 @@ export function Footer() {
         <div className="container py-14 md:py-16">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-sm space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/35 bg-primary/10 text-primary">
-                  <BookOpen className="h-4 w-4" aria-hidden />
-                </span>
-                <span className="font-heading text-lg font-semibold text-gradient-hero">{APP_NAME}</span>
-              </div>
+              <BrandLogo variant="footer" />
               <p className="text-sm leading-relaxed text-text-muted">{APP_TAGLINE}</p>
               <p className="flex items-start gap-2 text-xs leading-snug text-text-muted">
                 <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" aria-hidden />
@@ -68,7 +64,7 @@ export function Footer() {
           </div>
 
           <div className="mt-12 border-t border-border/50 pt-8 text-sm text-text-muted">
-            <div>© {new Date().getFullYear()} ShelfAI</div>
+            <div>© {new Date().getFullYear()} {APP_NAME}</div>
           </div>
         </div>
       </div>

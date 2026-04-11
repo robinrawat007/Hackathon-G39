@@ -10,6 +10,7 @@ import { StaticSignInForm } from "@/components/auth/static-sign-in-form"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { BrandLogo } from "@/components/brand/brand-logo"
 import { NavbarUserMenu } from "@/components/layout/navbar-user-menu"
 import { NotificationBell } from "@/components/notifications/notification-bell"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
@@ -36,7 +37,10 @@ export function Navbar() {
     <>
       <Dialog open={signInOpen} onOpenChange={setSignInOpen}>
         <DialogContent className="max-h-[min(92vh,40rem)] overflow-y-auto sm:max-w-md">
-          <DialogHeader>
+          <DialogHeader className="sm:text-center">
+            <div className="mb-3 flex justify-center">
+              <BrandLogo href={null} variant="header" className="justify-center" />
+            </div>
             <DialogTitle>Sign in</DialogTitle>
           </DialogHeader>
           <StaticSignInForm redirectToDashboard={false} onSuccess={() => setSignInOpen(false)} className="mt-2" />
@@ -49,9 +53,7 @@ export function Navbar() {
       >
       <div className="relative">
         <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-heading text-lg font-semibold tracking-tight text-gradient-hero">ShelfAI</span>
-          </Link>
+          <BrandLogo variant="header" priority />
 
           <nav className="hidden items-center gap-6 md:flex">
             {NAV_LINKS.map((l) => {
@@ -103,7 +105,7 @@ export function Navbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-full max-w-[min(100vw,380px)] border-border bg-bg-secondary/95 backdrop-blur-xl sm:max-w-sm">
                 <div className="flex flex-col gap-4">
-                  <div className="font-heading text-h3 font-semibold text-gradient-hero">ShelfAI</div>
+                  <BrandLogo variant="header" className="max-w-[min(360px,88vw)]" />
                   {user && !isLoading ? (
                     <div className="flex items-center gap-3 rounded-xl border border-border/60 bg-surface/50 p-3">
                       <NavbarUserMenu user={user} size="sm" />

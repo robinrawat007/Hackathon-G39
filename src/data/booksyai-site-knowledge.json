@@ -1,9 +1,9 @@
 {
   "version": 1,
   "product": {
-    "name": "ShelfAI",
+    "name": "BooksyAI",
     "tagline": "Your shelf. Your taste. Your AI.",
-    "summary": "ShelfAI is a book discovery web app with a warm, editorial feel. It combines a curated catalog (grounded in a local knowledge base), personalized onboarding, shelves you can organize, community areas to explore lists and conversations, and an AI chat that recommends real titles from the catalog instead of inventing books."
+    "summary": "BooksyAI is a book discovery web app with a warm, editorial feel. It combines a curated catalog (grounded in a local knowledge base), personalized onboarding, shelves you can organize, community areas to explore lists and conversations, and an AI chat that recommends real titles from the catalog instead of inventing books."
   },
   "designAndTone": {
     "visual": "Light, warm palette (cream, soft browns, gentle gradients), serif-style headings for a literary feel, and subtle motion on key sections.",
@@ -46,9 +46,9 @@
       "whatYouSee": "Browse themed lists; individual lists live at /community/lists/[id]."
     },
     {
-      "name": "About ShelfAI",
+      "name": "About BooksyAI",
       "path": "/about",
-      "whatYouSee": "Mission, values, and how ShelfAI thinks about taste, transparency, and community."
+      "whatYouSee": "Mission, values, and how BooksyAI thinks about taste, transparency, and community."
     },
     {
       "name": "Notifications",
@@ -76,15 +76,15 @@
       "whatYouSee": "Sign-in and account creation flows. The floating chat and shelf saving generally expect a signed-in session for anything that writes to your account."
     }
   ],
-  "shelfAiChat": {
-    "whatItIs": "A floating assistant on the site that helps you pick books using the same curated catalog as the rest of ShelfAI.",
+  "booksyAiChat": {
+    "whatItIs": "A floating assistant on the site that helps you pick books using the same curated catalog as the rest of BooksyAI.",
     "howItWorks": "Your recent messages are used to search the knowledge base for matching titles. The assistant should recommend books that appear in the catalog snippet provided to it and can point you to paths like /book/<slug>.",
     "limitations": "It will not invent books, authors, or ratings. If nothing in the catalog fits, it should say so and still offer general reading guidance.",
     "starters": "Example prompts are suggested when the chat is empty (e.g. quick mood-based or comp-title asks)."
   },
   "accountAndPrivacy": {
     "signIn": "Signing in unlocks saving shelf status, dashboard, notifications, and other account-backed features.",
-    "catalogIntegrity": "Titles come from ShelfAI’s curated knowledge base; arbitrary user-typed books are not added to the shared catalog from the shelf API.",
+    "catalogIntegrity": "Titles come from BooksyAI’s curated knowledge base; arbitrary user-typed books are not added to the shared catalog from the shelf API.",
     "dataPhilosophy": "Share only what you are comfortable making part of your reader profile; see /legal/privacy for details."
   },
   "valuesFromAbout": [

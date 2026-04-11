@@ -1,4 +1,4 @@
-import siteKb from "@/data/shelfai-site-knowledge.json"
+import siteKb from "@/data/booksyai-site-knowledge.json"
 import { CHAT_STARTER_PROMPTS } from "@/lib/constants"
 
 type SiteKb = typeof siteKb
@@ -15,7 +15,7 @@ function formatJourneys(kb: SiteKb): string {
     .join("\n")
 }
 
-/** Non-sensitive, visitor-facing copy so the chat can answer “what is ShelfAI?” style questions. */
+/** Non-sensitive, visitor-facing copy so the chat can answer “what is BooksyAI?” style questions. */
 export function formatSiteKnowledgeForPrompt(): string {
   const kb = siteKb as SiteKb
   const starters = [...CHAT_STARTER_PROMPTS].map((s) => `    - “${s}”`).join("\n")
@@ -31,10 +31,10 @@ export function formatSiteKnowledgeForPrompt(): string {
     "MAIN PAGES & EXPERIENCE:",
     formatJourneys(kb),
     "",
-    "SHELFAI CHAT WIDGET:",
-    `  What it is: ${kb.shelfAiChat.whatItIs}`,
-    `  Behavior: ${kb.shelfAiChat.howItWorks}`,
-    `  Limits: ${kb.shelfAiChat.limitations}`,
+    "BOOKSYAI CHAT WIDGET:",
+    `  What it is: ${kb.booksyAiChat.whatItIs}`,
+    `  Behavior: ${kb.booksyAiChat.howItWorks}`,
+    `  Limits: ${kb.booksyAiChat.limitations}`,
     "  Example starter prompts shown in the UI:",
     starters,
     "",

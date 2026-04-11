@@ -6,7 +6,7 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { JsonLd } from "@/components/seo/json-ld"
-import { absoluteUrl } from "@/lib/site"
+import { SITE_NAME, absoluteUrl } from "@/lib/site"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 
 async function fetchProfile(handle: string) {
@@ -88,15 +88,15 @@ export async function generateMetadata(props: { params: Promise<{ username: stri
   const handle = username.replace(/^@/, "")
   return {
     title: `@${handle}`,
-    description: `Reader profile for @${handle} on ShelfAI — shelves, lists, and community activity.`,
+    description: `Reader profile for @${handle} on ${SITE_NAME} — shelves, lists, and community activity.`,
     alternates: { canonical: absoluteUrl(`/profile/${encodeURIComponent(handle)}`) },
     openGraph: {
-      title: `@${handle} · ShelfAI`,
+      title: `@${handle} · ${SITE_NAME}`,
       description: `See what @${handle} is reading and recommending.`,
       url: absoluteUrl(`/profile/${encodeURIComponent(handle)}`),
       type: "website",
     },
-    twitter: { card: "summary", title: `@${handle} · ShelfAI` },
+    twitter: { card: "summary", title: `@${handle} · ${SITE_NAME}` },
   }
 }
 
