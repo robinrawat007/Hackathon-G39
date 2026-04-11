@@ -4,7 +4,6 @@ import Link from "next/link"
 import { Bell } from "lucide-react"
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useNotifications } from "@/lib/hooks/use-notifications"
 
@@ -16,16 +15,18 @@ export function NotificationBell({ userId }: { userId: string }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <div className="relative">
-          <Button variant="ghost" size="sm" aria-label="Notifications" leftIcon={<Bell className="h-4 w-4" />}>
-            Alerts
-          </Button>
+        <button
+          type="button"
+          className="relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-transparent text-text-muted transition-colors hover:border-border/80 hover:bg-surface/90 hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
+          aria-label="Notifications"
+        >
+          <Bell className="h-[1.125rem] w-[1.125rem]" aria-hidden />
           {unreadCount > 0 ? (
-            <span className="absolute -right-1 -top-1 rounded-full bg-error px-1.5 py-0.5 text-[10px] text-heading">
+            <span className="absolute -right-0.5 -top-0.5 min-w-[1.125rem] rounded-full bg-error px-1 text-center text-[10px] font-semibold leading-tight text-heading">
               {badgeLabel}
             </span>
           ) : null}
-        </div>
+        </button>
       </PopoverTrigger>
       <PopoverContent className="w-96 max-w-[calc(100vw-3rem)]">
         <div className="flex items-center justify-between">

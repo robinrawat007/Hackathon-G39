@@ -1,14 +1,9 @@
 import type { Metadata, Viewport } from "next"
-import dynamic from "next/dynamic"
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 
 import { Providers } from "@/app/providers"
+import { ChatWidgetBoundary } from "@/components/chat/chat-widget-boundary"
 import { PageEnter } from "@/components/layout/page-enter"
-
-const ChatWidget = dynamic(
-  () => import("@/components/chat/chat-widget").then((m) => ({ default: m.ChatWidget })),
-  { ssr: false, loading: () => null }
-)
 import { SITE_NAME, getMetadataBaseUrl, getSiteUrl } from "@/lib/site"
 
 import "./globals.css"
@@ -91,7 +86,7 @@ export default function RootLayout({
           <div className="relative z-10 flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip bg-[color-mix(in_srgb,var(--color-bg)_50%,transparent)]">
             <Providers>
               <PageEnter>{children}</PageEnter>
-              <ChatWidget />
+              <ChatWidgetBoundary />
             </Providers>
           </div>
         </div>

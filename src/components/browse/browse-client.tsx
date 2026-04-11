@@ -13,6 +13,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useFiltersStore } from "@/lib/stores/filters-store"
 import { useBooks, PAGE_SIZE } from "@/lib/hooks/use-books"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
+import { MoodChipToggle, moodChipsGridClass } from "@/components/mood/mood-chips"
 import { MOODS } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
@@ -155,13 +156,14 @@ export function BrowseClient() {
             </button>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-8">
+        <div className={moodChipsGridClass}>
           {MOODS.map((m) => {
             const active = filters.moods.includes(m.slug)
             return (
-              <button
+              <MoodChipToggle
                 key={m.slug}
-                type="button"
+                mood={m}
+                active={active}
                 onClick={() => {
                   const { moods, setPartial } = useFiltersStore.getState()
                   const next = moods.includes(m.slug)
@@ -169,33 +171,23 @@ export function BrowseClient() {
                     : [...moods, m.slug]
                   setPartial({ moods: next })
                 }}
-                className={cn(
-                  "flex min-h-[56px] w-full flex-col items-center justify-center gap-1 rounded-xl border px-2 py-3 text-center text-xs font-medium transition-all duration-200 sm:flex-row sm:gap-2 sm:px-3 sm:text-sm",
-                  active
-                    ? "border-primary bg-primary/10 text-primary shadow-[0_0_14px_rgba(139,90,43,0.18)]"
-                    : "border-border/70 bg-bg-secondary/80 text-heading hover:border-primary/45 hover:bg-surface hover:shadow-[0_0_14px_rgba(139,90,43,0.1)]"
-                )}
-              >
-                <span aria-hidden="true" className="text-lg leading-none">{m.emoji}</span>
-                <span className="leading-tight">{m.label}</span>
-              </button>
+              />
             )
           })}
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 md:grid-cols-[320px_1fr]">
+      <div className="mt-8 space-y-4">
+        <SortBar />
+        <ActiveFilterChips />
+      </div>
+
+      <div className="mt-6 grid gap-6 md:grid-cols-[320px_1fr] md:items-start">
         <div className="hidden md:block">
           <FiltersSidebar />
         </div>
 
         <div>
-          <div className="space-y-4">
-            <SortBar />
-            <ActiveFilterChips />
-          </div>
-
-          <div className="mt-6">
             {error ? (
               <div className="rounded-2xl border border-error/30 bg-error/5 p-6 text-sm text-error">
                 Catalog glitched — refresh or loosen filters and try again.
@@ -300,7 +292,6 @@ export function BrowseClient() {
                 )}
               </>
             )}
-          </div>
         </div>
       </div>
     </div>

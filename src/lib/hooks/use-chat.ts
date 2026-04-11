@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import { getApiErrorMessage } from "@/lib/api/client-fetch"
 import type { ChatMessage } from "@/types/chat"
 import { UI } from "@/lib/constants"
 
@@ -130,19 +131,11 @@ export function useChat(): UseChatState {
         body: JSON.stringify(payload),
         signal: ac.signal,
       })
-      if (!res.ok || !res.body) {
-        const text = await res.text().catch(() => "")
-        let msg = `Request failed (${res.status})`
-        if (text) {
-          try {
-            const j = safeJsonParse<{ error?: string }>(text)
-            if (j?.error) msg = j.error
-            else msg = text.length > 280 ? `${text.slice(0, 280)}…` : text
-          } catch {
-            msg = text.length > 280 ? `${text.slice(0, 280)}…` : text
-          }
-        }
-        throw new Error(msg)
+      if (!res.ok) {
+        throw new Error(await getApiErrorMessage(res))
+      }
+      if (!res.body) {
+        throw new Error("No response body")
       }
 
       const reader = res.body.getReader()

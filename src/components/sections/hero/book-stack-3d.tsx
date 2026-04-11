@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
 import { BookCoverImage } from "@/components/books/book-cover-image"
+import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { cn } from "@/lib/utils"
 
 const HERO_STACK_COVERS = [
@@ -13,34 +14,44 @@ const HERO_STACK_COVERS = [
   { title: "The Overstory", author: "Richard Powers", cover: "https://covers.openlibrary.org/b/isbn/9780393356687-M.jpg" },
   { title: "White Teeth", author: "Zadie Smith", cover: "https://covers.openlibrary.org/b/isbn/9780375703867-M.jpg" },
 ]
-import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
+
+/** Fan layout: center book on top; outer titles stay visible at the sides */
+const FAN_LAYOUT = [
+  { x: -52, y: 20, rz: -11, tz: 4, sc: 0.82, zIndex: 5 },
+  { x: -26, y: 10, rz: -5, tz: 12, sc: 0.9, zIndex: 15 },
+  { x: 0, y: 0, rz: 0, tz: 28, sc: 1, zIndex: 40 },
+  { x: 26, y: 10, rz: 5, tz: 12, sc: 0.9, zIndex: 15 },
+  { x: 52, y: 20, rz: 11, tz: 4, sc: 0.82, zIndex: 5 },
+] as const
 
 export function BookStack3D() {
   const reduced = usePrefersReducedMotion()
   const ref = React.useRef<HTMLDivElement | null>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
-  const rotate = useTransform(scrollYProgress, [0, 1], [reduced ? 0 : -6, reduced ? 0 : 6])
+  const rotate = useTransform(scrollYProgress, [0, 1], [reduced ? 0 : -5, reduced ? 0 : 5])
 
   return (
-    <div ref={ref} className="relative mx-auto h-[min(360px,50dvh)] w-full max-w-md sm:h-[400px] md:h-[420px]">
+    <div
+      ref={ref}
+      className="relative mx-auto flex min-h-[min(380px,52dvh)] w-full max-w-xl items-center justify-center sm:min-h-[420px] md:min-h-[440px]"
+    >
       <motion.div
         style={{ transformStyle: "preserve-3d", rotateY: rotate }}
-        className="absolute inset-0 mx-auto max-w-[min(100%,20rem)]"
+        className="relative mx-auto h-[min(340px,48dvh)] w-full max-w-[22rem] sm:h-[380px]"
       >
         {HERO_STACK_COVERS.map((b, idx) => {
-          const z = (HERO_STACK_COVERS.length - idx) * 16
-          const y = idx * 18
-          const x = idx * 10
-          const rot = reduced ? 0 : (idx % 2 === 0 ? -6 : 6)
+          const f = FAN_LAYOUT[idx] ?? FAN_LAYOUT[2]
+          const rotY = reduced ? 0 : idx % 2 === 0 ? -4 : 4
           return (
             <div
               key={b.title}
               className={cn(
-                "absolute left-1/2 top-6 w-[min(170px,42vw)] -translate-x-1/2 sm:top-10 sm:w-[190px]",
+                "absolute left-1/2 top-1/2 w-[min(158px,38vw)] -translate-x-1/2 -translate-y-1/2 sm:w-[172px]",
                 !reduced && "hero-stack-cover-glow"
               )}
               style={{
-                transform: `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rot}deg)`,
+                zIndex: f.zIndex,
+                transform: `translate3d(${f.x}px, ${f.y}px, ${f.tz}px) rotateZ(${reduced ? 0 : f.rz}deg) rotateY(${rotY}deg) scale(${f.sc})`,
               }}
             >
               <div className="relative aspect-[2/3] overflow-hidden rounded-md border border-border shadow-hover">

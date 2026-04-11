@@ -87,7 +87,7 @@ export function ShelfClient() {
                 subtitle="Hit Browse or any book page — the + shelf button is always one tap away."
               />
             ) : (
-              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:items-stretch">
+              <div className="mt-4 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {want.map(([id, entry]) => (
                   <div key={id} className="flex h-full min-h-0">
                     <BookCard
@@ -107,7 +107,7 @@ export function ShelfClient() {
             {reading.length === 0 ? (
               <Empty title="No current reads" subtitle="Promote something from Want or add a fresh ‘reading now’ pick." />
             ) : (
-              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:items-stretch">
+              <div className="mt-4 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {reading.map(([id, entry]) => (
                   <div key={id} className="flex h-full min-h-0">
                     <BookCard
@@ -130,7 +130,7 @@ export function ShelfClient() {
                 subtitle="Mark titles Done to fuel smarter AI picks and your year-end flex."
               />
             ) : (
-              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:items-stretch">
+              <div className="mt-4 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {read.map(([id, entry]) => (
                   <div key={id} className="flex h-full min-h-0">
                     <BookCard

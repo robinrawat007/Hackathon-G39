@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 
+import { withApiErrorHandling } from "@/lib/api/server-response"
 import { MOOD_SEARCH_TERMS } from "@/lib/constants"
 import { rankKnowledgeBooksForQuery } from "@/lib/knowledge-books"
 import { rateLimitResponse } from "@/lib/rate-limit"
@@ -85,35 +86,37 @@ function sortBooks(books: Book[], sort: string): Book[] {
 }
 
 export async function GET(req: Request) {
-  const limited = await rateLimitResponse(req, "search", { max: 60, window: "1 m" })
-  if (limited) return limited
+  return withApiErrorHandling("GET /api/books/search", async () => {
+    const limited = await rateLimitResponse(req, "search", { max: 60, window: "1 m" })
+    if (limited) return limited
 
-  const url = new URL(req.url)
-  const { q } = buildQuery(url.searchParams)
-  const language = url.searchParams.get("language") ?? "any"
-  const sort = url.searchParams.get("sort") ?? "relevance"
+    const url = new URL(req.url)
+    const { q } = buildQuery(url.searchParams)
+    const language = url.searchParams.get("language") ?? "any"
+    const sort = url.searchParams.get("sort") ?? "relevance"
 
-  const page = Math.max(0, Number(url.searchParams.get("page") ?? "0"))
-  const limit = Math.min(20, Math.max(1, Number(url.searchParams.get("limit") ?? "12")))
+    const page = Math.max(0, Number(url.searchParams.get("page") ?? "0"))
+    const limit = Math.min(20, Math.max(1, Number(url.searchParams.get("limit") ?? "12")))
 
-  const startIndex = page * limit
-  const orderBy = sort === "newest" ? ("newest" as const) : ("relevance" as const)
-  const ranked = rankKnowledgeBooksForQuery({
-    q,
-    langRestrict: language !== "any" ? language : undefined,
-    orderBy,
+    const startIndex = page * limit
+    const orderBy = sort === "newest" ? ("newest" as const) : ("relevance" as const)
+    const ranked = rankKnowledgeBooksForQuery({
+      q,
+      langRestrict: language !== "any" ? language : undefined,
+      orderBy,
+    })
+    const filtered = sortBooks(applyClientSideFilters(ranked, url.searchParams), sort)
+    const items = filtered.slice(startIndex, startIndex + limit)
+    const hasMore = startIndex + limit < filtered.length
+
+    return NextResponse.json(
+      {
+        items,
+        total: filtered.length,
+        nextPage: hasMore ? page + 1 : null,
+      },
+      { headers: { "Cache-Control": "private, no-store, max-age=0" } }
+    )
   })
-  const filtered = sortBooks(applyClientSideFilters(ranked, url.searchParams), sort)
-  const items = filtered.slice(startIndex, startIndex + limit)
-  const hasMore = startIndex + limit < filtered.length
-
-  return NextResponse.json(
-    {
-      items,
-      total: filtered.length,
-      nextPage: hasMore ? page + 1 : null,
-    },
-    { headers: { "Cache-Control": "private, no-store, max-age=0" } }
-  )
 }
 

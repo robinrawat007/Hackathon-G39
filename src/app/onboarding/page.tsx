@@ -5,8 +5,8 @@ import { Footer } from "@/components/layout/footer"
 import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard"
 
 export const metadata: Metadata = {
-  title: "Train your taste",
-  description: "Quick vibe check so AI picks feel like they actually know you.",
+  title: "Calibrate your taste",
+  description: "Rate a few books, pick moods and goals — sharper AI picks in three steps.",
 }
 
 export default function OnboardingPage() {

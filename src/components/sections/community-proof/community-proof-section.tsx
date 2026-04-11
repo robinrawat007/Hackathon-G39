@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { useQuery } from "@tanstack/react-query"
 
+import { fetchJson } from "@/lib/api/client-fetch"
 import { ReviewCard } from "@/components/community/review-card"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { cn } from "@/lib/utils"
@@ -24,10 +25,12 @@ type ReviewEntry = {
 const REVIEWS_PER_PAGE = 3
 
 async function fetchProofReviews(): Promise<ReviewEntry[]> {
-  const res = await fetch("/api/community/feed?limit=9", { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as { reviews?: ReviewEntry[] }
-  return Array.isArray(json.reviews) ? json.reviews.slice(0, 9) : []
+  try {
+    const json = await fetchJson<{ reviews?: ReviewEntry[] }>("/api/community/feed?limit=9", { cache: "no-store" })
+    return Array.isArray(json.reviews) ? json.reviews.slice(0, 9) : []
+  } catch {
+    return []
+  }
 }
 
 // Shown only when the DB has no reviews yet

@@ -7,6 +7,7 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ReviewCard } from "@/components/community/review-card"
+import { fetchJson } from "@/lib/api/client-fetch"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
 
 type ReviewEntry = {
@@ -33,11 +34,10 @@ const FEED_PAGE_SIZE = 50
 type FeedPage = { reviews: ReviewEntry[]; nextOffset: number; hasMore: boolean }
 
 async function fetchFeedPage(offset: number): Promise<FeedPage> {
-  const res = await fetch(`/api/community/feed?limit=${FEED_PAGE_SIZE}&offset=${offset}`, {
-    cache: "no-store",
-  })
-  if (!res.ok) return { reviews: [], nextOffset: offset, hasMore: false }
-  const json = (await res.json()) as { reviews?: ReviewEntry[]; nextOffset?: number; hasMore?: boolean }
+  const json = await fetchJson<{ reviews?: ReviewEntry[]; nextOffset?: number; hasMore?: boolean }>(
+    `/api/community/feed?limit=${FEED_PAGE_SIZE}&offset=${offset}`,
+    { cache: "no-store" }
+  )
   return {
     reviews: Array.isArray(json.reviews) ? json.reviews : [],
     nextOffset: typeof json.nextOffset === "number" ? json.nextOffset : offset,
@@ -46,9 +46,7 @@ async function fetchFeedPage(offset: number): Promise<FeedPage> {
 }
 
 async function fetchLists(): Promise<ListEntry[]> {
-  const res = await fetch("/api/community/lists", { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as { lists?: ListEntry[] }
+  const json = await fetchJson<{ lists?: ListEntry[] }>("/api/community/lists", { cache: "no-store" })
   return Array.isArray(json.lists) ? json.lists : []
 }
 

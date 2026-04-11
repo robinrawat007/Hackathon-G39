@@ -3,7 +3,6 @@ User-agent: *
 Disallow: /api/
 Disallow: /dashboard
 Disallow: /shelf
-Disallow: /settings
 Disallow: /auth/
 Disallow: /notifications
 Disallow: /analytics

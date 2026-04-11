@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import * as React from "react"
 import { useQuery } from "@tanstack/react-query"
 
+import { fetchJson } from "@/lib/api/client-fetch"
 import type { AnalyticsData } from "@/types/analytics"
 import { useCountUp } from "@/lib/hooks/use-count-up"
 import { Button } from "@/components/ui/button"
@@ -12,9 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 const Charts = dynamic(() => import("./charts"), { ssr: false, loading: () => <Skeleton className="h-[420px] w-full" /> })
 
 async function fetchAnalytics(): Promise<AnalyticsData> {
-  const res = await fetch("/api/analytics")
-  if (!res.ok) throw new Error("Failed to load analytics")
-  return (await res.json()) as AnalyticsData
+  return fetchJson<AnalyticsData>("/api/analytics")
 }
 
 function downloadCsv(rows: Record<string, string | number>[], filename: string) {

@@ -4,15 +4,18 @@ import * as React from "react"
 import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useQueryClient } from "@tanstack/react-query"
 
+import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { reviewSchema, type ReviewInput } from "@/lib/validations/review.schema"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { StarRating } from "@/components/ui/star-rating"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
 
-export function WriteReview({ bookId }: { bookId: string }) {
+export function WriteReview({ bookId, onPosted }: { bookId: string; onPosted?: () => void }) {
   const { user, isLoading } = useAuthUser()
+  const queryClient = useQueryClient()
   const [serverError, setServerError] = React.useState<string | null>(null)
   const [success, setSuccess] = React.useState(false)
   const {
@@ -32,27 +35,27 @@ export function WriteReview({ bookId }: { bookId: string }) {
   const onSubmit = async (values: ReviewInput) => {
     setServerError(null)
     setSuccess(false)
-    const res = await fetch("/api/reviews", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ bookId, ...values }),
-    })
-    if (!res.ok) {
-      const text = await res.text().catch(() => "")
-      if (res.status === 401) {
+    try {
+      await fetchJson("/api/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ bookId, ...values }),
+      })
+    } catch (e) {
+      if (e instanceof ApiRequestError && e.status === 401) {
         setServerError("Please sign in to post a review.")
         return
       }
-      try {
-        const j = JSON.parse(text) as { error?: string }
-        setServerError(j.error ?? (text || "Failed to submit review"))
-      } catch {
-        setServerError(text || "Failed to submit review")
-      }
+      setServerError(e instanceof Error ? e.message : "Failed to submit review")
       return
     }
     reset({ rating: 0, body: "" })
     setSuccess(true)
+    queryClient.invalidateQueries({ queryKey: ["book-reviews", bookId] })
+    queryClient.invalidateQueries({ queryKey: ["community-feed"] })
+    queryClient.invalidateQueries({ queryKey: ["community-proof-reviews"] })
+    onPosted?.()
   }
 
   if (isLoading) return null

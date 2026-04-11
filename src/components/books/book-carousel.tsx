@@ -39,7 +39,7 @@ function stepScrollPx(track: HTMLDivElement) {
 }
 
 const itemClass =
-  "h-full min-h-0 shrink-0 snap-start " +
+  "flex min-h-0 shrink-0 snap-start self-stretch " +
   "w-[min(280px,calc(100vw-7.5rem))] " +
   "sm:w-[calc((100%-1rem)/2)] " +
   "lg:w-[calc((100%-3rem)/4)]"
@@ -155,7 +155,7 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
           aria-labelledby={titleId}
           onKeyDown={onKeyDown}
           className={cn(
-            "flex min-h-0 min-w-0 flex-1 gap-4 overflow-x-auto overflow-y-visible pb-2 outline-none [-webkit-overflow-scrolling:touch] scroll-smooth snap-x snap-proximity",
+            "flex min-h-0 min-w-0 flex-1 items-stretch gap-4 overflow-x-auto overflow-y-visible pb-2 outline-none [-webkit-overflow-scrolling:touch] scroll-smooth snap-x snap-proximity",
             "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           )}
           variants={reduced ? undefined : list}
@@ -165,14 +165,14 @@ export function BookCarousel({ books, title }: { books: Book[]; title: string })
         >
           {books.map((b) =>
             reduced ? (
-              <div key={b.id} data-carousel-item className={cn(itemClass, "flex w-full min-w-0")}>
-                <div className="w-full min-w-0">
+              <div key={b.id} data-carousel-item className={cn(itemClass, "w-full min-w-0")}>
+                <div className="flex h-full min-h-0 w-full flex-1 flex-col">
                   <BookCard book={b} variant="carousel" />
                 </div>
               </div>
             ) : (
-              <motion.div key={b.id} data-carousel-item variants={item} className={cn(itemClass, "flex w-full min-w-0")}>
-                <div className="w-full min-w-0">
+              <motion.div key={b.id} data-carousel-item variants={item} className={cn(itemClass, "w-full min-w-0")}>
+                <div className="flex h-full min-h-0 w-full flex-1 flex-col">
                   <BookCard book={b} variant="carousel" />
                 </div>
               </motion.div>

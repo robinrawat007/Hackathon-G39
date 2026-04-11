@@ -4,6 +4,8 @@ import * as React from "react"
 import { useRouter } from "next/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 
+import { MoodChipToggle, moodChipsGridClass } from "@/components/mood/mood-chips"
+import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { BookCoverImage } from "@/components/books/book-cover-image"
 import { Button } from "@/components/ui/button"
 import { MOODS, GOALS } from "@/lib/constants"
@@ -11,6 +13,7 @@ import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
 import { ONBOARDING_POPULAR_BOOKS } from "@/lib/onboarding-popular-books"
 import { onboardingSchema, type OnboardingInput } from "@/lib/validations/onboarding.schema"
+import { cn } from "@/lib/utils"
 
 type Step = 1 | 2 | 3
 
@@ -93,38 +96,29 @@ export function OnboardingWizard() {
     }
 
     try {
-      const res = await fetch("/api/onboarding", {
+      await fetchJson("/api/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "same-origin",
         body: JSON.stringify(parsed.data),
       })
-      const raw = await res.text()
-      let body: { error?: string; issues?: { message?: string }[] } = {}
-      try {
-        body = raw ? (JSON.parse(raw) as typeof body) : {}
-      } catch {
-        throw new Error(
-          raw.trim().startsWith("<")
-            ? `Server error (${res.status}). Check the terminal / deployment logs.`
-            : `Request failed (${res.status}): ${raw.slice(0, 280)}`
-        )
-      }
-      if (!res.ok) {
-        const firstIssue = body.issues?.[0]?.message
-        const msg =
-          body.error ??
-          firstIssue ??
-          (res.status === 401
-            ? "You need to be signed in. Try signing in again."
-            : res.status === 503
-              ? "Server misconfiguration: add SUPABASE_SERVICE_ROLE_KEY to your environment and redeploy."
-              : `Could not save (${res.status}).`)
-        throw new Error(msg)
-      }
       window.location.href = "/dashboard"
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to save onboarding")
+      if (e instanceof ApiRequestError) {
+        const body = e.body as { error?: string; issues?: { message?: string }[] } | undefined
+        const firstIssue = body?.issues?.[0]?.message
+        const msg =
+          body?.error ??
+          firstIssue ??
+          (e.status === 401
+            ? "You need to be signed in. Try signing in again."
+            : e.status === 503
+              ? "Server misconfiguration: add SUPABASE_SERVICE_ROLE_KEY to your environment and redeploy."
+              : e.message)
+        setError(msg)
+      } else {
+        setError(e instanceof Error ? e.message : "Failed to save onboarding")
+      }
     } finally {
       setSaving(false)
     }
@@ -140,26 +134,62 @@ export function OnboardingWizard() {
     )
   }
 
+  const stepLabels = ["Books", "Vibes", "Goals"] as const
+
   return (
-    <div className="mx-auto max-w-5xl">
-      <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-bg-secondary/90 via-surface/80 to-accent/5 p-8 shadow-card backdrop-blur-md md:p-10">
+    <div className="mx-auto max-w-5xl px-1 sm:px-0">
+      <div className="relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-[#fdf9f3] via-bg-secondary/95 to-[#f3ebe0] p-6 shadow-[0_8px_40px_rgba(139,90,43,0.1),0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-md md:p-10">
         <div
-          className="pointer-events-none absolute inset-0 opacity-40"
+          className="pointer-events-none absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 0% 0%, rgba(196,149,106,0.14), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139,90,43,0.1), transparent)",
+              "radial-gradient(ellipse 80% 55% at 15% 0%, rgba(196,149,106,0.2), transparent 50%), radial-gradient(ellipse 65% 45% at 95% 100%, rgba(139,90,43,0.12), transparent 55%)",
           }}
           aria-hidden
         />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.4]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='1.2' fill='%238B5E3C' fill-opacity='0.11'/%3E%3C/svg%3E")`,
+            backgroundSize: "80px 80px",
+          }}
+          aria-hidden
+        />
+
+        <div className="relative mb-6 flex flex-wrap gap-2">
+          {([1, 2, 3] as const).map((s) => {
+            const active = step === s
+            const done = step > s
+            return (
+              <span
+                key={s}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors",
+                  active
+                    ? "border-primary bg-primary text-white shadow-[0_0_16px_rgba(139,90,43,0.25)]"
+                    : done
+                      ? "border-primary/35 bg-primary/10 text-primary"
+                      : "border-border/70 bg-bg-secondary/80 text-text-muted"
+                )}
+              >
+                <span className="tabular-nums">{s}</span>
+                {stepLabels[s - 1]}
+              </span>
+            )
+          })}
+        </div>
+
         <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="text-sm font-medium text-primary">Step {step} of 3</div>
-            <h1 className="font-heading text-h2 text-gradient-hero">Train your taste</h1>
-            <p className="mt-1 max-w-xl text-sm text-text-muted">So AI picks feel personal — not generic bestseller bingo.</p>
+            <div className="text-xs font-semibold uppercase tracking-[0.14em] text-primary/90">Train your taste</div>
+            <h1 className="mt-1 font-heading text-h2 text-gradient-hero">Calibrate your shelf</h1>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-muted">
+              Three quick steps — honest taps, your moods, and what you want next. Recommendations get sharper as you go.
+            </p>
           </div>
-          <div className="h-2 w-full max-w-[200px] overflow-hidden rounded-full bg-bg-secondary sm:w-40">
+          <div className="h-2.5 w-full max-w-[220px] overflow-hidden rounded-full border border-border/40 bg-bg-secondary/90 shadow-inner sm:w-44">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-primary to-accent shadow-[0_0_12px_rgba(139,90,43,0.3)]"
+              className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-[#d4845a] shadow-[0_0_14px_rgba(139,90,43,0.35)]"
               initial={false}
               animate={{ width: `${progress * 100}%` }}
               transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 200, damping: 26 }}
@@ -239,25 +269,16 @@ export function OnboardingWizard() {
               <div className="font-heading text-h3 text-heading">Your usual vibes</div>
               <div className="mt-2 text-sm text-text-muted">Pick at least two — we’ll match energy, not just genre labels.</div>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className={cn(moodChipsGridClass, "mt-6")}>
                 {MOODS.map((m) => {
                   const active = moods.includes(m.slug)
                   return (
-                    <button
+                    <MoodChipToggle
                       key={m.slug}
-                      type="button"
+                      mood={m}
+                      active={active}
                       onClick={() => toggleMood(m.slug)}
-                      className={`rounded-xl border px-4 py-4 text-left transition-shadow ${
-                        active
-                          ? "border-primary bg-primary text-white shadow-[0_0_14px_rgba(139,90,43,0.22)]"
-                          : "border-border/80 bg-bg-secondary/80 text-text hover:border-primary/30"
-                      }`}
-                    >
-                      <div className="text-lg" aria-hidden="true">
-                        {m.emoji}
-                      </div>
-                      <div className="mt-2 text-sm font-medium">{m.label}</div>
-                    </button>
+                    />
                   )
                 })}
               </div>

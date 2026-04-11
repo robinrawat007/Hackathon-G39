@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import type { ShelfEntry } from "@/lib/stores/shelf-store"
 import { useShelfStore } from "@/lib/stores/shelf-store"
@@ -22,14 +23,13 @@ export function ShelfSync() {
     let cancelled = false
     void (async () => {
       try {
-        const res = await fetch("/api/shelf", { credentials: "same-origin" })
-        if (!res.ok || cancelled) return
-        const data = (await res.json()) as { items?: ShelfEntry[] }
-        if (!cancelled && Array.isArray(data.items)) {
-          hydrateFromServer(data.items)
+        const data = await fetchJson<{ items?: ShelfEntry[] }>("/api/shelf", { credentials: "same-origin" })
+        if (cancelled) return
+        if (Array.isArray(data.items)) hydrateFromServer(data.items)
+      } catch (e) {
+        if (!cancelled && e instanceof ApiRequestError) {
+          console.warn("[ShelfSync]", e.message)
         }
-      } catch {
-        /* offline / misconfigured — shelf stays empty until next navigation */
       }
     })()
 

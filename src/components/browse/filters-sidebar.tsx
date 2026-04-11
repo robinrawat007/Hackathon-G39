@@ -6,6 +6,7 @@ import { GENRES } from "@/lib/constants"
 import { useFiltersStore } from "@/lib/stores/filters-store"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 function CheckboxRow({
   checked,
@@ -39,7 +40,7 @@ export function FiltersSidebar() {
   }
 
   return (
-    <aside className="glass-card sticky top-24 rounded-2xl border border-border/60 p-5 shadow-card backdrop-blur-md">
+    <aside className="glass-card sticky top-28 self-start rounded-2xl border border-border/60 p-5 shadow-card backdrop-blur-md">
       <div className="flex items-center justify-between">
         <div className="font-heading text-h3 text-heading">Dial it in</div>
         <Button variant="ghost" size="sm" onClick={() => filters.clearAll()}>
@@ -59,18 +60,22 @@ export function FiltersSidebar() {
 
         <div>
           <div className="text-sm font-medium text-heading">Era</div>
-          <select
-            className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
+          <Select
             value={filters.era}
-            onChange={(e) => filters.setPartial({ era: e.target.value as typeof filters.era })}
+            onValueChange={(v) => filters.setPartial({ era: v as typeof filters.era })}
           >
-            <option value="any">Any</option>
-            <option value="pre-1900">Pre-1900</option>
-            <option value="1900-1970">1900–1970</option>
-            <option value="1970-2000">1970–2000</option>
-            <option value="2000-2015">2000–2015</option>
-            <option value="recent">Recent (2015+)</option>
-          </select>
+            <SelectTrigger className="mt-2 h-11 w-full">
+              <SelectValue placeholder="Era" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="any">Any</SelectItem>
+              <SelectItem value="pre-1900">Pre-1900</SelectItem>
+              <SelectItem value="1900-1970">1900–1970</SelectItem>
+              <SelectItem value="1970-2000">1970–2000</SelectItem>
+              <SelectItem value="2000-2015">2000–2015</SelectItem>
+              <SelectItem value="recent">Recent (2015+)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div>
@@ -112,18 +117,19 @@ export function FiltersSidebar() {
 
         <div>
           <div className="text-sm font-medium text-heading">Language</div>
-          <select
-            className="mt-2 h-11 w-full rounded-md border border-border bg-bg-secondary px-3 font-sans text-sm text-text"
-            value={filters.language}
-            onChange={(e) => filters.setPartial({ language: e.target.value })}
-          >
-            <option value="any">Any</option>
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="hi">Hindi</option>
-          </select>
+          <Select value={filters.language} onValueChange={(v) => filters.setPartial({ language: v })}>
+            <SelectTrigger className="mt-2 h-11 w-full">
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="any">Any</SelectItem>
+              <SelectItem value="en">English</SelectItem>
+              <SelectItem value="es">Spanish</SelectItem>
+              <SelectItem value="fr">French</SelectItem>
+              <SelectItem value="de">German</SelectItem>
+              <SelectItem value="hi">Hindi</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="pt-2">

@@ -10,12 +10,20 @@ const linkClass = "block text-sm text-text-muted transition-colors hover:text-he
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-primary/20 bg-bg-secondary">
+    <footer className="section-divider-top relative overflow-hidden border-t border-primary/15 bg-gradient-to-b from-[#faf6ef] via-bg-secondary to-[#f0e8dc]">
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 opacity-90"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196, 149, 106, 0.12), transparent 55%), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(139, 90, 43, 0.07), transparent 50%)",
+            "radial-gradient(ellipse 90% 55% at 50% -10%, rgba(196, 149, 106, 0.22), transparent 58%), radial-gradient(ellipse 70% 45% at 0% 100%, rgba(139, 90, 43, 0.1), transparent 52%), radial-gradient(ellipse 60% 50% at 100% 80%, rgba(212, 132, 90, 0.08), transparent 50%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%238B5E3C' stroke-opacity='0.07'%3E%3Cpath d='M0 60h120M60 0v120'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: "120px 120px",
         }}
         aria-hidden
       />
@@ -59,7 +67,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-border/60 pt-8 text-sm text-text-muted">
+          <div className="mt-12 border-t border-border/50 pt-8 text-sm text-text-muted">
             <div>© {new Date().getFullYear()} ShelfAI</div>
           </div>
         </div>

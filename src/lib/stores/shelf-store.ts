@@ -2,6 +2,7 @@
 
 import { create } from "zustand"
 
+import { fetchJson } from "@/lib/api/client-fetch"
 import type { Book, ShelfStatus } from "@/types/book"
 
 export type ShelfEntry = {
@@ -30,27 +31,19 @@ function progressForStatus(status: ShelfStatus, previous?: number) {
 }
 
 async function persistShelf(bookId: string, status: ShelfStatus) {
-  const res = await fetch("/api/shelf", {
+  await fetchJson<{ ok?: boolean }>("/api/shelf", {
     method: "POST",
     credentials: "same-origin",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ bookId, status }),
   })
-  if (!res.ok) {
-    const err = (await res.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error ?? "Could not save shelf")
-  }
 }
 
 async function persistRemove(bookId: string) {
-  const res = await fetch(`/api/shelf?bookId=${encodeURIComponent(bookId)}`, {
+  await fetchJson<{ ok?: boolean }>(`/api/shelf?bookId=${encodeURIComponent(bookId)}`, {
     method: "DELETE",
     credentials: "same-origin",
   })
-  if (!res.ok) {
-    const err = (await res.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error ?? "Could not remove from shelf")
-  }
 }
 
 export const useShelfStore = create<ShelfState>((set, get) => ({

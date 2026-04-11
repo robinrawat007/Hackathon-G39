@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 
+import { getApiErrorMessage } from "@/lib/api/client-fetch"
 import type { Book } from "@/types/book"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
 
@@ -43,15 +44,7 @@ export function WhyYoullLoveIt({ book }: { book: Book }) {
           }),
         })
         if (!res.ok) {
-          const text = await res.text().catch(() => "")
-          let msg = `Request failed (${res.status})`
-          try {
-            const j = JSON.parse(text) as { error?: string }
-            if (j.error) msg = j.error
-          } catch {
-            if (text) msg = text.length > 200 ? `${text.slice(0, 200)}…` : text
-          }
-          throw new Error(msg)
+          throw new Error(await getApiErrorMessage(res))
         }
         if (!res.body) throw new Error("Empty response")
 

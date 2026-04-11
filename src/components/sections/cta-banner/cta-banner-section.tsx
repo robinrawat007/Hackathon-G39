@@ -4,10 +4,15 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
+import { useAuthUser } from "@/lib/hooks/use-auth-user"
 import { usePrefersReducedMotion } from "@/lib/hooks/use-prefers-reduced-motion"
+
+const ctaButtonClass =
+  "border-primary/60 bg-bg-secondary/90 text-heading shadow-card backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-surface hover:shadow-primary-glow"
 
 export function CTABannerSection() {
   const reduced = usePrefersReducedMotion()
+  const { user, isLoading } = useAuthUser()
 
   return (
     <section className="py-16 md:py-24">
@@ -35,15 +40,23 @@ export function CTABannerSection() {
               </div>
             </div>
             <motion.div whileHover={reduced ? undefined : { scale: 1.04 }} whileTap={reduced ? undefined : { scale: 0.98 }}>
-              <Link href="/auth/signup">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="border-primary/60 bg-bg-secondary/90 text-heading shadow-card backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-surface hover:shadow-primary-glow"
-                >
-                  Claim my shelf →
+              {isLoading ? (
+                <Button variant="secondary" size="lg" className={ctaButtonClass} loading disabled aria-busy="true">
+                  Loading
                 </Button>
-              </Link>
+              ) : user ? (
+                <Link href="/dashboard">
+                  <Button variant="secondary" size="lg" className={ctaButtonClass}>
+                    Open your shelf →
+                  </Button>
+                </Link>
+              ) : (
+                <Link href="/auth/signup">
+                  <Button variant="secondary" size="lg" className={ctaButtonClass}>
+                    Claim my shelf →
+                  </Button>
+                </Link>
+              )}
             </motion.div>
           </div>
         </motion.div>

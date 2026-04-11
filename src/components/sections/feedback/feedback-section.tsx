@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 
+import { fetchJson } from "@/lib/api/client-fetch"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -21,7 +22,7 @@ export function FeedbackSection() {
     setStatus("loading")
     setErrorMsg(null)
     try {
-      const res = await fetch("/api/feedback", {
+      await fetchJson("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -31,16 +32,10 @@ export function FeedbackSection() {
           page: typeof window !== "undefined" ? window.location.href : undefined,
         }),
       })
-      const data = (await res.json().catch(() => ({}))) as { error?: string }
-      if (!res.ok) {
-        setErrorMsg(data.error ?? "Something went wrong.")
-        setStatus("error")
-        return
-      }
       setStatus("success")
       setMessage("")
-    } catch {
-      setErrorMsg("Network error. Try again.")
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Network error. Try again.")
       setStatus("error")
     }
   }

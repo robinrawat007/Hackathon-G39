@@ -2,6 +2,7 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query"
 
+import { ApiRequestError, fetchJson } from "@/lib/api/client-fetch"
 import { getApiOrigin } from "@/lib/api-url"
 import type { BooksPage } from "@/lib/hooks/use-books"
 
@@ -46,12 +47,14 @@ export function useInfiniteBooks(filters: {
         page: Number(pageParam),
         limit: 12,
       })
-      const res = await fetch(url, { cache: "no-store" })
-      if (!res.ok) {
-        if (res.status === 429) throw new Error("Too many searches. Please wait a moment and try again.")
-        throw new Error("Failed to fetch books")
+      try {
+        return await fetchJson<BooksPage>(url, { cache: "no-store" })
+      } catch (e) {
+        if (e instanceof ApiRequestError && e.status === 429) {
+          throw new Error("Too many searches. Please wait a moment and try again.")
+        }
+        throw e
       }
-      return (await res.json()) as BooksPage
     },
     getNextPageParam: (lastPage) => lastPage.nextPage,
     staleTime: 5 * 60 * 1000,

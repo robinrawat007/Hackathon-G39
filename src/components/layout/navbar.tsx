@@ -10,9 +10,9 @@ import { StaticSignInForm } from "@/components/auth/static-sign-in-form"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { NavbarUserMenu } from "@/components/layout/navbar-user-menu"
 import { NotificationBell } from "@/components/notifications/notification-bell"
 import { useAuthUser } from "@/lib/hooks/use-auth-user"
-import { useSignOut } from "@/lib/hooks/use-sign-out"
 import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
@@ -31,7 +31,6 @@ export function Navbar() {
     return `rgba(254, 252, 248, ${a})`
   })
   const { user, isLoading } = useAuthUser()
-  const signOut = useSignOut()
 
   return (
     <>
@@ -81,21 +80,12 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-3 md:flex">
             {user ? <NotificationBell userId={user.id} /> : null}
             {isLoading ? (
-              <span className="h-10 w-[7.5rem] shrink-0 rounded-md bg-bg-secondary/80" aria-hidden />
+              <span className="h-10 w-10 shrink-0 rounded-full bg-bg-secondary/80" aria-hidden />
             ) : user ? (
-              <>
-                <Link href="/dashboard">
-                  <Button variant="primary" size="sm">
-                    My Shelf
-                  </Button>
-                </Link>
-                <Button variant="ghost" size="sm" type="button" onClick={() => void signOut()}>
-                  Sign out
-                </Button>
-              </>
+              <NavbarUserMenu user={user} />
             ) : (
               <Button variant="primary" size="md" className="min-h-10 px-4 font-semibold shadow-card" onClick={() => setSignInOpen(true)}>
                 Sign In
@@ -114,36 +104,29 @@ export function Navbar() {
               <SheetContent side="right" className="w-full max-w-[min(100vw,380px)] border-border bg-bg-secondary/95 backdrop-blur-xl sm:max-w-sm">
                 <div className="flex flex-col gap-4">
                   <div className="font-heading text-h3 font-semibold text-gradient-hero">ShelfAI</div>
+                  {user && !isLoading ? (
+                    <div className="flex items-center gap-3 rounded-xl border border-border/60 bg-surface/50 p-3">
+                      <NavbarUserMenu user={user} size="sm" />
+                      <div className="min-w-0 flex-1">
+                        <div className="text-[11px] font-medium uppercase tracking-wide text-text-muted">Signed in</div>
+                        <div className="truncate text-sm font-medium text-heading">{user.email ?? "Account"}</div>
+                      </div>
+                    </div>
+                  ) : null}
                   <div className="flex flex-col gap-2">
                     {NAV_LINKS.map((l) => (
                       <Link key={l.href} href={l.href} className="text-base text-text hover:text-primary">
                         {l.label}
                       </Link>
                     ))}
-                    {user ? (
-                      <Link href="/dashboard" className="text-base text-text hover:text-primary">
-                        My Shelf
-                      </Link>
-                    ) : null}
                   </div>
-                  <div className="mt-6 flex flex-col gap-2">
-                    {isLoading ? null : user ? (
-                      <>
-                        <Link href="/settings">
-                          <Button variant="secondary" size="md" fullWidth>
-                            Settings
-                          </Button>
-                        </Link>
-                        <Button variant="ghost" size="md" fullWidth type="button" onClick={() => void signOut()}>
-                          Sign out
-                        </Button>
-                      </>
-                    ) : (
+                  {!isLoading && !user ? (
+                    <div className="mt-4">
                       <Button variant="primary" size="md" fullWidth onClick={() => setSignInOpen(true)}>
                         Sign In
                       </Button>
-                    )}
-                  </div>
+                    </div>
+                  ) : null}
                 </div>
               </SheetContent>
             </Sheet>

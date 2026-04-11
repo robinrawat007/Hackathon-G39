@@ -19,7 +19,7 @@ const PopoverContent = React.forwardRef<
       align={align}
       sideOffset={sideOffset}
       className={cn(
-        "z-50 w-72 rounded-lg border border-border bg-surface p-3 text-sm text-text shadow-card outline-none",
+        "popover-dropdown-panel z-50 w-72 rounded-xl border border-border/80 bg-bg p-3 text-sm text-text shadow-[0_12px_40px_rgba(139,90,43,0.12),0_4px_12px_rgba(0,0,0,0.06)] outline-none backdrop-blur-md",
         className
       )}
       {...props}

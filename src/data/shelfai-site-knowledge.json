@@ -26,19 +26,14 @@
       "whatYouSee": "Synopsis, ratings, genres, similar titles, optional reviews UI, and a shelf control to mark Want to read / Reading / Read when signed in."
     },
     {
-      "name": "My shelf",
-      "path": "/shelf",
-      "whatYouSee": "Your personal reading list with statuses. When you are signed in, shelf choices can sync to your account so they persist across sessions."
-    },
-    {
       "name": "Taste profile (onboarding)",
       "path": "/onboarding",
       "whatYouSee": "A short wizard to capture reading tastes and goals so recommendations and home content feel more relevant."
     },
     {
-      "name": "Dashboard",
+      "name": "Dashboard (your shelf)",
       "path": "/dashboard",
-      "whatYouSee": "A signed-in overview: activity, recommendations, and shortcuts into the rest of the app."
+      "whatYouSee": "Signed-in home: your Want · Reading · Done lists, mood preferences, recommendations, and community pulse — the main place your shelf lives."
     },
     {
       "name": "Community",
@@ -54,11 +49,6 @@
       "name": "About ShelfAI",
       "path": "/about",
       "whatYouSee": "Mission, values, and how ShelfAI thinks about taste, transparency, and community."
-    },
-    {
-      "name": "Account & settings",
-      "path": "/settings",
-      "whatYouSee": "Profile and preferences for signed-in users."
     },
     {
       "name": "Notifications",
@@ -93,7 +83,7 @@
     "starters": "Example prompts are suggested when the chat is empty (e.g. quick mood-based or comp-title asks)."
   },
   "accountAndPrivacy": {
-    "signIn": "Signing in unlocks saving shelf status, dashboard, settings, notifications, and other account-backed features.",
+    "signIn": "Signing in unlocks saving shelf status, dashboard, notifications, and other account-backed features.",
     "catalogIntegrity": "Titles come from ShelfAI’s curated knowledge base; arbitrary user-typed books are not added to the shared catalog from the shelf API.",
     "dataPhilosophy": "Share only what you are comfortable making part of your reader profile; see /legal/privacy for details."
   },

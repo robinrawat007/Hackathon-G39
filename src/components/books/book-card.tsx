@@ -78,14 +78,13 @@ export function BookCard({ book, variant, onAddToShelf, isLoading }: BookCardPro
 
   if (isCarousel) {
     return (
-      <div className="group/card relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-card backdrop-blur-md transition-shadow duration-300 hover:border-primary/40 hover:shadow-hover">
-        <span className="book-card-accent-line z-10" aria-hidden />
+      <div className="group/card relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-card backdrop-blur-md transition-shadow duration-300 hover:border-primary/40 hover:shadow-hover">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/[0.1] via-transparent to-transparent"
           aria-hidden
         />
-        <Link href={`/book/${book.slug}`} className="relative z-[1] flex flex-col p-3.5 pt-4">
-          <div className="relative [perspective:900px]">
+        <Link href={`/book/${book.slug}`} className="relative z-[1] flex min-h-0 flex-1 flex-col p-3.5 pt-4">
+          <div className="relative shrink-0 [perspective:900px]">
             <motion.div
               className="book-cover-frame relative aspect-[2/3] w-full shrink-0 overflow-hidden rounded-lg shadow-[0_12px_32px_rgba(0,0,0,0.4)] ring-1 ring-black/5"
               style={{ transformStyle: "preserve-3d" }}
@@ -107,19 +106,21 @@ export function BookCard({ book, variant, onAddToShelf, isLoading }: BookCardPro
               )}
             </motion.div>
           </div>
-          <div className="mt-3 flex flex-col gap-1.5">
-            <div className="line-clamp-2 font-heading text-[0.9375rem] font-semibold leading-snug tracking-tight text-heading sm:text-base">
-              {displayTitle}
+          <div className="mt-3 flex min-h-0 flex-1 flex-col gap-2">
+            <div className="min-h-[2.75rem] shrink-0">
+              <div className="line-clamp-2 font-heading text-[0.9375rem] font-semibold leading-snug tracking-tight text-heading sm:text-base">
+                {displayTitle}
+              </div>
             </div>
-            <div className="truncate text-sm text-text-muted/95">{displayAuthor}</div>
-            <div className="flex items-center justify-between gap-2 border-t border-border/40 pt-2">
+            <div className="shrink-0 truncate text-sm text-text-muted/95">{displayAuthor}</div>
+            <div className="flex shrink-0 items-center justify-between gap-2 pt-0.5">
               <StarRating value={Math.round(book.averageRating)} interactive={false} size="sm" />
               <div className="shrink-0 text-xs tabular-nums text-text-muted">
                 {book.ratingsCount > 0 ? `${book.ratingsCount.toLocaleString("en-US")} reviews` : "Be the first"}
               </div>
             </div>
-            <span className="mt-1 flex min-h-[2.5rem] items-center justify-center rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white shadow-card transition-all duration-200 group-hover/card:bg-gradient-to-br group-hover/card:from-[#8B5E3C] group-hover/card:to-[#C4956A] group-hover/card:shadow-primary-glow">
-              Open the book →
+            <span className="mt-auto inline-flex min-h-[2.25rem] w-fit items-center justify-center self-start rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white shadow-card transition-all duration-200 group-hover/card:bg-gradient-to-br group-hover/card:from-[#8B5E3C] group-hover/card:to-[#C4956A] group-hover/card:shadow-primary-glow">
+              View
             </span>
           </div>
         </Link>
@@ -130,7 +131,6 @@ export function BookCard({ book, variant, onAddToShelf, isLoading }: BookCardPro
   /* Default & shelf: same footprint as carousel grids — no uneven card heights */
   return (
     <div className="glass-card group relative flex h-full w-full min-h-[460px] flex-col rounded-xl border border-border/80 shadow-card">
-      <span className="book-card-accent-line" aria-hidden />
       <Link href={`/book/${book.slug}`} className="flex flex-1 flex-col p-4">
         <div className="relative [perspective:800px]">
           <motion.div
@@ -153,31 +153,33 @@ export function BookCard({ book, variant, onAddToShelf, isLoading }: BookCardPro
             )}
           </motion.div>
         </div>
-        <div className="mt-4 flex min-h-0 flex-1 flex-col">
-          <div className="min-h-[2.75rem]">
-            <div
-              className={cn(
-                "line-clamp-2 font-heading font-semibold leading-snug text-heading",
-                isCompact ? "text-sm" : "text-base"
-              )}
-            >
-              {displayTitle}
+        <div className="mt-4 flex min-h-0 flex-1 flex-col gap-3">
+          <div className="space-y-1.5">
+            <div className="min-h-[2.75rem]">
+              <div
+                className={cn(
+                  "line-clamp-2 font-heading font-semibold leading-snug text-heading",
+                  isCompact ? "text-sm" : "text-base"
+                )}
+              >
+                {displayTitle}
+              </div>
             </div>
+            <div className="truncate text-sm text-text-muted">{displayAuthor}</div>
+            {!isCompact && genre ? (
+              <div>
+                <span className="book-genre-pill inline-block max-w-full truncate text-xs">{genre}</span>
+              </div>
+            ) : null}
           </div>
-          <div className="mt-1 min-h-[1.25rem] truncate text-sm text-text-muted">{displayAuthor}</div>
-          {!isCompact && genre ? (
-            <div className="mt-2 min-h-[1.5rem]">
-              <span className="book-genre-pill inline-block max-w-full truncate text-xs">{genre}</span>
-            </div>
-          ) : null}
-          <div className="mt-3 flex items-center justify-between gap-2">
+          <div className="flex items-center justify-between gap-2">
             <StarRating value={Math.round(book.averageRating)} interactive={false} size="sm" />
             <div className="shrink-0 text-xs tabular-nums text-text-muted">
               {book.ratingsCount > 0 ? `${book.ratingsCount.toLocaleString("en-US")} reviews` : "No reviews yet"}
             </div>
           </div>
-          <span className="mt-auto inline-flex min-h-[2.25rem] items-center justify-center rounded-md border border-primary/50 px-3 py-2 text-center text-sm font-medium text-primary transition-colors duration-200 group-hover:border-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-accent group-hover:text-heading group-hover:shadow-primary-glow">
-            Open the book →
+          <span className="mt-auto inline-flex min-h-[2.25rem] w-fit items-center justify-center self-start rounded-md border border-primary/50 px-4 py-2 text-sm font-medium text-primary transition-colors duration-200 group-hover:border-primary group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-accent group-hover:text-heading group-hover:shadow-primary-glow">
+            View
           </span>
         </div>
       </Link>

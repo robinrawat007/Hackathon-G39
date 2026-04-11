@@ -12,39 +12,49 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useShelfStore } from "@/lib/stores/shelf-store"
 import { useFiltersStore } from "@/lib/stores/filters-store"
+import { MoodChipToggle, moodChipsGridClass } from "@/components/mood/mood-chips"
 import { MOODS } from "@/lib/constants"
+import { fetchJson } from "@/lib/api/client-fetch"
 import { apiUrl } from "@/lib/api-url"
 import { cn } from "@/lib/utils"
 
 async function fetchRecommendations(): Promise<Book[]> {
-  const res = await fetch(apiUrl("/api/recommendations"), {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ limit: 8 }),
-    cache: "no-store",
-  })
-  if (!res.ok) return []
-  const json = (await res.json()) as { items?: Book[] }
-  return Array.isArray(json.items) ? json.items : []
+  try {
+    const json = await fetchJson<{ items?: Book[] }>(apiUrl("/api/recommendations"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ limit: 8 }),
+      cache: "no-store",
+    })
+    return Array.isArray(json.items) ? json.items : []
+  } catch {
+    return []
+  }
 }
 
 async function fetchPreferences(): Promise<{ moods: string[]; goals: string[] }> {
-  const res = await fetch(apiUrl("/api/preferences"), { cache: "no-store" })
-  if (!res.ok) return { moods: [], goals: [] }
-  const json = (await res.json()) as { moods?: string[]; goals?: string[] }
-  return {
-    moods: Array.isArray(json.moods) ? json.moods : [],
-    goals: Array.isArray(json.goals) ? json.goals : [],
+  try {
+    const json = await fetchJson<{ moods?: string[]; goals?: string[] }>(apiUrl("/api/preferences"), {
+      cache: "no-store",
+    })
+    return {
+      moods: Array.isArray(json.moods) ? json.moods : [],
+      goals: Array.isArray(json.goals) ? json.goals : [],
+    }
+  } catch {
+    return { moods: [], goals: [] }
   }
 }
 
 type PulseItem = { id: string; title: string; meta: string }
 
 async function fetchCommunityPulse(): Promise<PulseItem[]> {
-  const res = await fetch(apiUrl("/api/community/pulse"), { cache: "no-store" })
-  if (!res.ok) return []
-  const json = (await res.json()) as { items?: PulseItem[] }
-  return Array.isArray(json.items) ? json.items : []
+  try {
+    const json = await fetchJson<{ items?: PulseItem[] }>(apiUrl("/api/community/pulse"), { cache: "no-store" })
+    return Array.isArray(json.items) ? json.items : []
+  } catch {
+    return []
+  }
 }
 
 function StatCard({
@@ -126,7 +136,7 @@ export function DashboardClient() {
     const next = moods.includes(slug) ? moods.filter((m) => m !== slug) : [...moods, slug]
     setPartial({ moods: next })
     // Persist to DB (fire-and-forget, non-blocking)
-    await fetch(apiUrl("/api/preferences"), {
+    await fetchJson(apiUrl("/api/preferences"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ moods: next }),
@@ -308,24 +318,16 @@ export function DashboardClient() {
         <p className="mb-4 text-sm text-text-muted">
           Pin moods to tune your recommendations and Browse defaults.
         </p>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className={moodChipsGridClass}>
           {MOODS.map((m) => {
             const active = selectedMoods.includes(m.slug)
             return (
-              <button
+              <MoodChipToggle
                 key={m.slug}
-                type="button"
+                mood={m}
+                active={active}
                 onClick={() => void toggleMood(m.slug)}
-                className={cn(
-                  "flex min-h-[56px] w-full flex-col items-center justify-center gap-1 rounded-xl border px-2 py-3 text-center text-xs font-medium transition-all duration-200 sm:flex-row sm:gap-2 sm:px-3 sm:text-sm",
-                  active
-                    ? "border-primary bg-primary/10 text-primary shadow-[0_0_14px_rgba(139,90,43,0.18)]"
-                    : "border-border/70 bg-bg-secondary/80 text-heading hover:border-primary/45 hover:bg-surface"
-                )}
-              >
-                <span aria-hidden className="text-lg leading-none">{m.emoji}</span>
-                <span className="leading-tight">{m.label}</span>
-              </button>
+              />
             )
           })}
         </div>

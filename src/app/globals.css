@@ -125,6 +125,60 @@
   z-index: 1;
 }
 
+/* Soft lift on major horizontal breaks (footer, sections) */
+.section-divider-top {
+  box-shadow:
+    0 -1px 0 rgba(139, 90, 43, 0.06),
+    0 -8px 24px rgba(139, 90, 43, 0.07),
+    0 -20px 48px rgba(139, 90, 43, 0.04);
+}
+
+@keyframes select-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.select-dropdown-panel[data-state="open"] {
+  animation: select-dropdown-in 0.22s ease-out;
+}
+
+.popover-dropdown-panel[data-state="open"] {
+  animation: popover-fade-in 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select-dropdown-panel[data-state="open"],
+  .popover-dropdown-panel[data-state="open"] {
+    animation: none;
+  }
+}
+
+/* Horizontal tab rails without visible scrollbar (mobile) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @layer components {
   .glass-card {
     background: var(--color-surface);
@@ -174,16 +228,6 @@
     color: var(--color-primary);
   }
 
-  .book-card-accent-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 1px;
-    background: var(--color-primary);
-    opacity: 0.55;
-    border-radius: 1px;
-  }
 }
 
 @layer utilities {

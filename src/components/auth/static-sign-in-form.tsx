@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 
+import { fetchJson } from "@/lib/api/client-fetch"
 import { createBrowserSupabaseClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -32,16 +33,12 @@ export function StaticSignInForm({ onSuccess, redirectToDashboard = true, redire
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch("/api/auth/static-login", {
+      await fetchJson<{ ok: boolean }>("/api/auth/static-login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "same-origin",
         body: JSON.stringify({ email, password }),
       })
-      const data = (await res.json().catch(() => ({}))) as { error?: string }
-      if (!res.ok) {
-        throw new Error(data.error ?? "Sign-in failed")
-      }
 
       // Sign in browser-side so @supabase/ssr writes the session into cookies
       // (not localStorage). The server's requireUser() reads those cookies.

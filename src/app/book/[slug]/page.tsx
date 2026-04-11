@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BookCardMini } from "@/components/books/book-card"
 import { BookAddToShelf } from "@/components/books/book-add-to-shelf"
 import { WhyYoullLoveIt } from "@/components/books/why-youll-love-it"
-import { WriteReview } from "@/components/books/write-review"
+import { BookReviewsSection } from "@/components/books/book-reviews-section"
 import { JsonLd } from "@/components/seo/json-ld"
 import { normalizeBookCoverUrl } from "@/lib/book-cover-url"
 import { getBookBySlug, getSimilarBooks } from "@/lib/knowledge-books"
@@ -180,25 +180,14 @@ export default async function BookPage(props: { params: Promise<{ slug: string }
 
             <section className="min-w-0">
               <Tabs defaultValue="reviews">
-                <TabsList className="w-full justify-start sm:w-auto">
+                <TabsList className="no-scrollbar w-full max-w-full justify-start overflow-x-auto sm:w-auto">
                   <TabsTrigger value="reviews">Reviews</TabsTrigger>
                   <TabsTrigger value="lists">Lists containing this book</TabsTrigger>
                   <TabsTrigger value="similar">Similar Books</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="reviews" className="space-y-4">
-                  <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
-                    <h3 className="font-heading text-h3 text-heading">Write a review</h3>
-                    <p className="mt-2 text-sm text-text-muted">
-                      Drafts submit to the preview pipeline here; after sign-in, the same form will post to your public profile.
-                    </p>
-                    <WriteReview bookId={book.id} />
-                  </div>
-
-                  <div className="rounded-xl border border-border bg-surface/90 p-5 shadow-card backdrop-blur-sm sm:p-6">
-                    <h3 className="font-heading text-h3 text-heading">Recent reviews</h3>
-                    <p className="mt-2 text-sm text-text-muted">No reviews yet for this title.</p>
-                  </div>
+                <TabsContent value="reviews" className="mt-4 min-w-0 space-y-4">
+                  <BookReviewsSection bookId={book.id} bookTitle={book.title} />
                 </TabsContent>
 
                 <TabsContent value="lists">

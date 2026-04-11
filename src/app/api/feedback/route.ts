@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
+import { withApiErrorHandling } from "@/lib/api/server-response"
 import { rateLimitResponse } from "@/lib/rate-limit"
 
 const feedbackSchema = z.object({
@@ -11,6 +12,7 @@ const feedbackSchema = z.object({
 })
 
 export async function POST(request: Request) {
+  return withApiErrorHandling("POST /api/feedback", async () => {
   const limited = await rateLimitResponse(request, "feedback", { max: 8, window: "1 m" })
   if (limited) return limited
 
@@ -53,4 +55,5 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ ok: true, delivered: Boolean(webhook) })
+  })
 }

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 
+import { withApiErrorHandling } from "@/lib/api/server-response"
 import {
   buildChatSearchQuery,
   fetchBooksContextForChat,
@@ -43,76 +44,78 @@ INSTRUCTIONS:
 }
 
 export async function POST(request: Request) {
-  const limited = await rateLimitResponse(request, "chat", { max: 20, window: "1 m" })
-  if (limited) return limited
+  return withApiErrorHandling("POST /api/chat", async () => {
+    const limited = await rateLimitResponse(request, "chat", { max: 20, window: "1 m" })
+    if (limited) return limited
 
-  if (!process.env.LLM_API_KEY) {
-    return NextResponse.json(
-      {
-        error:
-          "Chat requires LLM_API_KEY. Add an OpenAI-compatible key to .env.local and restart the dev server.",
-      },
-      { status: 503 }
-    )
-  }
-
-  const json = (await request.json().catch(() => null)) as ChatRequest | null
-  if (!json || !Array.isArray(json.messages) || json.messages.length === 0) {
-    return NextResponse.json({ error: "Invalid payload" }, { status: 400 })
-  }
-
-  const userMessages = json.messages.filter((m) => m.role === "user")
-  if (userMessages.length === 0) {
-    return NextResponse.json({ error: "Missing user message" }, { status: 400 })
-  }
-
-  // Build search query from the full conversation context so follow-up turns
-  // ("give me more", "something darker") still retrieve relevant catalog books.
-  const searchQuery = buildChatSearchQuery(json.messages)
-  const catalogBooks = fetchBooksContextForChat(searchQuery, 12)
-  const catalog = formatCatalogForPrompt(catalogBooks)
-  const system = buildSystemPrompt(catalog)
-
-  const messages: ChatMessage[] = [
-    { role: "system", content: system, timestamp: nowIso() },
-    ...json.messages.map((m) => ({ role: m.role, content: m.content, timestamp: nowIso() })),
-  ]
-
-  const adapter = createLLMAdapter(getProviderFromEnv())
-  let tokenStream: ReadableStream<string>
-  try {
-    tokenStream = await adapter.chat(messages, {})
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : "LLM request failed"
-    return NextResponse.json({ error: msg }, { status: 502 })
-  }
-
-  const encoder = new TextEncoder()
-  const transform = new TransformStream<Uint8Array, Uint8Array>()
-  const writer = transform.writable.getWriter()
-
-  ;(async () => {
-    const reader = tokenStream.getReader()
-    try {
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-        const chunk = typeof value === "string" ? value : String(value)
-        await writer.write(encoder.encode(`data: ${JSON.stringify({ token: chunk })}\n\n`))
-      }
-      await writer.write(encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`))
-    } catch {
-      await writer.write(encoder.encode(`data: ${JSON.stringify({ error: "stream_error" })}\n\n`))
-    } finally {
-      await writer.close()
+    if (!process.env.LLM_API_KEY) {
+      return NextResponse.json(
+        {
+          error:
+            "Chat requires LLM_API_KEY. Add an OpenAI-compatible key to .env.local and restart the dev server.",
+        },
+        { status: 503 }
+      )
     }
-  })()
 
-  return new NextResponse(transform.readable, {
-    headers: {
-      "Content-Type": "text/event-stream; charset=utf-8",
-      "Cache-Control": "no-cache, no-transform",
-      Connection: "keep-alive",
-    },
+    const json = (await request.json().catch(() => null)) as ChatRequest | null
+    if (!json || !Array.isArray(json.messages) || json.messages.length === 0) {
+      return NextResponse.json({ error: "Invalid payload" }, { status: 400 })
+    }
+
+    const userMessages = json.messages.filter((m) => m.role === "user")
+    if (userMessages.length === 0) {
+      return NextResponse.json({ error: "Missing user message" }, { status: 400 })
+    }
+
+    // Build search query from the full conversation context so follow-up turns
+    // ("give me more", "something darker") still retrieve relevant catalog books.
+    const searchQuery = buildChatSearchQuery(json.messages)
+    const catalogBooks = fetchBooksContextForChat(searchQuery, 12)
+    const catalog = formatCatalogForPrompt(catalogBooks)
+    const system = buildSystemPrompt(catalog)
+
+    const messages: ChatMessage[] = [
+      { role: "system", content: system, timestamp: nowIso() },
+      ...json.messages.map((m) => ({ role: m.role, content: m.content, timestamp: nowIso() })),
+    ]
+
+    const adapter = createLLMAdapter(getProviderFromEnv())
+    let tokenStream: ReadableStream<string>
+    try {
+      tokenStream = await adapter.chat(messages, {})
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "LLM request failed"
+      return NextResponse.json({ error: msg }, { status: 502 })
+    }
+
+    const encoder = new TextEncoder()
+    const transform = new TransformStream<Uint8Array, Uint8Array>()
+    const writer = transform.writable.getWriter()
+
+    ;(async () => {
+      const reader = tokenStream.getReader()
+      try {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          const chunk = typeof value === "string" ? value : String(value)
+          await writer.write(encoder.encode(`data: ${JSON.stringify({ token: chunk })}\n\n`))
+        }
+        await writer.write(encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`))
+      } catch {
+        await writer.write(encoder.encode(`data: ${JSON.stringify({ error: "stream_error" })}\n\n`))
+      } finally {
+        await writer.close()
+      }
+    })()
+
+    return new NextResponse(transform.readable, {
+      headers: {
+        "Content-Type": "text/event-stream; charset=utf-8",
+        "Cache-Control": "no-cache, no-transform",
+        Connection: "keep-alive",
+      },
+    })
   })
 }
